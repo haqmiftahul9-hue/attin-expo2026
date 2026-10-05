@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>ATTIN EXPO XII 2026 - Temukan Potensi. Ukir Prestasi.</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin:0; padding:0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#124E96",
+            "primary-dark": "#0A2F5E",
+            "primary-soft": "#EFF6FF",
+            maroon: "#7B1E3A",
+            "maroon-light": "#FDF2F4",
+            surface: "#F8FAFC",
+            "surface-card": "#FFFFFF",
+            "text-main": "#0F172A",
+            "text-muted": "#64748B",
+            "border-ui": "#E2E8F0"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-sans text-text-main antialiased selection:bg-primary selection:text-white">
+<!-- 1. ANNOUNCEMENT BAR -->
+<aside class="w-full bg-primary-dark text-white border-b border-maroon/40 text-xs sm:text-sm py-2 px-4 relative z-50">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-2 truncate">
+<span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-maroon animate-ping"></span>
+<span class="font-medium truncate">Pendaftaran ATTIN EXPO XII 2026 untuk SD/MI Tingkat Sumatera Barat</span>
+</div>
+<a class="inline-flex items-center gap-1 font-semibold text-sky-200 hover:text-white hover:underline transition-colors shrink-0" href="#kompetisi">
+<span>Lihat Informasi</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</aside>
+<!-- 2. NAVBAR -->
+<header class="sticky top-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-border-ui shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Logo ATTIN EXPO XII (SVG https://lh3.googleusercontent.com/aida/AEtjO1UBAoVq8NlxQZA9XDKFB7LQIMLOyzv8k6Uz0v3G-dzu8Mpkdo3FlAmBUKr0-LC7RJNeWp3cjeWJ_7P545VyYcldsZAaJWtJbeXM_-Dlh9r5X6ucFm5EWnbb02xGRJ4fNZ2KVsW36YV4HJ6CDBvY7dqHCuhbZ5PN8pikhDtbwLzM-uyaK8EHrgrUpfmL0fP7lUfF68wj_97qPo9RnMuI5AuS6kIj0O8bSHseuU6EcX2co3pI8DGxrK8b8Ho) -->
+<a class="flex items-center gap-3" href="#">
+<svg class="h-11 sm:h-12 w-auto" fill="none" viewbox="0 0 280 64" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(6, 6)">
+<rect fill="#124E96" height="52" rx="14" width="52" x="0" y="0"></rect>
+<path d="M26 10 L30 18 L39 19 L33 26 L35 35 L26 31 L17 35 L19 26 L13 19 L22 18 Z" fill="#FFFFFF" fill-opacity="0.2"></path>
+<path d="M26 14 C22 20 18 24 16 34 C21 32 24 35 26 38 C28 35 31 32 36 34 C34 24 30 20 26 14 Z" fill="#FFFFFF"></path>
+<circle cx="26" cy="24" fill="#7B1E3A" r="3.5"></circle>
+<path d="M22 38 Q26 42 30 38" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2.5"></path>
+</g>
+<text fill="#0A2F5E" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" letter-spacing="0.5" x="70" y="30">ATTIN EXPO <tspan fill="#7B1E3A">XII</tspan></text>
+<text fill="#5B6475" font-family="'Inter', sans-serif" font-size="11" font-weight="600" letter-spacing="1.8" x="70" y="46">2026 • SUMATERA BARAT</text>
+</svg>
+</a>
+<!-- Menu Navigation -->
+<nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-text-muted">
+<a class="text-primary font-bold" href="#">Beranda</a>
+<a class="hover:text-primary transition-colors" href="#kompetisi">Kompetisi</a>
+<a class="hover:text-primary transition-colors" href="#alur">Jadwal</a>
+<a class="hover:text-primary transition-colors" href="#panduan">Panduan</a>
+<a class="hover:text-primary transition-colors" href="#tentang">Tentang</a>
+<a class="hover:text-primary transition-colors" href="#faq">FAQ</a>
+<a class="hover:text-primary transition-colors" href="#kontak">Kontak</a>
+</nav>
+<!-- CTA Kanan -->
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm text-white bg-primary hover:bg-primary-dark shadow-sm transition-all" href="#kompetisi">
+          Daftar Sekarang
+        </a>
+</div>
+</div>
+</header>
+<main><div class="flex flex-col w-full">
+<!-- 1. COMPACT HERO SECTION -->
+<section class="relative bg-surface-bright overflow-hidden py-12 lg:py-16">
+<!-- Subtle Background Islamic Octagram Monoline Patterns -->
+<div class="absolute inset-0 pointer-events-none opacity-40">
+<svg class="absolute -right-24 -top-24 w-96 h-96 text-primary" fill="none" stroke="currentColor" stroke-width="0.75" viewbox="0 0 200 200">
+<rect height="120" rx="10" transform="rotate(0 100 100)" width="120" x="40" y="40"></rect>
+<rect height="120" rx="10" transform="rotate(45 100 100)" width="120" x="40" y="40"></rect>
+<circle cx="100" cy="100" r="50"></circle>
+<circle cx="100" cy="100" r="30"></circle>
+</svg>
+<svg class="absolute -left-20 bottom-0 w-80 h-80 text-secondary" fill="none" stroke="currentColor" stroke-width="0.75" viewbox="0 0 200 200">
+<polygon points="100,20 120,70 175,75 133,113 145,168 100,140 55,168 67,113 25,75 80,70"></polygon>
+</svg>
+</div>
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 font-caption text-caption text-outline mb-6">
+<a class="hover:text-primary transition-colors" href="#">Beranda</a>
+<span class="material-symbols-outlined text-caption">chevron_right</span>
+<span class="text-primary font-body-md-semibold">Kompetisi</span>
+</nav>
+<!-- Eyebrow Tag -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed mb-4">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-badge text-label-badge uppercase tracking-wider">Direktori Cabang Lomba</span>
+</div>
+<!-- Main Headline & Subtitle -->
+<div class="max-w-3xl">
+<h1 class="font-display-hero text-display-hero text-primary tracking-tight mb-4">
+          Temukan Kompetisi untuk Potensi Terbaikmu
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          ATTIN EXPO XII 2026 menghadirkan tiga cabang lomba unggulan untuk siswa SD/MI tingkat Sumatera Barat. Kuatkan adab, ukir prestasi tertinggi di bidang Al-Qur'an, akademik, dan olahraga sunnah.
+        </p>
+</div>
+<!-- Quick Filter Chips -->
+<div class="mt-8 flex flex-wrap gap-2.5 sm:gap-3 items-center">
+<span class="font-label-md text-label-md text-outline mr-2 hidden sm:inline-block">Pintasan Cabang:</span>
+<a class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all hover:bg-primary-container" href="#semua">
+          Semua Cabang
+        </a>
+<a class="px-4 py-2 rounded-full bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm hover:bg-primary-fixed transition-all" href="#tahfizh">
+          Lomba Tahfizh
+        </a>
+<a class="px-4 py-2 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md shadow-sm hover:bg-secondary-fixed transition-all" href="#pra-tka">
+          Lomba Pra-TKA
+        </a>
+<a class="px-4 py-2 rounded-full bg-surface-container-lowest text-tertiary font-label-md text-label-md shadow-sm hover:bg-tertiary-fixed transition-all" href="#panahan">
+          Lomba Panahan
+        </a>
+</div>
+</div>
+</section>
+<!-- 2. IN-DEPTH COMPETITION BLOCKS -->
+<section class="py-12 lg:py-20 bg-background" id="semua">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-24">
+<!-- BLOCK 1: LOMBA TAHFIZH -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-8 lg:p-12 scroll-mt-24 transition-all duration-300 hover:shadow-md" id="tahfizh">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+<!-- Content Left (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<div class="flex items-center gap-3">
+<span class="px-3.5 py-1 rounded-full bg-primary-fixed text-primary font-label-badge text-label-badge uppercase tracking-wider">
+                Al-Qur'an
+              </span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-badge text-label-badge">
+                Tingkat SD/MI
+              </span>
+</div>
+<div class="space-y-3">
+<h2 class="font-headline-lg text-headline-lg text-primary">
+                Lomba Tahfizh Al-Qur'an
+              </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Kompetisi hafalan Al-Qur'an yang memberikan ruang terhormat bagi siswa SD/MI untuk menguji ketepatan tajwid, kelancaran makhorijul huruf, keindahan tilawah, serta kesiapan mental terbaiknya di hadapan para penguji terpercaya.
+              </p>
+</div>
+<!-- Quick Information Cards Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Jenjang</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">SD/MI</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Cakupan</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">Sumbar</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Format</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">Perorangan</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Biaya</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">[ISI BIAYA]</span>
+</div>
+<div class="p-3.5 rounded-lg bg-secondary-fixed flex flex-col col-span-2 sm:col-span-1">
+<span class="font-caption text-caption text-secondary">Batas Kuota</span>
+<span class="font-body-md-semibold text-body-md-semibold text-on-secondary-fixed mt-1">[ISI KUOTA]</span>
+</div>
+</div>
+<!-- Highlight Checkpoints -->
+<div class="space-y-2.5 pt-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Kategori Juz Pilihan &amp; Uji Kelancaran Tartil dengan sambung ayat</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Penilaian berstandar oleh Dewan Juri Hafizh/Hafizhah berlisensi</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Terbuka luas untuk siswa Madrasah Ibtidaiyah maupun Sekolah Dasar Umum</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
+<a class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="/kompetisi/tahfizh">
+                Daftar Tahfizh
+                <span class="material-symbols-outlined ml-2 text-headline-sm">arrow_forward</span>
+</a>
+<a class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-surface-container-lowest text-primary hover:bg-primary-fixed font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="#panduan">
+                Lihat Petunjuk Teknis
+              </a>
+</div>
+</div>
+<!-- Visual Showcase Right (5 Cols) -->
+<div class="lg:col-span-5">
+<div class="relative rounded-xl overflow-hidden shadow-sm bg-gradient-to-br from-primary-container via-primary to-on-primary-fixed p-8 text-on-primary flex flex-col justify-between min-h-[360px]">
+<!-- Islamic Geometric Ornament Graphic Overlay -->
+<svg class="absolute -right-8 -bottom-8 w-64 h-64 text-on-primary opacity-10" fill="currentColor" viewbox="0 0 200 200">
+<path d="M100 0 L130 70 L200 100 L130 130 L100 200 L70 130 L0 100 L70 70 Z"></path>
+<circle cx="100" cy="100" fill="none" r="70" stroke="currentColor" stroke-width="4"></circle>
+</svg>
+<!-- Top Visual Badge -->
+<div class="flex justify-between items-start z-10">
+<div class="w-14 h-14 rounded-xl bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[32px]">menu_book</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest/20 font-label-badge text-label-badge text-on-primary tracking-widest uppercase">
+                  Qur'an Series
+                </span>
+</div>
+<!-- Visual Core Illustration -->
+<div class="my-6 z-10">
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-primary-dark/40 shadow-inner">
+<div class="bg-cover bg-center w-full h-full" data-alt="Close-up of an open holy Quran placed elegantly on a polished wooden rehal with warm golden lighting and delicate geometric Islamic architecture in a serene sanctuary setting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUwl9ygVIuPAlmmqV4ijkty-JjAckT6BRp88X9L-l8FGzkYN5ByzYODAtCyfX9UuyCZ5DXWyJ4NPTjGgwJbYKNSMfkvXHay-kjbAujPpwE2N9Vk27IbOL2AuCBtCx3eZBUHXmphLY08hbk1yuYzboMPPZQ2u1Llk9y6Otb8NmC31Jh7pGXf6AHjkfaPlfsJZDc5eywqQ1CrKDx5q6j2aweJCgVU97GG5nC8JvqV2Z6YE10oRG968-_2A')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent opacity-80"></div>
+</div>
+</div>
+<!-- Bottom Quote -->
+<div class="z-10 bg-on-primary-fixed/40 backdrop-blur-md p-4 rounded-lg">
+<p class="font-title-md text-title-md font-semibold text-on-primary mb-1">
+                  "Mencetak Generasi Qur'ani Berakhlak Mulia"
+                </p>
+<p class="font-caption text-caption text-on-primary-container">
+                  Fokus pada fashohah, tajwid presisi, dan kekuatan muraja'ah
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BLOCK 2: LOMBA PRA-TKA (Alternated Layout: Visual Left, Content Right) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-8 lg:p-12 scroll-mt-24 transition-all duration-300 hover:shadow-md" id="pra-tka">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+<!-- Visual Showcase Left on Desktop (5 Cols) -->
+<div class="lg:col-span-5 order-2 lg:order-1">
+<div class="relative rounded-xl overflow-hidden shadow-sm bg-gradient-to-br from-secondary via-on-secondary-fixed-variant to-on-secondary-fixed p-8 text-on-secondary flex flex-col justify-between min-h-[360px]">
+<!-- Academic Geometric Shapes Overlay -->
+<svg class="absolute -left-10 -bottom-10 w-64 h-64 text-on-secondary opacity-10" fill="currentColor" viewbox="0 0 200 200">
+<circle cx="100" cy="100" fill="none" r="80" stroke="currentColor" stroke-width="4"></circle>
+<rect height="100" transform="rotate(45 100 100)" width="100" x="50" y="50"></rect>
+</svg>
+<!-- Top Visual Badge -->
+<div class="flex justify-between items-start z-10">
+<div class="w-14 h-14 rounded-xl bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[32px]">psychology</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest/20 font-label-badge text-label-badge text-on-secondary tracking-widest uppercase">
+                  Akademik Unggul
+                </span>
+</div>
+<!-- Visual Image Representation -->
+<div class="my-6 z-10">
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-on-secondary-fixed/50 shadow-inner">
+<div class="bg-cover bg-center w-full h-full" data-alt="An Indonesian elementary school student attentively writing a comprehensive academic aptitude test in an organized, brightly lit classroom with study guides and educational models" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3fb6x-k3CTAhKz2ZY8geVOQzuN0ViBR8o087z5fSfXdL1yUgXzItY9PRhW9bvU6VbmHKdPBUrUudv5CLdMBbz-R4-2DT5J2mse294uvLmZ2H5xTUQcy4prNd8LuPd7taFkMbKELK0bJQcEQKexEJWiWCAEdv4kUsM56qKdGHhngCEH8fOfbwMqbotyIiWb2mieU1Rt7Kg7qiANdpvXnvbXAicoFZNF5aryjxzxXzMkLAh9SCARVPLQg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-secondary-fixed via-transparent to-transparent opacity-80"></div>
+</div>
+</div>
+<!-- Bottom Quote -->
+<div class="z-10 bg-on-secondary-fixed/50 backdrop-blur-md p-4 rounded-lg">
+<p class="font-title-md text-title-md font-semibold text-on-secondary mb-1">
+                  "Kesiapan Belajar &amp; Daya Pikir Kritis"
+                </p>
+<p class="font-caption text-caption text-secondary-fixed">
+                  Standar evaluasi literasi, numerasi, dan penalaran logis siswa
+                </p>
+</div>
+</div>
+</div>
+<!-- Content Right on Desktop (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-6 order-1 lg:order-2">
+<div class="flex items-center gap-3">
+<span class="px-3.5 py-1 rounded-full bg-secondary-fixed text-secondary font-label-badge text-label-badge uppercase tracking-wider">
+                Akademik
+              </span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-badge text-label-badge">
+                Tingkat SD/MI
+              </span>
+</div>
+<div class="space-y-3">
+<h2 class="font-headline-lg text-headline-lg text-primary">
+                Lomba Pra-TKA (Tes Kesiapan Akademik)
+              </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Kompetisi akademik yang dirancang secara komprehensif untuk mengasah kemampuan berpikir logis, daya kritis, pemahaman numerasi-sains, serta ketangkasan problem solving siswa menjelang transisi jenjang pendidikan lanjutan.
+              </p>
+</div>
+<!-- Quick Information Cards Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Jenjang</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">SD/MI</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Cakupan</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">Sumbar</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Format</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">Perorangan</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Biaya</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">[ISI BIAYA]</span>
+</div>
+<div class="p-3.5 rounded-lg bg-secondary-fixed flex flex-col col-span-2 sm:col-span-1">
+<span class="font-caption text-caption text-secondary">Batas Kuota</span>
+<span class="font-body-md-semibold text-body-md-semibold text-on-secondary-fixed mt-1">[ISI KUOTA]</span>
+</div>
+</div>
+<!-- Highlight Checkpoints -->
+<div class="space-y-2.5 pt-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Pengukuran kemampuan berpikir logis, analitis, dan pemecahan masalah aktual</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Simulasi standar ujian akademik berstandar terukur dan transparan</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Laporan komprehensif capaian peserta sebagai bekal evaluasi guru dan orang tua</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
+<a class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="/kompetisi/pra-tka">
+                Daftar Pra-TKA
+                <span class="material-symbols-outlined ml-2 text-headline-sm">arrow_forward</span>
+</a>
+<a class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-surface-container-lowest text-primary hover:bg-primary-fixed font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="#panduan">
+                Lihat Petunjuk Teknis
+              </a>
+</div>
+</div>
+</div>
+</div>
+<!-- BLOCK 3: LOMBA PANAHAN (Standard Layout: Text Left, Visual Right) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-8 lg:p-12 scroll-mt-24 transition-all duration-300 hover:shadow-md" id="panahan">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+<!-- Content Left (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-6">
+<div class="flex items-center gap-3">
+<span class="px-3.5 py-1 rounded-full bg-primary-fixed text-primary font-label-badge text-label-badge uppercase tracking-wider">
+                Olahraga Sunnah
+              </span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-badge text-label-badge">
+                Putra &amp; Putri
+              </span>
+</div>
+<div class="space-y-3">
+<h2 class="font-headline-lg text-headline-lg text-primary">
+                Lomba Panahan Tradisional &amp; Standar
+              </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Ajang kompetisi panahan yang menumbuhkan ketajaman fokus batin, stabilitas fisik, kontrol diri, kedisiplinan tinggi, dan pengamalan nilai-nilai sportivitas adab sunnah bagi calon atlet muda kebanggaan daerah.
+              </p>
+</div>
+<!-- Quick Information Cards Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Jenjang</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">SD/MI</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Cakupan</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">Sumbar</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Kategori</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">Pa / Pi</span>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Biaya</span>
+<span class="font-body-md-semibold text-body-md-semibold text-primary mt-1">[ISI BIAYA]</span>
+</div>
+<div class="p-3.5 rounded-lg bg-secondary-fixed flex flex-col col-span-2 sm:col-span-1">
+<span class="font-caption text-caption text-secondary">Batas Kuota</span>
+<span class="font-body-md-semibold text-body-md-semibold text-on-secondary-fixed mt-1">[ISI KUOTA]</span>
+</div>
+</div>
+<!-- Highlight Checkpoints -->
+<div class="space-y-2.5 pt-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Kategori jarak bidik ramah anak yang disesuaikan dengan standar fisik SD/MI</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Prosedur keselamatan ketat (Safety Archery Protocol) terverifikasi wasit berpengalaman</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Penilaian poin skor digital dengan rekonsiliasi transparan di papan bidik</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
+<a class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="/kompetisi/panahan">
+                Daftar Panahan
+                <span class="material-symbols-outlined ml-2 text-headline-sm">arrow_forward</span>
+</a>
+<a class="inline-flex justify-center items-center px-6 py-3 rounded-xl bg-surface-container-lowest text-primary hover:bg-primary-fixed font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="#panduan">
+                Lihat Petunjuk Teknis
+              </a>
+</div>
+</div>
+<!-- Visual Showcase Right (5 Cols) -->
+<div class="lg:col-span-5">
+<div class="relative rounded-xl overflow-hidden shadow-sm bg-gradient-to-br from-tertiary-container via-primary to-on-primary-fixed p-8 text-on-primary flex flex-col justify-between min-h-[360px]">
+<!-- Target Vector Rings Motif Overlay -->
+<svg class="absolute -right-12 -top-12 w-64 h-64 text-on-primary opacity-15" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 100 100">
+<circle cx="50" cy="50" r="45"></circle>
+<circle cx="50" cy="50" r="35"></circle>
+<circle cx="50" cy="50" r="25"></circle>
+<circle cx="50" cy="50" r="15"></circle>
+<circle cx="50" cy="50" fill="currentColor" r="6"></circle>
+</svg>
+<!-- Top Visual Badge -->
+<div class="flex justify-between items-start z-10">
+<div class="w-14 h-14 rounded-xl bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[32px]">track_changes</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest/20 font-label-badge text-label-badge text-on-primary tracking-widest uppercase">
+                  Sportif &amp; Sunnah
+                </span>
+</div>
+<!-- Archery Showcase Picture -->
+<div class="my-6 z-10">
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-primary-dark/40 shadow-inner">
+<div class="bg-cover bg-center w-full h-full" data-alt="A focused young junior archer drawing a professional bow aimed at a brightly colored concentric target face on an outdoor grass field with clear daylight" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5kA3jgkHR4CiRp0j9isY80noPLqRIym4zU1um8CVv3TAWUJdmbmVgd68aPNvxJeNkOh5v4qpahaZVnT7HaSnVzjBQLvdZHsO1XWC229gN_ZoVGC5hDtjjZNlHZ_tlVVFKo1dVJWn1D5d4GFvTZVCHyNwldzQ86ezppj4zMcHw0nG-DCG7wYKIVlJmExwkhYpviaAEhKBW0EziwVmCq4ydI1JLWz9noOlRXWAnpG_BKm4ZiToP18RopA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent opacity-80"></div>
+</div>
+</div>
+<!-- Bottom Quote -->
+<div class="z-10 bg-on-primary-fixed/50 backdrop-blur-md p-4 rounded-lg">
+<p class="font-title-md text-title-md font-semibold text-on-primary mb-1">
+                  "Fokus, Ketenangan, &amp; Sportivitas"
+                </p>
+<p class="font-caption text-caption text-on-primary-container">
+                  Melatih ketahanan konsentrasi dan kepekaan refleks sejak belia
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. TEMUKAN LOMBA YANG SESUAI (Panduan Pemilihan Singkat - 3 Kolom) -->
+<section class="py-16 bg-surface-bright" id="panduan">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-secondary">Rekomendasi Pemilihan</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-2">Temukan Lomba yang Sesuai</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3">
+          Bimbingan singkat untuk membantu guru pembimbing dan orang tua memetakan potensi terbaik yang selaras dengan karakter ananda.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+<!-- Pillar 1: Tahfizh -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">auto_stories</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary">Cabang Tahfizh Al-Qur'an</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Sangat cocok untuk peserta yang memiliki komitmen muraja'ah rutin, menyukai ketenangan tilawah, dan siap menunjukkan kekuatan ingatan tajwid di atas panggung mimbar.
+            </p>
+</div>
+<div class="pt-6">
+<a class="inline-flex items-center font-body-md-semibold text-body-md-semibold text-primary hover:text-primary-container group transition-colors" href="/kompetisi/tahfizh">
+              Lihat Ketentuan Tahfizh
+              <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Pillar 2: Pra-TKA -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">calculate</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary">Cabang Pra-TKA</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Cocok untuk siswa yang gemar bereksplorasi dengan soal penalaran, antusias memecahkan teka-teki logika, serta ingin menguji kesiapan mental menghadapi tes terstandar.
+            </p>
+</div>
+<div class="pt-6">
+<a class="inline-flex items-center font-body-md-semibold text-body-md-semibold text-secondary hover:text-on-secondary-fixed-variant group transition-colors" href="/kompetisi/pra-tka">
+              Lihat Ketentuan Pra-TKA
+              <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Pillar 3: Panahan -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">sports_martial_arts</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary">Cabang Panahan</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Direkomendasikan bagi peserta yang menyukai olahraga presisi, terlatih menjaga napas dan ketenangan dalam tekanan waktu, serta memegang teguh kedisiplinan arena.
+            </p>
+</div>
+<div class="pt-6">
+<a class="inline-flex items-center font-body-md-semibold text-body-md-semibold text-primary hover:text-primary-container group transition-colors" href="/kompetisi/panahan">
+              Lihat Ketentuan Panahan
+              <span class="material-symbols-outlined ml-1.5 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. SEBELUM MENDAFTAR (Checklist Persiapan & Prasyarat) -->
+<section class="py-16 bg-background">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-8 sm:p-10 lg:p-12">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed text-primary mb-3">
+<span class="material-symbols-outlined text-caption">fact_check</span>
+<span class="font-label-badge text-label-badge uppercase tracking-wider">Tata Cara Pendaftaran</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Sebelum Melakukan Pendaftaran</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+              Pastikan berkas dan kelengkapan administrasi telah disiapkan agar proses pendaftaran berjalan cepat tanpa kendala teknis.
+            </p>
+</div>
+<div class="shrink-0">
+<a class="inline-flex items-center px-5 py-3 rounded-xl bg-surface-container text-primary font-body-md-semibold text-body-md-semibold hover:bg-primary-fixed shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined mr-2 text-[20px]">download</span>
+              Unduh Buku Panduan (Juknis)
+            </a>
+</div>
+</div>
+<!-- 4 Step Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+<div class="p-5 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-badge text-label-badge mb-3">
+                01
+              </div>
+<h4 class="font-title-md text-title-md text-on-surface mb-2">Periksa Kriteria Usia</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Pastikan peserta memenuhi kualifikasi kelas dan jenjang SD/MI sederajat di wilayah Sumatera Barat.
+              </p>
+</div>
+</div>
+<div class="p-5 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-badge text-label-badge mb-3">
+                02
+              </div>
+<h4 class="font-title-md text-title-md text-on-surface mb-2">Pelajari Juknis Resmi</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Baca aturan detail setiap cabang, tata tertib busana, skema penilaian juri, dan batasan durasi lomba.
+              </p>
+</div>
+</div>
+<div class="p-5 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-badge text-label-badge mb-3">
+                03
+              </div>
+<h4 class="font-title-md text-title-md text-on-surface mb-2">Siapkan Identitas</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Kumpulkan data NISN resmi, surat keterangan sekolah asal, dan kontak WhatsApp aktif guru pembimbing.
+              </p>
+</div>
+</div>
+<div class="p-5 rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-badge text-label-badge mb-3">
+                04
+              </div>
+<h4 class="font-title-md text-title-md text-on-surface mb-2">Konfirmasi Bukti</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Siapkan dokumen persyaratan digital dan file bukti transfer pembayaran jika sistem cabang mewajibkan.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. FAQ SEPUTAR LOMBA -->
+<section class="py-16 bg-surface-bright" id="faq">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<span class="font-label-badge text-label-badge uppercase tracking-wider text-secondary">Pusat Jawaban</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-2">Bingung Memilih Lomba?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+          Berikut pertanyaan yang paling sering diajukan seputar pemilihan cabang kompetisi di ATTIN EXPO XII 2026.
+        </p>
+</div>
+<div class="space-y-4">
+<!-- Accordion 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none" onclick="toggleFaq(this)">
+<span class="font-title-md text-title-md text-primary">Apakah peserta boleh mengikuti lebih dari satu lomba?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="px-6 pb-6 pt-1 hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Ketentuan mengikuti kebijakan panitia pelaksana. Peserta diperbolehkan mendaftar lebih dari satu cabang lomba (misal: Tahfizh dan Pra-TKA) asalkan jadwal pelaksanaan teknis kedua cabang tidak berbenturan di hari perlombaan. Harap mencermati rundown acara sebelum menyelesaikan administrasi.
+            </p>
+</div>
+</div>
+<!-- Accordion 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none" onclick="toggleFaq(this)">
+<span class="font-title-md text-title-md text-primary">Apakah seluruh cabang lomba khusus siswa SD/MI?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="px-6 pb-6 pt-1 hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Ya, seluruh cabang kompetisi ATTIN EXPO XII 2026 didesain eksklusif untuk murid tingkat Sekolah Dasar (SD) atau Madrasah Ibtidaiyah (MI) berstatus aktif di seluruh wilayah Provinsi Sumatera Barat.
+            </p>
+</div>
+</div>
+<!-- Accordion 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none" onclick="toggleFaq(this)">
+<span class="font-title-md text-title-md text-primary">Di mana saya dapat membaca ketentuan teknis (Juknis) lengkap?</span>
+<span class="material-symbols-outlined text-outline transition-transform duration-200">expand_more</span>
+</button>
+<div class="px-6 pb-6 pt-1 hidden">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Buku pedoman teknis lengkap masing-masing cabang lomba (materi juz tahfizh, kisi-kisi silabus Pra-TKA, serta spesifikasi busur panahan) dapat diunduh melalui tombol panduan di website ini atau dengan menghubungi sekretariat melalui nomor WhatsApp panitia resmi.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. FINAL CALL TO ACTION BANNER -->
+<section class="py-16 bg-background">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="relative bg-gradient-to-r from-on-primary-fixed via-primary to-primary-container text-on-primary rounded-xl overflow-hidden shadow-md px-6 py-12 sm:px-12 sm:py-16 text-center">
+<!-- Subtle Vector Arch Backdrop -->
+<svg class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] text-on-primary opacity-5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 200 200">
+<circle cx="100" cy="100" r="90"></circle>
+<circle cx="100" cy="100" r="70"></circle>
+<polygon points="100,10 120,60 170,60 130,90 145,140 100,110 55,140 70,90 30,60 80,60"></polygon>
+</svg>
+<div class="relative z-10 max-w-2xl mx-auto space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest/15 backdrop-blur-sm text-on-primary font-label-badge text-label-badge uppercase tracking-wider mb-2">
+            Pendaftaran Telah Dibuka
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-primary">
+            Sudah Menentukan Pilihan?
+          </h2>
+<p class="font-body-md text-body-md text-on-primary-container">
+            Amankan kuota peserta ananda sekarang juga. Persiapkan generasi berakhlak mulia dan berprestasi tinggi di ATTIN EXPO XII 2026.
+          </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+<a class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-surface-container-lowest text-primary hover:bg-surface-bright font-body-md-semibold text-body-md-semibold shadow-sm transition-all" href="#semua">
+              Mulai Pendaftaran
+            </a>
+<a class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-3.5 rounded-xl bg-transparent border-2 border-surface-container-lowest/40 hover:border-surface-container-lowest text-on-primary font-body-md-semibold text-body-md-semibold transition-all" href="https://wa.me/[ISI NOMOR WHATSAPP]" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined mr-2 text-[20px]">chat</span>
+              Hubungi Panitia
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main>
+<!-- 15. SOPHISTICATED 4-COLUMN FOOTER -->
+<footer class="bg-white border-t border-border-ui text-text-muted" id="kontak-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+<!-- Kolom 1: Brand Info -->
+<div class="lg:col-span-4 space-y-4">
+<svg class="h-10 w-auto" fill="none" viewbox="0 0 280 64" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(6, 6)">
+<rect fill="#124E96" height="52" rx="14" width="52" x="0" y="0"></rect>
+<path d="M26 10 L30 18 L39 19 L33 26 L35 35 L26 31 L17 35 L19 26 L13 19 L22 18 Z" fill="#FFFFFF" fill-opacity="0.2"></path>
+<path d="M26 14 C22 20 18 24 16 34 C21 32 24 35 26 38 C28 35 31 32 36 34 C34 24 30 20 26 14 Z" fill="#FFFFFF"></path>
+<circle cx="26" cy="24" fill="#7B1E3A" r="3.5"></circle>
+<path d="M22 38 Q26 42 30 38" stroke="#FFFFFF" stroke-linecap="round" stroke-width="2.5"></path>
+</g>
+<text fill="#0A2F5E" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" letter-spacing="0.5" x="70" y="30">ATTIN EXPO <tspan fill="#7B1E3A">XII</tspan></text>
+<text fill="#5B6475" font-family="'Inter', sans-serif" font-size="11" font-weight="600" letter-spacing="1.8" x="70" y="46">2026 • SUMATERA BARAT</text>
+</svg>
+<p class="text-xs sm:text-sm leading-relaxed max-w-sm">
+            Ajang kompetisi SD/MI tingkat Sumatera Barat dalam bidang Al-Qur'an, akademik, dan olahraga.
+          </p>
+</div>
+<!-- Kolom 2: Navigasi -->
+<div class="lg:col-span-2 space-y-3">
+<h4 class="font-display font-bold text-xs uppercase tracking-wider text-text-main">NAVIGASI</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Beranda</a></li>
+<li><a class="hover:text-primary transition-colors" href="#kompetisi">Kompetisi</a></li>
+<li><a class="hover:text-primary transition-colors" href="#alur">Jadwal</a></li>
+<li><a class="hover:text-primary transition-colors" href="#panduan">Panduan</a></li>
+<li><a class="hover:text-primary transition-colors" href="#faq">FAQ</a></li>
+</ul>
+</div>
+<!-- Kolom 3: Kompetisi -->
+<div class="lg:col-span-3 space-y-3">
+<h4 class="font-display font-bold text-xs uppercase tracking-wider text-text-main">KOMPETISI</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-primary transition-colors" href="#kompetisi">Lomba Tahfizh Al-Qur'an</a></li>
+<li><a class="hover:text-primary transition-colors" href="#kompetisi">Lomba Pra-TKA</a></li>
+<li><a class="hover:text-primary transition-colors" href="#kompetisi">Lomba Panahan</a></li>
+</ul>
+</div>
+<!-- Kolom 4: Hubungi Kami -->
+<div class="lg:col-span-3 space-y-3">
+<h4 class="font-display font-bold text-xs uppercase tracking-wider text-text-main">HUBUNGI KAMI</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li>WhatsApp: <span class="font-medium text-text-main">[ISI NOMOR WHATSAPP]</span></li>
+<li>Instagram: <span class="font-medium text-text-main">[ISI INSTAGRAM]</span></li>
+<li>Email: <span class="font-medium text-text-main">[ISI EMAIL]</span></li>
+<li>Lokasi: <span class="font-medium text-text-main">[ISI LOKASI]</span></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="mt-12 pt-6 border-t border-border-ui text-center text-xs text-text-muted">
+<p>© 2026 ATTIN EXPO XII. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Scripts -->
+<script>
+    // FAQ Toggle functionality
+    function toggleFaq(button) {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector('.material-symbols-outlined');
+      if (answer.classList.contains('hidden')) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        answer.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // Dynamic Countdown (placeholder calculation)
+    (function initCountdown() {
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 14);
+
+      function update() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          const dEl = document.getElementById('cd-days');
+          const hEl = document.getElementById('cd-hours');
+          const mEl = document.getElementById('cd-mins');
+          const sEl = document.getElementById('cd-secs');
+
+          if (dEl) dEl.innerText = String(days).padStart(2, '0');
+          if (hEl) hEl.innerText = String(hours).padStart(2, '0');
+          if (mEl) mEl.innerText = String(minutes).padStart(2, '0');
+          if (sEl) sEl.innerText = String(seconds).padStart(2, '0');
+        }
+      }
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
+</body></html>
