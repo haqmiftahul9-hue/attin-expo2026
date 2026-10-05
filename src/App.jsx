@@ -1,0 +1,26 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ScrollManager from './components/ScrollManager.jsx'
+import BranchDetailPage from './pages/BranchDetailPage.jsx'
+import HomePage from './pages/HomePage.jsx'
+import ArcheryRegistration from './pages/registration/ArcheryRegistration.jsx'
+import PraTKARegistration from './pages/registration/PraTKARegistration.jsx'
+import RegistrationSuccessPage from './pages/registration/RegistrationSuccessPage.jsx'
+import TahfizhRegistration from './pages/registration/TahfizhRegistration.jsx'
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollManager />
+
+      <Routes>
+        <Route element={<HomePage />} path="/" />
+        <Route element={<BranchDetailPage />} path="/lomba/:slug" />
+        <Route element={<TahfizhRegistration />} path="/pendaftaran/tahfizh" />
+        <Route element={<PraTKARegistration />} path="/pendaftaran/pra-tka" />
+        <Route element={<ArcheryRegistration />} path="/pendaftaran/panahan" />
+        <Route element={<RegistrationSuccessPage />} path="/pendaftaran-berhasil/:registrationCode" />
+        <Route element={<HomePage />} path="*" />
+      </Routes>
+    </BrowserRouter>
+  )
+}
