@@ -12,7 +12,7 @@ const NUMBER_CLASS_NAMES = [
 
 export default function TimelineSection() {
   return (
-    <section id="jadwal" className="w-full bg-surface-container-low py-space-xl scroll-mt-32">
+    <section id="jadwal" className="w-full bg-transparent-container-low py-16 lg:py-24 scroll-mt-32">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <SectionHeading
           badge={timeline.badge}
@@ -23,30 +23,30 @@ export default function TimelineSection() {
         />
 
         <Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-space-sm relative">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 relative mt-8">
             {timeline.steps.map((step, index) => (
               <div
                 key={step.number}
-                className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm relative flex flex-col justify-between"
+                className="flex flex-col h-full"
               >
                 <div>
                   <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold mb-space-sm ${NUMBER_CLASS_NAMES[index]}`}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-extrabold mb-4 ${NUMBER_CLASS_NAMES[index]}`}
                   >
                     {step.number}
                   </div>
                   <span
-                    className={`font-label-badge text-label-badge uppercase block mb-1 ${step.badgeClassName}`}
+                    className={`text-[11px] font-bold uppercase tracking-widest block mb-2 ${step.badgeClassName}`}
                   >
                     {step.badge}
                   </span>
-                  <h3 className="font-title-md text-title-md text-on-surface font-semibold mb-space-xs">
+                  <h3 className="text-lg font-bold text-on-background mb-2">
                     {step.title}
                   </h3>
-                  <p className="font-caption text-caption text-outline mb-space-sm">{step.description}</p>
+                  <p className="text-sm font-medium text-muted-foreground leading-relaxed mb-6">{step.description}</p>
                 </div>
                 <div
-                  className={`bg-surface p-space-xs rounded-lg font-caption text-caption font-semibold ${step.dateClassName}`}
+                  className={`mt-auto text-sm font-bold pt-4 border-t border-outline/40 ${step.dateClassName}`}
                 >
                   {step.date}
                 </div>

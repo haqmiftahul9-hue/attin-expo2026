@@ -3,7 +3,7 @@ import useActiveSection from '../hooks/useActiveSection.js'
 import { navigation, sectionOrder, site } from '../data/site.js'
 
 const ACTIVE_CLASS =
-  'bg-primary-container text-on-primary font-body-md-semibold rounded-xl px-space-sm py-space-xs shadow-sm'
+  'bg-primary-container text-primary font-body-md-semibold rounded-xl px-space-sm py-space-xs shadow-sm'
 const IDLE_CLASS =
   'px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors'
 
@@ -31,7 +31,7 @@ export default function Header() {
       <div className="h-20 bg-surface/95 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop h-full flex items-center justify-between gap-space-md">
           <div className="flex items-center gap-space-sm shrink-0">
-            <img alt={`${site.title} Logo`} className="h-8 w-auto object-contain" src={site.logo} />
+            <img alt={`${site.title} Logo`} className="h-12 md:h-14 lg:h-16 w-auto object-contain drop-shadow-sm" src="/assets/logo-attin-expo.png" />
             <div className="flex flex-col">
               <span className="font-headline-sm text-headline-sm text-primary tracking-tight leading-tight">
                 {site.name}
@@ -65,7 +65,7 @@ export default function Header() {
 
           <div className="flex items-center gap-space-sm shrink-0">
             <a
-              className="hidden md:inline-flex items-center justify-center bg-primary-container hover:bg-primary text-on-primary font-body-md-semibold text-body-md px-space-md py-space-sm rounded-xl shadow-sm transition-all"
+              className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-body-md-semibold text-body-md px-space-md py-space-sm rounded-xl shadow-sm transition-all"
               data-path="kompetisi"
               href="#kompetisi-resmi"
             >

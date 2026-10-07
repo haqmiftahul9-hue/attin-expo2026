@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ScrollManager from './components/ScrollManager.jsx'
+import PageSkeleton from './components/PageSkeleton.jsx'
 import BranchDetailPage from './pages/BranchDetailPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ArcheryRegistration from './pages/registration/ArcheryRegistration.jsx'
@@ -8,6 +10,19 @@ import RegistrationSuccessPage from './pages/registration/RegistrationSuccessPag
 import TahfizhRegistration from './pages/registration/TahfizhRegistration.jsx'
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return <PageSkeleton />
+  }
+
   return (
     <BrowserRouter>
       <ScrollManager />

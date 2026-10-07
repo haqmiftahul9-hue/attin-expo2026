@@ -18,21 +18,21 @@ export default function CountdownTimer() {
 
   return (
     <div className="bg-primary text-on-primary rounded-xl p-space-md mb-space-md shadow-inner">
-      <div className="flex items-center justify-between mb-space-xs">
-        <span className="font-label-md text-label-md text-tertiary-fixed">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-1">
+        <span className="text-sm font-bold text-white tracking-wide">
           {remaining?.isExpired ? 'Pendaftaran Ditutup' : 'Penutupan Pendaftaran Dalam:'}
         </span>
-        <span className="font-caption text-caption text-surface-variant" title={hasDeadline ? formatDate(deadline) : undefined}>
+        <span className="text-xs font-semibold text-primary-fixed bg-black/20 px-2 py-0.5 rounded-md" title={hasDeadline ? formatDate(deadline) : undefined}>
           {label}
         </span>
       </div>
-      <div className="grid grid-cols-4 gap-space-xs text-center pt-space-xs" aria-live="off">
+      <div className="grid grid-cols-4 gap-3 text-center pt-2" aria-live="off">
         {UNITS.map((unit) => (
-          <div key={unit.key} className="bg-primary-container/80 rounded-lg p-space-xs">
-            <span className="font-headline-md text-headline-md block font-bold">
+          <div key={unit.key} className="bg-white rounded-xl py-3 px-1 shadow-sm border-b-2 border-primary-fixed">
+            <span className="text-2xl lg:text-3xl font-extrabold text-primary block leading-none mb-1">
               {remaining ? padTwoDigits(remaining[unit.key]) : '--'}
             </span>
-            <span className="font-caption text-caption text-tertiary-fixed block">{unit.label}</span>
+            <span className="text-[10px] lg:text-[11px] font-bold text-muted-foreground uppercase tracking-widest block">{unit.label}</span>
           </div>
         ))}
       </div>

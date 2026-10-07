@@ -51,14 +51,15 @@ export const site = {
   heroImage:
     'https://lh3.googleusercontent.com/aida-public/AB6AXuA6GzJ2VNXCcQ9M99SatyZv_kYYgrBzMnoocXDyc07OP6honcwol0Dibti8AQjzyUtnYM4t0uuMNVe0VioJc_e7LJjp_PSqmS6G4P37xmTVKE5e9BLmS7dQcskwCJbL19fw1sVoKpANuNLv7-eBx1_7tmbjdqnc4PA4_mj7PqMVg_SpyJLSdLsOUYCNg2SsaI1GeQLqYWFmhBPmnDT-Pxr7jwNbksqzAi5hK7ByAKEQjs3kYch2CGwamQ',
   heroImageAlt:
-    'Siswa sekolah dasar di aggravate seragam Islam bersih tersenyum bangga sambil memegang sertifikat dan piala Al-Qur’an dalam kompetisi akademik di Sumatera Barat, pencahayaan alami lembut, foto profesional',
+    'Siswa sekolah dasar mengenakan seragam Islam yang rapi, tersenyum bangga sambil memegang sertifikat dan piala Al-Qur’an dalam kompetisi akademik di Sumatera Barat, pencahayaan alami lembut, foto profesional',
   registration: {
     /**
      * Tanggal resmi penutupan pendaftaran (ISO 8601 dengan zona waktu).
      * Countdown pada kartu "Pusat Registrasi" menghitung mundur dari nilai ini.
      */
-    deadline: '2026-12-20T23:59:59+07:00',
-    deadlineLabel: PLACEHOLDER.date,
+    deadline: '2026-11-18T23:59:59+07:00',
+    deadlineLabel: '18 November 2026',
+    executionDate: 'Jumat-Sabtu, 20-21 November 2026',
     venue: PLACEHOLDER.venue,
     city: 'Padang',
     fee: PLACEHOLDER.fee,

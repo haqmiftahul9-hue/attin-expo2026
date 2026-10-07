@@ -62,18 +62,18 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
 
   return (
     <aside className="lg:col-span-4 space-y-space-md lg:sticky lg:top-24">
-      <div className="bg-surface-container-lowest p-space-lg rounded-xl shadow-md">
-        <div className="flex items-center justify-between pb-space-sm mb-space-md">
+      <div className="bg-surface border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-outline/50">
           <div className="flex items-center gap-space-xs">
             <Icon className="text-primary text-[20px]" name="receipt" />
-            <h3 className="font-title-md text-title-md text-primary">Draf Registrasi</h3>
+            <h3 className="text-base font-bold text-primary tracking-tight">Draf Registrasi</h3>
           </div>
-          <span className="font-label-badge text-label-badge bg-primary-fixed text-primary px-2.5 py-0.5 rounded-full uppercase">
+          <span className="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-md uppercase tracking-[0.1em]">
             Sumbar 2026
           </span>
         </div>
 
-        <div className="space-y-space-sm font-body-md text-caption mb-space-md">
+        <div className="space-y-3 text-sm mb-6">
           <SummaryRow highlight label="Cabang Lomba" value={config.fullName} />
           <SummaryRow highlight label="Kategori" value={categoryLabel} />
           <SummaryRow label="Nama Calon Peserta" value={participantName} />
@@ -81,31 +81,31 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
           <SummaryRow label="Kabupaten / Kota" value={city} />
         </div>
 
-        <div className="bg-surface-container-low p-space-md rounded-xl mb-space-md">
-          <div className="flex items-center justify-between text-caption font-label-badge text-on-surface-variant uppercase">
+        <div className="bg-surface-container-low border border-outline/50 p-4 rounded-xl mb-6 shadow-sm">
+          <div className="flex items-center justify-between text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
             <span>Infaq Musabaqah</span>
             <span>Standar 1 Peserta</span>
           </div>
-          <div className="text-headline-md font-bold text-primary mt-1">{config.fee}</div>
-          <div className="font-caption text-caption text-secondary mt-1 flex items-center gap-1">
-            <Icon className="text-[14px]" name="info" />
-            {config.feeNote}
+          <div className="text-2xl font-extrabold text-primary mt-1.5">{config.fee}</div>
+          <div className="text-xs text-secondary mt-2 flex items-start gap-1.5 font-medium">
+            <Icon className="text-[16px] shrink-0" name="info" />
+            <span className="leading-tight">{config.feeNote}</span>
           </div>
         </div>
 
-        <div className="space-y-space-xs pt-space-xs">
-          <div className="font-label-badge text-label-badge text-on-surface-variant uppercase mb-space-xs">
+        <div className="space-y-2 pt-2 border-t border-outline/50">
+          <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-3">
             Kelengkapan Form
           </div>
           {checklist.map((item) => (
             <div
               key={item.key}
-              className={`flex items-center gap-space-xs text-caption ${
-                item.done ? 'text-primary font-body-md-semibold' : 'text-on-surface-variant'
+              className={`flex items-center gap-2 text-sm ${
+                item.done ? 'text-primary font-bold' : 'text-muted-foreground'
               }`}
             >
               <Icon
-                className={`text-[16px] ${item.done ? 'text-primary' : 'text-outline'}`}
+                className={`text-[18px] ${item.done ? 'text-primary' : 'text-outline'}`}
                 name={item.done ? 'check_circle' : 'radio_button_unchecked'}
               />
               {item.label}
@@ -114,7 +114,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
         </div>
       </div>
 
-      <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-start gap-space-md">
+      <div className="bg-surface border border-outline p-5 rounded-xl shadow-sm flex items-start gap-4">
         <div className="w-10 h-10 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center shrink-0">
           <Icon className="text-[20px]" name="chat" />
         </div>

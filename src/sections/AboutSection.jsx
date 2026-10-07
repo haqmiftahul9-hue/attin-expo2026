@@ -5,11 +5,11 @@ import { site } from '../data/site.js'
 
 export default function AboutSection() {
   return (
-    <section id="tentang" className="w-full bg-surface py-space-xl scroll-mt-32">
+    <section id="tentang" className="w-full bg-transparent py-16 lg:py-24 scroll-mt-32">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
           <Reveal className="lg:col-span-5 relative w-full">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-surface-container">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-transparent-container">
               <img
                 className="w-full h-full object-cover"
                 data-alt={site.heroImageAlt}
@@ -36,24 +36,24 @@ export default function AboutSection() {
           </Reveal>
 
           <Reveal delay={80} className="lg:col-span-7 flex flex-col gap-space-sm">
-            <span className="font-label-badge text-label-badge text-primary-container tracking-widest uppercase">
+            <span className="text-[11px] font-bold text-primary tracking-widest uppercase bg-primary/10 px-2.5 py-1 rounded-full w-fit">
               {about.badge}
             </span>
-            <h2 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-on-background tracking-tight leading-tight mt-4">
               {about.title}
             </h2>
-            <p className="font-body-md text-body-md text-outline leading-relaxed">{about.body}</p>
+            <p className="text-base text-muted-foreground leading-relaxed mt-2">{about.body}</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-space-sm pt-space-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
               {about.points.map((point) => (
-                <div key={point.title} className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
-                  <div className="w-10 h-10 rounded-lg bg-surface-container-low text-primary flex items-center justify-center mb-space-xs">
-                    <MaterialIcon name={point.icon} className="text-[22px]" />
+                <div key={point.title} className="flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                    <MaterialIcon name={point.icon} className="text-[24px]" />
                   </div>
-                  <h3 className="font-body-md-semibold text-body-md-semibold text-primary mb-1">
+                  <h3 className="text-base font-bold text-on-background mb-2 tracking-tight">
                     {point.title}
                   </h3>
-                  <p className="font-caption text-caption text-outline">{point.description}</p>
+                  <p className="text-sm font-medium text-muted-foreground leading-relaxed">{point.description}</p>
                 </div>
               ))}
             </div>

@@ -21,13 +21,13 @@ export default function SectionHeading({
     <Reveal
       className={`${layoutClassName} mb-space-xl space-y-space-xs ${wrapperClassName} ${className}`.trim()}
     >
-      <span className={`font-label-badge text-label-badge ${badgeClassName} tracking-widest uppercase`}>
+      <span className={`text-[11px] font-bold tracking-widest uppercase bg-surface border border-outline px-2.5 py-1 rounded-full ${badgeClassName}`}>
         {badge}
       </span>
-      <h2 className={`font-headline-lg text-headline-lg-mobile lg:text-headline-lg ${titleClassName}`}>
+      <h2 className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mt-4 ${titleClassName}`}>
         {title}
       </h2>
-      {description ? <p className="font-body-md text-body-md text-outline">{description}</p> : null}
+      {description ? <p className="text-base text-muted-foreground leading-relaxed mt-4">{description}</p> : null}
     </Reveal>
   )
 }

@@ -4,13 +4,13 @@ export const heroMetrics = [
   { label: 'Tingkat Peserta', value: 'SD/MI Se-Sumbar', valueClassName: 'text-primary' },
   { label: 'Total Cabang', value: '3 Perlombaan', valueClassName: 'text-primary' },
   { label: 'Kuota Lomba', value: site.registration.quota, valueClassName: 'text-secondary' },
-  { label: 'Pelaksanaan', value: placeholders.date, valueClassName: 'text-primary' },
+  { label: 'Pelaksanaan', value: site.registration.executionDate, valueClassName: 'text-primary' },
 ]
 
 export const eventStats = [
   {
     icon: 'menu_book',
-    iconClassName: 'bg-primary-container text-on-primary',
+    iconClassName: 'bg-primary-container text-primary',
     value: '3 Cabang',
     valueClassName: 'text-primary',
     label: 'Tahfizh, Pra-TKA & Panahan',
@@ -65,58 +65,40 @@ export const competitionSection = {
   badge: 'CABANG PERLOMBAAN',
   title: 'Pilihan Kompetisi Jenjang SD/MI',
   description:
-    'Pilih cabang lomba sesuai minat bakat ananda. Pelajari juknis teknis, persyaratan peserta, dan pastikan mendaftar sebelum kuota tercapai.',
+    'Pilih cabang lomba sesuai minat dan bakat ananda. Pelajari buku petunjuk teknis (Juknis), lengkapi persyaratan, dan pastikan mendaftar sebelum kuota penuh.',
 }
 
 export const benefits = {
   badge: 'KEUNGGULAN ACARA',
   title: 'Mengapa Mengikuti ATTIN EXPO XII?',
   description:
-    'Kami menyajikan ekosistem perlombaan bermutu tinggi, berorientasi pendidikan karakter serta transparansi penuh.',
+    'Kami menyajikan ekosistem perlombaan bermutu tinggi, berorientasi pada pendidikan karakter, sportivitas, serta transparansi penilaian.',
   items: [
-    {
-      icon: 'workspace_premium',
-      iconClassName: 'text-primary',
-      title: 'Dewan Juri Netral',
-      description:
-        'Juri berlisensi resmi, berpengalaman di ajang MTQ dan asosiasi panahan resmi dengan sistem penilaian tertutup dan transparan.',
-    },
-    {
-      icon: 'psychology',
-      iconClassName: 'text-secondary',
-      title: 'Pengalaman Mental',
-      description:
-        'Melatih keberanian tampil di panggung tingkat provinsi dan menumbuhkan mental juara yang rendah hati dan berkarakter.',
-    },
-    {
-      icon: 'badge',
-      iconClassName: 'text-primary',
-      title: 'Sertifikat Resmi',
-      description:
-        'Seluruh peserta dan pembimbing memperoleh sertifikat resmi terverifikasi yang berguna bagi portofolio jenjang pendidikan lanjutan.',
-    },
-    {
-      icon: 'family_restroom',
-      iconClassName: 'text-secondary',
-      title: 'Venue Ramah Anak',
-      description:
-        'Fasilitas lomba yang higienis, musholla representatif, tim medis siaga, dan zona tunggu nyaman bagi orang tua serta guru pendamping.',
-    },
+    { icon: 'workspace_premium', iconClassName: 'text-primary', title: 'Juri Bersertifikat' },
+    { icon: 'psychology', iconClassName: 'text-secondary', title: 'Uji Mental Juara' },
+    { icon: 'badge', iconClassName: 'text-tertiary', title: 'Sertifikat Resmi' },
+    { icon: 'family_restroom', iconClassName: 'text-accent-mint', title: 'Venue Ramah Anak' },
+    { icon: 'medical_services', iconClassName: 'text-primary', title: 'Tim Medis Siaga' },
+    { icon: 'mosque', iconClassName: 'text-secondary', title: 'Musholla Luas' },
+    { icon: 'local_parking', iconClassName: 'text-tertiary', title: 'Parkir Memadai' },
+    { icon: 'restaurant', iconClassName: 'text-accent-mint', title: 'Kantin Halal' },
+    { icon: 'security', iconClassName: 'text-primary', title: 'Keamanan Ketat' },
+    { icon: 'photo_camera', iconClassName: 'text-secondary', title: 'Dokumentasi Pro' },
   ],
 }
 
 export const timeline = {
   badge: 'ALUR & JADWAL',
   title: 'Tahapan Pelaksanaan ATTIN EXPO XII 2026',
-  description: 'Catat tanggal penting agar sekolah dan santri Anda tidak melewatkan momentum berharga ini.',
+  description: 'Catat tanggal-tanggal penting berikut agar sekolah dan peserta tidak melewatkan momentum berharga ini.',
   steps: [
     {
       number: '01',
       badge: 'Tahap Awal',
       badgeClassName: 'text-secondary',
-      title: 'Pendaftaran Daring',
-      description: 'Pengisian data peserta dan pengunggahan kelengkapan berkas.',
-      date: placeholders.date,
+      title: 'Pendaftaran Online',
+      description: 'Pengisian biodata peserta dan pengunggahan kelengkapan berkas pendaftaran.',
+      date: `Hingga ${site.registration.deadlineLabel}`,
       dateClassName: 'text-primary',
     },
     {
@@ -124,8 +106,8 @@ export const timeline = {
       badge: 'Verifikasi',
       badgeClassName: 'text-secondary',
       title: 'Batas Penutupan',
-      description: 'Batas akhir pembayaran serta konfirmasi kelayakan administratif.',
-      date: placeholders.date,
+      description: 'Batas akhir penyelesaian administrasi pembayaran dan konfirmasi kelayakan.',
+      date: site.registration.deadlineLabel,
       dateClassName: 'text-secondary',
     },
     {
@@ -133,8 +115,8 @@ export const timeline = {
       badge: 'Briefing',
       badgeClassName: 'text-primary',
       title: 'Technical Meeting',
-      description: 'Penjelasan tata tertib teknis, nomor undian, & sesi tanya jawab.',
-      date: placeholders.date,
+      description: 'Penjelasan tata tertib lomba, pengambilan nomor undian, dan sesi tanya jawab.',
+      date: 'Rabu, 19 November 2026',
       dateClassName: 'text-primary',
     },
     {
@@ -142,8 +124,8 @@ export const timeline = {
       badge: 'Hari H',
       badgeClassName: 'text-secondary',
       title: 'Pelaksanaan Lomba',
-      description: 'Musabaqah Tahfizh, Pra-TKA, & Kejuaraan Panahan berlangsung serentak.',
-      date: placeholders.date,
+      description: 'Seluruh cabang perlombaan (Tahfizh, Pra-TKA, Panahan) dilaksanakan secara serentak.',
+      date: site.registration.executionDate,
       dateClassName: 'text-primary',
     },
     {
@@ -151,8 +133,8 @@ export const timeline = {
       badge: 'Penutupan',
       badgeClassName: 'text-primary',
       title: 'Pengumuman Juara',
-      description: 'Penyerahan piala bergilir, sertifikat, dan dana pembinaan pemenang.',
-      date: placeholders.date,
+      description: 'Penyerahan piala bergilir, penyerahan sertifikat pemenang, dan dana pembinaan.',
+      date: 'Sabtu, 21 November 2026',
       dateClassName: 'text-secondary',
     },
   ],
@@ -160,54 +142,69 @@ export const timeline = {
 
 export const faq = {
   badge: 'TANYA JAWAB',
-  title: 'Pertanyaan yang Sering Diajukan',
+  title: 'Pertanyaan yang Sering Diajukan (FAQ)',
   description: 'Informasi ringkas mengenai regulasi dan teknis pendaftaran ATTIN EXPO XII.',
   items: [
     {
       question: 'Siapa saja yang berhak mengikuti perlombaan ATTIN EXPO XII 2026?',
       answer:
-        'Kompetisi ini terbuka untuk seluruh siswa-siswi aktif jenjang SD/MI negeri maupun swasta di seluruh 19 Kabupaten dan Kota se-Provinsi Sumatera Barat yang dibuktikan dengan surat rekomendasi resmi kepala sekolah atau madrasah.',
+        'Kompetisi ini terbuka untuk seluruh siswa-siswi aktif jenjang SD/MI negeri maupun swasta di seluruh wilayah Sumatera Barat. Peserta wajib melampirkan surat rekomendasi atau mandat resmi dari kepala sekolah/madrasah.',
     },
     {
-      question: 'Bagaimana alur pembayaran dan verifikasi bukti transfer?',
-      answer: `Pembayaran dilakukan via transfer bank ke rekening resmi panitia ${placeholders.bankAccount}. Setelah transfer, silakan unggah bukti transfer pada formulir online pendaftaran atau konfirmasi langsung ke nomor WhatsApp panitia pelaksana.`,
+      question: 'Bagaimana prosedur pembayaran dan verifikasi bukti pendaftaran?',
+      answer: `Pembayaran dilakukan melalui transfer bank ke rekening resmi panitia: ${placeholders.bankAccount}. Setelah mentransfer, silakan unggah foto/screenshot bukti transfer ke dalam formulir pendaftaran online.`,
     },
     {
-      question: 'Apakah satu sekolah diperbolehkan mengirimkan lebih dari satu peserta?',
+      question: 'Apakah satu sekolah diperbolehkan mengirimkan lebih dari satu peserta per cabang?',
       answer:
-        'Ya, sekolah diizinkan mendelegasikan lebih dari 1 peserta selama kuota cabang lomba yang dituju masih tersedia di sistem registrasi kami.',
+        'Tentu. Pihak sekolah diizinkan mengirimkan lebih dari 1 peserta (tanpa batasan maksimal per sekolah) selama sisa kuota cabang lomba yang dituju masih tersedia di sistem pendaftaran kami.',
     },
     {
-      question: 'Di mana lokasi venue pelaksanaan perlombaan?',
-      answer: `Pelaksanaan offline berlangsung di ${placeholders.venue}, Kota Padang, Provinsi Sumatera Barat. Rute dan panduan akomodasi dapat diakses pada buku petunjuk teknis.`,
+      question: 'Di mana lokasi spesifik pelaksanaan perlombaan?',
+      answer: `Semua kegiatan akan diselenggarakan di ${placeholders.venue}, Kota Padang, Provinsi Sumatera Barat. Panduan rute dan informasi fasilitas di lokasi lomba dapat dibaca secara lengkap pada Buku Juknis.`,
     },
     {
-      question: 'Kapan batas akhir pendaftaran dan apakah ada perpanjangan waktu?',
-      answer: `Batas akhir pendaftaran ditetapkan sampai ${placeholders.date}. Pendaftaran dapat ditutup sewaktu-waktu lebih cepat apabila kuota maksimal peserta per cabang lomba telah terpenuhi.`,
+      question: 'Apakah jadwal pendaftaran bisa diperpanjang?',
+      answer: `Batas akhir pendaftaran terjadwal pada ${placeholders.date}. Namun, pendaftaran akan langsung ditutup LEBIH AWAL apabila total kuota maksimal peserta telah terpenuhi. Oleh karena itu, kami menyarankan Anda untuk mendaftar secepat mungkin.`,
     },
   ],
 }
 
 export const contactCards = [
   {
-    icon: 'support_agent',
-    iconClassName: 'bg-surface-container text-primary',
-    title: 'Sekretariat Panitia',
-    caption: 'Layanan Informasi & Pendaftaran',
-    value: `WhatsApp: ${placeholders.whatsapp}`,
+    icon: 'chat',
+    iconClassName: 'bg-primary/10 text-primary',
+    title: 'WhatsApp Panitia',
+    caption: 'Konsultasi & kendala teknis',
+    value: `+62 812-3456-7890`,
+    cta: 'Kirim Pesan WA',
+    href: '#'
   },
   {
     icon: 'mail',
-    iconClassName: 'bg-surface-container text-secondary',
-    title: 'Surel Resmi',
-    caption: 'Korespondensi Surat & Undangan',
-    value: `Email: ${placeholders.email}`,
+    iconClassName: 'bg-secondary/10 text-secondary',
+    title: 'Email Resmi',
+    caption: 'Untuk surat menyurat instansi',
+    value: `panitia@attinexpo.com`,
+    cta: 'Tulis Email',
+    href: '#'
   },
   {
-    icon: 'pin_drop',
-    iconClassName: 'bg-surface-container text-primary',
-    title: 'Lokasi Kampus',
-    caption: 'Sekretariat Pelaksana Expo',
-    value: `${placeholders.venue}, Sumatera Barat`,
+    icon: 'description',
+    iconClassName: 'bg-tertiary/10 text-tertiary',
+    title: 'Pusat Bantuan',
+    caption: 'Pelajari aturan & teknis lomba',
+    value: `Buku Panduan Lomba`,
+    cta: 'Baca Dokumen',
+    href: '#panduan-juknis'
+  },
+  {
+    icon: 'groups',
+    iconClassName: 'bg-accent-mint/10 text-accent-mint',
+    title: 'Grup Komunitas',
+    caption: 'Informasi pengumuman terkini',
+    value: `Grup Telegram Official`,
+    cta: 'Gabung Grup',
+    href: '#'
   },
 ]

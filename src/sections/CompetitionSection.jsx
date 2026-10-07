@@ -9,7 +9,7 @@ const DETAIL_LABELS = ['Jenjang', 'Cakupan', 'Kontribusi']
 
 export default function CompetitionSection() {
   return (
-    <section id="kompetisi-resmi" className="w-full bg-surface-container-low py-space-xl scroll-mt-32">
+    <section id="kompetisi-resmi" className="w-full bg-transparent py-16 lg:py-24 scroll-mt-32">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <SectionHeading
           badge={competitionSection.badge}
@@ -20,40 +20,40 @@ export default function CompetitionSection() {
         />
 
         <Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {competitions.map((competition) => (
               <div
                 key={competition.id}
                 id={competition.id}
-                className="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group scroll-mt-32"
+                className="rounded-2xl border-2 border-outline/80 bg-surface p-6 shadow-md transition-all hover:border-primary/40 hover:-translate-y-1 hover:shadow-xl flex flex-col justify-between group scroll-mt-32"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-space-xs mb-space-md">
-                    <span
-                      className={`font-label-badge text-label-badge px-space-sm py-space-xs rounded-full uppercase ${competition.tagClassName}`}
-                    >
+                  <div className="flex items-center justify-between gap-2 mb-4 border-b border-outline/50 pb-3">
+                    <span className="text-[11px] font-bold text-primary tracking-widest uppercase">
                       {competition.tag}
                     </span>
-                    <span className="font-caption text-caption text-secondary font-medium">
+                    <span className="text-[11px] font-bold text-secondary uppercase tracking-widest">
                       Kuota: {competition.quota}
                     </span>
                   </div>
 
-                  <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-space-md group-hover:scale-105 transition-transform ${competition.iconClassName}`}
-                  >
-                    <MaterialIcon name={competition.icon} className="text-[28px]" />
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform ${competition.iconClassName}`}
+                    >
+                      <MaterialIcon name={competition.icon} className="text-[28px]" />
+                    </div>
+                    <h3 className="text-lg font-extrabold text-on-background leading-tight tracking-tight">
+                      {competition.title}
+                    </h3>
                   </div>
 
-                  <h3 className="font-title-md text-title-md text-on-surface font-bold mb-space-xs">
-                    {competition.title}
-                  </h3>
-                  <p className="font-body-md text-body-md text-outline mb-space-md">{competition.description}</p>
+                  <p className="text-sm font-medium text-muted-foreground leading-relaxed mb-6">{competition.description}</p>
 
-                  <div className="space-y-space-xs py-space-sm bg-surface rounded-xl p-space-sm mb-space-md text-body-md">
+                  <div className="space-y-2 py-4 mb-4 text-sm font-medium border-t border-outline/50">
                     {competition.details.map((value, index) => (
-                      <div key={DETAIL_LABELS[index]} className="flex justify-between gap-space-sm">
-                        <span className="text-outline shrink-0">{DETAIL_LABELS[index]}:</span>
+                      <div key={DETAIL_LABELS[index]} className="flex justify-between gap-2">
+                        <span className="text-muted-foreground shrink-0">{DETAIL_LABELS[index]}:</span>
                         <span className={`text-right ${detailValueClassNames[index]}`}>{value}</span>
                       </div>
                     ))}
@@ -61,7 +61,7 @@ export default function CompetitionSection() {
                 </div>
 
                 <Link
-                  className="w-full inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary font-body-md-semibold py-space-sm rounded-xl transition-colors shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold text-sm py-3 rounded-lg hover:opacity-90 transition-opacity shadow-sm"
                   data-path="kompetisi"
                   to={competition.registrationHref}
                 >

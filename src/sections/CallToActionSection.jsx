@@ -5,7 +5,7 @@ import { site } from '../data/site.js'
 
 export default function CallToActionSection() {
   return (
-    <section className="w-full bg-surface py-space-md">
+    <section className="w-full bg-transparent py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <div className="relative bg-primary text-on-primary rounded-3xl p-space-lg lg:p-space-xl overflow-hidden shadow-2xl">
           <OctagramPattern className="absolute -top-10 -right-10 w-96 h-96 text-tertiary-fixed opacity-[0.07] pointer-events-none" />
@@ -25,7 +25,7 @@ export default function CallToActionSection() {
 
             <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
               <a
-                className="inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-primary-container font-body-md-semibold px-space-lg py-space-sm rounded-xl hover:bg-surface-variant transition-all shadow-md"
+                className="inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-primary-container font-body-md-semibold px-space-lg py-space-sm rounded-xl hover:bg-transparent-variant transition-all shadow-md"
                 href="#kompetisi-resmi"
               >
                 <MaterialIcon name="how_to_reg" className="text-[20px]" />

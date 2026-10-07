@@ -20,7 +20,7 @@ export default function HomePage() {
     <>
       <Header />
 
-      <main className="w-full pt-20 bg-surface flex-1">
+      <main className="w-full pt-20 bg-transparent flex-1">
         <div className="flex flex-col w-full">
           <HeroSection />
           <EventStatsSection />

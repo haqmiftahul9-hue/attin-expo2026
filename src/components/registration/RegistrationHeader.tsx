@@ -38,7 +38,7 @@ export default function RegistrationHeader({ slug }: { slug: CompetitionSlug }) 
       <div className="h-20 bg-surface/95 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop h-full flex items-center justify-between gap-space-md">
           <Link className="flex items-center gap-space-sm shrink-0" to="/">
-            <img alt={`${site.title} Logo`} className="h-8 w-auto object-contain" src={site.logo} />
+            <img alt={`${site.title} Logo`} className="h-12 md:h-14 lg:h-16 w-auto object-contain drop-shadow-sm" src="/assets/logo-attin-expo.png" />
             <span className="flex flex-col">
               <span className="font-headline-sm text-headline-sm text-primary tracking-tight leading-tight">
                 {site.name}

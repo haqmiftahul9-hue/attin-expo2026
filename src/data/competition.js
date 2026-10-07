@@ -40,7 +40,7 @@ export const competitions = [
     title: 'Lomba Pra-TKA',
     shortTitle: 'Lomba Pra-TKA',
     description:
-      'Uji ketangkasan dasar dan wawasan keislaman anak (Pra Tahfidz & Keislaman Anak) untuk memupuk pondasi moral sedini mungkin.',
+      'Uji pemahaman dasar keislaman dan bacaan Al-Qur’an untuk menanamkan pondasi tauhid serta akhlak mulia sedini mungkin.',
     details: ['Kelas 1-3 SD/MI', placeholders.category, placeholders.fee],
   },
   {

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Icon from '../../components/Icon.jsx'
-import RegistrationFooter from '../../components/registration/RegistrationFooter.jsx'
+import Footer from '../../components/Footer.jsx'
 import RegistrationHeader from '../../components/registration/RegistrationHeader.jsx'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import { getLastRegistration } from '../../lib/registrationsRepository.js'
@@ -111,7 +111,7 @@ export default function RegistrationSuccessPage() {
         </div>
       </main>
 
-      <RegistrationFooter />
+      <Footer />
     </div>
   )
 }
