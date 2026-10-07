@@ -13,7 +13,7 @@ import {
   requiredClassName,
 } from '../../lib/registrationStyles.js'
 
-/** Tahap 6 — Infaq Pendaftaran & Rekening Resmi. */
+/** Tahap 4 — Infaq Pendaftaran & Rekening Resmi. */
 export default function PaymentSection({ form }: { form: RegistrationFormApi }) {
   const { config, valueFor, setValue, fileFor, setFile, errorFor, inputClassFor } = form
   const proof = fileFor('bukti_transfer')
@@ -21,7 +21,7 @@ export default function PaymentSection({ form }: { form: RegistrationFormApi }) 
   return (
     <section className={cardClassName}>
       <div className={cardHeaderClassName}>
-        <span className={numberBadgeClassName}>06</span>
+        <span className={numberBadgeClassName}>04</span>
         <div>
           <h2 className={cardTitleClassName}>Infaq Pendaftaran &amp; Rekening Resmi</h2>
           <p className={cardCaptionClassName}>

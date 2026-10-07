@@ -27,14 +27,6 @@ export interface SpecificField {
   options: SelectOption[]
 }
 
-export interface DocumentField {
-  name: 'dokumen_peserta' | 'dokumen_pendukung' | 'bukti_transfer'
-  label: string
-  hint: string
-  required: boolean
-  variant: 'dropzone' | 'compact' | 'receipt'
-}
-
 export interface RegistrationConfig {
   slug: CompetitionSlug
   competitionId: string
@@ -54,7 +46,6 @@ export interface RegistrationConfig {
   fee: string
   feeNote: string
   quota: string
-  documents: DocumentField[]
   bank: {
     name: string
     accountNumber: string
@@ -75,23 +66,23 @@ export interface RegistrationRow {
   competition_id: string
   competition_slug: CompetitionSlug
   participant_name: string
+  nickname: string
   gender: Gender | ''
   birth_date: string | null
+  birth_place: string
   nisn: string
   grade: string
   school_name: string
+  school_address: string
   city: string
-  companion_name: string
-  companion_phone: string
-  parent_name: string
-  parent_phone: string
-  specific_data: Record<string, string>
-  identity_document_url: string | null
-  supporting_document_url: string | null
+  payment_sender_bank: string
+  payment_sender_name: string
   payment_proof_url: string | null
-  payment_status: 'pending' | 'verified' | 'rejected'
+  specific_data: Record<string, string>
   registration_status: 'pending' | 'verified' | 'rejected'
+  payment_status: 'pending' | 'verified' | 'rejected'
   created_at?: string
+  updated_at?: string
 }
 
 export interface SaveRegistrationResult {

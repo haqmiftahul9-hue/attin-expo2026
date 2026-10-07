@@ -76,12 +76,6 @@ const REQUIRED_TEXT_FIELDS: Array<{ name: string; message?: string }> = [
   { name: 'nama_sekolah' },
   { name: 'kabupaten_kota' },
   { name: 'alamat_sekolah' },
-  { name: 'guru_pembimbing' },
-  { name: 'kontak_wa_guru', message: ERROR_MESSAGES.phone },
-  { name: 'email_sekolah', message: ERROR_MESSAGES.email },
-  { name: 'nama_wali' },
-  { name: 'relasi_wali' },
-  { name: 'kontak_wali', message: ERROR_MESSAGES.phone },
   { name: 'bank_pengirim' },
   { name: 'nama_pemilik_rekening' },
 ]
@@ -110,26 +104,9 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
     errors.nisn = ERROR_MESSAGES.nisn
   }
 
-  if (typeof values.email_sekolah === 'string' && values.email_sekolah.trim() !== '' && !isValidEmail(values.email_sekolah)) {
-    errors.email_sekolah = ERROR_MESSAGES.email
-  }
-
-  for (const phoneField of ['kontak_wa_guru', 'kontak_wali']) {
-    const value = values[phoneField]
-    if (typeof value === 'string' && value.trim() !== '' && !isValidPhone(value)) {
-      errors[phoneField] = ERROR_MESSAGES.phone
-    }
-  }
-
   for (const specificField of config.specificFields) {
     if (isBlank(values[specificField.name])) {
       errors[specificField.name] = ERROR_MESSAGES.specific
-    }
-  }
-
-  for (const documentField of config.documents) {
-    if (documentField.required && isBlank(values[documentField.name])) {
-      errors[documentField.name] = ERROR_MESSAGES.required
     }
   }
 

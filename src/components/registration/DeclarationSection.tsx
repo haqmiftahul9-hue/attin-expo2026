@@ -5,11 +5,11 @@ import { fieldId, errorTextClassName } from '../../lib/registrationStyles.js'
 const STATEMENTS = [
   {
     name: 'persetujuan_1',
-    text: 'Saya menyatakan dengan sebenar-benarnya bahwa seluruh biodata santri/siswa serta berkas utusan yang dilampirkan adalah valid, otentik, dan sesuai jenjang pendidikan SD/MI berjalan tahun ajaran 2025/2026.',
+    text: 'Saya menyatakan dengan sebenar-benarnya bahwa seluruh biodata santri/siswa adalah valid, otentik, dan sesuai jenjang pendidikan SD/MI berjalan tahun ajaran 2025/2026.',
   },
   {
     name: 'persetujuan_2',
-    text: 'Peserta, pembimbing, dan orang tua santri bersedia mematuhi tata tertib musabaqah, menjunjung tinggi adab Islami, serta menerima secara lapang dada keputusan majelis dewan juri/hakim yang bersifat mutlak.',
+    text: 'Peserta dan orang tua santri bersedia mematuhi tata tertib musabaqah, menjunjung tinggi adab Islami, serta menerima secara lapang dada keputusan majelis dewan juri/hakim yang bersifat mutlak.',
   },
   {
     name: 'persetujuan_3',
@@ -24,7 +24,7 @@ interface DeclarationSectionProps {
   onSubmitDraft: () => void
 }
 
-/** Tahap 7 — Pengesahan & Pakta Integritas. */
+/** Tahap 5 — Pengesahan & Pakta Integritas. */
 export default function DeclarationSection({
   form,
   isSubmitting,
@@ -35,10 +35,10 @@ export default function DeclarationSection({
     <section className="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
       <div className="flex items-center gap-space-sm pb-space-sm mb-space-md">
         <span className="w-7 h-7 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-body-md-semibold text-caption">
-          07
+          05
         </span>
         <div>
-          <h2 className="font-headline-sm text-headline-sm text-primary">Pengesahan &amp; Pakta Integritas</h2>
+          <h2 className="font-headline-sm text-headline-sm text-primary">Pengesahan & Pakta Integritas</h2>
           <p className="font-caption text-caption text-on-surface-variant">
             Centang seluruh butir persetujuan demi ketertiban adab dan sportivitas kompetisi.
           </p>
@@ -106,7 +106,7 @@ export default function DeclarationSection({
         </p>
       ) : (
         <p className="font-caption text-caption text-center text-outline mt-space-sm">
-          Notifikasi kode registrasi dan kartu panggung akan dikirimkan otomatis via WhatsApp &amp; Email resmi tertera.
+          Notifikasi kode registrasi dan kartu panggung akan dikirimkan otomatis via WhatsApp & Email resmi tertera.
         </p>
       )}
     </section>

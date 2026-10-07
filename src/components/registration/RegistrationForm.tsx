@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CompetitionSection from './CompetitionSection.jsx'
 import DeclarationSection from './DeclarationSection.jsx'
-import DocumentSection from './DocumentSection.jsx'
-import ParentSection from './ParentSection.jsx'
 import ParticipantSection from './ParticipantSection.jsx'
 import PaymentSection from './PaymentSection.jsx'
 import SchoolSection from './SchoolSection.jsx'
@@ -46,7 +44,7 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
     if (isSubmitting) return
 
     const errors = form.validateNow()
-    const invalidFields = [...config.documents.map((document) => document.name), 'bukti_transfer']
+    const invalidFields = ['bukti_transfer']
 
     let hasError = Object.keys(errors).length > 0
     let firstInvalidField = hasError ? Object.keys(errors)[0] : null
@@ -73,34 +71,31 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
 
     try {
       const registrationCode = generateRegistrationCode(config.codePrefix)
-      const row: Omit<RegistrationRow, 'id' | 'created_at'> = {
+      const row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'> = {
         registration_code: registrationCode,
         competition_id: config.competitionId,
         competition_slug: config.slug,
         participant_name: textValue(form.values, 'nama_lengkap'),
+        nickname: textValue(form.values, 'nama_panggilan'),
         gender: getGender(form.values.gender),
         birth_date: textValue(form.values, 'tanggal_lahir') || null,
+        birth_place: textValue(form.values, 'tempat_lahir'),
         nisn: textValue(form.values, 'nisn'),
         grade: textValue(form.values, 'kelas'),
         school_name: textValue(form.values, 'nama_sekolah'),
+        school_address: textValue(form.values, 'alamat_sekolah'),
         city: textValue(form.values, 'kabupaten_kota'),
-        companion_name: textValue(form.values, 'guru_pembimbing'),
-        companion_phone: textValue(form.values, 'kontak_wa_guru'),
-        parent_name: textValue(form.values, 'nama_wali'),
-        parent_phone: textValue(form.values, 'kontak_wali'),
-        specific_data: buildSpecificData(form.values, config),
-        identity_document_url: null,
-        supporting_document_url: null,
+        payment_sender_bank: textValue(form.values, 'bank_pengirim'),
+        payment_sender_name: textValue(form.values, 'nama_pemilik_rekening'),
         payment_proof_url: null,
-        payment_status: 'pending',
+        specific_data: buildSpecificData(form.values, config),
         registration_status: 'pending',
+        payment_status: 'pending',
       }
 
       const result = await saveRegistration({
         row,
         files: {
-          dokumen_peserta: form.fileFor('dokumen_peserta'),
-          dokumen_pendukung: form.fileFor('dokumen_pendukung'),
           bukti_transfer: form.fileFor('bukti_transfer'),
         },
       })
@@ -136,8 +131,6 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
       <CompetitionSection form={form} />
       <ParticipantSection form={form} />
       <SchoolSection form={form} />
-      <ParentSection form={form} />
-      <DocumentSection form={form} />
       <PaymentSection form={form} />
       <DeclarationSection
         form={form}

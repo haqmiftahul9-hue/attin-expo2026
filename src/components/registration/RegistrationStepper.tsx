@@ -1,11 +1,9 @@
 const STAGES = [
   { number: 1, label: 'Tahap 1', title: 'Bidang Musabaqah' },
   { number: 2, label: 'Tahap 2', title: 'Biodata Santri' },
-  { number: 3, label: 'Tahap 3', title: 'Utusan Sekolah' },
-  { number: 4, label: 'Tahap 4', title: 'Data Wali' },
-  { number: 5, label: 'Tahap 5', title: 'Dokumen' },
-  { number: 6, label: 'Tahap 6', title: 'Administrasi' },
-  { number: 7, label: 'Tahap 7', title: 'Pengesahan' },
+  { number: 3, label: 'Tahap 3', title: 'Identitas Sekolah' },
+  { number: 4, label: 'Tahap 4', title: 'Pembayaran' },
+  { number: 5, label: 'Tahap 5', title: 'Pengesahan' },
 ] as const
 
 const CIRCLE_CLASSES = {
@@ -32,11 +30,11 @@ const LINE_CLASSES = {
   pending: 'bg-surface-container-highest',
 } as const
 
-/** Pita proses 7 tahap (identik dengan desain referensi). */
+/** Pita proses 5 tahap (identik dengan desain referensi). */
 export default function RegistrationStepper() {
   return (
     <section className="mb-space-xl overflow-x-auto pb-space-xs" aria-label="Tahapan formulir">
-      <ol className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm min-w-[780px] flex items-center justify-between">
+      <ol className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm min-w-[620px] flex items-center justify-between">
         {STAGES.map((stage, index) => {
           const state = stage.number === 1 ? 'done' : stage.number === 2 ? 'active' : 'pending'
 

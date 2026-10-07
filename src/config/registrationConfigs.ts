@@ -45,22 +45,6 @@ export const tahfizh: RegistrationConfig = {
   fee: placeholders.fee,
   feeNote: 'Termasuk kit peserta, sertifikat, & konsumsi resmi',
   quota: placeholders.quota,
-  documents: [
-    {
-      name: 'dokumen_peserta',
-      label: 'Surat Rekomendasi Kepala Madrasah / Kartu Pelajar',
-      hint: 'Format resmi bertanda tangan dan cap basah sekolah',
-      required: true,
-      variant: 'dropzone',
-    },
-    {
-      name: 'dokumen_pendukung',
-      label: 'Sertifikat Syahadah Tahfizh / Prestasi Sebelumnya',
-      hint: 'Sebagai pertimbangan penempatan grup maqra’ atau riwayat kejuaraan',
-      required: false,
-      variant: 'compact',
-    },
-  ],
   bank: {
     name: placeholders.bank,
     accountNumber: placeholders.bankAccountNumber,
@@ -103,37 +87,10 @@ export const praTka: RegistrationConfig = {
         { value: 'pra-tka-perseorangan', label: 'Pra-TKA Ujian Tertulis Perseorangan' },
       ],
     },
-    {
-      name: 'jumlah_anggota_regu',
-      label: 'Jumlah Anggota Regu (hanya untuk format beregu)',
-      placeholder: 'Contoh: 3',
-      helper: 'Kosongkan bila memilih format perseorangan.',
-      options: [
-        { value: '3', label: '3 Santri' },
-        { value: '4', label: '4 Santri' },
-        { value: '5', label: '5 Santri' },
-      ],
-    },
   ],
   fee: placeholders.fee,
   feeNote: 'Dihitung per peserta / per regu sesuai format pilihan',
   quota: placeholders.quota,
-  documents: [
-    {
-      name: 'dokumen_peserta',
-      label: 'Surat Rekomendasi Kepala Madrasah / Kartu Pelajar',
-      hint: 'Format resmi bertanda tangan dan cap basah sekolah',
-      required: true,
-      variant: 'dropzone',
-    },
-    {
-      name: 'dokumen_pendukung',
-      label: 'Rapor / Sertifikat Prestasi Akademik',
-      hint: 'Dapat dilampirkan sebagai pertimbangan jenjang peserta',
-      required: false,
-      variant: 'compact',
-    },
-  ],
   bank: {
     name: placeholders.bank,
     accountNumber: placeholders.bankAccountNumber,
@@ -176,47 +133,10 @@ export const panahan: RegistrationConfig = {
         { value: 'panahan-u-12-15m', label: 'Panahan Horsebow U-12 — Jarak 15 Meter (Putra/Putri)' },
       ],
     },
-    {
-      name: 'jenis_busur',
-      label: 'Jenis Busur yang Digunakan',
-      placeholder: '[PILIH JENIS BUSUR]',
-      helper: 'Pilih jenis busur yang dibawa peserta.',
-      options: [
-        { value: 'barebow', label: 'Barebow (Tanpa Target Permanen)' },
-        { value: 'horsebow', label: 'Horsebow (Busur Kuda)' },
-      ],
-    },
-    {
-      name: 'jarak_tembak',
-      label: 'Jarak Tembak (meter)',
-      placeholder: 'Contoh: 10',
-      helper: 'Sesuai ketentuan jarak tembak yang ditetapkan panitia.',
-      options: [
-        { value: '10', label: '10 Meter' },
-        { value: '15', label: '15 Meter' },
-        { value: '18', label: '18 Meter' },
-      ],
-    },
   ],
   fee: placeholders.fee,
   feeNote: 'Termasuk kit peserta, sertifikat, dan konsumsi resmi',
   quota: placeholders.quota,
-  documents: [
-    {
-      name: 'dokumen_peserta',
-      label: 'Surat Rekomendasi Kepala Madrasah / Kartu Pelajar',
-      hint: 'Format resmi bertanda tangan dan cap basah sekolah',
-      required: true,
-      variant: 'dropzone',
-    },
-    {
-      name: 'dokumen_pendukung',
-      label: 'Sertifikat Klub Panahan / Prestasi Sebelumnya',
-      hint: 'Dapat dilampirkan sebagai pertimbangan penempatan kelompok',
-      required: false,
-      variant: 'compact',
-    },
-  ],
   bank: {
     name: placeholders.bank,
     accountNumber: placeholders.bankAccountNumber,

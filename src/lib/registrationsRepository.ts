@@ -19,10 +19,8 @@ const LAST_KEY = 'attin:registration:last'
 const STORAGE_BUCKET = 'registrations'
 
 export interface SaveRegistrationInput {
-  row: Omit<RegistrationRow, 'id' | 'created_at'>
+  row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'>
   files: {
-    dokumen_peserta?: File | null
-    dokumen_pendukung?: File | null
     bukti_transfer?: File | null
   }
 }
@@ -97,25 +95,16 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
   const client = await getSupabaseClient()
 
   if (!client) {
-    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString() })
+    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
     return { ok: true, registrationCode: row.registration_code, mode: 'local' }
   }
 
-  const identityDocumentUrl = await uploadFile(client, row.registration_code, 'dokumen-peserta', files.dokumen_peserta)
-  const supportingDocumentUrl = await uploadFile(
-    client,
-    row.registration_code,
-    'dokumen-pendukung',
-    files.dokumen_pendukung,
-  )
   const paymentProofUrl = await uploadFile(client, row.registration_code, 'bukti-transfer', files.bukti_transfer)
 
   const { data, error } = await client
     .from('registrations')
     .insert({
       ...row,
-      identity_document_url: identityDocumentUrl,
-      supporting_document_url: supportingDocumentUrl,
       payment_proof_url: paymentProofUrl,
     })
     .select()
@@ -123,7 +112,7 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
 
   if (error) {
     console.warn('[registrations] insert gagal:', error.message)
-    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString() })
+    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
     return {
       ok: true,
       registrationCode: row.registration_code,

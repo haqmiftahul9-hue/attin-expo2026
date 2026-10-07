@@ -23,9 +23,8 @@ export interface RegistrationFormApi {
 }
 
 function createInitialValues(config: RegistrationConfig): FormValues {
-  // Sesuai desain referensi, "Jenis Kelamin" (Putra) dan hubungan relasi
-  // mengikuti opsi pertama pada formulir.
-  const initial: FormValues = { gender: 'Laki-laki', relasi_wali: 'Ayah Kandung' }
+  // Sesuai desain referensi, "Jenis Kelamin" (Putra) mengikuti opsi pertama.
+  const initial: FormValues = { gender: 'Laki-laki' }
 
   for (const field of config.specificFields) {
     initial[field.name] = ''

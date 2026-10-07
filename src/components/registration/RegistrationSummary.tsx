@@ -17,11 +17,10 @@ function getChecklist(form: RegistrationFormApi): ChecklistItem[] {
   return [
     {
       key: 'bio',
-      label: 'Biodata Peserta & Madrasah',
+      label: 'Biodata Peserta & Sekolah',
       done: hasText('nama_lengkap') && hasText('nama_sekolah') && hasText('kabupaten_kota'),
     },
-    { key: 'file', label: 'Surat Rekomendasi / Kartu Siswa', done: fileFor('dokumen_peserta') !== null },
-    { key: 'pay', label: 'Tangkapan Layar Resi Transfer', done: fileFor('bukti_transfer') !== null },
+    { key: 'pay', label: 'Bukti Transfer', done: fileFor('bukti_transfer') !== null },
     {
       key: 'rule',
       label: 'Persetujuan Pakta Integritas (3 butir)',
