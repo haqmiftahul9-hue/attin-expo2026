@@ -1,5 +1,6 @@
 import Icon from '../Icon.jsx'
 import type { RegistrationFormApi } from '../../hooks/useRegistrationForm.js'
+import { calculateDynamicFee } from '../../lib/registrationUtils.js'
 
 interface ChecklistItem {
   key: string
@@ -14,11 +15,16 @@ function getChecklist(form: RegistrationFormApi): ChecklistItem[] {
     return typeof value === 'string' && value.trim() !== ''
   }
 
+  const isTahfizh = form.config.slug === 'tahfizh'
+  const isBioDone = isTahfizh 
+    ? hasText('nama_pa') && hasText('nama_pi') && hasText('nama_sekolah') && hasText('kabupaten_kota')
+    : hasText('nama_lengkap') && hasText('nama_sekolah') && hasText('kabupaten_kota')
+
   return [
     {
       key: 'bio',
-      label: 'Biodata Peserta & Sekolah',
-      done: hasText('nama_lengkap') && hasText('nama_sekolah') && hasText('kabupaten_kota'),
+      label: 'Identitas Peserta & Sekolah',
+      done: isBioDone,
     },
     { key: 'pay', label: 'Bukti Transfer', done: fileFor('bukti_transfer') !== null },
     {
@@ -46,6 +52,7 @@ function SummaryRow({ label, value, highlight = false }: { label: string; value:
 export default function RegistrationSummary({ form }: { form: RegistrationFormApi }) {
   const { config, valueFor, values } = form
   const checklist = getChecklist(form)
+  const calculatedFee = calculateDynamicFee(config, values)
 
   const categoryValue = valueFor(config.categoryFieldName)
   const categoryLabel =
@@ -54,10 +61,18 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
     typeof values.nama_sekolah === 'string' && values.nama_sekolah.trim() !== ''
       ? values.nama_sekolah
       : '-- Belum Diisi --'
-  const participantName =
-    typeof values.nama_lengkap === 'string' && values.nama_lengkap.trim() !== ''
-      ? values.nama_lengkap
-      : '-- Belum Diisi --'
+      
+  let participantName = '-- Belum Diisi --'
+  if (config.slug === 'tahfizh') {
+    const pa = typeof values.nama_pa === 'string' && values.nama_pa.trim() !== '' ? values.nama_pa : '?'
+    const pi = typeof values.nama_pi === 'string' && values.nama_pi.trim() !== '' ? values.nama_pi : '?'
+    if (pa !== '?' || pi !== '?') {
+      participantName = `Pa: ${pa}, Pi: ${pi}`
+    }
+  } else if (typeof values.nama_lengkap === 'string' && values.nama_lengkap.trim() !== '') {
+    participantName = values.nama_lengkap
+  }
+
   const city = valueFor('kabupaten_kota') || '-- Belum Dipilih --'
 
   return (
@@ -84,9 +99,11 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
         <div className="bg-surface-container-low border border-outline/50 p-4 rounded-xl mb-6 shadow-sm">
           <div className="flex items-center justify-between text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
             <span>Infaq Musabaqah</span>
-            <span>Standar 1 Peserta</span>
+            <span>{calculatedFee.label}</span>
           </div>
-          <div className="text-2xl font-extrabold text-primary mt-1.5">{config.fee}</div>
+          <div className="text-2xl font-extrabold text-primary mt-1.5">
+            {calculatedFee.amount}
+          </div>
           <div className="text-xs text-secondary mt-2 flex items-start gap-1.5 font-medium">
             <Icon className="text-[16px] shrink-0" name="info" />
             <span className="leading-tight">{config.feeNote}</span>

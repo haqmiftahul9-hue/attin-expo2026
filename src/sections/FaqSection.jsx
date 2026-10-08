@@ -6,7 +6,7 @@ import { site } from '../data/site.js'
 
 export default function FaqSection() {
   return (
-    <section id="faq" className="w-full bg-transparent py-16 lg:py-24 scroll-mt-32">
+    <section id="faq" className="w-full bg-transparent py-8 lg:py-12 scroll-mt-32">
       <div className="max-w-3xl mx-auto px-gutter-mobile lg:px-space-md">
         <SectionHeading
           badge={faq.badge}

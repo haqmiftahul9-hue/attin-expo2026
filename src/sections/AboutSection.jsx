@@ -1,21 +1,37 @@
+import { useState, useEffect } from 'react'
 import MaterialIcon from '../components/MaterialIcon.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { about } from '../data/home.js'
 import { site } from '../data/site.js'
 
 export default function AboutSection() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    if (!site.heroImages || site.heroImages.length === 0) return
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % site.heroImages.length)
+    }, 3500)
+    return () => clearInterval(intervalId)
+  }, [])
+
   return (
-    <section id="tentang" className="w-full bg-transparent py-16 lg:py-24 scroll-mt-32">
+    <section id="tentang" className="w-full bg-transparent py-8 lg:py-12 scroll-mt-32">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
           <Reveal className="lg:col-span-5 relative w-full">
             <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-transparent-container">
-              <img
-                className="w-full h-full object-cover"
-                data-alt={site.heroImageAlt}
-                src={site.heroImage}
-                alt={site.heroImageAlt}
-              />
+              {site.heroImages && site.heroImages.map((imgSrc, index) => (
+                <img
+                  key={index}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                    index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                  }`}
+                  data-alt={site.heroImageAlt}
+                  src={imgSrc}
+                  alt={site.heroImageAlt}
+                />
+              ))}
               <div className="absolute inset-0 bg-gradient-to-t from-on-primary-fixed/80 via-transparent to-transparent flex items-end p-space-md">
                 <div className="text-on-primary">
                   <span className="font-label-badge text-label-badge uppercase tracking-wider text-tertiary-fixed">

@@ -66,13 +66,7 @@ export function formatFileSize(bytes: number): string {
   return `${(bytes / 1024 / 1024).toFixed(2)} MB`
 }
 
-const REQUIRED_TEXT_FIELDS: Array<{ name: string; message?: string }> = [
-  { name: 'nama_lengkap' },
-  { name: 'nama_panggilan' },
-  { name: 'nisn', message: ERROR_MESSAGES.nisn },
-  { name: 'kelas' },
-  { name: 'tempat_lahir' },
-  { name: 'tanggal_lahir' },
+const COMMON_REQUIRED_FIELDS: Array<{ name: string; message?: string }> = [
   { name: 'nama_sekolah' },
   { name: 'kabupaten_kota' },
   { name: 'alamat_sekolah' },
@@ -88,16 +82,19 @@ const CONSENT_FIELDS = ['persetujuan_1', 'persetujuan_2', 'persetujuan_3'] as co
  */
 export function validateRegistration(values: FormValues, config: RegistrationConfig): FormErrors {
   const errors: FormErrors = {}
+  
+  if (config.slug === 'tahfizh') {
+    if (isBlank(values.nama_pa)) errors.nama_pa = ERROR_MESSAGES.required
+    if (isBlank(values.nama_pi)) errors.nama_pi = ERROR_MESSAGES.required
+  } else {
+    if (isBlank(values.nama_lengkap)) errors.nama_lengkap = ERROR_MESSAGES.required
+  }
 
-  for (const field of REQUIRED_TEXT_FIELDS) {
+  for (const field of COMMON_REQUIRED_FIELDS) {
     const value = values[field.name]
     if (isBlank(value) || typeof value !== 'string') {
       errors[field.name] = field.message ?? ERROR_MESSAGES.required
     }
-  }
-
-  if (typeof values.gender !== 'string' || values.gender === '') {
-    errors.gender = ERROR_MESSAGES.required
   }
 
   if (typeof values.nisn === 'string' && values.nisn.trim() !== '' && !isValidNisn(values.nisn)) {
@@ -132,7 +129,6 @@ export function getGender(value: FormValues[string] | undefined): Gender | '' {
   return value === 'Laki-laki' || value === 'Perempuan' ? value : ''
 }
 
-/** Field khusus lomba dikumpulkan menjadi objek `specific_data`. */
 export function buildSpecificData(values: FormValues, config: RegistrationConfig): Record<string, string> {
   const specificData: Record<string, string> = {}
 
@@ -141,6 +137,10 @@ export function buildSpecificData(values: FormValues, config: RegistrationConfig
     if (typeof value === 'string' && value.trim() !== '') {
       specificData[field.name] = value.trim()
     }
+  }
+
+  if (typeof values.detail_tambahan === 'string' && values.detail_tambahan.trim() !== '') {
+    specificData.detail_tambahan = values.detail_tambahan.trim()
   }
 
   return specificData

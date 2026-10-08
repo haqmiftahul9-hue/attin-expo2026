@@ -60,41 +60,43 @@ export default function CompetitionSection({ form }: { form: RegistrationFormApi
         </div>
       </div>
 
-      <div className="bg-surface-container-low p-space-md rounded-xl mt-space-md">
-        <label className={labelClassName} htmlFor={fieldId(config.categoryFieldName)}>
-          {config.categoryLabel} <span className={requiredClassName}>*</span>
-        </label>
-        <div className="relative">
-          <select
-            aria-describedby={`${fieldId(config.categoryFieldName)}-error`}
-            className={selectClassFor(config.categoryFieldName)}
-            id={fieldId(config.categoryFieldName)}
-            name={config.categoryFieldName}
-            onChange={(event) => setValue(config.categoryFieldName, event.target.value)}
-            value={valueFor(config.categoryFieldName)}
-          >
-            <option value="">{config.categoryPlaceholder}</option>
-            {config.categories.map((category) => (
-              <option key={category.value} value={category.value}>
-                {category.label}
-              </option>
-            ))}
-          </select>
-          <div className={chevronWrapperClassName}>
-            <Icon className="text-[20px]" name="expand_more" />
+      {config.categories.length > 0 && (
+        <div className="bg-surface-container-low p-space-md rounded-xl mt-space-md">
+          <label className={labelClassName} htmlFor={fieldId(config.categoryFieldName)}>
+            {config.categoryLabel} <span className={requiredClassName}>*</span>
+          </label>
+          <div className="relative">
+            <select
+              aria-describedby={`${fieldId(config.categoryFieldName)}-error`}
+              className={selectClassFor(config.categoryFieldName)}
+              id={fieldId(config.categoryFieldName)}
+              name={config.categoryFieldName}
+              onChange={(event) => setValue(config.categoryFieldName, event.target.value)}
+              value={valueFor(config.categoryFieldName)}
+            >
+              <option value="">{config.categoryPlaceholder}</option>
+              {config.categories.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+            <div className={chevronWrapperClassName}>
+              <Icon className="text-[20px]" name="expand_more" />
+            </div>
           </div>
+          {errorFor(config.categoryFieldName) ? (
+            <p className={errorTextClassName} id={`${fieldId(config.categoryFieldName)}-error`}>
+              {errorFor(config.categoryFieldName)}
+            </p>
+          ) : (
+            <p className="font-caption text-caption text-on-surface-variant mt-1.5 flex items-center gap-1">
+              <Icon className="text-[15px] text-tertiary" name="info" />
+              {config.categoryHelper}
+            </p>
+          )}
         </div>
-        {errorFor(config.categoryFieldName) ? (
-          <p className={errorTextClassName} id={`${fieldId(config.categoryFieldName)}-error`}>
-            {errorFor(config.categoryFieldName)}
-          </p>
-        ) : (
-          <p className="font-caption text-caption text-on-surface-variant mt-1.5 flex items-center gap-1">
-            <Icon className="text-[15px] text-tertiary" name="info" />
-            {config.categoryHelper}
-          </p>
-        )}
-      </div>
+      )}
 
       {extraFields.map((field) => (
         <div key={field.name}>

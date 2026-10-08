@@ -12,7 +12,7 @@ const NUMBER_CLASS_NAMES = [
 
 export default function TimelineSection() {
   return (
-    <section id="jadwal" className="w-full bg-transparent-container-low py-16 lg:py-24 scroll-mt-32">
+    <section id="jadwal" className="w-full bg-transparent-container-low py-8 lg:py-12 scroll-mt-32">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <SectionHeading
           badge={timeline.badge}

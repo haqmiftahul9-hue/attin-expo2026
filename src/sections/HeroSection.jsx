@@ -5,7 +5,7 @@ import { site } from '../data/site.js'
 
 export default function HeroSection() {
   return (
-    <section id="beranda" className="relative w-full overflow-hidden bg-transparent border-b border-outline py-20 lg:py-28">
+    <section id="beranda" className="relative w-full overflow-hidden bg-transparent border-b border-outline pt-20 pb-10 lg:pt-28 lg:pb-12">
       {/* VibeUI Signature Orb */}
       <span aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-[600px] w-[600px] rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 60%)' }}></span>
       <span aria-hidden="true" className="pointer-events-none absolute right-0 bottom-0 h-96 w-96 rounded-full opacity-10 blur-3xl" style={{ background: 'radial-gradient(circle, var(--color-secondary) 0%, transparent 70%)' }}></span>
@@ -53,7 +53,10 @@ export default function HeroSection() {
                 </a>
                 <a
                   className="inline-flex items-center justify-center gap-2 bg-white border-2 border-primary text-primary font-semibold text-base px-8 py-3.5 rounded-lg shadow-sm hover:bg-primary/5 transition-colors"
-                  href="#panduan-juknis"
+                  download={site.juknis.fileName}
+                  href={site.juknis.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <MaterialIcon name="download" className="text-[20px]" />
                   <span>Unduh Juknis Lengkap</span>
@@ -63,7 +66,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right Side: Visual Mockup / Floating Cards */}
-          <Reveal delay={300} className="w-full relative h-[500px] flex items-center justify-center lg:justify-end perspective-1000 mt-12 lg:mt-0">
+          <Reveal delay={300} className="w-full relative flex items-center justify-center lg:justify-end perspective-1000 mt-12 lg:mt-0 pt-8 pb-12 md:py-12">
             <div className="relative w-full max-w-md">
               
               {/* Decorative Card Back Left (Tahfizh) */}

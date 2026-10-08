@@ -5,13 +5,15 @@
   "type": "module",
   "description": "Landing page resmi ATTIN EXPO XII 2026 - Sumatera Barat (React + Vite + Tailwind CSS)",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5174 --strictPort",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
+    "pdfkit": "^0.20.2",
+    "playwright": "^1.64.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-router-dom": "^7.18.4"

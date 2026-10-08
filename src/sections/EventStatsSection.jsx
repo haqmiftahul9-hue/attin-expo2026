@@ -25,7 +25,7 @@ const statsData = [
 
 export default function EventStatsSection() {
   return (
-    <section className="w-full bg-transparent py-16 lg:py-24">
+    <section className="w-full bg-transparent pt-8 pb-8 lg:pt-12 lg:pb-12">
       <div className="max-w-6xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">

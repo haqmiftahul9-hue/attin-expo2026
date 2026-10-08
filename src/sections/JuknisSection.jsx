@@ -4,7 +4,7 @@ import { site } from '../data/site.js'
 
 export default function JuknisSection() {
   return (
-    <section id="panduan-juknis" className="w-full bg-transparent py-16 lg:py-24 scroll-mt-32">
+    <section id="panduan-juknis" className="w-full bg-transparent py-8 lg:py-12 scroll-mt-32">
       <div className="max-w-6xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <div className="bg-surface border-2 border-outline/80 rounded-3xl p-8 lg:p-12 shadow-md relative overflow-hidden">
           {/* Subtle accent glow behind the text */}
@@ -48,8 +48,10 @@ export default function JuknisSection() {
                 </div>
                 <a
                   className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold text-sm py-4 px-6 rounded-xl hover:opacity-90 transition-all shadow-md"
-                  download=""
+                  download={site.juknis.fileName}
                   href={site.juknis.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <MaterialIcon name="download" className="text-[20px]" />
                   <span>Unduh Juknis (PDF)</span>

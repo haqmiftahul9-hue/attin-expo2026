@@ -10,6 +10,7 @@ import { clearRegistrationDraft, saveRegistrationDraft } from '../../lib/registr
 import { generateRegistrationCode } from '../../lib/registrationCode.js'
 import { saveRegistration } from '../../lib/registrationsRepository.js'
 import { buildSpecificData, getGender, textValue, validateFileValue } from '../../lib/registrationValidation.js'
+import { calculateDynamicFee } from '../../lib/registrationUtils.js'
 import { fieldId } from '../../lib/registrationStyles.js'
 import type { RegistrationRow } from '../../types/registration.js'
 
@@ -71,11 +72,19 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
 
     try {
       const registrationCode = generateRegistrationCode(config.codePrefix)
+      
+      let finalParticipantName = textValue(form.values, 'nama_lengkap')
+      if (config.slug === 'tahfizh') {
+        const pa = textValue(form.values, 'nama_pa')
+        const pi = textValue(form.values, 'nama_pi')
+        finalParticipantName = `Putra: ${pa} | Putri: ${pi}`
+      }
+
       const row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'> = {
         registration_code: registrationCode,
         competition_id: config.competitionId,
         competition_slug: config.slug,
-        participant_name: textValue(form.values, 'nama_lengkap'),
+        participant_name: finalParticipantName,
         nickname: textValue(form.values, 'nama_panggilan'),
         gender: getGender(form.values.gender),
         birth_date: textValue(form.values, 'tanggal_lahir') || null,
@@ -131,7 +140,7 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
       <CompetitionSection form={form} />
       <ParticipantSection form={form} />
       <SchoolSection form={form} />
-      <PaymentSection form={form} />
+      <PaymentSection form={form} fee={calculateDynamicFee(config, form.values)} paymentConfig={config.bank} />
       <DeclarationSection
         form={form}
         isSubmitting={isSubmitting}

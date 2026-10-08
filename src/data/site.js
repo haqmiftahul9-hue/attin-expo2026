@@ -48,8 +48,13 @@ export const site = {
   announcement:
     'Pendaftaran ATTIN EXPO XII 2026 Segera Dibuka untuk Jenjang SD/MI Se-Sumatera Barat! Unduh Panduan Teknis & Juknis Lomba Sekarang.',
   logo: 'https://lh3.googleusercontent.com/aida/AEtjO1WX7YTrO8CV1UppMiNE1FdhYJW24RvGFXf8GjjYm8SHSmFeY5DfmwQmkKWMfqrs9Fb3i5GuW7pamTFzCO0XxP3N-Tv51z9FhagIHuj8aaQVkwzKV4qTgKxaCsBd2Isy2y6n_b_CkNqa7Lc9sezBW208KSBbt1lOcMNJsiXAwdeOsJlRub7p-BI5rVZttRf6LKcc9juU9sGHrZ9fobAphXdvp0ZcMBhoGZTIbgb-sKPW5mWoDvunvXmuOzE/',
-  heroImage:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuA6GzJ2VNXCcQ9M99SatyZv_kYYgrBzMnoocXDyc07OP6honcwol0Dibti8AQjzyUtnYM4t0uuMNVe0VioJc_e7LJjp_PSqmS6G4P37xmTVKE5e9BLmS7dQcskwCJbL19fw1sVoKpANuNLv7-eBx1_7tmbjdqnc4PA4_mj7PqMVg_SpyJLSdLsOUYCNg2SsaI1GeQLqYWFmhBPmnDT-Pxr7jwNbksqzAi5hK7ByAKEQjs3kYch2CGwamQ',
+  heroImages: [
+    '/assets/gallery/gallery-1.jpg',
+    '/assets/gallery/gallery-2.jpg',
+    '/assets/gallery/gallery-3.jpg',
+    '/assets/gallery/gallery-4.jpg',
+    '/assets/gallery/gallery-5.jpg',
+  ],
   heroImageAlt:
     'Siswa sekolah dasar mengenakan seragam Islam yang rapi, tersenyum bangga sambil memegang sertifikat dan piala Al-Qur’an dalam kompetisi akademik di Sumatera Barat, pencahayaan alami lembut, foto profesional',
   registration: {
@@ -67,9 +72,9 @@ export const site = {
   },
   juknis: {
     fileName: 'Juknis-ATTIN-XII-2026.pdf',
-    version: PLACEHOLDER.juknis,
-    href: '#',
-    linkLabel: PLACEHOLDER.juknishLink,
+    version: 'Final 2026',
+    href: '/assets/Juknis-ATTIN-XII-2026.pdf',
+    linkLabel: 'Unduh Juknis Lengkap',
     highlights: [
       'Mekanisme Kriteria Penilaian',
       'Format Formulir Mandat Lembaga',

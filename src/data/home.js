@@ -174,37 +174,37 @@ export const contactCards = [
   {
     icon: 'chat',
     iconClassName: 'bg-primary/10 text-primary',
-    title: 'WhatsApp Panitia',
-    caption: 'Konsultasi & kendala teknis',
-    value: `+62 812-3456-7890`,
-    cta: 'Kirim Pesan WA',
-    href: '#'
+    title: 'Narahubung Tahfidz',
+    caption: 'Ustadzah Bella',
+    value: '0852-7419-7702',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6285274197702'
+  },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-secondary/10 text-secondary',
+    title: 'Narahubung Pra-TKA',
+    caption: 'Ustadzah Tazkia',
+    value: '0821-7079-0896',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6282170790896'
+  },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-tertiary/10 text-tertiary',
+    title: 'Narahubung Panahan',
+    caption: 'Ustadzah Nova',
+    value: '0812-7574-1134',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6281275741134'
   },
   {
     icon: 'mail',
-    iconClassName: 'bg-secondary/10 text-secondary',
-    title: 'Email Resmi',
-    caption: 'Untuk surat menyurat instansi',
-    value: `panitia@attinexpo.com`,
-    cta: 'Tulis Email',
-    href: '#'
-  },
-  {
-    icon: 'description',
-    iconClassName: 'bg-tertiary/10 text-tertiary',
-    title: 'Pusat Bantuan',
-    caption: 'Pelajari aturan & teknis lomba',
-    value: `Buku Panduan Lomba`,
-    cta: 'Baca Dokumen',
-    href: '#panduan-juknis'
-  },
-  {
-    icon: 'groups',
     iconClassName: 'bg-accent-mint/10 text-accent-mint',
-    title: 'Grup Komunitas',
-    caption: 'Informasi pengumuman terkini',
-    value: `Grup Telegram Official`,
-    cta: 'Gabung Grup',
-    href: '#'
+    title: 'Email Sekolah',
+    caption: 'Surat Menyurat & Umum',
+    value: 'attinislamicshool@gmail.com',
+    cta: 'Tulis Email',
+    href: 'mailto:attinislamicshool@gmail.com'
   },
 ]

@@ -13,10 +13,18 @@ import {
   requiredClassName,
 } from '../../lib/registrationStyles.js'
 
+export type PaymentSectionProps = {
+  form: RegistrationFormApi;
+  fee: { amount: string; label: string };
+  paymentConfig: { name: string; accountNumber: string; accountHolder: string };
+}
+
 /** Tahap 4 — Infaq Pendaftaran & Rekening Resmi. */
-export default function PaymentSection({ form }: { form: RegistrationFormApi }) {
-  const { config, valueFor, setValue, fileFor, setFile, errorFor, inputClassFor } = form
+export default function PaymentSection({ form, fee, paymentConfig }: PaymentSectionProps) {
+  const { valueFor, setValue, fileFor, setFile, errorFor, inputClassFor } = form
   const proof = fileFor('bukti_transfer')
+  const displayFeeAmount = fee?.amount || 'Belum ditentukan'
+  const displayFeeLabel = fee?.label || 'Standar 1 Peserta'
 
   return (
     <section className={cardClassName}>
@@ -43,16 +51,20 @@ export default function PaymentSection({ form }: { form: RegistrationFormApi }) 
               <Icon className="text-[14px]" name="account_balance" />
               Rekening Resmi Panitia
             </span>
-            <div className="font-headline-md text-headline-md tracking-wider font-mono">{config.bank.accountNumber}</div>
+            <div className="font-headline-md text-headline-md tracking-wider font-mono">{paymentConfig?.accountNumber || 'Belum ditentukan'}</div>
             <div className="font-body-md text-body-md text-tertiary-fixed">
-              Bank: <strong className="text-on-primary">{config.bank.name}</strong> • a.n.{' '}
-              <strong className="text-on-primary">{config.bank.accountHolder}</strong>
+              Bank: <strong className="text-on-primary">{paymentConfig?.name || 'Belum ditentukan'}</strong> — a.n.{' '}
+              <strong className="text-on-primary">{paymentConfig?.accountHolder || 'Belum ditentukan'}</strong>
             </div>
           </div>
           <div className="shrink-0 flex flex-col md:items-end">
             <span className="font-caption text-caption text-tertiary-fixed">Biaya Registrasi Resmi:</span>
-            <span className="font-headline-lg text-headline-lg font-bold text-on-primary">{config.fee}</span>
-            <span className="font-caption text-caption text-tertiary-fixed">Per Peserta / Per Regu</span>
+            <span className="font-headline-lg text-headline-lg font-bold text-on-primary">
+              {displayFeeAmount}
+            </span>
+            <span className="font-caption text-caption text-tertiary-fixed">
+              {displayFeeLabel}
+            </span>
           </div>
         </div>
       </div>
@@ -96,34 +108,38 @@ export default function PaymentSection({ form }: { form: RegistrationFormApi }) 
           <span className={labelClassName}>
             Unggah Resi / Bukti Tangkapan Layar Transfer <span className={requiredClassName}>*</span>
           </span>
-          <div className="relative bg-surface-container-low rounded-xl p-space-md flex items-center justify-between gap-space-sm">
+          <div className="relative bg-surface-container-low border border-dashed border-outline-variant hover:border-primary/50 transition-colors rounded-xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
             <input
               accept={FILE_ACCEPT_ATTRIBUTE}
               aria-describedby={errorFor('bukti_transfer') ? `${fieldId('bukti_transfer')}-error` : undefined}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               id={fieldId('bukti_transfer')}
               name="bukti_transfer"
               onChange={(event) => setFile('bukti_transfer', event.target.files?.[0] ?? null)}
               type="file"
             />
-            <div className="flex items-center gap-space-sm pointer-events-none">
-              <Icon className="text-[28px] text-primary" name="receipt_long" />
+            <div className="flex items-center gap-4 pointer-events-none">
+              <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <Icon className="text-[24px]" name={proof ? "check_circle" : "cloud_upload"} />
+              </div>
               <div>
                 <div
-                  className={`font-body-md-semibold text-body-md ${
+                  className={`font-body-md-semibold text-base ${
                     proof ? 'text-primary' : 'text-on-surface'
                   }`}
                 >
-                  {proof ? `${proof.name} (${formatFileSize(proof.size)})` : 'Pilih file tangkapan layar bukti setor'}
+                  {proof ? `${proof.name}` : 'Pilih atau letakkan file bukti setor di sini'}
                 </div>
-                <div className="font-caption text-caption text-on-surface-variant">
-                  Format JPG, PNG atau PDF maks {MAX_FILE_SIZE_MB}MB
+                <div className="font-caption text-sm text-on-surface-variant mt-1">
+                  {proof ? `Ukuran file: ${formatFileSize(proof.size)}` : `Format JPG, PNG atau PDF maks ${MAX_FILE_SIZE_MB}MB`}
                 </div>
               </div>
             </div>
-            <span className="font-label-badge text-label-badge text-secondary bg-secondary-fixed/50 px-3 py-1 rounded-full uppercase shrink-0">
-              {proof ? 'Sudah Dipilih' : 'Wajib Diunggah'}
-            </span>
+            <div className="pointer-events-none shrink-0">
+              <span className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-bold shadow-sm transition-colors ${proof ? 'bg-secondary text-white' : 'bg-primary text-white'}`}>
+                {proof ? 'Ganti File' : 'Browse File'}
+              </span>
+            </div>
           </div>
           {errorFor('bukti_transfer') ? (
             <p className={errorTextClassName} id={`${fieldId('bukti_transfer')}-error`}>

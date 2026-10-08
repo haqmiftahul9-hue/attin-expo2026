@@ -5,7 +5,7 @@ import { site } from '../data/site.js'
 
 export default function CallToActionSection() {
   return (
-    <section className="w-full bg-transparent py-12 lg:py-16">
+    <section className="w-full bg-transparent py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <div className="relative bg-primary text-on-primary rounded-3xl p-space-lg lg:p-space-xl overflow-hidden shadow-2xl">
           <OctagramPattern className="absolute -top-10 -right-10 w-96 h-96 text-tertiary-fixed opacity-[0.07] pointer-events-none" />

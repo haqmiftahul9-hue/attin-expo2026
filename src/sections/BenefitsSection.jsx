@@ -5,7 +5,7 @@ import { benefits } from '../data/home.js'
 
 export default function BenefitsSection() {
   return (
-    <section className="w-full bg-transparent py-16 lg:py-24">
+    <section className="w-full bg-transparent py-8 lg:py-12">
       <div className="max-w-6xl mx-auto px-gutter-mobile lg:px-margin-desktop">
         <SectionHeading
           badge={benefits.badge}
