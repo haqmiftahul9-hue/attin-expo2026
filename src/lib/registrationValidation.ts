@@ -8,7 +8,6 @@ export const FILE_ACCEPT_ATTRIBUTE = '.pdf,.jpg,.jpeg,.png'
 
 export const ERROR_MESSAGES = {
   required: 'Wajib diisi.',
-  nisn: 'NISN harus 10 digit angka.',
   email: 'Format email tidak valid.',
   phone: 'Nomor WhatsApp tidak valid. Contoh: 081234567890.',
   fileType: 'Format berkas harus PDF, JPG, JPEG, atau PNG.',
@@ -97,9 +96,7 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
     }
   }
 
-  if (typeof values.nisn === 'string' && values.nisn.trim() !== '' && !isValidNisn(values.nisn)) {
-    errors.nisn = ERROR_MESSAGES.nisn
-  }
+
 
   for (const specificField of config.specificFields) {
     if (isBlank(values[specificField.name])) {

@@ -70,7 +70,6 @@ export interface RegistrationRow {
   gender: Gender | ''
   birth_date: string | null
   birth_place: string
-  nisn: string
   grade: string
   school_name: string
   school_address: string

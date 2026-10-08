@@ -89,7 +89,6 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         gender: getGender(form.values.gender),
         birth_date: textValue(form.values, 'tanggal_lahir') || null,
         birth_place: textValue(form.values, 'tempat_lahir'),
-        nisn: textValue(form.values, 'nisn'),
         grade: textValue(form.values, 'kelas'),
         school_name: textValue(form.values, 'nama_sekolah'),
         school_address: textValue(form.values, 'alamat_sekolah'),
@@ -98,8 +97,8 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         payment_sender_name: textValue(form.values, 'nama_pemilik_rekening'),
         payment_proof_url: null,
         specific_data: buildSpecificData(form.values, config),
-        registration_status: 'pending',
-        payment_status: 'pending',
+        registration_status: 'verified',
+        payment_status: 'verified',
       }
 
       const result = await saveRegistration({

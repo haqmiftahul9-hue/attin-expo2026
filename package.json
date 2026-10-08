@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "pdfkit": "^0.20.2",
     "playwright": "^1.64.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.11",

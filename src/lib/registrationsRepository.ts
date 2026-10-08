@@ -25,7 +25,7 @@ export interface SaveRegistrationInput {
   }
 }
 
-function readLocal(): RegistrationRow[] {
+export function readLocal(): RegistrationRow[] {
   if (typeof localStorage === 'undefined') return []
   try {
     const raw = localStorage.getItem(LOCAL_KEY)
@@ -125,4 +125,48 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
   localStorage.setItem(LAST_KEY, JSON.stringify(saved))
 
   return { ok: true, registrationCode: saved.registration_code, mode: 'supabase' }
+}
+
+export async function getAllRegistrations(): Promise<RegistrationRow[]> {
+  const client = await getSupabaseClient()
+  if (!client) {
+    return readLocal()
+  }
+  
+  const { data, error } = await client.from('registrations').select('*').order('created_at', { ascending: false })
+  
+  if (error) {
+    console.warn('[registrations] fetch failed:', error.message)
+    return readLocal()
+  }
+  
+  return data as RegistrationRow[]
+}
+
+
+export async function updateRegistrationStatus(registrationCode: string, status: 'pending' | 'verified' | 'rejected'): Promise<boolean> {
+  const client = await getSupabaseClient()
+  if (!client) {
+    const local = readLocal()
+    const index = local.findIndex(r => r.registration_code === registrationCode)
+    if (index !== -1) {
+      local[index].registration_status = status
+      if (status === 'verified') {
+        local[index].payment_status = 'verified'
+      }
+      writeLocal(local)
+      return true
+    }
+    return false
+  }
+
+  const { error } = await client
+    .from('registrations')
+    .update({ 
+      registration_status: status,
+      payment_status: status === 'verified' ? 'verified' : undefined 
+    })
+    .eq('registration_code', registrationCode)
+    
+  return !error
 }
