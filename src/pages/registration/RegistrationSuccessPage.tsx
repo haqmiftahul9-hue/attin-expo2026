@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Icon from '../../components/Icon.jsx'
+import MaterialIcon from '../../components/MaterialIcon.jsx'
 import Footer from '../../components/Footer.jsx'
 import RegistrationHeader from '../../components/registration/RegistrationHeader.jsx'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
@@ -15,98 +15,282 @@ function getBranchFromCode(code: string): { slug: CompetitionSlug; name: string;
       return { slug: config.slug, name: config.fullName, icon: config.icon }
     }
   }
-
   return { slug: 'tahfizh', name: registrationConfigs.tahfizh.fullName, icon: registrationConfigs.tahfizh.icon }
 }
 
-/** Halaman konfirmasi setelah pendaftaran berhasil. */
 export default function RegistrationSuccessPage() {
   const { registrationCode = '' } = useParams()
-  usePageTitle(`Pendaftaran Berhasil ${registrationCode} — ATTIN EXPO XII 2026`)
+  usePageTitle(`Pendaftaran Berhasil ${registrationCode} - ATTIN EXPO XII 2026`)
 
   const lastRegistration = useMemo<RegistrationRow | null>(() => getLastRegistration(), [])
   const branch = getBranchFromCode(registrationCode)
   const config = registrationConfigs[branch.slug]
-  const participantName = lastRegistration?.registration_code === registrationCode
-    ? lastRegistration.participant_name
-    : null
+
+  const isMatched = lastRegistration?.registration_code === registrationCode
+  const participantName = isMatched ? lastRegistration.participant_name : 'Peserta'
+  const schoolName = isMatched ? lastRegistration.school_name : '-'
+  
+  const categoryValue = isMatched && lastRegistration.specific_data && config.categoryFieldName && lastRegistration.specific_data[config.categoryFieldName] 
+    ? lastRegistration.specific_data[config.categoryFieldName]
+    : '-'
+    
+  const createdAt = isMatched && lastRegistration.created_at 
+    ? new Date(lastRegistration.created_at).toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' }) + ' WIB'
+    : new Date().toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' }) + ' WIB'
+
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(registrationCode)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
+
+  const whatsappMessage = `Halo Panitia ATTIN EXPO XII, saya ingin konfirmasi kode registrasi ${registrationCode}`
+  const whatsappHref = `https://wa.me/${config.contact.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
-    <div className="w-full bg-surface text-on-surface">
+    <div className="w-full min-h-screen flex flex-col bg-surface text-on-surface">
       <RegistrationHeader slug={branch.slug} />
 
-      <main className="w-full pt-20">
-        <div className="relative w-full overflow-hidden">
-          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary-fixed/30 blur-3xl pointer-events-none" />
+      {/* pt-[120px] ensures the 112px tall RegistrationHeader doesn't cover the top content */}
+      <main className="w-full pt-[120px] pb-16 flex-1 flex flex-col">
+        <div className="w-full relative overflow-hidden flex-1">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-gradient-to-b from-primary-fixed/30 via-surface-container-low to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+          
+          <div className="max-w-[780px] mx-auto px-4 sm:px-6 w-full">
+            <nav aria-label="Breadcrumb" className="py-4 flex items-center gap-2 font-caption text-caption text-on-surface-variant mb-4">
+              <Link className="hover:text-primary transition-colors flex items-center gap-1 font-medium" to="/">
+                <MaterialIcon name="home" className="text-[16px]" />
+                <span>Beranda</span>
+              </Link>
+              <MaterialIcon name="chevron_right" className="text-[14px] text-outline-variant" />
+              <span className="font-body-md-semibold text-primary">Pendaftaran Berhasil</span>
+            </nav>
 
-          <div className="relative max-w-3xl mx-auto px-gutter-mobile lg:px-margin-desktop py-space-xl space-y-space-md">
-            <div className="bg-surface-container-lowest rounded-2xl p-space-lg lg:p-space-xl shadow-md text-center space-y-space-md">
-              <div className="w-16 h-16 rounded-full bg-tertiary-fixed text-tertiary flex items-center justify-center mx-auto">
-                <Icon className="text-[34px]" name="check_circle" />
-              </div>
-
-              <div className="space-y-space-xs">
-                <span className="font-label-badge text-label-badge text-secondary uppercase tracking-widest">
-                  Pendaftaran Terkirim
-                </span>
-                <h1 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-primary tracking-tight">
-                  Alhamdulillah, Formulir Anda Diterima
-                </h1>
-                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                  {participantName ? `Kepada ${participantName}, ` : ''}pendaftaran {branch.name} sudah masuk ke
-                  sekretariat ATTIN EXPO XII 2026 dan menunggu verifikasi berkas.
-                </p>
-              </div>
-
-              <div className="bg-primary text-on-primary rounded-xl p-space-md space-y-space-xs">
-                <span className="font-label-badge text-label-badge text-tertiary-fixed uppercase tracking-widest block">
-                  Kode Registrasi
-                </span>
-                <span className="font-headline-md text-headline-md font-mono block tracking-wider">
-                  {registrationCode}
-                </span>
-                <span className="font-caption text-caption text-tertiary-fixed block">
-                  Simpan kode ini untuk pengecekan status berkas
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-sm text-left">
-                {[
-                  { icon: 'hourglass_top', title: 'Verifikasi Berkas', body: 'Panitia memeriksa berkas 1-2 hari kerja.' },
-                  { icon: 'payments', title: 'Konfirmasi Bayar', body: 'Bukti transfer diverifikasi oleh bendahara.' },
-                  { icon: 'notifications', title: 'Nomor Panggung', body: 'Kartu panggung dikirim via WhatsApp & email.' },
-                ].map((step) => (
-                  <div key={step.title} className="bg-surface-container-low rounded-xl p-space-md">
-                    <Icon className="text-primary text-[20px]" name={step.icon} />
-                    <h2 className="font-body-md-semibold text-body-md text-on-surface mt-1">{step.title}</h2>
-                    <p className="font-caption text-caption text-on-surface-variant">{step.body}</p>
+            {/* Success Banner */}
+            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8 flex flex-col items-center text-center relative overflow-hidden">
+              <div className="absolute -right-16 -top-16 w-44 h-44 rounded-full bg-surface-container-low/60 pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-primary-fixed/20 pointer-events-none" />
+              
+              <div className="relative mb-6">
+                <div className="w-20 h-20 rounded-full bg-[#ECFDF5] flex items-center justify-center shadow-md relative border border-[#16825D]/20">
+                  <span className="absolute inset-0 rounded-full bg-[#16825D]/15 animate-ping" />
+                  <div className="w-14 h-14 rounded-full bg-[#16825D] text-surface-container-lowest flex items-center justify-center shadow-sm">
+                    <MaterialIcon name="check" className="text-[32px] font-bold" />
                   </div>
-                ))}
+                </div>
+                <div className="absolute -bottom-1 -right-1 bg-surface-container-lowest rounded-full p-0.5 shadow-sm border border-outline-variant/20">
+                  <MaterialIcon name="stars" className="text-secondary text-[20px]" />
+                </div>
               </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-space-md pt-space-xs">
-                <a
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary font-body-md-semibold text-body-md px-space-lg py-space-sm rounded-xl shadow-sm transition-all"
-                  href={config.contact.whatsappHref}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Icon className="text-[18px]" name="chat" />
-                  Hubungi Panitia
-                </a>
-                <Link
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-primary font-body-md-semibold text-body-md px-space-lg py-space-sm rounded-xl shadow-sm transition-all"
-                  to="/#kompetisi-resmi"
-                >
-                  <Icon className="text-[18px]" name="arrow_back" />
-                  Kembali ke Daftar Cabang
-                </Link>
+              
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECFDF5] border border-[#16825D]/20 text-[#16825D] font-label-badge text-label-badge uppercase tracking-wider mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#16825D]" />
+                Sistem Penerimaan Terverifikasi
               </div>
-
-              <p className="font-caption text-caption text-outline">
-                {site.name} · {site.edition} · Secretariat: {site.contact.whatsapp}
+              <h1 className="font-headline-lg text-headline-lg sm:text-display-hero-mobile text-on-surface font-extrabold tracking-tight mb-3">
+                Pendaftaran Berhasil!
+              </h1>
+              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                Data pendaftaran telah berhasil dikirim dan akan diperiksa oleh panitia verifikasi ATTIN EXPO XII 2026.
               </p>
             </div>
+
+            {/* Registration Code */}
+            <div className="bg-gradient-to-br from-primary-container via-primary to-tertiary rounded-3xl shadow-md border border-outline-variant/20 p-8 sm:p-10 text-on-primary mb-8 relative overflow-hidden">
+              <svg className="absolute -right-8 -top-8 w-48 h-48 opacity-10 text-on-primary pointer-events-none" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 100 100">
+                <polygon points="50 0, 85 15, 100 50, 85 85, 50 100, 15 85, 0 50, 15 15" />
+                <polygon points="50 15, 75 25, 85 50, 75 75, 50 85, 25 75, 15 50, 25 25" />
+                <circle cx="50" cy="50" r="18" />
+              </svg>
+              
+              <div className="relative z-10 flex flex-col gap-5">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <span className="font-label-badge text-label-badge uppercase tracking-widest text-on-primary-container">KODE REGISTRASI RESMI</span>
+                  <span className="font-label-badge text-label-badge px-4 py-1 rounded-full bg-secondary border border-secondary-fixed/30 text-on-secondary shadow-sm">Simpan Kode Ini</span>
+                </div>
+                
+                <div className="bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl border border-surface-container-lowest/20 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-inner">
+                  <div className="flex items-center gap-4">
+                    <MaterialIcon name="qr_code_2" className="text-on-primary-container text-[28px]" />
+                    <span className="font-mono text-[22px] sm:text-[26px] tracking-wider font-bold text-surface-container-lowest select-all">
+                      {registrationCode}
+                    </span>
+                  </div>
+                  
+                  <button 
+                    type="button"
+                    onClick={handleCopy}
+                    className={`inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl font-body-md-semibold text-body-md transition-all shadow-md active:scale-95 ${
+                      copied ? 'bg-[#16825D] text-surface-container-lowest' : 'bg-surface-container-lowest text-primary hover:bg-surface-container-lowest/90'
+                    }`}
+                  >
+                    <MaterialIcon name={copied ? 'check' : 'content_copy'} className="text-[18px]" />
+                    <span>{copied ? 'Tersalin!' : 'Salin Kode'}</span>
+                  </button>
+                </div>
+                
+                <div className="flex items-start gap-3 bg-surface-container-lowest/15 rounded-2xl border border-surface-container-lowest/10 p-4 sm:p-5 text-on-primary-container font-caption text-caption mt-2">
+                  <MaterialIcon name="info" className="text-secondary-fixed text-[20px] shrink-0 mt-0.5" />
+                  <p className="leading-relaxed text-surface-container-lowest/90">
+                    Simpan atau tangkap layar (<span className="font-body-md-semibold text-surface-container-lowest">screenshot</span>) kode registrasi ini sebagai bukti sah untuk keperluan verifikasi berkas, konfirmasi pembayaran, dan daftar ulang di arena expo.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Registration Summary */}
+            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 gap-4 border-b border-outline-variant/20">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <MaterialIcon name="badge" className="text-[24px]" />
+                  </div>
+                  <div>
+                    <h2 className="font-headline-sm text-headline-sm text-on-surface">Ikhtisar Pendaftaran</h2>
+                    <p className="font-caption text-caption text-on-surface-variant">Tercatat resmi dalam pangkalan data panitia seleksi</p>
+                  </div>
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FEF3C7] border border-[#B45309]/20 text-[#92400E] font-label-badge text-label-badge uppercase shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B45309] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#92400E]" />
+                  </span>
+                  <span>Menunggu Verifikasi</span>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-surface-container-low/40 rounded-2xl p-6 sm:p-8 border border-outline-variant/20">
+                <div className="flex flex-col gap-1">
+                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                    <MaterialIcon name="person" className="text-[16px] text-outline" />
+                    Nama Lengkap Peserta
+                  </span>
+                  <span className="font-title-md text-title-md text-on-surface font-bold">{participantName}</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                    <MaterialIcon name="menu_book" className="text-[16px] text-outline" />
+                    Cabang Lomba
+                  </span>
+                  <span className="font-body-md-semibold text-body-md-semibold text-primary">{branch.name}</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                    <MaterialIcon name="school" className="text-[16px] text-outline" />
+                    Asal Sekolah / Madrasah
+                  </span>
+                  <span className="font-body-md text-body-md text-on-surface">{schoolName}</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                    <MaterialIcon name="event" className="text-[16px] text-outline" />
+                    Tanggal & Waktu Pendaftaran
+                  </span>
+                  <span className="font-body-md text-body-md text-on-surface">{createdAt}</span>
+                </div>
+                
+                {categoryValue !== '-' && (
+                  <div className="flex flex-col gap-1 md:col-span-2">
+                    <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                      <MaterialIcon name="groups" className="text-[16px] text-outline" />
+                      Kategori / Detail
+                    </span>
+                    <span className="font-body-md text-body-md text-on-surface">{categoryValue}</span>
+                  </div>
+                )}
+              </div>
+              
+              <div className="mt-6 p-5 rounded-2xl bg-surface flex items-center gap-5 border border-outline-variant/20 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center p-2 shrink-0 shadow-sm">
+                  <img className="w-full h-full object-contain" src={site.logo} alt="Logo" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-body-md-semibold text-body-md-semibold text-on-surface">Integritas Dokumen Digital</span>
+                  <span className="font-caption text-caption text-on-surface-variant">Data terenkripsi dan tercatat otomatis pada ledger panitia pusat.</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Next Steps */}
+            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <MaterialIcon name="format_list_numbered" className="text-[24px]" />
+                </div>
+                <div>
+                  <h2 className="font-headline-sm text-headline-sm text-on-surface">Tahapan Selanjutnya</h2>
+                  <p className="font-caption text-caption text-on-surface-variant">Langkah verifikasi pasca penyerahan formulir digital</p>
+                </div>
+              </div>
+              
+              <div className="relative pl-8 sm:pl-10 space-y-8 before:content-[''] before:absolute before:left-3.5 sm:before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+                <div className="relative flex items-start gap-5">
+                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-surface-container-lowest">1</span>
+                  <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
+                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Verifikasi Administratif & Berkas</span>
+                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      Tim panitia akan meneliti kelayakan berkas identitas dan bukti transfer dalam <strong className="text-on-surface font-body-md-semibold">1x24 jam kerja</strong>. Pastikan nomor kontak selalu aktif.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative flex items-start gap-5">
+                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-surface-container-lowest">2</span>
+                  <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
+                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Pemberitahuan Resmi</span>
+                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      Konfirmasi status kelolosan administrasi akan dikirimkan langsung via WhatsApp ke nomor kontak yang didaftarkan.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative flex items-start gap-5">
+                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-surface-container-highest text-on-surface-variant font-label-badge text-label-badge flex items-center justify-center ring-4 ring-surface-container-lowest">3</span>
+                  <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow opacity-80">
+                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Unduh Bukti Tanda Terima</span>
+                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      Setelah status beralih menjadi <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#ECFDF5] border border-[#16825D]/20 text-[#16825D] font-label-badge text-label-badge uppercase mx-1">Terverifikasi</span>, peserta dapat mengunduh kartu tanda peserta resmi di portal ini.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8 flex flex-col items-center gap-6 text-center">
+              <h3 className="font-title-md text-title-md text-on-surface">Apa yang ingin Anda lakukan selanjutnya?</h3>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xl">
+                <Link 
+                  to="/" 
+                  className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-primary text-on-primary font-body-md-semibold text-body-md-semibold hover:bg-tertiary transition-all shadow-md active:scale-95"
+                >
+                  <MaterialIcon name="home" className="text-[20px]" />
+                  <span>Kembali ke Beranda</span>
+                </Link>
+                <a 
+                  href={whatsappHref} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-surface-container border border-outline-variant/20 text-primary font-body-md-semibold text-body-md-semibold hover:bg-surface-container-high transition-all shadow-sm active:scale-95"
+                >
+                  <MaterialIcon name="chat" className="text-[#16825D] text-[20px]" />
+                  <span>Hubungi Panitia WhatsApp</span>
+                </a>
+              </div>
+              <Link 
+                to="/#kompetisi-resmi" 
+                className="inline-flex items-center gap-1.5 font-body-md-semibold text-body-md-semibold text-secondary hover:text-on-secondary-container transition-colors mt-2"
+              >
+                <span>Daftarkan Peserta / Lomba Lainnya</span>
+                <MaterialIcon name="arrow_forward" className="text-[18px]" />
+              </Link>
+            </div>
+
+            <div className="flex items-center justify-center gap-2 text-center text-on-surface-variant font-caption text-caption px-4">
+              <MaterialIcon name="verified_user" className="text-[18px] text-outline shrink-0" />
+              <p>Data peserta dilindungi dan hanya digunakan untuk keperluan musabaqah ATTIN EXPO XII 2026. Tidak ada data sensitif yang dipublikasikan secara terbuka.</p>
+            </div>
+
           </div>
         </div>
       </main>
