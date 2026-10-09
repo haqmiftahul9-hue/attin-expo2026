@@ -21,7 +21,9 @@ import {
  */
 export default function CompetitionSection({ form }: { form: RegistrationFormApi }) {
   const { config, valueFor, setValue, errorFor, selectClassFor } = form
-  const extraFields = config.specificFields.filter((field) => field.name !== config.categoryFieldName)
+  const extraFields = config.categories.length > 0 
+    ? config.specificFields.filter((field) => field.name !== config.categoryFieldName)
+    : config.specificFields
 
   return (
     <section className={cardClassName}>
