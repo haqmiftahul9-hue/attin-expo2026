@@ -170,3 +170,62 @@ export async function updateRegistrationStatus(registrationCode: string, status:
     
   return !error
 }
+
+export async function getVerifiedSchools(): Promise<{school_name: string, competitions: string[]}[]> {
+  const client = await getSupabaseClient()
+  let rawData = []
+
+  if (!client) {
+    const local = readLocal()
+    rawData = local.filter(r => r.registration_status === 'verified').map(r => ({
+      school: r.school_name,
+      lomba: r.competition_slug
+    }))
+  } else {
+    const { data, error } = await client
+      .from('registrations')
+      .select('school_name, competition_slug')
+      .eq('registration_status', 'verified')
+    
+    if (error || !data) {
+      const local = readLocal()
+      rawData = local.filter(r => r.registration_status === 'verified').map(r => ({
+        school: r.school_name,
+        lomba: r.competition_slug
+      }))
+    } else {
+      rawData = data.map(r => ({
+        school: r.school_name,
+        lomba: r.competition_slug
+      }))
+    }
+  }
+
+  const grouped: Record<string, Set<string>> = {}
+  rawData.forEach(item => {
+    if (!grouped[item.school]) grouped[item.school] = new Set()
+    grouped[item.school].add(item.lomba)
+  })
+
+  return Object.keys(grouped).map(school => ({
+    school_name: school,
+    competitions: Array.from(grouped[school])
+  }))
+}
+
+export async function subscribeToVerifiedSchools(callback: (schools: {school_name: string, competitions: string[]}[]) => void): Promise<() => void> {
+  const client = await getSupabaseClient()
+  if (!client) return () => {}
+
+  const channel = client
+    .channel('public:registrations')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'registrations' }, async () => {
+       const schools = await getVerifiedSchools()
+       callback(schools)
+    })
+    .subscribe()
+    
+  return () => {
+    client.removeChannel(channel)
+  }
+}

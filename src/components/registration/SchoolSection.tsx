@@ -59,6 +59,38 @@ export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
           />
           {errorFor('alamat_sekolah') ? <p className={errorTextClassName}>{errorFor('alamat_sekolah')}</p> : null}
         </div>
+
+        <div className="md:col-span-1">
+          <label className={labelClassName} htmlFor={fieldId('guru_pendamping')}>
+            Nama Guru Pendamping <span className={requiredClassName}>*</span>
+          </label>
+          <input
+            className={inputClassFor('guru_pendamping')}
+            id={fieldId('guru_pendamping')}
+            name="guru_pendamping"
+            onChange={(event) => setValue('guru_pendamping', event.target.value)}
+            placeholder="Contoh: Ust. Rahmat Hidayat"
+            type="text"
+            value={valueFor('guru_pendamping')}
+          />
+          {errorFor('guru_pendamping') ? <p className={errorTextClassName}>{errorFor('guru_pendamping')}</p> : null}
+        </div>
+
+        <div className="md:col-span-1">
+          <label className={labelClassName} htmlFor={fieldId('nohp_pendamping')}>
+            No. HP / WhatsApp Pendamping <span className={requiredClassName}>*</span>
+          </label>
+          <input
+            className={inputClassFor('nohp_pendamping')}
+            id={fieldId('nohp_pendamping')}
+            name="nohp_pendamping"
+            onChange={(event) => setValue('nohp_pendamping', event.target.value)}
+            placeholder="Contoh: 081234567890"
+            type="text"
+            value={valueFor('nohp_pendamping')}
+          />
+          {errorFor('nohp_pendamping') ? <p className={errorTextClassName}>{errorFor('nohp_pendamping')}</p> : null}
+        </div>
       </div>
     </section>
   )

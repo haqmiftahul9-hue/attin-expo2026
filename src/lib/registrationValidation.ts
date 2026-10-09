@@ -69,6 +69,8 @@ const COMMON_REQUIRED_FIELDS: Array<{ name: string; message?: string }> = [
   { name: 'nama_sekolah' },
   
   { name: 'alamat_sekolah' },
+  { name: 'guru_pendamping' },
+  { name: 'nohp_pendamping' },
   { name: 'bank_pengirim' },
   { name: 'nama_pemilik_rekening' },
 ]
@@ -99,6 +101,10 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
   }
 
 
+
+  if (!isBlank(values.nohp_pendamping) && typeof values.nohp_pendamping === 'string' && !isValidPhone(values.nohp_pendamping)) {
+    errors.nohp_pendamping = ERROR_MESSAGES.phone
+  }
 
   for (const specificField of config.specificFields) {
     if (isBlank(values[specificField.name])) {
@@ -139,6 +145,9 @@ export function buildSpecificData(values: FormValues, config: RegistrationConfig
   }
 
   
+
+  if (typeof values.guru_pendamping === 'string' && values.guru_pendamping.trim() !== '') specificData.guru_pendamping = values.guru_pendamping.trim()
+  if (typeof values.nohp_pendamping === 'string' && values.nohp_pendamping.trim() !== '') specificData.nohp_pendamping = values.nohp_pendamping.trim()
 
   return specificData
 }

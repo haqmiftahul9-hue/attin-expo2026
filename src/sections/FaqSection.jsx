@@ -1,19 +1,33 @@
+import { useEffect, useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import MaterialIcon from '../components/MaterialIcon.jsx'
-import { faq } from '../data/home.js'
+import { faq as staticFaq } from '../data/home.js'
 import { site } from '../data/site.js'
+import { getFaqs } from '../lib/cmsRepository.js'
 
 export default function FaqSection() {
+  const [faqItems, setFaqItems] = useState(staticFaq.items)
+
+  useEffect(() => {
+    async function loadFaqs() {
+      const data = await getFaqs()
+      if (data && data.length > 0) {
+        setFaqItems(data)
+      }
+    }
+    loadFaqs()
+  }, [])
+
   return (
     <section id="faq" className="w-full bg-transparent py-8 lg:py-12 scroll-mt-32">
       <div className="max-w-3xl mx-auto px-gutter-mobile lg:px-space-md">
         <SectionHeading
-          badge={faq.badge}
+          badge={staticFaq.badge}
           badgeClassName="text-secondary"
-          title={faq.title}
+          title={staticFaq.title}
           titleClassName="text-primary"
-          description={faq.description}
+          description={staticFaq.description}
         />
 
         <div className="mt-12 flex flex-col bg-surface border-2 border-outline/80 rounded-3xl p-4 md:p-8 shadow-md relative overflow-hidden">
@@ -39,7 +53,7 @@ export default function FaqSection() {
 
           {/* Chat Messages */}
           <div className="space-y-8 flex-1 overflow-y-auto pr-2">
-            {faq.items.map((item, index) => (
+            {faqItems.map((item, index) => (
               <Reveal key={index} delay={index * 100}>
                 <div className="space-y-6">
                   {/* User Question (Right) */}

@@ -23,16 +23,16 @@ export default function CallToActionSection() {
               terpenuhi. Wujudkan generasi Qur’ani yang berani, berakhlak, dan berprestasi!
             </p>
 
-            <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
-                className="inline-flex items-center justify-center gap-space-xs bg-surface-container-lowest text-primary-container font-body-md-semibold px-space-lg py-space-sm rounded-xl hover:bg-transparent-variant transition-all shadow-md"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#003772] font-bold text-[15px] px-6 py-3.5 rounded-xl hover:bg-gray-50 hover:shadow-lg border border-transparent transition-all shadow-md"
                 href="#kompetisi-resmi"
               >
                 <MaterialIcon name="how_to_reg" className="text-[20px]" />
                 <span>Daftar Sekarang Secara Online</span>
               </a>
               <a
-                className="inline-flex items-center justify-center gap-space-xs bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-body-md-semibold px-space-lg py-space-sm rounded-xl transition-all shadow-md"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/20 hover:bg-white/10 text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition-all"
                 href={site.contact.whatsappHref}
                 rel="noopener"
                 target="_blank"

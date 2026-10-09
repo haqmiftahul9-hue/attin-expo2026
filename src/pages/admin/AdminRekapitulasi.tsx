@@ -44,6 +44,8 @@ export default function AdminRekapitulasi() {
       'Kelas': row.grade,
       'Asal Sekolah': row.school_name,
       'Alamat Sekolah': row.school_address,
+      'Guru Pendamping': row.specific_data?.guru_pendamping || '-',
+      'No HP Pendamping': row.specific_data?.nohp_pendamping || '-',
       'Bank Pengirim': row.payment_sender_bank,
       'Atas Nama Rekening': row.payment_sender_name,
       'Status Pendaftaran': row.registration_status,
@@ -61,7 +63,7 @@ export default function AdminRekapitulasi() {
     doc.text(`Rekapitulasi Pendaftaran ATTIN EXPO XII - ${filterSlug === 'all' ? 'Semua Lomba' : filterSlug}`, 14, 15)
     
     // Untuk PDF kita batasi kolom utama agar muat
-    const tableColumn = ["No", "Kode", "Waktu Daftar", "Cabang & Kategori", "Nama Peserta", "L/P", "Asal Sekolah", ]
+    const tableColumn = ["No", "Kode", "Waktu Daftar", "Cabang & Kategori", "Nama Peserta", "L/P", "Asal Sekolah", "Pendamping"]
     const tableRows: any[][] = []
 
     filteredRegistrations.forEach((row, index) => {
@@ -74,7 +76,7 @@ export default function AdminRekapitulasi() {
         row.participant_name,
         row.gender === 'Laki-laki' ? 'L' : (row.gender === 'Perempuan' ? 'P' : '-'),
         row.school_name,
-        row.city || '-'
+        row.specific_data?.guru_pendamping || '-'
       ]
       tableRows.push(rowData)
     })
@@ -134,20 +136,33 @@ export default function AdminRekapitulasi() {
 
       <div className="bg-surface-container-lowest border border-surface-container rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse whitespace-nowrap">
             <thead className="bg-surface-container-low/50 border-b border-surface-container">
               <tr>
-                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Kode Reg</th>
-                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Waktu Daftar</th>
-                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Nama Peserta</th>
-                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Asal Sekolah</th>
-                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Cabang & Kategori</th>
-                </tr>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Kode Reg</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Waktu Daftar</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Cabang Lomba</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Kategori/Kelas Lomba</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Nama Peserta</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Nama Panggilan</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Jenis Kelamin</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Tempat Lahir</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Tanggal Lahir</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Kelas Pendidikan</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Asal Sekolah</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Alamat Sekolah</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Guru Pendamping</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">No HP Pendamping</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Bank Pengirim</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Atas Nama Rekening</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Status Daftar</th>
+                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider">Status Bayar</th>
+              </tr>
             </thead>
             <tbody className="divide-y divide-surface-container text-[14px]">
               {filteredRegistrations.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-on-surface-variant">
+                  <td colSpan={20} className="py-12 text-center text-on-surface-variant">
                     <MaterialIcon name="inbox" className="text-[48px] text-surface-container-high mb-2" />
                     <p>Tidak ada data pendaftaran.</p>
                   </td>
@@ -159,17 +174,38 @@ export default function AdminRekapitulasi() {
                     <td className="py-3 px-4 text-caption text-outline">
                       {row.created_at ? new Date(row.created_at).toLocaleString('id-ID', {day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'}) : '-'}
                     </td>
-                    <td className="py-3 px-4 font-medium text-on-surface">{row.participant_name}</td>
-                    <td className="py-3 px-4 text-on-surface-variant max-w-[200px] truncate">{row.school_name}</td>
-                    <td className="py-3 px-4">
-                      <div className="flex flex-col items-start">
-                        <span className="font-medium text-on-surface">{registrationConfigs[row.competition_slug]?.name || row.competition_slug}</span>
-                        <span className="inline-flex items-center mt-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-primary">
-                          {(row.specific_data && Object.values(row.specific_data)[0]) || 'Umum'}
-                        </span>
-                      </div>
+                    <td className="py-3 px-4 font-medium text-on-surface">
+                      {registrationConfigs[row.competition_slug]?.name || row.competition_slug}
                     </td>
-                    <td className="py-3 px-4 text-on-surface-variant">{row.city || '-'}</td>
+                    <td className="py-3 px-4">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-primary">
+                        {(row.specific_data && Object.values(row.specific_data)[0]) || 'Umum'}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 font-medium text-on-surface">{row.participant_name}</td>
+                    <td className="py-3 px-4 text-on-surface-variant">{row.nickname || '-'}</td>
+                    <td className="py-3 px-4 text-on-surface-variant">{row.gender || '-'}</td>
+                    <td className="py-3 px-4 text-on-surface-variant">{row.birth_place || '-'}</td>
+                    <td className="py-3 px-4 text-on-surface-variant">
+                      {row.birth_date ? new Date(row.birth_date).toLocaleDateString('id-ID') : '-'}
+                    </td>
+                    <td className="py-3 px-4 text-on-surface-variant">{row.grade || '-'}</td>
+                    <td className="py-3 px-4 font-medium text-on-surface">{row.school_name}</td>
+                    <td className="py-3 px-4 text-on-surface-variant max-w-[200px] truncate" title={row.school_address}>{row.school_address || '-'}</td>
+                    <td className="py-3 px-4 font-medium text-on-surface">{row.specific_data?.guru_pendamping || '-'}</td>
+                    <td className="py-3 px-4 font-mono text-[13px] text-on-surface-variant">{row.specific_data?.nohp_pendamping || '-'}</td>
+                    <td className="py-3 px-4 text-on-surface-variant">{row.payment_sender_bank || '-'}</td>
+                    <td className="py-3 px-4 text-on-surface-variant">{row.payment_sender_name || '-'}</td>
+                    <td className="py-3 px-4">
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold ${row.registration_status === 'verified' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                        {row.registration_status}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold ${row.payment_status === 'verified' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                        {row.payment_status}
+                      </span>
+                    </td>
                   </tr>
                 ))
               )}

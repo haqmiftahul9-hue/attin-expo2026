@@ -61,6 +61,10 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
     typeof values.nama_sekolah === 'string' && values.nama_sekolah.trim() !== ''
       ? values.nama_sekolah
       : '-- Belum Diisi --'
+  const guruPendamping =
+    typeof values.guru_pendamping === 'string' && values.guru_pendamping.trim() !== ''
+      ? values.guru_pendamping
+      : '-- Belum Diisi --'
       
   let participantName = '-- Belum Diisi --'
   if (config.slug === 'tahfizh') {
@@ -93,7 +97,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
           <SummaryRow highlight label="Kategori" value={categoryLabel} />
           <SummaryRow label="Nama Calon Peserta" value={participantName} />
           <SummaryRow label="Asal Sekolah / Madrasah" value={schoolName} />
-          
+          <SummaryRow label="Guru Pendamping" value={guruPendamping} />
         </div>
 
         <div className="bg-surface-container-low border border-outline/50 p-4 rounded-xl mb-6 shadow-sm">
