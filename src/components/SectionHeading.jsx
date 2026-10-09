@@ -6,9 +6,9 @@ import Reveal from './Reveal.jsx'
  */
 export default function SectionHeading({
   badge,
-  badgeClassName = 'text-primary-container',
+  badgeClassName = 'text-[#002B49] bg-[#002B49]/5 border-[#002B49]/10',
   title,
-  titleClassName = 'text-on-surface',
+  titleClassName = 'text-[#0F172A]',
   description,
   align = 'center',
   wrapperClassName = '',
@@ -19,15 +19,16 @@ export default function SectionHeading({
 
   return (
     <Reveal
-      className={`${layoutClassName} mb-space-xl space-y-space-xs ${wrapperClassName} ${className}`.trim()}
+      className={`${layoutClassName} mb-12 space-y-4 ${wrapperClassName} ${className}`.trim()}
     >
-      <span className={`text-[11px] font-bold tracking-widest uppercase bg-surface border border-outline px-2.5 py-1 rounded-full ${badgeClassName}`}>
+      <span className={`inline-flex items-center text-[11px] font-bold tracking-[0.1em] uppercase border px-3 py-1.5 rounded ${badgeClassName}`}>
         {badge}
       </span>
-      <h2 className={`text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mt-4 ${titleClassName}`}>
+      <h2 className={`text-[28px] md:text-[36px] font-extrabold tracking-tight ${titleClassName}`}>
         {title}
       </h2>
-      {description ? <p className="text-base text-muted-foreground leading-relaxed mt-4">{description}</p> : null}
+      {description ? <p className="text-[15px] text-slate-500 leading-relaxed max-w-xl mx-auto">{description}</p> : null}
     </Reveal>
   )
 }
+

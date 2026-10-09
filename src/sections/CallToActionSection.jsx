@@ -1,38 +1,38 @@
 import MaterialIcon from '../components/MaterialIcon.jsx'
-import OctagramPattern from '../components/OctagramPattern.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { site } from '../data/site.js'
 
 export default function CallToActionSection() {
   return (
-    <section className="w-full bg-transparent py-8 lg:py-12">
-      <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop">
-        <div className="relative bg-primary text-on-primary rounded-3xl p-space-lg lg:p-space-xl overflow-hidden shadow-2xl">
-          <OctagramPattern className="absolute -top-10 -right-10 w-96 h-96 text-tertiary-fixed opacity-[0.07] pointer-events-none" />
-          <OctagramPattern className="absolute -bottom-16 -left-12 w-80 h-80 text-tertiary-fixed opacity-[0.05] pointer-events-none" />
+    <section className="w-full bg-white py-12 lg:py-20 border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-5 lg:px-20">
+        <div className="relative bg-[#002B49] text-white rounded-2xl p-8 lg:p-14 overflow-hidden shadow-xl border border-[#003B66]">
+          {/* Subtle architectural lines / government style bg */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(45deg, #ffffff 1px, transparent 1px), linear-gradient(-45deg, #ffffff 1px, transparent 1px)', backgroundSize: '60px 60px', backgroundPosition: 'center center' }}></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#0057B8]/40 to-transparent rounded-full blur-3xl opacity-50 transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-          <Reveal className="relative z-10 max-w-3xl space-y-space-md">
-            <span className="inline-block bg-secondary text-on-secondary font-label-badge text-label-badge uppercase px-space-sm py-space-xs rounded-full tracking-wider">
-              PENDAFTARAN RESMI DIBUKA
+          <Reveal className="relative z-10 max-w-3xl space-y-6">
+            <span className="inline-block bg-[#8B1E3F] text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded tracking-[0.08em] shadow-sm">
+              Pendaftaran Resmi Dibuka
             </span>
-            <h2 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-surface-bright">
+            <h2 className="text-[28px] lg:text-[36px] font-extrabold text-white leading-tight tracking-tight">
               Siapkan Diri Menjadi Juara di ATTIN EXPO XII 2026
             </h2>
-            <p className="font-body-md text-body-md text-surface-variant leading-relaxed">
-              Daftasikan santri dan murid terbaik sekolah Anda sekarang juga segera
+            <p className="text-[15px] lg:text-[16px] text-sky-100/90 leading-relaxed max-w-2xl">
+              Daftarkan santri dan murid terbaik sekolah Anda sekarang juga sebelum kuota
               terpenuhi. Wujudkan generasi Qur’ani yang berani, berakhlak, dan berprestasi!
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-4">
               <a
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#003772] font-bold text-[15px] px-6 py-3.5 rounded-xl hover:bg-gray-50 hover:shadow-lg border border-transparent transition-all shadow-md"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#002B49] font-bold text-[15px] px-8 py-3.5 rounded-lg hover:bg-slate-50 hover:-translate-y-0.5 transition-all shadow-md hover:shadow-lg"
                 href="#kompetisi-resmi"
               >
                 <MaterialIcon name="how_to_reg" className="text-[20px]" />
                 <span>Daftar Sekarang Secara Online</span>
               </a>
               <a
-                className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/20 hover:bg-white/10 text-white font-bold text-[15px] px-6 py-3.5 rounded-xl transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold text-[15px] px-8 py-3.5 rounded-lg transition-colors"
                 href={site.contact.whatsappHref}
                 rel="noopener"
                 target="_blank"
@@ -47,3 +47,4 @@ export default function CallToActionSection() {
     </section>
   )
 }
+

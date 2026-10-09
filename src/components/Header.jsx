@@ -3,23 +3,24 @@ import useActiveSection from '../hooks/useActiveSection.js'
 import { navigation, sectionOrder, site } from '../data/site.js'
 
 const ACTIVE_CLASS =
-  'bg-primary-container text-primary font-body-md-semibold rounded-xl px-space-sm py-space-xs shadow-sm'
+  'bg-primary/8 text-primary font-semibold text-[14px] rounded-lg px-3 py-1.5'
 const IDLE_CLASS =
-  'px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors'
+  'px-3 py-1.5 rounded-lg text-[14px] font-medium text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors'
 
 export default function Header() {
   const activeSection = useActiveSection(sectionOrder)
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-      <div className="bg-primary text-on-primary">
-        <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop py-space-xs flex items-center justify-between font-label-md text-label-md">
-          <div className="flex items-center gap-space-xs truncate">
-            <MaterialIcon name="campaign" className="text-[16px] text-tertiary-fixed" />
-            <span className="truncate">{site.announcement}</span>
+    <header className="fixed top-0 left-0 right-0 w-full z-50">
+      {/* Top Bar — Navy */}
+      <div className="bg-[#002B49] text-white">
+        <div className="max-w-7xl mx-auto px-5 lg:px-20 py-2 flex items-center justify-between text-[13px]">
+          <div className="flex items-center gap-2 truncate">
+            <MaterialIcon name="campaign" className="text-[15px] text-amber-300" />
+            <span className="truncate font-medium">{site.announcement}</span>
           </div>
           <a
-            className="hidden sm:inline-flex items-center gap-space-xs font-body-md-semibold text-caption text-tertiary-fixed hover:text-on-primary underline-offset-4 hover:underline transition-colors shrink-0"
+            className="hidden sm:inline-flex items-center gap-1 font-semibold text-[12px] text-sky-200 hover:text-white underline-offset-4 hover:underline transition-colors shrink-0"
             data-path="panduan"
             href="#panduan-juknis"
           >
@@ -28,15 +29,16 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="h-20 bg-surface/95 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop h-full flex items-center justify-between gap-space-md">
-          <div className="flex items-center gap-space-sm shrink-0">
-            <img alt={`${site.title} Logo`} className="h-12 md:h-14 lg:h-16 w-auto object-contain drop-shadow-sm" src="/assets/logo-attin-expo.png" />
+      {/* Main Nav Bar — White */}
+      <div className="h-[72px] bg-white/98 backdrop-blur-lg border-b border-slate-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        <div className="max-w-7xl mx-auto px-5 lg:px-20 h-full flex items-center justify-between gap-6">
+          <div className="flex items-center gap-3 shrink-0">
+            <img alt={`${site.title} Logo`} className="h-10 md:h-11 w-auto object-contain" src="/assets/logo-attin-expo.png" />
             <div className="flex flex-col">
-              <span className="font-headline-sm text-headline-sm text-primary tracking-tight leading-tight">
+              <span className="font-bold text-[18px] text-[#002B49] tracking-tight leading-tight font-display">
                 {site.name}
               </span>
-              <span className="font-label-badge text-label-badge text-secondary tracking-widest uppercase">
+              <span className="text-[10px] font-bold text-[#8B1E3F] tracking-[0.08em] uppercase">
                 {site.edition}
               </span>
             </div>
@@ -44,7 +46,7 @@ export default function Header() {
 
           <nav
             aria-label="Navigasi utama"
-            className="hidden xl:flex items-center gap-space-xs"
+            className="hidden xl:flex items-center gap-1"
             data-active-classes={ACTIVE_CLASS}
           >
             {navigation.map((item) => {
@@ -63,9 +65,9 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-space-sm shrink-0">
+          <div className="flex items-center gap-3 shrink-0">
             <a
-              className="hidden md:inline-flex items-center justify-center bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-body-md-semibold text-body-md px-space-md py-space-sm rounded-xl shadow-sm transition-all"
+              className="hidden md:inline-flex items-center justify-center bg-[#002B49] hover:bg-[#003B66] text-white font-semibold text-[14px] px-5 py-2.5 rounded-lg shadow-sm transition-all"
               data-path="kompetisi"
               href="#kompetisi-resmi"
             >
@@ -74,9 +76,9 @@ export default function Header() {
             <button
               type="button"
               aria-label="Masuk ke akun peserta"
-              className="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+              className="w-9 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
             >
-              <MaterialIcon name="person" className="text-on-primary text-[18px]" />
+              <MaterialIcon name="person" className="text-[#002B49] text-[18px]" />
             </button>
           </div>
         </div>

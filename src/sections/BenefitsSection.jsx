@@ -5,8 +5,8 @@ import { benefits } from '../data/home.js'
 
 export default function BenefitsSection() {
   return (
-    <section className="w-full bg-transparent py-8 lg:py-12">
-      <div className="max-w-6xl mx-auto px-gutter-mobile lg:px-margin-desktop">
+    <section className="w-full bg-slate-50 py-12 lg:py-20">
+      <div className="max-w-7xl mx-auto px-5 lg:px-20">
         <SectionHeading
           badge={benefits.badge}
           title={benefits.title}
@@ -14,19 +14,19 @@ export default function BenefitsSection() {
         />
 
         <Reveal delay={100}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 mt-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 mt-10">
             {benefits.items.map((item) => (
               <div
                 key={item.title}
-                className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 p-4 md:p-5 rounded-2xl border-2 border-outline/80 bg-surface shadow-md hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all cursor-default"
+                className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 p-5 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-[#0057B8]/30 hover:shadow-md hover:-translate-y-1 transition-all cursor-default"
               >
                 <div
-                  className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-surface-container-low border border-outline flex items-center justify-center shrink-0 shadow-sm ${item.iconClassName}`}
+                  className={`w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 shadow-sm ${item.iconClassName.replace('text-primary', 'text-[#002B49]').replace('text-secondary', 'text-[#8B1E3F]').replace('text-tertiary', 'text-[#0057B8]').replace('text-accent-mint', 'text-[#0F766E]')}`}
                 >
-                  <MaterialIcon name={item.icon} className="text-[20px] md:text-[24px]" />
+                  <MaterialIcon name={item.icon} className="text-[24px]" />
                 </div>
-                <div className="flex flex-col justify-center h-full">
-                  <h3 className="text-sm md:text-sm font-bold text-on-background leading-tight">{item.title}</h3>
+                <div className="flex flex-col justify-center h-full pt-0.5">
+                  <h3 className="text-[14px] font-bold text-[#0F172A] leading-tight">{item.title}</h3>
                 </div>
               </div>
             ))}
@@ -36,3 +36,4 @@ export default function BenefitsSection() {
     </section>
   )
 }
+

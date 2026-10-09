@@ -5,138 +5,136 @@ import { site } from '../data/site.js'
 
 export default function HeroSection() {
   return (
-    <section id="beranda" className="relative w-full overflow-hidden bg-transparent border-b border-outline pt-20 pb-10 lg:pt-28 lg:pb-12">
-      {/* VibeUI Signature Orb */}
-      <span aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-[600px] w-[600px] rounded-full opacity-20 blur-3xl" style={{ background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 60%)' }}></span>
-      <span aria-hidden="true" className="pointer-events-none absolute right-0 bottom-0 h-96 w-96 rounded-full opacity-10 blur-3xl" style={{ background: 'radial-gradient(circle, var(--color-secondary) 0%, transparent 70%)' }}></span>
+    <section id="beranda" className="relative w-full overflow-hidden bg-white border-b border-slate-200 pt-[104px] pb-16 lg:pt-[120px] lg:pb-20">
+      {/* Subtle atmospheric glow */}
+      <span aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-[500px] w-[500px] rounded-full opacity-[0.06] blur-3xl" style={{ background: 'radial-gradient(circle, #002B49 0%, transparent 60%)' }}></span>
+      <span aria-hidden="true" className="pointer-events-none absolute right-0 bottom-0 h-80 w-80 rounded-full opacity-[0.04] blur-3xl" style={{ background: 'radial-gradient(circle, #8B1E3F 0%, transparent 70%)' }}></span>
 
-      <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-5 lg:px-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Left Side: Typography and CTAs */}
-          <div className="flex flex-col items-start text-left gap-8">
+          <div className="flex flex-col items-start text-left gap-6">
             <Reveal className="inline-flex">
-              <p className="inline-flex items-center rounded-lg border border-outline/50 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-primary bg-primary/5 shadow-sm">
+              <p className="inline-flex items-center rounded-md border border-[#002B49]/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#002B49] bg-[#002B49]/5">
                 {site.editionBadge}
               </p>
             </Reveal>
 
             <Reveal delay={60} className="w-full">
-              <div className="space-y-4">
-                <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-black tracking-tight text-on-background leading-[1.1]">
+              <div className="space-y-3">
+                <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-extrabold tracking-tight text-[#0F172A] leading-[1.1]">
                   {site.name}{' '}
-                  <span className="relative inline-block text-on-background">
+                  <span className="relative inline-block text-[#0F172A]">
                     2026
-                    <span aria-hidden="true" className="absolute left-0 right-0 -bottom-1 h-[6px] md:h-[10px] -z-10 rounded-full bg-secondary"></span>
+                    <span aria-hidden="true" className="absolute left-0 right-0 -bottom-0.5 h-[5px] -z-10 rounded-full bg-[#8B1E3F]"></span>
                   </span>
                 </h1>
-                <p className="text-base md:text-lg lg:text-xl font-bold text-on-surface-variant max-w-lg leading-snug">
+                <p className="text-[16px] md:text-[18px] font-semibold text-slate-600 max-w-lg leading-relaxed">
                   {site.tagline}
                 </p>
               </div>
             </Reveal>
 
             <Reveal delay={120} className="w-full">
-              <p className="text-sm md:text-base font-medium text-on-surface-variant leading-relaxed max-w-xl">
+              <p className="text-[15px] text-slate-500 leading-relaxed max-w-xl">
                 {site.description}
               </p>
             </Reveal>
 
             <Reveal delay={180} className="w-full">
-              <div className="flex flex-wrap items-center gap-4 pt-4">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
-                  className="inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold text-base px-8 py-3.5 rounded-lg shadow-md hover:opacity-90 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-[#002B49] text-white font-semibold text-[15px] px-7 py-3 rounded-lg shadow-sm hover:bg-[#003B66] transition-all"
                   href="#kompetisi-resmi"
                 >
                   <span>Daftar Sekarang</span>
-                  <MaterialIcon name="arrow_forward" className="text-[20px]" />
+                  <MaterialIcon name="arrow_forward" className="text-[18px]" />
                 </a>
                 <a
-                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-primary text-primary font-semibold text-base px-8 py-3.5 rounded-lg shadow-sm hover:bg-primary/5 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-white border border-slate-300 text-[#0F172A] font-semibold text-[15px] px-7 py-3 rounded-lg hover:bg-slate-50 transition-colors"
                   download={site.juknis.fileName}
                   href={site.juknis.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <MaterialIcon name="download" className="text-[20px]" />
+                  <MaterialIcon name="download" className="text-[18px] text-slate-500" />
                   <span>Unduh Juknis Lengkap</span>
                 </a>
               </div>
             </Reveal>
           </div>
 
-          {/* Right Side: Visual Mockup / Floating Cards */}
-          <Reveal delay={300} className="w-full relative flex items-center justify-center lg:justify-end perspective-1000 mt-12 lg:mt-0 pt-8 pb-12 md:py-12">
+          {/* Right Side: Registration Panel */}
+          <Reveal delay={300} className="w-full relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0 py-8 md:py-10">
             <div className="relative w-full max-w-md">
               
-              {/* Decorative Card Back Left (Tahfizh) */}
-              <div className="hidden md:block absolute -left-12 -top-10 w-[300px] -rotate-6 scale-90 opacity-70 blur-[1px] hover:blur-none hover:opacity-100 hover:scale-95 hover:z-30 transition-all duration-500 z-0 rounded-2xl border-2 border-outline/80 bg-surface p-6 shadow-lg select-none">
-                <div className="flex items-center justify-between border-b border-outline/50 pb-3 mb-4">
-                  <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-primary">Tingkat SD/MI</span>
-                  <span className="text-xs font-bold text-muted-foreground uppercase">Tahfizh</span>
+              {/* Back Card Left (Tahfizh) */}
+              <div className="hidden md:block absolute -left-10 -top-8 w-[280px] -rotate-4 scale-[0.88] opacity-60 blur-[0.5px] hover:blur-none hover:opacity-90 hover:scale-[0.92] hover:z-30 transition-all duration-500 z-0 rounded-xl border border-slate-200 bg-white p-5 shadow-md select-none">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+                  <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#002B49]">Tingkat SD/MI</span>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase">Tahfizh</span>
                 </div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-                    <MaterialIcon name="menu_book" className="text-[24px]" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#002B49]/8 text-[#002B49] flex items-center justify-center">
+                    <MaterialIcon name="menu_book" className="text-[20px]" />
                   </div>
                   <div className="text-left">
-                    <h3 className="text-sm font-extrabold text-on-background">Musabaqah Tahfizh</h3>
-                    <p className="text-xs font-medium text-muted-foreground">Juz 30 & Pilihan</p>
+                    <h3 className="text-[13px] font-bold text-[#0F172A]">Musabaqah Tahfizh</h3>
+                    <p className="text-[11px] text-slate-400">Juz 30 & Pilihan</p>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <div className="h-2 bg-outline-variant rounded w-full"></div>
-                  <div className="h-2 bg-outline-variant rounded w-5/6"></div>
-                  <div className="h-2 bg-outline-variant rounded w-4/6"></div>
+                <div className="space-y-2">
+                  <div className="h-1.5 bg-slate-100 rounded w-full"></div>
+                  <div className="h-1.5 bg-slate-100 rounded w-5/6"></div>
+                  <div className="h-1.5 bg-slate-100 rounded w-4/6"></div>
                 </div>
               </div>
 
-              {/* Decorative Card Back Right (Panahan) */}
-              <div className="hidden md:block absolute -right-8 bottom-12 w-[300px] rotate-3 scale-90 opacity-70 blur-[1px] hover:blur-none hover:opacity-100 hover:scale-95 hover:z-30 transition-all duration-500 z-10 rounded-2xl border-2 border-outline/80 bg-surface p-6 shadow-lg select-none">
-                <div className="flex items-center justify-between border-b border-outline/50 pb-3 mb-4">
-                  <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-secondary">Tingkat SD/MI</span>
-                  <span className="text-xs font-bold text-muted-foreground uppercase">Panahan</span>
+              {/* Back Card Right (Panahan) */}
+              <div className="hidden md:block absolute -right-6 bottom-10 w-[280px] rotate-3 scale-[0.88] opacity-60 blur-[0.5px] hover:blur-none hover:opacity-90 hover:scale-[0.92] hover:z-30 transition-all duration-500 z-10 rounded-xl border border-slate-200 bg-white p-5 shadow-md select-none">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+                  <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#8B1E3F]">Tingkat SD/MI</span>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase">Panahan</span>
                 </div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
-                    <MaterialIcon name="sports_score" className="text-[24px]" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#8B1E3F]/8 text-[#8B1E3F] flex items-center justify-center">
+                    <MaterialIcon name="sports_score" className="text-[20px]" />
                   </div>
                   <div className="text-left">
-                    <h3 className="text-sm font-extrabold text-on-background">Panahan Eksekutif</h3>
-                    <p className="text-xs font-medium text-muted-foreground">Putra & Putri</p>
+                    <h3 className="text-[13px] font-bold text-[#0F172A]">Panahan Eksekutif</h3>
+                    <p className="text-[11px] text-slate-400">Putra & Putri</p>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <div className="h-2 bg-outline-variant rounded w-full"></div>
-                  <div className="h-2 bg-outline-variant rounded w-5/6"></div>
-                  <div className="h-2 bg-outline-variant rounded w-4/6"></div>
+                <div className="space-y-2">
+                  <div className="h-1.5 bg-slate-100 rounded w-full"></div>
+                  <div className="h-1.5 bg-slate-100 rounded w-5/6"></div>
+                  <div className="h-1.5 bg-slate-100 rounded w-4/6"></div>
                 </div>
               </div>
 
               {/* Main Center Card (Registration) */}
-              <div className="relative z-20 w-full transform hover:-translate-y-2 transition-transform duration-500 shadow-2xl">
-                <div className="rounded-2xl border-2 border-outline/80 bg-surface p-6 relative overflow-hidden">
-                  <div className="flex items-center justify-between gap-2 pb-4 border-b border-outline/50 mb-4">
+              <div className="relative z-20 w-full transform hover:-translate-y-1 transition-transform duration-500">
+                <div className="rounded-xl border border-slate-200 bg-white p-6 relative overflow-hidden shadow-lg">
+                  <div className="flex items-center justify-between gap-2 pb-4 border-b border-slate-100 mb-4">
                     <div className="flex items-center gap-2">
-                      <MaterialIcon name="verified" className="text-primary text-[24px]" />
-                      <span className="text-base font-extrabold text-primary tracking-tight">Pusat Registrasi</span>
+                      <MaterialIcon name="verified" className="text-[#002B49] text-[22px]" />
+                      <span className="text-[15px] font-bold text-[#002B49] tracking-tight">Pusat Registrasi</span>
                     </div>
-                    <span className="text-[10px] font-bold text-secondary bg-secondary/10 px-2 py-1 rounded-md uppercase tracking-[0.1em]">
+                    <span className="text-[10px] font-bold text-[#8B1E3F] bg-[#8B1E3F]/8 px-2 py-1 rounded uppercase tracking-[0.06em]">
                       Online Aktif
                     </span>
                   </div>
 
                   <CountdownTimer />
 
-
-
-                  <div className="mt-2">
+                  <div className="mt-3">
                     <a
-                      className="w-full flex items-center justify-center gap-2 bg-primary text-white font-semibold py-3 rounded-xl hover:opacity-90 transition-colors shadow-sm"
+                      className="w-full flex items-center justify-center gap-2 bg-[#002B49] text-white font-semibold text-[14px] py-3 rounded-lg hover:bg-[#003B66] transition-colors shadow-sm"
                       href="#kompetisi-resmi"
                     >
                       <span>Pilih Cabang Lomba</span>
-                      <MaterialIcon name="app_registration" className="text-[18px]" />
+                      <MaterialIcon name="app_registration" className="text-[17px]" />
                     </a>
                   </div>
                 </div>
