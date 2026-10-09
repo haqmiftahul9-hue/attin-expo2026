@@ -8,7 +8,7 @@ import RegistrationStepper from '../../components/registration/RegistrationStepp
 import RegistrationSummary from '../../components/registration/RegistrationSummary.jsx'
 import { useRegistrationForm } from '../../hooks/useRegistrationForm.js'
 import { loadRegistrationDraft } from '../../lib/registrationDraft.js'
-import { placeholders } from '../../data/site.js'
+import { eventConfig } from '../../config/registrationConfigs.js'
 import usePageTitle from '../../hooks/usePageTitle.js'
 import type { CompetitionSlug, RegistrationConfig } from '../../types/registration.js'
 
@@ -79,14 +79,14 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
                   </p>
                 </div>
 
-                <div className="shrink-0 bg-surface-container-low border border-outline/50 px-6 py-4 rounded-xl flex items-center gap-4 shadow-sm">
+                <div className="shrink-0 bg-surface-container-lowest border border-outline/30 px-6 py-4 rounded-xl flex items-center gap-4 shadow-sm">
                   <Icon className="text-secondary text-[28px]" name="hourglass_top" />
                   <div className="text-right">
-                    <div className="text-[10px] font-bold text-secondary uppercase tracking-widest mb-1">
+                    <div className="text-[11px] font-bold text-secondary uppercase tracking-widest mb-1">
                       Batas Akhir Registrasi
                     </div>
-                    <div className="text-sm font-bold text-on-background">
-                      {placeholders.closingDate}
+                    <div className="text-lg font-bold text-[#003772]">
+                      {eventConfig.registrationDeadline}
                     </div>
                   </div>
                 </div>

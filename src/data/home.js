@@ -3,7 +3,7 @@ import { placeholders, site } from './site.js'
 export const heroMetrics = [
   { label: 'Tingkat Peserta', value: 'SD/MI Se-Sumbar', valueClassName: 'text-primary' },
   { label: 'Total Cabang', value: '3 Perlombaan', valueClassName: 'text-primary' },
-  { label: 'Kuota Lomba', value: site.registration.quota, valueClassName: 'text-secondary' },
+  
   { label: 'Pelaksanaan', value: site.registration.executionDate, valueClassName: 'text-primary' },
 ]
 
@@ -65,7 +65,7 @@ export const competitionSection = {
   badge: 'CABANG PERLOMBAAN',
   title: 'Pilihan Kompetisi Jenjang SD/MI',
   description:
-    'Pilih cabang lomba sesuai minat dan bakat ananda. Pelajari buku petunjuk teknis (Juknis), lengkapi persyaratan, dan pastikan mendaftar sebelum kuota penuh.',
+    'Pilih cabang lomba sesuai minat dan bakat ananda. Pelajari buku petunjuk teknis (Juknis), lengkapi persyaratan.',
 }
 
 export const benefits = {
@@ -157,7 +157,7 @@ export const faq = {
     {
       question: 'Apakah satu sekolah diperbolehkan mengirimkan lebih dari satu peserta per cabang?',
       answer:
-        'Tentu. Pihak sekolah diizinkan mengirimkan lebih dari 1 peserta (tanpa batasan maksimal per sekolah) selama sisa kuota cabang lomba yang dituju masih tersedia di sistem pendaftaran kami.',
+        'Tentu. Pihak sekolah diizinkan mengirimkan lebih dari 1 peserta (tanpa batasan maksimal per sekolah).',
     },
     {
       question: 'Di mana lokasi spesifik pelaksanaan perlombaan?',
@@ -165,7 +165,7 @@ export const faq = {
     },
     {
       question: 'Apakah jadwal pendaftaran bisa diperpanjang?',
-      answer: `Batas akhir pendaftaran terjadwal pada ${placeholders.date}. Namun, pendaftaran akan langsung ditutup LEBIH AWAL apabila total kuota maksimal peserta telah terpenuhi. Oleh karena itu, kami menyarankan Anda untuk mendaftar secepat mungkin.`,
+      answer: `Batas akhir pendaftaran terjadwal pada 18 November 2026. `,
     },
   ],
 }

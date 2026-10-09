@@ -17,8 +17,8 @@ function getChecklist(form: RegistrationFormApi): ChecklistItem[] {
 
   const isTahfizh = form.config.slug === 'tahfizh'
   const isBioDone = isTahfizh 
-    ? hasText('nama_pa') && hasText('nama_pi') && hasText('nama_sekolah') && hasText('kabupaten_kota')
-    : hasText('nama_lengkap') && hasText('nama_sekolah') && hasText('kabupaten_kota')
+    ? (hasText('nama_pa') || hasText('nama_pi')) && hasText('nama_sekolah')
+    : hasText('nama_lengkap') && hasText('nama_sekolah')
 
   return [
     {
@@ -73,7 +73,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
     participantName = values.nama_lengkap
   }
 
-  const city = valueFor('kabupaten_kota') || '-- Belum Dipilih --'
+  
 
   return (
     <aside className="lg:col-span-4 space-y-space-md lg:sticky lg:top-24">
@@ -93,7 +93,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
           <SummaryRow highlight label="Kategori" value={categoryLabel} />
           <SummaryRow label="Nama Calon Peserta" value={participantName} />
           <SummaryRow label="Asal Sekolah / Madrasah" value={schoolName} />
-          <SummaryRow label="Kabupaten / Kota" value={city} />
+          
         </div>
 
         <div className="bg-surface-container-low border border-outline/50 p-4 rounded-xl mb-6 shadow-sm">
@@ -104,10 +104,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
           <div className="text-2xl font-extrabold text-primary mt-1.5">
             {calculatedFee.amount}
           </div>
-          <div className="text-xs text-secondary mt-2 flex items-start gap-1.5 font-medium">
-            <Icon className="text-[16px] shrink-0" name="info" />
-            <span className="leading-tight">{config.feeNote}</span>
-          </div>
+          
         </div>
 
         <div className="space-y-2 pt-2 border-t border-outline/50">

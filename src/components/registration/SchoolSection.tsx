@@ -1,6 +1,4 @@
-import Icon from '../Icon.jsx'
 import type { RegistrationFormApi } from '../../hooks/useRegistrationForm.js'
-import { sumbarRegions } from '../../data/branchDetail.js'
 import {
   cardCaptionClassName,
   cardClassName,
@@ -13,9 +11,9 @@ import {
   requiredClassName,
 } from '../../lib/registrationStyles.js'
 
-/** Tahap 3 — Identitas Sekolah. */
+/** Tahap 3 ?" Identitas Sekolah. */
 export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
-  const { valueFor, setValue, errorFor, inputClassFor, selectClassFor, textareaClassFor } = form
+  const { valueFor, setValue, errorFor, inputClassFor, textareaClassFor } = form
 
   return (
     <section className={cardClassName}>
@@ -44,32 +42,6 @@ export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
             value={valueFor('nama_sekolah')}
           />
           {errorFor('nama_sekolah') ? <p className={errorTextClassName}>{errorFor('nama_sekolah')}</p> : null}
-        </div>
-
-        <div>
-          <label className={labelClassName} htmlFor={fieldId('kabupaten_kota')}>
-            Kabupaten / Kota Asal (Ranah Minang) <span className={requiredClassName}>*</span>
-          </label>
-          <div className="relative">
-            <select
-              className={selectClassFor('kabupaten_kota')}
-              id={fieldId('kabupaten_kota')}
-              name="kabupaten_kota"
-              onChange={(event) => setValue('kabupaten_kota', event.target.value)}
-              value={valueFor('kabupaten_kota')}
-            >
-              <option value="">Pilih dari 19 Kota/Kabupaten</option>
-              {sumbarRegions.map((region) => (
-                <option key={region} value={region}>
-                  {region}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center px-space-md pointer-events-none text-outline">
-              <Icon className="text-[20px]" name="expand_more" />
-            </div>
-          </div>
-          {errorFor('kabupaten_kota') ? <p className={errorTextClassName}>{errorFor('kabupaten_kota')}</p> : null}
         </div>
 
         <div className="md:col-span-2">

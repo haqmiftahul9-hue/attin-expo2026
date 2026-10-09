@@ -289,7 +289,7 @@ export const branchDetails = {
 
   panahan: {
     slug: 'panahan',
-    breadcrumb: 'Panahan Tradisional',
+    breadcrumb: 'Panahan',
     available: false,
     level: 'Tingkat SD/MI se-Sumatera Barat',
   },

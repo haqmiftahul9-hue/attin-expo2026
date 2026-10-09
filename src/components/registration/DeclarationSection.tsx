@@ -5,7 +5,7 @@ import { fieldId, errorTextClassName } from '../../lib/registrationStyles.js'
 const STATEMENTS = [
   {
     name: 'persetujuan_1',
-    text: 'Saya menyatakan dengan sebenar-benarnya bahwa seluruh biodata santri/siswa adalah valid, otentik, dan sesuai jenjang pendidikan SD/MI berjalan tahun ajaran 2025/2026.',
+    text: 'Saya menyatakan dengan sebenar-benarnya bahwa seluruh biodata peserta/siswa adalah valid, otentik, dan sesuai jenjang pendidikan SD/MI berjalan tahun ajaran 2025/2026.',
   },
   {
     name: 'persetujuan_2',

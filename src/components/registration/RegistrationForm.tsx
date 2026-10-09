@@ -77,7 +77,10 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
       if (config.slug === 'tahfizh') {
         const pa = textValue(form.values, 'nama_pa')
         const pi = textValue(form.values, 'nama_pi')
-        finalParticipantName = `Putra: ${pa} | Putri: ${pi}`
+        const parts = []
+        if (pa) parts.push(`Putra: ${pa}`)
+        if (pi) parts.push(`Putri: ${pi}`)
+        finalParticipantName = parts.join(' | ')
       }
 
       const row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'> = {
@@ -92,7 +95,7 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         grade: textValue(form.values, 'kelas'),
         school_name: textValue(form.values, 'nama_sekolah'),
         school_address: textValue(form.values, 'alamat_sekolah'),
-        city: textValue(form.values, 'kabupaten_kota'),
+        city: '',
         payment_sender_bank: textValue(form.values, 'bank_pengirim'),
         payment_sender_name: textValue(form.values, 'nama_pemilik_rekening'),
         payment_proof_url: null,

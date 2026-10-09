@@ -1,33 +1,33 @@
 const STAGES = [
   { number: 1, label: 'Tahap 1', title: 'Bidang Musabaqah' },
-  { number: 2, label: 'Tahap 2', title: 'Biodata Santri' },
+  { number: 2, label: 'Tahap 2', title: 'Biodata Peserta' },
   { number: 3, label: 'Tahap 3', title: 'Identitas Sekolah' },
   { number: 4, label: 'Tahap 4', title: 'Pembayaran' },
   { number: 5, label: 'Tahap 5', title: 'Pengesahan' },
 ] as const
 
 const CIRCLE_CLASSES = {
-  done: 'bg-primary text-on-primary shadow-sm',
-  active: 'bg-primary-container text-on-primary',
-  pending: 'bg-surface-container-high text-on-surface-variant',
+  done: 'bg-[#e8f1ff] text-[#003772]',
+  active: 'bg-[#003772] text-[#ffffff] shadow-md',
+  pending: 'bg-[#e8f1ff] border border-[#0057b8] text-[#0057b8]',
 } as const
 
 const LABEL_CLASSES = {
-  done: 'text-primary',
-  active: 'text-primary-container',
-  pending: 'text-outline',
+  done: 'text-[#191c1e] font-bold',
+  active: 'text-[#003772] font-bold',
+  pending: 'text-[#0057b8] font-semibold',
 } as const
 
 const TITLE_CLASSES = {
-  done: 'text-on-surface font-body-md-semibold',
-  active: 'text-on-surface font-body-md-semibold',
-  pending: 'text-on-surface-variant',
+  done: 'text-[#191c1e] font-semibold',
+  active: 'text-[#191c1e] font-bold',
+  pending: 'text-[#334155] font-semibold',
 } as const
 
 const LINE_CLASSES = {
-  done: 'bg-primary-container',
-  active: 'bg-primary-container',
-  pending: 'bg-surface-container-highest',
+  done: 'bg-[#b1c5f6]',
+  active: 'bg-[#b1c5f6]',
+  pending: 'bg-[#b1c5f6]',
 } as const
 
 /** Pita proses 5 tahap (identik dengan desain referensi). */

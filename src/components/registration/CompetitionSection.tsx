@@ -11,8 +11,7 @@ import {
   helperClassName,
   labelClassName,
   numberBadgeClassName,
-  requiredBadgeClassName,
-  requiredClassName,
+    requiredClassName,
   selectClassName,
 } from '../../lib/registrationStyles.js'
 
@@ -32,11 +31,11 @@ export default function CompetitionSection({ form }: { form: RegistrationFormApi
           <div>
             <h2 className={cardTitleClassName}>Informasi Lomba</h2>
             <p className={cardCaptionClassName}>
-              Cabang lomba sudah ditentukan oleh halaman ini dan tidak dapat diubah.
+              Silakan lengkapi formulir pendaftaran untuk cabang lomba ini.
             </p>
           </div>
         </div>
-        <span className={requiredBadgeClassName}>Terkunci</span>
+        
       </div>
 
       <input name="competition_id" type="hidden" value={config.competitionId} readOnly />
@@ -47,16 +46,13 @@ export default function CompetitionSection({ form }: { form: RegistrationFormApi
           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${config.iconClassName}`}>
             <Icon className="text-[22px]" name={config.icon} />
           </div>
-          <span className="inline-flex items-center gap-1 font-label-badge text-label-badge text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full uppercase">
-            <Icon className="text-[14px]" name="lock" />
-            Lomba terkunci
-          </span>
+          
         </div>
         <div className="font-title-md text-title-md text-on-surface mb-1">{config.fullName}</div>
         <p className="font-caption text-caption text-on-surface-variant">{config.tagline}</p>
         <div className="mt-space-sm pt-space-xs flex items-center justify-between font-caption text-caption">
           <span className="text-primary font-body-md-semibold">{config.level}</span>
-          <span className="text-secondary font-label-badge">Kuota: {config.quota}</span>
+          
         </div>
       </div>
 

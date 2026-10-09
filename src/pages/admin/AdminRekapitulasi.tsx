@@ -44,7 +44,6 @@ export default function AdminRekapitulasi() {
       'Kelas': row.grade,
       'Asal Sekolah': row.school_name,
       'Alamat Sekolah': row.school_address,
-      'Utusan / Kota': row.city || '-',
       'Bank Pengirim': row.payment_sender_bank,
       'Atas Nama Rekening': row.payment_sender_name,
       'Status Pendaftaran': row.registration_status,
@@ -62,7 +61,7 @@ export default function AdminRekapitulasi() {
     doc.text(`Rekapitulasi Pendaftaran ATTIN EXPO XII - ${filterSlug === 'all' ? 'Semua Lomba' : filterSlug}`, 14, 15)
     
     // Untuk PDF kita batasi kolom utama agar muat
-    const tableColumn = ["No", "Kode", "Waktu Daftar", "Cabang & Kategori", "Nama Peserta", "L/P", "Asal Sekolah", "Utusan/Kota"]
+    const tableColumn = ["No", "Kode", "Waktu Daftar", "Cabang & Kategori", "Nama Peserta", "L/P", "Asal Sekolah", ]
     const tableRows: any[][] = []
 
     filteredRegistrations.forEach((row, index) => {
@@ -143,8 +142,7 @@ export default function AdminRekapitulasi() {
                 <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Nama Peserta</th>
                 <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Asal Sekolah</th>
                 <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Cabang & Kategori</th>
-                <th className="py-4 px-4 text-[12px] font-bold text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Utusan</th>
-              </tr>
+                </tr>
             </thead>
             <tbody className="divide-y divide-surface-container text-[14px]">
               {filteredRegistrations.length === 0 ? (

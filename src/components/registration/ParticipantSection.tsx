@@ -25,7 +25,7 @@ export default function ParticipantSection({ form }: { form: RegistrationFormApi
           <h2 className={cardTitleClassName}>Identitas Peserta</h2>
           <p className={cardCaptionClassName}>
             {isTahfizh
-              ? 'Masukkan utusan sekolah (1 Putra dan 1 Putri).'
+              ? 'Masukkan nama utusan (boleh 1 Putra saja, 1 Putri saja, atau keduanya).'
               : 'Tambahkan nama utusan ke bawah (baris baru) jika lebih dari satu.'}
           </p>
         </div>
@@ -86,21 +86,7 @@ export default function ParticipantSection({ form }: { form: RegistrationFormApi
           </div>
         )}
 
-        <div className="md:col-span-2">
-          <label className={labelClassName} htmlFor={fieldId('detail_tambahan')}>
-            Detail Tambahan (Kelas / Tempat & Tanggal Lahir / NISN)
-          </label>
-          <textarea
-            className={textareaClassFor('detail_tambahan')}
-            id={fieldId('detail_tambahan')}
-            name="detail_tambahan"
-            rows={3}
-            onChange={(event) => setValue('detail_tambahan', event.target.value)}
-            placeholder={isTahfizh ? "Opsional. Contoh:\nPutra: Kelas 5, Padang 12 Jan 2012, 123456\nPutri: Kelas 4, Padang 05 Feb 2013, 654321" : "Opsional. Masukkan data pendukung siswa jika diperlukan..."}
-            value={valueFor('detail_tambahan')}
-          />
-          <p className={helperClassName}>Dapat diisi nanti dengan melampirkan rapor fisik atau Akta Kelahiran pada saat Technical Meeting.</p>
-        </div>
+        
       </div>
     </section>
   )

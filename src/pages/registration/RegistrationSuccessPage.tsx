@@ -152,13 +152,7 @@ export default function RegistrationSuccessPage() {
                     <p className="font-caption text-caption text-on-surface-variant">Tercatat resmi dalam pangkalan data panitia seleksi</p>
                   </div>
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FEF3C7] border border-[#B45309]/20 text-[#92400E] font-label-badge text-label-badge uppercase shadow-sm">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B45309] opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#92400E]" />
-                  </span>
-                  <span>Menunggu Verifikasi</span>
-                </div>
+                
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-surface-container-low/40 rounded-2xl p-6 sm:p-8 border border-outline-variant/20">
@@ -221,7 +215,7 @@ export default function RegistrationSuccessPage() {
                 </div>
                 <div>
                   <h2 className="font-headline-sm text-headline-sm text-on-surface">Tahapan Selanjutnya</h2>
-                  <p className="font-caption text-caption text-on-surface-variant">Langkah verifikasi pasca penyerahan formulir digital</p>
+                  <p className="font-caption text-caption text-on-surface-variant">Konfirmasi pendaftaran via WhatsApp</p>
                 </div>
               </div>
               
@@ -229,27 +223,9 @@ export default function RegistrationSuccessPage() {
                 <div className="relative flex items-start gap-5">
                   <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-surface-container-lowest">1</span>
                   <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
-                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Verifikasi Administratif & Berkas</span>
+                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Konfirmasi ke WhatsApp Panitia</span>
                     <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                      Tim panitia akan meneliti kelayakan berkas identitas dan bukti transfer dalam <strong className="text-on-surface font-body-md-semibold">1x24 jam kerja</strong>. Pastikan nomor kontak selalu aktif.
-                    </p>
-                  </div>
-                </div>
-                <div className="relative flex items-start gap-5">
-                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-surface-container-lowest">2</span>
-                  <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
-                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Pemberitahuan Resmi</span>
-                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                      Konfirmasi status kelolosan administrasi akan dikirimkan langsung via WhatsApp ke nomor kontak yang didaftarkan.
-                    </p>
-                  </div>
-                </div>
-                <div className="relative flex items-start gap-5">
-                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-surface-container-highest text-on-surface-variant font-label-badge text-label-badge flex items-center justify-center ring-4 ring-surface-container-lowest">3</span>
-                  <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow opacity-80">
-                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Unduh Bukti Tanda Terima</span>
-                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                      Setelah status beralih menjadi <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#ECFDF5] border border-[#16825D]/20 text-[#16825D] font-label-badge text-label-badge uppercase mx-1">Terverifikasi</span>, peserta dapat mengunduh kartu tanda peserta resmi di portal ini.
+                      Pendaftaran Anda berhasil dicatat. Silakan hubungi WhatsApp panitia untuk mengonfirmasi dan mengirimkan bukti pendaftaran agar proses dapat diselesaikan.
                     </p>
                   </div>
                 </div>

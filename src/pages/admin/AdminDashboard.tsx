@@ -10,7 +10,7 @@ import { registrationConfigs } from '../../config/registrationConfigs.js'
 function DummyRows() {
   return (
     <tr>
-      <td colSpan={9} className="py-12 text-center text-on-surface-variant">
+      <td colSpan={8} className="py-12 text-center text-on-surface-variant">
         <span className="material-symbols-outlined text-[48px] text-surface-container-high mb-2 block">inbox</span>
         <p>Belum ada data pendaftaran.</p>
       </td>
@@ -38,7 +38,6 @@ function RealRow({ row, onVerifyPrompt, onView }: { row: RegistrationRow, onVeri
           {config.name || row.competition_slug} {row.specific_data ? '- ' + Object.values(row.specific_data)[0] : ''}
         </span>
       </td>
-      <td className="py-3.5 px-4 text-on-surface-variant">{row.city || '-'}</td>
       <td className="py-3.5 px-4 text-caption text-outline">
         {row.created_at ? new Date(row.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '-'}
       </td>
@@ -458,7 +457,6 @@ export default function AdminDashboard() {
 <th className="py-3 px-4 font-bold">Nama Peserta</th>
 <th className="py-3 px-4 font-bold">Asal Lembaga / Sekolah</th>
 <th className="py-3 px-4 font-bold">Cabang Lomba</th>
-<th className="py-3 px-4 font-bold">Kab / Kota</th>
 <th className="py-3 px-4 font-bold">Waktu Daftar</th>
 <th className="py-3 px-4 font-bold">Status Bayar</th>
 <th className="py-3 px-4 font-bold">Status Berkas</th>
@@ -516,7 +514,6 @@ export default function AdminDashboard() {
               <p><strong>Kode:</strong> {selectedRow.registration_code}</p>
               <p><strong>Nama:</strong> {selectedRow.participant_name} ({selectedRow.nickname})</p>
               <p><strong>Asal Sekolah:</strong> {selectedRow.school_name}</p>
-              <p><strong>Utusan:</strong> {selectedRow.city || '-'}</p>
               <p><strong>Kategori Lomba:</strong> {registrationConfigs[selectedRow.competition_slug]?.name || selectedRow.competition_slug} {(selectedRow.specific_data && Object.values(selectedRow.specific_data)[0]) || ''}</p>
               <p><strong>Status:</strong> {selectedRow.registration_status === 'verified' ? 'Terverifikasi' : 'Menunggu'}</p>
             </div>

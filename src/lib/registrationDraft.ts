@@ -6,7 +6,7 @@ import type { CompetitionSlug, FormValues } from '../types/registration.js'
  * dikirim ke server pada tahap ini.
  */
 
-const PREFIX = 'attin:registration-draft:'
+const PREFIX = 'attin:registration-draft-v2:'
 
 function storageKey(slug: CompetitionSlug): string {
   return `${PREFIX}${slug}`

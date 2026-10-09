@@ -67,7 +67,7 @@ export function formatFileSize(bytes: number): string {
 
 const COMMON_REQUIRED_FIELDS: Array<{ name: string; message?: string }> = [
   { name: 'nama_sekolah' },
-  { name: 'kabupaten_kota' },
+  
   { name: 'alamat_sekolah' },
   { name: 'bank_pengirim' },
   { name: 'nama_pemilik_rekening' },
@@ -83,9 +83,11 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
   const errors: FormErrors = {}
   
   if (config.slug === 'tahfizh') {
-    if (isBlank(values.nama_pa)) errors.nama_pa = ERROR_MESSAGES.required
-    if (isBlank(values.nama_pi)) errors.nama_pi = ERROR_MESSAGES.required
-  } else {
+      if (isBlank(values.nama_pa) && isBlank(values.nama_pi)) {
+        errors.nama_pa = 'Harap isi minimal salah satu utusan (Putra/Putri).'
+        errors.nama_pi = 'Harap isi minimal salah satu utusan (Putra/Putri).'
+      }
+    } else {
     if (isBlank(values.nama_lengkap)) errors.nama_lengkap = ERROR_MESSAGES.required
   }
 
@@ -136,9 +138,7 @@ export function buildSpecificData(values: FormValues, config: RegistrationConfig
     }
   }
 
-  if (typeof values.detail_tambahan === 'string' && values.detail_tambahan.trim() !== '') {
-    specificData.detail_tambahan = values.detail_tambahan.trim()
-  }
+  
 
   return specificData
 }

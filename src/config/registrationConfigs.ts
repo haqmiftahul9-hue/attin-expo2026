@@ -1,6 +1,11 @@
 import { placeholders, site } from '../data/site.js'
 import type { CompetitionSlug, RegistrationConfig } from '../types/registration.js'
 
+export const eventConfig = {
+  registrationDeadline: "18 November 2026"
+}
+
+
 /**
  * Konfigurasi pendaftaran per cabang lomba.
  *
@@ -21,7 +26,7 @@ export const tahfizh: RegistrationConfig = {
   codePrefix: 'ATXII-THF',
   level: 'Kelas 1-5 SD/MI Sederajat',
   categoryLabel: 'Kategori Musabaqah Tahfizh',
-  categoryHelper: 'Utusan wajib 1 putra dan 1 putri per sekolah.',
+  categoryHelper: 'Utusan boleh 1 Putra saja, 1 Putri saja, atau kedua-duanya (1 Putra dan 1 Putri).',
   categoryFieldName: 'kategori_tahfizh',
   categoryPlaceholder: '[KATEGORI TERKUNCI]',
   categories: [],
@@ -52,20 +57,17 @@ export const praTka: RegistrationConfig = {
   iconClassName: 'bg-tertiary-fixed text-tertiary',
   codePrefix: 'ATXII-PTK',
   level: 'Kelas 1-6 SD/MI Sederajat',
-  categoryLabel: 'Format Kategori Musabaqah Pra-TKA',
-  categoryHelper: 'Jumlah/kuota peserta dari masing-masing sekolah tidak dibatasi. Rujuk Buku Juknis Bab IV untuk rincian materi.',
+  categoryLabel: 'Lomba Pra-TKA',
+  categoryHelper: ' Rujuk Buku Juknis Bab IV untuk rincian materi.',
   categoryFieldName: 'kategori_pra_tka',
   categoryPlaceholder: '[PILIH FORMAT PRA-TKA]',
-  categories: [
-    { value: 'pra-tka-beregu', label: 'Pra-TKA Cerdas Cermat Beregu (3 Santri / Regu)' },
-    { value: 'pra-tka-perseorangan', label: 'Pra-TKA Ujian Tertulis Perseorangan' },
-  ],
+  categories: [],
   specificFields: [
     {
       name: 'kategori_pra_tka',
-      label: 'Format Kategori Musabaqah Pra-TKA',
+      label: 'Lomba Pra-TKA',
       placeholder: '[PILIH FORMAT PRA-TKA]',
-      helper: 'Pilih format beregu atau perseorangan. Jumlah/kuota peserta dari masing-masing sekolah tidak dibatasi.',
+      helper: 'Pilih format beregu atau perseorangan. ',
       options: [
         { value: 'pra-tka-beregu', label: 'Pra-TKA Cerdas Cermat Beregu (3 Santri / Regu)' },
         { value: 'pra-tka-perseorangan', label: 'Pra-TKA Ujian Tertulis Perseorangan' },
@@ -92,7 +94,7 @@ export const panahan: RegistrationConfig = {
   slug: 'panahan',
   competitionId: 'comp-panahan',
   name: 'Lomba Panahan',
-  fullName: 'Lomba Panahan Tradisional',
+  fullName: 'Lomba Panahan',
   tagline: 'Ketangkasan memanah sunnah kategori barebow/standar jarak kompetisi pemula.',
   icon: 'sports_martial_arts',
   iconClassName: 'bg-secondary-fixed text-secondary',
@@ -102,10 +104,7 @@ export const panahan: RegistrationConfig = {
   categoryHelper: 'Peserta merupakan siswa kelas 1-6 SD/MI sederajat negeri atau swasta se-SUMBAR.',
   categoryFieldName: 'kategori_panahan',
   categoryPlaceholder: '[PILIH KATEGORI PANAHAN]',
-  categories: [
-    { value: 'panahan-u-10-10m', label: 'Panahan Barebow U-10 — Jarak 10 Meter (Putra/Putri)' },
-    { value: 'panahan-u-12-15m', label: 'Panahan Horsebow U-12 — Jarak 15 Meter (Putra/Putri)' },
-  ],
+  categories: [],
   specificFields: [
     {
       name: 'kategori_panahan',

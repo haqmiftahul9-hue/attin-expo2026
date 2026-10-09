@@ -19,7 +19,7 @@ export default function CallToActionSection() {
               Siapkan Diri Menjadi Juara di ATTIN EXPO XII 2026
             </h2>
             <p className="font-body-md text-body-md text-surface-variant leading-relaxed">
-              Daftasikan santri dan murid terbaik sekolah Anda sekarang juga sebelum kuota pendaftaran per cabang
+              Daftasikan santri dan murid terbaik sekolah Anda sekarang juga segera
               terpenuhi. Wujudkan generasi Qur’ani yang berani, berakhlak, dan berprestasi!
             </p>
 
