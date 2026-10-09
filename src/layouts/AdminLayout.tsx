@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import MaterialIcon from '../components/MaterialIcon.jsx'
 import usePageTitle from '../hooks/usePageTitle.js'
+import { useAuth } from '../App.jsx'
 
 export const adminInlineTheme = {
   '--color-secondary-fixed-dim':'#ffb1c0',
@@ -99,6 +100,7 @@ const NAV_LINKS = [
 
 export default function AdminLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { logout } = useAuth()
   usePageTitle('Admin Panel - ATTIN EXPO XII 2026')
 
   return (
@@ -185,13 +187,13 @@ export default function AdminLayout() {
 
         {/* Footer Sidebar */}
         <div className="p-space-md bg-surface-container-lowest border-t border-surface-container shrink-0">
-          <NavLink 
-            to="/" 
-            className="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] font-medium text-error hover:bg-error-container hover:text-on-error-container transition-colors"
+          <button 
+            onClick={logout}
+            className="w-full flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] font-medium text-error hover:bg-error-container hover:text-on-error-container transition-colors text-left"
           >
             <MaterialIcon name="logout" className="text-[20px]" />
             <span>Keluar Sistem</span>
-          </NavLink>
+          </button>
         </div>
       </aside>
 
