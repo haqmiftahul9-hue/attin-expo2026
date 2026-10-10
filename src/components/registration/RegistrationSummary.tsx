@@ -164,7 +164,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
           <span className="font-label-badge text-label-badge uppercase tracking-wider">Adab Penuntut Ilmu</span>
         </div>
         <p className="font-caption text-caption text-white/90 italic leading-relaxed">
-          “Menuntut ilmu dan mengagungkan Al-Qur’an adalah perniagaan yang tidak pernah merugi. Tanamkan niat ikhlas lillahi ta’ala di setiap langkah delegasi.”
+          “Menuntut ilmu dan mengagungkan Al-Qur’an adalah perniagaan yang tidak pernah merugi.”
         </p>
       </div>
     </aside>
