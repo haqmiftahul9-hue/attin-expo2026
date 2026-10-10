@@ -3,7 +3,7 @@ import MaterialIcon from '../MaterialIcon.jsx'
 
 export default function Breadcrumb({ current }) {
   return (
-    <div className="w-full bg-surface-container-low py-3 px-4 sm:px-6 lg:px-8">
+    <div className="w-full py-3 px-4 sm:px-6 lg:px-8">
       <nav
         aria-label="Breadcrumb"
         className="max-w-7xl mx-auto flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"

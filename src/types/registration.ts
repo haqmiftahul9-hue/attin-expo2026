@@ -43,7 +43,7 @@ export interface RegistrationConfig {
   categoryPlaceholder: string
   categories: SelectOption[]
   specificFields: SpecificField[]
-  fee: string
+  fee: number
   feeNote: string
   quota: string
   bank: {
@@ -74,6 +74,10 @@ export interface RegistrationRow {
   school_name: string
   school_address: string
   city: string
+  category: string
+  participant_count: number
+  unit_fee: number
+  total_fee: number
   payment_sender_bank: string
   payment_sender_name: string
   payment_proof_url: string | null

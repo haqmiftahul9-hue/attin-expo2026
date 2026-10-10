@@ -1,7 +1,7 @@
 import { placeholders, site } from './site.js'
 
 /**
- * Data lengkap halaman detail cabang (musabaqah + formulir pendaftaran).
+ * Data lengkap halaman detail cabang (lomba + formulir pendaftaran).
  * Saat ini baru Lomba Tahfizh yang memiliki rincian; cabang lain memakai
  * kerangka halaman yang sama tanpa konten turunan.
  */
@@ -49,15 +49,15 @@ export const formSteps = [
 export const branchDetails = {
   tahfizh: {
     slug: 'tahfizh',
-    breadcrumb: 'Tahfizh Al-Qur’an',
+    breadcrumb: 'Lomba Tahfizh',
     metaTitle: `${site.title} - Temukan Potensi. Ukir Prestasi.`,
     tagline: 'Lomba Tahfizh',
-    accentTitle: 'Al-Qur’an',
+    accentTitle: 'Tahfizh',
     level: 'Tingkat SD/MI se-Sumatera Barat',
     intro:
       'Ajang bagi siswa SD/MI tingkat Sumatera Barat untuk menunjukkan kemampuan hafalan Al-Qur’an dengan penuh kesiapan, ketenangan, adab, dan rasa percaya diri.',
     badges: [
-      { icon: 'menu_book', label: 'Al-Qur’an • SD/MI', tone: 'primary' },
+      { icon: 'menu_book', label: 'Tahfizh • SD/MI', tone: 'primary' },
       { icon: null, label: 'ATTIN EXPO XII 2026', tone: 'secondary' },
     ],
     metadata: [
@@ -69,7 +69,7 @@ export const branchDetails = {
       'https://lh3.googleusercontent.com/aida-public/AB6AXuB8pb3xF77bJe8aif3Q73xPKXG81iDKkdgHQRQ5qt7hkaf7iCWmAz4CV-3mKYw80MlIGQXQ9qMjrCPmY9QVeRFs1CwTwX7wGc3xge-WLy1B3ajHz-sAJYLxrJCvl24iYWuoeyJM1eSniRM2hITlOplRD8Bnz8wR2ECC1jCA7njf1KtBimzTtbLxzXYprGeEfa5n2qNg6RBiCVDvZn4DrHDsuqV78pBCs7faYSZcWCXuGU-73W26dFB8Qw',
     imageAlt:
       'An Indonesian elementary school student boy dressed in clean white Islamic school uniform with a black peci cap reciting the Holy Quran placed on an intricately carved wooden rehal stand, warm natural side lighting, peaceful focused expression, high resolution academic Islamic school atmosphere, navy blue and soft tones',
-    quoteLabel: 'Musabaqah Tahfizh Qur’an',
+    quoteLabel: 'Lomba Tahfizh',
     quote: '“Sebaik-baik kalian adalah yang mempelajari Al-Qur\'an dan mengajarkannya.”',
     quoteSource: 'HR. Bukhari',
     facts: [
@@ -144,7 +144,7 @@ export const branchDetails = {
     requirements: {
       badge: 'PERSYARATAN',
       title: 'Syarat Peserta Lomba',
-      body: 'Kriteria kepesertaan yang wajib dipenuhi oleh seluruh calon pendaftar musabaqah tahfizh.',
+      body: 'Kriteria kepesertaan yang wajib dipenuhi oleh seluruh calon pendaftar lomba tahfizh.',
       items: [
         {
           title: 'Peserta merupakan siswa SD/MI aktif.',
@@ -171,7 +171,7 @@ export const branchDetails = {
     rules: {
       badge: 'KETENTUAN LOMBA',
       title: 'Ketentuan Pelaksanaan',
-      body: 'Pedoman teknis penampilan, busana, materi musabaqah, dan tata tertib panggung.',
+      body: 'Pedoman teknis penampilan, busana, materi lomba, dan tata tertib panggung.',
       items: [
         {
           icon: 'apparel',
@@ -188,14 +188,14 @@ export const branchDetails = {
         {
           icon: 'podium',
           tone: 'primary',
-          title: 'Mekanisme Musabaqah',
+          title: 'Mekanisme Lomba',
           body: `${placeholders.mechanicsRule}. Peserta yang dipanggil 3 kali berturut-turut tanpa konfirmasi akan ditempatkan pada urutan tampil terakhir sesi bersangkutan.`,
         },
         {
           icon: 'grading',
           tone: 'secondary',
           title: 'Kriteria Penilaian',
-          body: `${placeholders.scoringRule}. Penilaian meliputi tahfizh (kelancaran hafalan), tajwid (makhraj dan hukum bacaan), serta fashahah & adab kesantunan musabaqah.`,
+          body: `${placeholders.scoringRule}. Penilaian meliputi tahfizh (kelancaran hafalan), tajwid (makhraj dan hukum bacaan), serta fashahah & adab kesantunan lomba.`,
         },
         {
           icon: 'emoji_events',
@@ -241,7 +241,7 @@ export const branchDetails = {
           label: 'Tahap 04',
           badgeTone: 'primary',
           title: 'Pelaksanaan',
-          caption: 'Hari-H Musabaqah Tahfizh',
+          caption: 'Hari-H Lomba Tahfizh',
           dateTone: 'primary',
         },
         {
@@ -254,12 +254,12 @@ export const branchDetails = {
       ].map((step) => ({ ...step, date: placeholders.date })),
       calloutTitle: 'Informasi Penting Terkait Jadwal',
       calloutBody:
-        'Jadwal musabaqah dapat disesuaikan dengan kuota pendaftar resmi. Selalu konfirmasi kehadiran melalui narahubung resmi panitia.',
+        'Jadwal lomba dapat disesuaikan dengan kuota pendaftar resmi. Selalu konfirmasi kehadiran melalui narahubung resmi panitia.',
     },
     guide: {
       badge: 'DOKUMEN RESMI JUKNIS',
       title: 'Panduan Lomba Tahfizh ATTIN EXPO XII 2026',
-      body: 'Memuat tata tertib lengkap panggung, ketentuan materi surat/maqra, kriteria penilaian dewan hakim, format sertifikat, dan pedoman seragam resmi musabaqah.',
+      body: 'Memuat tata tertib lengkap panggung, ketentuan materi surat/maqra, kriteria penilaian dewan hakim, format sertifikat, dan pedoman seragam resmi lomba.',
       sourceLabel: 'File sumber:',
       sourceValue: placeholders.juknishLink,
       href: site.juknis.href,

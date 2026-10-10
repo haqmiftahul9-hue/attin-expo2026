@@ -43,7 +43,7 @@ export default function CompetitionSection({ form }: { form: RegistrationFormApi
       <input name="competition_id" type="hidden" value={config.competitionId} readOnly />
       <input name="competition_slug" type="hidden" value={config.slug} readOnly />
 
-      <div className="rounded-xl p-space-md bg-surface-container-low border border-border-ui">
+      <div className="rounded-[16px] p-space-md bg-[#F8FAFC] border border-slate-900/10 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
         <div className="flex items-start justify-between mb-space-sm">
           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${config.iconClassName}`}>
             <Icon className="text-[22px]" name={config.icon} />
@@ -59,7 +59,7 @@ export default function CompetitionSection({ form }: { form: RegistrationFormApi
       </div>
 
       {config.categories.length > 0 && (
-        <div className="bg-surface-container-low p-space-md rounded-xl mt-space-md">
+        <div className="bg-[#F8FAFC] p-space-md rounded-[16px] mt-space-md border border-slate-900/10 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
           <label className={labelClassName} htmlFor={fieldId(config.categoryFieldName)}>
             {config.categoryLabel} <span className={requiredClassName}>*</span>
           </label>

@@ -3,7 +3,7 @@ import { site } from '../../data/site.js'
 
 export default function HelpCallout({ title }) {
   return (
-    <section className="w-full bg-surface-container-lowest py-16 sm:py-20">
+    <section className="w-full bg-surface-container-lowest py-12 sm:py-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-r from-primary to-primary-container rounded-3xl p-8 sm:p-12 text-on-primary shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-3 text-center md:text-left max-w-xl">
@@ -12,7 +12,7 @@ export default function HelpCallout({ title }) {
             </span>
             <h2 className="text-headline-lg font-headline-lg font-bold">Butuh Bantuan Terkait {title}?</h2>
             <p className="text-body-md font-body-md text-on-primary-container leading-relaxed">
-              Tim panitia bidang musabaqah siap membantu menjawab kendala pendaftaran online, petunjuk teknis
+              Tim panitia bidang lomba siap membantu menjawab kendala pendaftaran online, petunjuk teknis
               juknis, hingga verifikasi bukti transfer.
             </p>
           </div>

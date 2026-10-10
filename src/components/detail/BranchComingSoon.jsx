@@ -12,47 +12,49 @@ export default function BranchComingSoon({ slug }) {
   const title = competition ? competition.title : 'Cabang Lomba'
 
   return (
-    <section className="w-full bg-surface py-16 sm:py-24">
+    <section className="w-full py-12 sm:py-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-secondary text-label-badge font-label-badge uppercase tracking-wider">
-          <MaterialIcon name="hourglass_top" className="text-[16px]" />
-          Informasi sedang disiapkan
-        </span>
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-fixed text-secondary text-label-badge font-label-badge uppercase tracking-wider">
+            <MaterialIcon name="hourglass_top" className="text-[16px]" />
+            Informasi sedang disiapkan
+          </span>
 
-        <h1 className="text-display-hero-mobile lg:text-display-hero font-display-hero text-on-surface tracking-tight">
-          {title}
-        </h1>
+          <h1 className="text-display-hero-mobile lg:text-display-hero font-display-hero text-on-surface tracking-tight">
+            {title}
+          </h1>
 
-        <p className="text-body-lg font-body-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-          Rincian juknis, struktur kategori, dan formulir pendaftaran {title} sedang disiapkan panitia. Silakan
-          kembali ke beranda untuk melihat seluruh cabang yang sudah tersedia, atau hubungi sekretariat panitia
-          untuk informasi lebih lanjut.
-        </p>
+          <p className="text-body-lg font-body-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+            Rincian juknis, struktur kategori, dan formulir pendaftaran {title} sedang disiapkan panitia. Silakan
+            kembali ke beranda untuk melihat seluruh cabang yang sudah tersedia, atau hubungi sekretariat panitia
+            untuk informasi lebih lanjut.
+          </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <Link
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary-container hover:bg-tertiary text-on-primary font-body-md-semibold text-body-md-semibold shadow-md transition-all"
-            to="/#kompetisi-resmi"
-          >
-            <MaterialIcon name="arrow_back" className="text-[18px]" />
-            <span>Kembali ke Daftar Cabang</span>
-          </Link>
-          <Link
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-surface-container-lowest hover:bg-primary-fixed text-primary font-body-md-semibold text-body-md-semibold shadow-sm transition-all"
-            to="/lomba/tahfizh"
-          >
-            <span>Lihat Lomba Tahfizh</span>
-            <MaterialIcon name="arrow_forward" className="text-[18px]" />
-          </Link>
-        </div>
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <Link
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary-container hover:bg-tertiary text-on-primary font-body-md-semibold text-body-md-semibold shadow-md transition-all"
+              to="/#kompetisi-resmi"
+            >
+              <MaterialIcon name="arrow_back" className="text-[18px]" />
+              <span>Kembali ke Daftar Cabang</span>
+            </Link>
+            <Link
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-white/30 hover:bg-primary-fixed text-primary font-body-md-semibold text-body-md-semibold shadow-sm transition-all"
+              to="/lomba/tahfizh"
+            >
+              <span>Lihat Lomba Tahfizh</span>
+              <MaterialIcon name="arrow_forward" className="text-[18px]" />
+            </Link>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 text-left">
-          {relatedBranches.map((branch) => (
-            <div key={branch.slug} className="bg-surface-container-low rounded-2xl p-5 shadow-sm">
-              <h2 className="text-title-md font-title-md text-on-surface">{branch.title}</h2>
-              <p className="text-body-md font-body-md text-on-surface-variant mt-1">{branch.body}</p>
-            </div>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 text-left">
+            {relatedBranches.map((branch) => (
+              <div key={branch.slug} className="bg-white border border-white/30 rounded-2xl p-5 shadow-sm">
+                <h2 className="text-title-md font-title-md text-on-surface">{branch.title}</h2>
+                <p className="text-body-md font-body-md text-on-surface-variant mt-1">{branch.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

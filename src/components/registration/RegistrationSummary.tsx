@@ -81,7 +81,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
 
   return (
     <aside className="lg:col-span-4 space-y-space-md lg:sticky lg:top-24">
-      <div className="bg-surface border border-outline p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+      <div className="bg-white border border-slate-900/10 p-6 rounded-[20px] shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-outline/50">
           <div className="flex items-center gap-space-xs">
             <Icon className="text-primary text-[20px]" name="receipt" />
@@ -94,36 +94,39 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
 
         <div className="space-y-3 text-sm mb-6">
           <SummaryRow highlight label="Cabang Lomba" value={config.fullName} />
-          <SummaryRow highlight label="Kategori" value={categoryLabel} />
+          {config.categories.length > 0 || config.specificFields.some(f => f.name === config.categoryFieldName) ? (
+            <SummaryRow highlight label="Kategori" value={categoryLabel} />
+          ) : null}
+          <SummaryRow label="Jumlah Peserta" value={`${calculatedFee.count} Peserta`} />
           <SummaryRow label="Nama Calon Peserta" value={participantName} />
           <SummaryRow label="Asal Sekolah / Madrasah" value={schoolName} />
           <SummaryRow label="Guru Pendamping" value={guruPendamping} />
+          <SummaryRow label="Biaya per Peserta" value={`Rp${new Intl.NumberFormat('id-ID').format(calculatedFee.unitFee)}`} />
         </div>
 
-        <div className="bg-surface-container-low border border-outline/50 p-4 rounded-xl mb-6 shadow-sm">
-          <div className="flex items-center justify-between text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
-            <span>Infaq Musabaqah</span>
-            <span>{calculatedFee.label}</span>
+        <div className="bg-[#F8FAFC] border border-slate-900/10 p-4 rounded-[16px] mb-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+          <div className="flex items-center justify-between text-[14px] font-bold text-slate-600 uppercase tracking-widest">
+            <span>Total Biaya</span>
+            <span className="text-xs normal-case font-normal text-slate-500">{calculatedFee.label}</span>
           </div>
           <div className="text-2xl font-extrabold text-primary mt-1.5">
             {calculatedFee.amount}
           </div>
-          
         </div>
 
         <div className="space-y-2 pt-2 border-t border-outline/50">
-          <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-3">
+          <div className="text-[14px] font-bold text-slate-600 uppercase tracking-widest mb-3">
             Kelengkapan Form
           </div>
           {checklist.map((item) => (
             <div
               key={item.key}
               className={`flex items-center gap-2 text-sm ${
-                item.done ? 'text-primary font-bold' : 'text-muted-foreground'
+                item.done ? 'text-primary font-bold' : 'text-slate-600'
               }`}
             >
               <Icon
-                className={`text-[18px] ${item.done ? 'text-primary' : 'text-outline'}`}
+                className={`text-[18px] ${item.done ? 'text-primary' : 'text-slate-400'}`}
                 name={item.done ? 'check_circle' : 'radio_button_unchecked'}
               />
               {item.label}
@@ -132,7 +135,7 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
         </div>
       </div>
 
-      <div className="bg-surface border border-outline p-5 rounded-xl shadow-sm flex items-start gap-4">
+      <div className="bg-white border border-slate-900/10 p-5 rounded-[20px] shadow-[0_10px_30px_rgba(15,23,42,0.08)] flex items-start gap-4 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] transition-shadow">
         <div className="w-10 h-10 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center shrink-0">
           <Icon className="text-[20px]" name="chat" />
         </div>

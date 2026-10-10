@@ -41,7 +41,7 @@ export const eventStats = [
 export const about = {
   badge: 'TENTANG KAMI',
   title: 'Membangun Karakter Generasi Emas yang Berakhlak dan Berprestasi',
-  body: 'ATTIN EXPO XII 2026 merupakan kelanjutan dari komitmen dakwah dan pendidikan Islam yang telah berjalan selama lebih dari satu dekade di Sumatera Barat. Kami mendedikasikan panggung ini bagi santri dan siswa jenjang SD/MI untuk mengekspresikan bakat keagamaan, menguji hafalan Al-Qur’an, serta melatih konsentrasi dan sportivitas fisik melalui panahan.',
+  body: 'ATTIN EXPO XII 2026 merupakan kelanjutan dari komitmen dakwah dan pendidikan Islam yang telah berjalan selama 12 edisi di Sumatera Barat. Kami mendedikasikan panggung ini bagi siswa jenjang SD/MI untuk mengekspresikan bakat keagamaan, menguji hafalan Al-Qur’an, serta melatih konsentrasi dan sportivitas fisik melalui panahan.',
   points: [
     {
       icon: 'auto_stories',
@@ -96,31 +96,13 @@ export const timeline = {
       number: '01',
       badge: 'Tahap Awal',
       badgeClassName: 'text-secondary',
-      title: 'Pendaftaran Online',
-      description: 'Pengisian biodata peserta dan pengunggahan kelengkapan berkas pendaftaran.',
+      title: 'Pendaftaran Peserta',
+      description: 'Pengisian biodata, pengunggahan berkas, dan penyelesaian administrasi secara online.',
       date: `Hingga ${site.registration.deadlineLabel}`,
       dateClassName: 'text-primary',
     },
     {
       number: '02',
-      badge: 'Verifikasi',
-      badgeClassName: 'text-secondary',
-      title: 'Batas Penutupan',
-      description: 'Batas akhir penyelesaian administrasi pembayaran dan konfirmasi kelayakan.',
-      date: site.registration.deadlineLabel,
-      dateClassName: 'text-secondary',
-    },
-    {
-      number: '03',
-      badge: 'Briefing',
-      badgeClassName: 'text-primary',
-      title: 'Technical Meeting',
-      description: 'Penjelasan tata tertib lomba, pengambilan nomor undian, dan sesi tanya jawab.',
-      date: 'Rabu, 19 November 2026',
-      dateClassName: 'text-primary',
-    },
-    {
-      number: '04',
       badge: 'Hari H',
       badgeClassName: 'text-secondary',
       title: 'Pelaksanaan Lomba',
@@ -129,11 +111,11 @@ export const timeline = {
       dateClassName: 'text-primary',
     },
     {
-      number: '05',
+      number: '03',
       badge: 'Penutupan',
       badgeClassName: 'text-primary',
       title: 'Pengumuman Juara',
-      description: 'Penyerahan piala bergilir, penyerahan sertifikat pemenang, dan dana pembinaan.',
+      description: 'Penyerahan piala bergilir dan sertifikat pemenang.',
       date: 'Sabtu, 21 November 2026',
       dateClassName: 'text-secondary',
     },
@@ -148,7 +130,7 @@ export const faq = {
     {
       question: 'Siapa saja yang berhak mengikuti perlombaan ATTIN EXPO XII 2026?',
       answer:
-        'Kompetisi ini terbuka untuk seluruh siswa-siswi aktif jenjang SD/MI negeri maupun swasta di seluruh wilayah Sumatera Barat. Peserta wajib melampirkan surat rekomendasi atau mandat resmi dari kepala sekolah/madrasah.',
+        'Kompetisi ini terbuka untuk seluruh siswa-siswi aktif jenjang SD/MI negeri maupun swasta di seluruh wilayah Sumatera Barat.',
     },
     {
       question: 'Bagaimana prosedur pembayaran dan verifikasi bukti pendaftaran?',
@@ -157,11 +139,11 @@ export const faq = {
     {
       question: 'Apakah satu sekolah diperbolehkan mengirimkan lebih dari satu peserta per cabang?',
       answer:
-        'Tentu. Pihak sekolah diizinkan mengirimkan lebih dari 1 peserta (tanpa batasan maksimal per sekolah).',
+        'Tentu. Pihak sekolah diizinkan mengirimkan lebih dari 1 peserta (Sesuai dengan panduan juknis).',
     },
     {
       question: 'Di mana lokasi spesifik pelaksanaan perlombaan?',
-      answer: `Semua kegiatan akan diselenggarakan di ${placeholders.venue}, Kota Padang, Provinsi Sumatera Barat. Panduan rute dan informasi fasilitas di lokasi lomba dapat dibaca secara lengkap pada Buku Juknis.`,
+      answer: `Semua kegiatan akan diselenggarakan di SDIT Attin Sumbar, Jl. Kayu Belanti No.Desa, Talago Sarik, Kec. Pariaman Tim., Kota Pariaman, Sumatera Barat 25523. Panduan rute dan informasi fasilitas di lokasi lomba dapat dibaca secara lengkap pada Buku Juknis.`,
     },
     {
       question: 'Apakah jadwal pendaftaran bisa diperpanjang?',

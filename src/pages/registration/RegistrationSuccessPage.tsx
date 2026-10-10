@@ -50,17 +50,15 @@ export default function RegistrationSuccessPage() {
   const whatsappHref = `https://wa.me/${config.contact.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-surface text-on-surface">
-      <RegistrationHeader slug={branch.slug} />
+    <div className="w-full min-h-screen flex flex-col">
+      <RegistrationHeader />
 
-      {/* pt-[120px] ensures the 112px tall RegistrationHeader doesn't cover the top content */}
-      <main className="w-full pt-[120px] pb-16 flex-1 flex flex-col">
+      {/* pt-[112px] ensures the 112px tall RegistrationHeader doesn't cover the top content */}
+      <main className="w-full pt-[112px] pb-16 flex-1 flex flex-col">
         <div className="w-full relative overflow-hidden flex-1">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-gradient-to-b from-primary-fixed/30 via-surface-container-low to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-          
           <div className="max-w-[780px] mx-auto px-4 sm:px-6 w-full">
-            <nav aria-label="Breadcrumb" className="py-4 flex items-center gap-2 font-caption text-caption text-on-surface-variant mb-4">
-              <Link className="hover:text-primary transition-colors flex items-center gap-1 font-medium" to="/">
+            <nav aria-label="Breadcrumb" className="py-4 flex items-center gap-2 font-caption text-caption text-slate-300 mb-4">
+              <Link className="hover:text-white transition-colors text-slate-300 flex items-center gap-1 font-medium" to="/">
                 <MaterialIcon name="home" className="text-[16px]" />
                 <span>Beranda</span>
               </Link>
@@ -69,9 +67,9 @@ export default function RegistrationSuccessPage() {
             </nav>
 
             {/* Success Banner */}
-            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8 flex flex-col items-center text-center relative overflow-hidden">
-              <div className="absolute -right-16 -top-16 w-44 h-44 rounded-full bg-surface-container-low/60 pointer-events-none" />
-              <div className="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-primary-fixed/20 pointer-events-none" />
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8 flex flex-col items-center text-center relative overflow-hidden">
+              <div className="absolute -right-16 -top-16 w-44 h-44 rounded-full bg-white/10 pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-white/10 pointer-events-none" />
               
               <div className="relative mb-6">
                 <div className="w-20 h-20 rounded-full bg-[#ECFDF5] flex items-center justify-center shadow-md relative border border-[#16825D]/20">
@@ -141,8 +139,8 @@ export default function RegistrationSuccessPage() {
             </div>
 
             {/* Registration Summary */}
-            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 gap-4 border-b border-outline-variant/20">
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 gap-4 border-b border-white/30">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                     <MaterialIcon name="badge" className="text-[24px]" />
@@ -155,7 +153,7 @@ export default function RegistrationSuccessPage() {
                 
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-surface-container-low/40 rounded-2xl p-6 sm:p-8 border border-outline-variant/20">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/50 rounded-2xl p-6 sm:p-8 border border-white/30">
                 <div className="flex flex-col gap-1">
                   <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
                     <MaterialIcon name="person" className="text-[16px] text-outline" />
@@ -196,8 +194,8 @@ export default function RegistrationSuccessPage() {
                 )}
               </div>
               
-              <div className="mt-6 p-5 rounded-2xl bg-surface flex items-center gap-5 border border-outline-variant/20 shadow-sm">
-                <div className="w-12 h-12 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-center p-2 shrink-0 shadow-sm">
+              <div className="mt-6 p-5 rounded-2xl bg-white/50 flex items-center gap-5 border border-white/30 shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-white border border-white/30 flex items-center justify-center p-2 shrink-0 shadow-sm">
                   <img className="w-full h-full object-contain" src={site.logo} alt="Logo" />
                 </div>
                 <div className="flex flex-col">
@@ -208,7 +206,7 @@ export default function RegistrationSuccessPage() {
             </div>
 
             {/* Next Steps */}
-            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8">
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                   <MaterialIcon name="format_list_numbered" className="text-[24px]" />
@@ -219,10 +217,10 @@ export default function RegistrationSuccessPage() {
                 </div>
               </div>
               
-              <div className="relative pl-8 sm:pl-10 space-y-8 before:content-[''] before:absolute before:left-3.5 sm:before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+              <div className="relative pl-8 sm:pl-10 space-y-8 before:content-[''] before:absolute before:left-3.5 sm:before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-white/30">
                 <div className="relative flex items-start gap-5">
-                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-surface-container-lowest">1</span>
-                  <div className="flex flex-col bg-surface rounded-2xl border border-outline-variant/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
+                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-white/20">1</span>
+                  <div className="flex flex-col bg-white/50 rounded-2xl border border-white/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
                     <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Konfirmasi ke WhatsApp Panitia</span>
                     <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
                       Pendaftaran Anda berhasil dicatat. Silakan hubungi WhatsApp panitia untuk mengonfirmasi dan mengirimkan bukti pendaftaran agar proses dapat diselesaikan.
@@ -233,7 +231,7 @@ export default function RegistrationSuccessPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="bg-surface-container-lowest rounded-3xl border border-outline-variant/30 shadow-sm p-8 sm:p-10 mb-8 flex flex-col items-center gap-6 text-center">
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8 flex flex-col items-center gap-6 text-center">
               <h3 className="font-title-md text-title-md text-on-surface">Apa yang ingin Anda lakukan selanjutnya?</h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xl">
                 <Link 
@@ -262,9 +260,9 @@ export default function RegistrationSuccessPage() {
               </Link>
             </div>
 
-            <div className="flex items-center justify-center gap-2 text-center text-on-surface-variant font-caption text-caption px-4">
+            <div className="flex items-center justify-center gap-2 text-center text-slate-400 font-caption text-caption px-4">
               <MaterialIcon name="verified_user" className="text-[18px] text-outline shrink-0" />
-              <p>Data peserta dilindungi dan hanya digunakan untuk keperluan musabaqah ATTIN EXPO XII 2026. Tidak ada data sensitif yang dipublikasikan secara terbuka.</p>
+              <p>Data peserta dilindungi dan hanya digunakan untuk keperluan lomba ATTIN EXPO XII 2026. Tidak ada data sensitif yang dipublikasikan secara terbuka.</p>
             </div>
 
           </div>
@@ -275,3 +273,5 @@ export default function RegistrationSuccessPage() {
     </div>
   )
 }
+
+

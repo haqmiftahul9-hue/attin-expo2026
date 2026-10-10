@@ -9,9 +9,9 @@ import { placeholders } from '../../data/site.js'
  */
 export default function RegistrationCallout({ slug, name }) {
   return (
-    <section className="w-full bg-surface-container-lowest py-16 sm:py-20">
+    <section className="w-full py-12 sm:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-surface-container-lowest rounded-3xl p-8 sm:p-10 shadow-md text-center space-y-4">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 text-center space-y-4">
           <div className="w-16 h-16 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center shadow-md mx-auto">
             <MaterialIcon name="how_to_reg" className="text-[34px]" />
           </div>
@@ -38,7 +38,7 @@ export default function RegistrationCallout({ slug, name }) {
               <span>Isi Formulir Pendaftaran</span>
             </Link>
             <a
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-body-md-semibold text-body-md-semibold transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-white/30 text-on-surface hover:bg-white/70 font-body-md-semibold text-body-md-semibold transition-all"
               href="https://wa.me/"
               rel="noopener noreferrer"
               target="_blank"

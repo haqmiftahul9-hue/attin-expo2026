@@ -4,7 +4,7 @@ import { site } from '../data/site.js'
 
 export default function CallToActionSection() {
   return (
-    <section className="w-full bg-white py-12 lg:py-20 border-t border-slate-200">
+    <section className="w-full py-12 lg:py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-5 lg:px-20">
         <div className="relative bg-[#002B49] text-white rounded-2xl p-8 lg:p-14 overflow-hidden shadow-xl border border-[#003B66]">
           {/* Subtle architectural lines / government style bg */}
@@ -12,7 +12,7 @@ export default function CallToActionSection() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#0057B8]/40 to-transparent rounded-full blur-3xl opacity-50 transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
           <Reveal className="relative z-10 max-w-3xl space-y-6">
-            <span className="inline-block bg-[#8B1E3F] text-white text-[11px] font-bold uppercase px-3 py-1.5 rounded tracking-[0.08em] shadow-sm">
+            <span className="inline-block bg-[#8B1E3F] text-white text-[14px] font-bold uppercase px-3 py-1.5 rounded tracking-[0.08em] shadow-sm">
               Pendaftaran Resmi Dibuka
             </span>
             <h2 className="text-[28px] lg:text-[36px] font-extrabold text-white leading-tight tracking-tight">
@@ -33,9 +33,7 @@ export default function CallToActionSection() {
               </a>
               <a
                 className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold text-[15px] px-8 py-3.5 rounded-lg transition-colors"
-                href={site.contact.whatsappHref}
-                rel="noopener"
-                target="_blank"
+                href="#kontak"
               >
                 <MaterialIcon name="chat" className="text-[20px]" />
                 <span>Konsultasi Panitia via WhatsApp</span>
@@ -47,4 +45,5 @@ export default function CallToActionSection() {
     </section>
   )
 }
+
 

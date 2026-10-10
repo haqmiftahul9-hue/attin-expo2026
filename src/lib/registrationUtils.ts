@@ -1,36 +1,48 @@
 import type { RegistrationConfig, FormValues } from '../types/registration.js'
 
-export function calculateDynamicFee(config: RegistrationConfig | undefined, values: FormValues | undefined): { amount: string, label: string } {
+export function calculateDynamicFee(config: RegistrationConfig | undefined, values: FormValues | undefined) {
   if (!config || !values) {
-    return { amount: 'Belum ditentukan', label: 'Standar 1 Peserta' }
+    return { amount: 'Rp0', label: '0 Peserta', count: 0, unitFee: 0, totalFee: 0 }
   }
 
+  let count = 0
+  let unitFee = typeof config.fee === 'number' ? config.fee : 0
+
   if (config.slug === 'tahfizh') {
-    return { amount: 'Rp 70.000', label: '1 Putra & 1 Putri (Rp 35.000/orang)' }
-  }
-  
-  const lines = (typeof values.nama_lengkap === 'string' ? values.nama_lengkap : '')
-    .split('\n')
-    .map(s => s.trim())
-    .filter(s => s.length > 0)
-  
-  const count = Math.max(1, lines.length)
-  
-  if (config.slug === 'pra-tka') {
-    const isBeregu = values[config.categoryFieldName] === 'pra-tka-beregu'
-    if (isBeregu) {
-      const total = count * 75000
-      return { amount: `Rp ${total.toLocaleString('id-ID')}`, label: `${count} Regu (${count * 3} Peserta)` }
-    } else {
-      const total = count * 25000
-      return { amount: `Rp ${total.toLocaleString('id-ID')}`, label: `${count} Peserta (Rp 25.000/orang)` }
+    const pa = typeof values.nama_pa === 'string' ? values.nama_pa.trim() : ''
+    const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
+    if (pa) count++
+    if (pi) count++
+  } else {
+    const lines = (typeof values.nama_lengkap === 'string' ? values.nama_lengkap : '')
+      .split('\n')
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0)
+    count = lines.length
+
+    if (config.slug === 'pra-tka' && values[config.categoryFieldName] === 'pra-tka-beregu') {
+      unitFee = unitFee * 3
     }
   }
-  
-  if (config.slug === 'panahan') {
-    const total = count * 65000
-    return { amount: `Rp ${total.toLocaleString('id-ID')}`, label: `${count} Peserta (Rp 65.000/orang)` }
+
+  const safeCount = Math.max(0, count)
+  const totalFee = safeCount * unitFee
+
+  const formatIdr = (num: number) => new Intl.NumberFormat('id-ID').format(num)
+
+  let label = `${safeCount} Peserta`
+  if (config.slug === 'pra-tka' && values[config.categoryFieldName] === 'pra-tka-beregu') {
+    label = `${safeCount} Regu (Rp${formatIdr(unitFee)}/regu)`
+  } else {
+    label = `${safeCount} Peserta (Rp${formatIdr(unitFee)}/orang)`
   }
-  
-  return { amount: config.fee, label: 'Standar 1 Peserta' }
+
+  return {
+    amount: `Rp${formatIdr(totalFee)}`,
+    label,
+    count: safeCount,
+    unitFee,
+    totalFee,
+  }
 }
+

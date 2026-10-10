@@ -1,3 +1,4 @@
+import Icon from '../Icon.jsx'
 import type { RegistrationFormApi } from '../../hooks/useRegistrationForm.js'
 import {
   cardCaptionClassName,
@@ -14,7 +15,7 @@ import {
 
 /** Tahap 2 — Biodata Peserta. */
 export default function ParticipantSection({ form }: { form: RegistrationFormApi }) {
-  const { config, valueFor, setValue, errorFor, inputClassFor, textareaClassFor } = form
+  const { config, valueFor, setValue, errorFor, inputClassFor } = form
   const isTahfizh = config.slug === 'tahfizh'
 
   return (
@@ -26,7 +27,7 @@ export default function ParticipantSection({ form }: { form: RegistrationFormApi
           <p className={cardCaptionClassName}>
             {isTahfizh
               ? 'Masukkan nama utusan (boleh 1 Putra saja, 1 Putri saja, atau keduanya).'
-              : 'Tambahkan nama utusan ke bawah (baris baru) jika lebih dari satu.'}
+              : 'Tambahkan nama utusan ke bawah jika lebih dari satu.'}
           </p>
         </div>
       </div>
@@ -70,17 +71,52 @@ export default function ParticipantSection({ form }: { form: RegistrationFormApi
             <label className={labelClassName} htmlFor={fieldId('nama_lengkap')}>
               Daftar Nama Peserta <span className={requiredClassName}>*</span>
             </label>
-            <textarea
-              className={textareaClassFor('nama_lengkap')}
-              id={fieldId('nama_lengkap')}
-              name="nama_lengkap"
-              rows={4}
-              onChange={(event) => setValue('nama_lengkap', event.target.value)}
-              placeholder="1. Nama Peserta Pertama&#10;2. Nama Peserta Kedua (Tekan Enter/Baris Baru untuk menambah utusan)"
-              value={valueFor('nama_lengkap')}
-            />
-            <p className={helperClassName}>
-              Masukkan satu nama per baris. Sistem otomatis menghitung total biaya berdasarkan jumlah nama yang dimasukkan.
+            <div className="flex flex-col gap-3 mt-2">
+              {(valueFor('nama_lengkap') || '').split('\n').map((name, index, arr) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <div className="flex-1">
+                    <input
+                      className={inputClassFor('nama_lengkap')}
+                      type="text"
+                      placeholder={`Nama Peserta ke-${index + 1}`}
+                      value={name}
+                      onChange={(e) => {
+                        const newArr = [...arr]
+                        newArr[index] = e.target.value
+                        setValue('nama_lengkap', newArr.join('\n'))
+                      }}
+                    />
+                  </div>
+                  {arr.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newArr = arr.filter((_, i) => i !== index)
+                        setValue('nama_lengkap', newArr.join('\n'))
+                      }}
+                      className="p-3 rounded-lg bg-error-container text-error hover:bg-error hover:text-on-error transition-colors flex-shrink-0"
+                      title="Hapus Nama"
+                    >
+                      <Icon className="text-[20px]" name="delete" />
+                    </button>
+                  )}
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => {
+                  const arr = (valueFor('nama_lengkap') || '').split('\n')
+                  arr.push('')
+                  setValue('nama_lengkap', arr.join('\n'))
+                }}
+                className="mt-2 py-3 px-4 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition-colors font-label-md font-semibold flex items-center justify-center gap-2 border border-primary-container"
+              >
+                <Icon className="text-[20px]" name="add" />
+                Tambah Nama Peserta
+              </button>
+            </div>
+            <p className={`${helperClassName} mt-3`}>
+              Sistem otomatis menghitung total biaya berdasarkan jumlah nama yang dimasukkan.
             </p>
             {errorFor('nama_lengkap') ? <p className={errorTextClassName}>{errorFor('nama_lengkap')}</p> : null}
           </div>

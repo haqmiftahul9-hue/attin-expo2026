@@ -2,9 +2,9 @@ import MaterialIcon from '../MaterialIcon.jsx'
 
 export default function GuideSection({ guide }) {
   return (
-    <section id="panduan" className="w-full bg-surface-container-low py-16 sm:py-20 scroll-mt-24">
+    <section id="panduan" className="w-full py-12 sm:py-16 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-surface-container-lowest rounded-3xl p-8 sm:p-10 shadow-md">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="w-24 h-28 sm:w-28 sm:h-32 rounded-2xl bg-secondary-fixed flex flex-col items-center justify-center text-secondary shrink-0 shadow-inner">
               <MaterialIcon name="picture_as_pdf" className="text-[48px]" />
@@ -34,7 +34,7 @@ export default function GuideSection({ guide }) {
                   <span>Buka Panduan</span>
                 </a>
                 <a
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-body-md-semibold text-body-md-semibold transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-white/30 text-on-surface hover:bg-white/70 font-body-md-semibold text-body-md-semibold transition-all"
                   download=""
                   href={guide.href}
                 >

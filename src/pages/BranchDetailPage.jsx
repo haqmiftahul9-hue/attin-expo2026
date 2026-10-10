@@ -24,7 +24,7 @@ export default function BranchDetailPage() {
   usePageTitle(branch?.metaTitle ?? 'ATTIN EXPO XII 2026')
 
   return (
-    <div className="w-full bg-surface text-on-surface font-sans">
+    <div className="w-full bg-transparent text-on-surface font-sans">
       <DetailHeader />
 
       <main>

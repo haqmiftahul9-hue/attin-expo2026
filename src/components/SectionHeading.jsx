@@ -10,6 +10,7 @@ export default function SectionHeading({
   title,
   titleClassName = 'text-[#0F172A]',
   description,
+  descriptionClassName = 'text-[#475569]',
   align = 'center',
   wrapperClassName = '',
   className = '',
@@ -19,15 +20,15 @@ export default function SectionHeading({
 
   return (
     <Reveal
-      className={`${layoutClassName} mb-12 space-y-4 ${wrapperClassName} ${className}`.trim()}
+      className={`${layoutClassName} mb-10 md:mb-12 ${wrapperClassName} ${className}`.trim()}
     >
-      <span className={`inline-flex items-center text-[11px] font-bold tracking-[0.1em] uppercase border px-3 py-1.5 rounded ${badgeClassName}`}>
+      <span className={`inline-flex items-center text-[14px] font-bold tracking-[0.1em] uppercase border px-3 py-1.5 rounded mb-3 md:mb-4 ${badgeClassName}`}>
         {badge}
       </span>
-      <h2 className={`text-[28px] md:text-[36px] font-extrabold tracking-tight ${titleClassName}`}>
+      <h2 className={`text-[32px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] mb-4 md:mb-5 ${titleClassName}`}>
         {title}
       </h2>
-      {description ? <p className="text-[15px] text-slate-500 leading-relaxed max-w-xl mx-auto">{description}</p> : null}
+      {description ? <p className={`text-[16px] md:text-[18px] ${descriptionClassName} leading-relaxed max-w-xl ${isCenter ? 'mx-auto' : ''}`}>{description}</p> : null}
     </Reveal>
   )
 }

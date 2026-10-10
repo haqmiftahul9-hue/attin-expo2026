@@ -95,7 +95,7 @@ export const adminInlineTheme = {
 
 const NAV_LINKS = [
   { path: '/admin', label: 'Dashboard', icon: 'dashboard', end: true },
-  { path: '/admin/rekapitulasi', label: 'Rekapitulasi', icon: 'summarize' },
+  { path: '/admin/pendaftaran', label: 'Pendaftaran', icon: 'summarize' },
 ]
 
 export default function AdminLayout() {

@@ -14,12 +14,6 @@ const statsData = [
     badge: 'CAKUPAN',
   },
   {
-    number: '85K',
-    label: 'Biaya Daftar',
-    description: 'Investasi transparan',
-    badge: 'KONTRIBUSI',
-  },
-  {
     number: '10+',
     label: 'Hadiah Utama',
     description: 'Piala Bergilir & Tabanas',
@@ -29,22 +23,20 @@ const statsData = [
 
 export default function EventStatsSection() {
   return (
-    <section className="w-full bg-white py-12 lg:py-20 border-t border-slate-100">
+    <section className="w-full py-12 lg:py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-5 lg:px-20">
-        <Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
+          <Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {statsData.map((stat, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-[#0057B8]/30 hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between group h-full"
+                className="rounded-[20px] border border-slate-900/10 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group h-full"
               >
                 {/* Top Tag Section */}
-                <div className="flex items-center justify-between gap-2 mb-6 border-b border-slate-100 pb-3">
-                  <span className="text-[11px] font-bold text-[#002B49] tracking-[0.1em] uppercase">
+                <div className="flex justify-center mb-6 border-b border-slate-100 pb-3">
+                  <span className="text-[14px] font-bold text-[#002B49] tracking-[0.1em] uppercase text-center">
                     {stat.badge}
-                  </span>
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em]">
-                    INFO
                   </span>
                 </div>
 
@@ -55,7 +47,7 @@ export default function EventStatsSection() {
                   <h3 className="text-[16px] font-bold text-[#0F172A] leading-tight tracking-tight mb-2">
                     {stat.label}
                   </h3>
-                  <p className="text-[14px] text-slate-500 leading-relaxed">
+                  <p className="text-[14px] text-slate-600 leading-relaxed">
                     {stat.description}
                   </p>
                 </div>
@@ -63,8 +55,10 @@ export default function EventStatsSection() {
             ))}
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   )
 }
+
 

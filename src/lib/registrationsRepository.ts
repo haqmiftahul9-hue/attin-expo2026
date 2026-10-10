@@ -16,7 +16,7 @@ import type { RegistrationRow, SaveRegistrationResult } from '../types/registrat
 
 const LOCAL_KEY = 'attin:registrations'
 const LAST_KEY = 'attin:registration:last'
-const STORAGE_BUCKET = 'registrations'
+const STORAGE_BUCKET = 'registration-payments'
 
 export interface SaveRegistrationInput {
   row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'>
@@ -70,13 +70,14 @@ async function getSupabaseClient() {
 
 async function uploadFile(
   client: Awaited<ReturnType<typeof getSupabaseClient>>,
+  competitionSlug: string,
   registrationCode: string,
   field: string,
   file: File | null | undefined,
 ): Promise<string | null> {
   if (!client || !file) return null
 
-  const path = `${registrationCode}/${field}-${safeFileName(file.name)}`
+  const path = `${competitionSlug}/${registrationCode}/${field}-${safeFileName(file.name)}`
   const { error } = await client.storage.from(STORAGE_BUCKET).upload(path, file, {
     upsert: false,
     contentType: file.type,
@@ -90,6 +91,22 @@ async function uploadFile(
   return path
 }
 
+export async function getPaymentProofSignedUrl(path: string | null): Promise<string | null> {
+  if (!path) return null
+  const client = await getSupabaseClient()
+  if (!client) return null
+
+  const { data, error } = await client.storage
+    .from(STORAGE_BUCKET)
+    .createSignedUrl(path, 60 * 60) // 1 hour
+
+  if (error) {
+    console.warn('[registrations] gagal membuat signed url:', error.message)
+    return null
+  }
+  return data.signedUrl
+}
+
 export async function saveRegistration(input: SaveRegistrationInput): Promise<SaveRegistrationResult> {
   const { row, files } = input
   const client = await getSupabaseClient()
@@ -99,7 +116,7 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
     return { ok: true, registrationCode: row.registration_code, mode: 'local' }
   }
 
-  const paymentProofUrl = await uploadFile(client, row.registration_code, 'bukti-transfer', files.bukti_transfer)
+  const paymentProofUrl = await uploadFile(client, row.competition_slug, row.registration_code, 'bukti-transfer', files.bukti_transfer)
 
   const { data, error } = await client
     .from('registrations')

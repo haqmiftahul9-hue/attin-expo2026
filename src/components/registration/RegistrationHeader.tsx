@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import Icon from '../Icon.jsx'
 import { site } from '../../data/site.js'
-import type { CompetitionSlug } from '../../types/registration.js'
 
 /**
  * Navbar halaman pendaftaran. Mengikuti desain navbar beranda (dua lapis:
  * announcement bar + bar utama) dengan target tautan yang sesuai rute.
  */
-export default function RegistrationHeader({ slug }: { slug: CompetitionSlug }) {
+export default function RegistrationHeader() {
   const navItems = [
     { label: 'Beranda', to: '/' },
     { label: 'Kompetisi', to: '/#kompetisi-resmi' },
@@ -35,15 +34,15 @@ export default function RegistrationHeader({ slug }: { slug: CompetitionSlug }) 
         </div>
       </div>
 
-      <div className="h-20 bg-surface/95 backdrop-blur-md">
+      <div className="h-20 bg-white/95 backdrop-blur-md border-b border-white/20">
         <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop h-full flex items-center justify-between gap-space-md">
-          <Link className="flex items-center gap-space-sm shrink-0" to="/">
-            <img alt={`${site.title} Logo`} className="h-12 md:h-14 lg:h-16 w-auto object-contain drop-shadow-sm" src="/assets/logo-attin-expo.png" />
-            <span className="flex flex-col">
-              <span className="font-headline-sm text-headline-sm text-primary tracking-tight leading-tight">
+          <Link className="flex items-center gap-space-sm lg:gap-space-md shrink-0" to="/">
+            <img alt={`${site.title} Logo`} className="h-[44px] md:h-[48px] lg:h-[52px] w-auto object-contain scale-110 md:scale-[1.15] origin-left drop-shadow-sm" src="/assets/logo-attin-expo.png" />
+            <span className="flex flex-col pl-1">
+              <span className="font-extrabold text-[19px] md:text-[22px] lg:text-[24px] text-[#061B33] tracking-tight leading-none font-display mb-1">
                 {site.name}
               </span>
-              <span className="font-label-badge text-label-badge text-secondary tracking-widest uppercase">
+              <span className="text-[10.5px] md:text-[11.5px] font-bold text-[#8B1E3F] tracking-[0.15em] uppercase">
                 {site.edition}
               </span>
             </span>
@@ -61,19 +60,10 @@ export default function RegistrationHeader({ slug }: { slug: CompetitionSlug }) 
             ))}
           </nav>
 
-          <div className="flex items-center gap-space-sm shrink-0">
-            <Link
-              className="hidden md:inline-flex items-center justify-center bg-primary-container hover:bg-primary text-on-primary font-body-md-semibold text-body-md px-space-md py-space-sm rounded-xl shadow-sm transition-all"
-              to={`/pendaftaran/${slug}`}
-            >
-              Isi Formulir
-            </Link>
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-              <Icon className="text-on-primary text-[18px]" name="person" />
-            </div>
-          </div>
+
         </div>
       </div>
     </header>
   )
 }
+

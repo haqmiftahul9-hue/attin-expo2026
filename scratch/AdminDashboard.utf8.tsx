@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 
 
 import { getAllRegistrations, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
@@ -18,7 +18,7 @@ function DummyRows() {
   )
 }
 
-function RealRow({ row, onVerifyPrompt }: { row: RegistrationRow, onVerifyPrompt: (row: RegistrationRow) => void }) {
+function RealRow({ row, onVerifyPrompt, onView }: { row: RegistrationRow, onVerifyPrompt: (row: RegistrationRow) => void, onView: (row: RegistrationRow) => void }) {
   const config = registrationConfigs[row.competition_slug] || {}
   
   return (
@@ -60,9 +60,9 @@ function RealRow({ row, onVerifyPrompt }: { row: RegistrationRow, onVerifyPrompt
       </td>
       <td className="py-3.5 px-4 text-center">
         <div className="flex items-center justify-center gap-1">
-          <a href={`/admin/pendaftaran/${row.registration_code}`} className="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Lihat Data Pendaftar">
+          <button onClick={() => onView(row)} className="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Lihat Data Pendaftar">
             <span className="material-symbols-outlined text-[18px]">visibility</span>
-          </a>
+          </button>
           {row.registration_status === 'verified' ? (
             <button onClick={() => alert('Fitur Cetak ID Card Peserta ' + row.participant_name + ' akan segera hadir.')} className="w-8 h-8 rounded-lg flex items-center justify-center text-secondary hover:bg-secondary-fixed transition-colors" title="Cetak ID Card">
               <span className="material-symbols-outlined text-[18px]">badge</span>
@@ -81,6 +81,7 @@ function RealRow({ row, onVerifyPrompt }: { row: RegistrationRow, onVerifyPrompt
 
 export default function AdminDashboard() {
     const [registrations, setRegistrations] = useState<RegistrationRow[]>([])
+    const [selectedRow, setSelectedRow] = useState<RegistrationRow | null>(null)
 
     const [verifyRow, setVerifyRow] = useState<RegistrationRow | null>(null)
 
@@ -108,13 +109,6 @@ export default function AdminDashboard() {
   }, [])
 
   const filteredRegistrations = registrations
-
-  const totalRegistrations = registrations.length
-  const tahfizhCount = registrations.filter(r => r.competition_slug === 'tahfizh').length
-  const pratkaCount = registrations.filter(r => r.competition_slug === 'pra-tka').length
-  const panahanCount = registrations.filter(r => r.competition_slug === 'panahan').length
-  const verifiedCount = registrations.filter(r => r.registration_status === 'verified').length
-  const pendingCount = registrations.filter(r => r.registration_status === 'pending').length
 
   return (
     
@@ -164,7 +158,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 <div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{totalRegistrations}</span>
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">348</span>
 </div>
 <div className="flex items-center gap-1 text-caption font-caption text-primary">
 <span className="material-symbols-outlined text-[14px]">trending_up</span>
@@ -181,7 +175,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 <div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{tahfizhCount}</span>
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">142</span>
 <span className="text-caption font-caption text-outline ml-1">/ 160 Kuota</span>
 </div>
 <div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
@@ -201,7 +195,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 <div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{pratkaCount}</span>
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">116</span>
 <span className="text-caption font-caption text-outline ml-1">/ 160 Kuota</span>
 </div>
 <div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
@@ -221,7 +215,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 <div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{panahanCount}</span>
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">90</span>
 <span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
 </div>
 <div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
@@ -241,7 +235,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 <div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-[#16825D]">{verifiedCount}</span>
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-[#16825D]">284</span>
 </div>
 <div className="inline-flex items-center gap-1.5 py-0.5 px-2 bg-surface-container-low rounded text-caption font-caption text-[#16825D] font-medium">
 <span className="w-1.5 h-1.5 rounded-full bg-[#16825D]"></span>
@@ -257,7 +251,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 <div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-[#C98316]">{pendingCount}</span>
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-[#C98316]">52</span>
 </div>
 <div className="inline-flex items-center gap-1.5 py-0.5 px-2 bg-surface-container-low rounded text-caption font-caption text-[#C98316] font-medium">
 <span className="w-1.5 h-1.5 rounded-full bg-[#C98316] animate-ping"></span>
@@ -438,7 +432,7 @@ export default function AdminDashboard() {
 <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-1 border-b border-surface-container">
 <button className="filter-tab active px-3.5 py-2 rounded-lg text-body-md-semibold font-body-md-semibold text-primary bg-primary-fixed flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="all">
 <span>Semua</span>
-<span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container-lowest text-primary text-[11px]">{totalRegistrations}</span>
+<span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container-lowest text-primary text-[11px]">348</span>
 </button>
 <button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="menunggu">
 <span>Menunggu Verifikasi</span>
@@ -475,7 +469,7 @@ export default function AdminDashboard() {
                     <DummyRows />
                   ) : (
                     filteredRegistrations.map((row) => (
-                      <RealRow row={row} key={row.registration_code} onVerifyPrompt={setVerifyRow} />
+                      <RealRow row={row} key={row.registration_code} onVerifyPrompt={setVerifyRow} onView={setSelectedRow} />
                     ))
                   )}
                 </tbody>
@@ -509,6 +503,28 @@ export default function AdminDashboard() {
 
 
 
+      {selectedRow && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-surface/40 backdrop-blur-sm" onClick={() => setSelectedRow(null)}>
+          <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-lg max-w-lg w-full" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-title-md font-bold text-on-surface">Detail Pendaftar</h3>
+              <button onClick={() => setSelectedRow(null)} className="text-outline hover:text-on-surface"><span className="material-symbols-outlined">close</span></button>
+            </div>
+            <div className="space-y-3 text-body-md text-on-surface">
+              <p><strong>Kode:</strong> {selectedRow.registration_code}</p>
+              <p><strong>Nama:</strong> {selectedRow.participant_name} ({selectedRow.nickname})</p>
+              <p><strong>Asal Sekolah:</strong> {selectedRow.school_name}</p>
+              <p><strong>Kategori Lomba:</strong> {registrationConfigs[selectedRow.competition_slug]?.name || selectedRow.competition_slug} {(selectedRow.specific_data && Object.values(selectedRow.specific_data)[0]) || ''}</p>
+              <p><strong>Status:</strong> {selectedRow.registration_status === 'verified' ? 'Terverifikasi' : 'Menunggu'}</p>
+            </div>
+            <div className="mt-6 flex justify-end">
+              <button onClick={() => setSelectedRow(null)} className="px-4 py-2 bg-surface-container hover:bg-surface-container-high rounded-lg font-medium text-on-surface transition-colors">Tutup</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      
       {verifyRow && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-surface/40 backdrop-blur-sm" onClick={() => setVerifyRow(null)}>
           <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-lg max-w-sm w-full" onClick={e => e.stopPropagation()}>

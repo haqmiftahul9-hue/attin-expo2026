@@ -14,7 +14,7 @@ const PLACEHOLDER = {
   venue: '[ISI LOKASI]',
   category: '[ISI KATEGORI]',
   juknis: '[ISI JUKNIS]',
-  bankAccount: '[ISI REKENING]',
+  bankAccount: 'Bank Nagari 71040220068602',
   whatsapp: '[ISI NOMOR WHATSAPP]',
   email: '[ISI EMAIL]',
   instagram: '[ISI INSTAGRAM]',
@@ -28,9 +28,9 @@ const PLACEHOLDER = {
   mechanicsRule: '[ISI TEKNIS PELAKSANAAN]',
   scoringRule: '[ISI KRITERIA PENILAIAN]',
   extraDocument: '[ISI DOKUMEN TAMBAHAN]',
-  bank: '[ISI BANK]',
-  bankAccountNumber: '[ISI NOMOR REKENING]',
-  bankAccountName: '[ISI NAMA REKENING]',
+  bank: 'Bank Nagari',
+  bankAccountNumber: '71040220068602',
+  bankAccountName: 'Panitia ATTIN EXPO XII',
   juknishLink: '[ISI LINK JUKNIS TAHFIZH]',
 }
 
@@ -44,7 +44,7 @@ export const site = {
   editionBadge: 'EDISI KE-12 • TAHUN 2026',
   tagline: 'Ajang Prestasi, Dakwah, dan Sportivitas Islami Jenjang SD/MI Se-Sumatera Barat',
   description:
-    'Wadah kompetisi bergengsi tingkat provinsi Sumatera Barat yang melahirkan generasi Qur’ani yang berkarakter, tangguh, dan unggul dalam bidang Tahfizh Al-Qur’an, Pra-TKA, serta Panahan Tradisional.',
+    'Wadah kompetisi bergengsi tingkat provinsi Sumatera Barat yang melahirkan generasi Qur’ani yang berkarakter, tangguh, dan unggul dalam bidang Lomba Tahfizh, Pra-TKA, serta Lomba Panahan.',
   announcement:
     'Pendaftaran ATTIN EXPO XII 2026 Segera Dibuka untuk Jenjang SD/MI Se-Sumatera Barat! Unduh Panduan Teknis & Juknis Lomba Sekarang.',
   logo: 'https://lh3.googleusercontent.com/aida/AEtjO1WX7YTrO8CV1UppMiNE1FdhYJW24RvGFXf8GjjYm8SHSmFeY5DfmwQmkKWMfqrs9Fb3i5GuW7pamTFzCO0XxP3N-Tv51z9FhagIHuj8aaQVkwzKV4qTgKxaCsBd2Isy2y6n_b_CkNqa7Lc9sezBW208KSBbt1lOcMNJsiXAwdeOsJlRub7p-BI5rVZttRf6LKcc9juU9sGHrZ9fobAphXdvp0ZcMBhoGZTIbgb-sKPW5mWoDvunvXmuOzE/',
@@ -77,16 +77,14 @@ export const site = {
     linkLabel: 'Unduh Juknis Lengkap',
     highlights: [
       'Mekanisme Kriteria Penilaian',
-      'Format Formulir Mandat Lembaga',
-      'Tata Tertib Sesi Musabaqah',
-      'Prosedur Banding & Pengesahan',
+      'Tata Tertib Sesi Lomba',
     ],
   },
   contact: {
-    whatsapp: PLACEHOLDER.whatsapp,
-    whatsappHref: 'https://wa.me/',
-    email: PLACEHOLDER.email,
-    emailHref: `mailto:${PLACEHOLDER.email}`,
+    whatsapp: '08995892898',
+    whatsappHref: 'https://wa.me/628995892898',
+    email: 'attinislamicschool@gmail.com',
+    emailHref: 'mailto:attinislamicschool@gmail.com',
     instagram: PLACEHOLDER.instagram,
     location: PLACEHOLDER.venue,
     address: `${PLACEHOLDER.venue}, Padang, Sumatera Barat`,
@@ -100,7 +98,7 @@ export const site = {
   footerDescription:
     'Ajang Prestasi, Dakwah, dan Kreativitas Islami Jenjang SD/MI Tingkat Provinsi Sumatera Barat. Mengukir Generasi Beradab, Cerdas, dan Berjiwa Qur’ani.',
   copyright:
-    '© 2026 ATTIN EXPO XII. Hak Cipta Dilindungi. Diselenggarakan untuk Generasi Qur’ani Sumatera Barat.',
+    '© 2026 ATTIN EXPO XII. Hak Cipta Dilindungi.',
 }
 
 export const navigation = [
@@ -125,10 +123,8 @@ export const sectionOrder = [
 ]
 
 export const footerQuickLinks = [
-  { label: 'Jadwal Penting', path: 'jadwal', href: '#jadwal' },
   { label: 'Buku Panduan (Juknis)', path: 'panduan', href: '#panduan-juknis' },
   { label: 'Syarat & Ketentuan', path: 'tentang', href: '#tentang' },
   { label: 'Alur Pendaftaran', path: 'kompetisi', href: '#kompetisi-resmi' },
   { label: 'FAQ', path: 'faq', href: '#faq' },
-  { label: 'Portal Admin', path: 'kontak', href: '#kontak' },
 ]

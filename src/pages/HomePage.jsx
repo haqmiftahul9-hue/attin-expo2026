@@ -1,7 +1,6 @@
 import Footer from '../components/Footer.jsx'
 import Header from '../components/Header.jsx'
 import AboutSection from '../sections/AboutSection.jsx'
-import BenefitsSection from '../sections/BenefitsSection.jsx'
 import CallToActionSection from '../sections/CallToActionSection.jsx'
 import CompetitionSection from '../sections/CompetitionSection.jsx'
 import ContactSection from '../sections/ContactSection.jsx'
@@ -21,18 +20,17 @@ export default function HomePage() {
     <>
       <Header />
 
-      <main className="w-full pt-20 bg-transparent flex-1">
+      <main className="w-full pt-[108px] bg-transparent flex-1">
         <div className="flex flex-col w-full">
           <HeroSection />
           <EventStatsSection />
-          <RegisteredSchoolsSection />
           <AboutSection />
           <CompetitionSection />
-          <BenefitsSection />
           <TimelineSection />
           <JuknisSection />
           <CallToActionSection />
           <FaqSection />
+          <RegisteredSchoolsSection />
           <ContactSection />
         </div>
       </main>

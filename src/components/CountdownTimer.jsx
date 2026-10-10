@@ -32,7 +32,7 @@ export default function CountdownTimer() {
             <span className="text-2xl lg:text-3xl font-extrabold text-primary block leading-none mb-1">
               {remaining ? padTwoDigits(remaining[unit.key]) : '--'}
             </span>
-            <span className="text-[10px] lg:text-[11px] font-bold text-muted-foreground uppercase tracking-widest block">{unit.label}</span>
+            <span className="text-[14px] font-bold text-muted-foreground uppercase tracking-widest block">{unit.label}</span>
           </div>
         ))}
       </div>

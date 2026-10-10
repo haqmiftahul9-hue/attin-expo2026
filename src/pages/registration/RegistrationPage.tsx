@@ -36,19 +36,16 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
   }, [])
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-transparent text-on-surface">
-      <RegistrationHeader slug={slug} />
+    <div className="w-full min-h-screen flex flex-col">
+      <RegistrationHeader />
 
-      <main className="w-full pt-20 bg-transparent flex-1">
+      <main className="w-full pt-[112px] flex-1">
         <div className="relative w-full overflow-hidden">
-          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
-          <div className="absolute top-96 -left-32 w-80 h-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none" />
-
           <div className="relative max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop py-space-lg">
             <section className="flex flex-col gap-space-sm mb-space-lg">
               <nav
                 aria-label="Jalur Navigasi"
-                className="flex items-center gap-space-xs text-on-surface-variant font-caption text-caption flex-wrap"
+                className="flex items-center gap-space-xs text-slate-300 font-caption text-caption flex-wrap"
               >
                 <Link className="hover:text-primary transition-colors flex items-center gap-1 font-medium" to="/">
                   <Icon className="text-[15px]" name="home" />
@@ -59,12 +56,12 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
                   Kompetisi
                 </Link>
                 <Icon className="text-[13px] text-outline" name="chevron_right" />
-                <span className="text-on-surface-variant font-medium">Pendaftaran</span>
+                <span className="text-slate-300 font-medium">Pendaftaran</span>
                 <Icon className="text-[13px] text-outline" name="chevron_right" />
                 <span className="font-bold text-primary">{config.name}</span>
               </nav>
 
-              <div className="bg-surface border-2 border-outline/80 rounded-2xl p-6 lg:p-8 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md hover:shadow-lg transition-shadow">
+              <div className="bg-white text-[#0F172A] border border-slate-900/10 rounded-[24px] p-6 lg:p-8 shadow-[0_10px_30px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
                 <div className="space-y-4 max-w-3xl">
                   <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-md font-bold text-xs uppercase tracking-widest">
                     <Icon className="text-[16px]" name="verified" />
@@ -74,12 +71,12 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
                     Formulir Pendaftaran {config.name}
                   </h1>
                   <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-2xl">
-                    Panduan pengisian data santri, identitas sekolah, dan verifikasi berkas administrasi musabaqah.
+                    Panduan pengisian data santri, identitas sekolah, dan verifikasi berkas administrasi lomba.
                     Mohon isi data sesuai dokumen sah demi akurasi verifikasi dewan hakim.
                   </p>
                 </div>
 
-                <div className="shrink-0 bg-surface-container-lowest border border-outline/30 px-6 py-4 rounded-xl flex items-center gap-4 shadow-sm">
+                <div className="shrink-0 bg-[#F8FAFC] text-[#0F172A] border border-slate-900/10 px-6 py-4 rounded-[16px] flex items-center gap-4 shadow-sm hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all">
                   <Icon className="text-secondary text-[28px]" name="hourglass_top" />
                   <div className="text-right">
                     <div className="text-[11px] font-bold text-secondary uppercase tracking-widest mb-1">
@@ -107,3 +104,5 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
     </div>
   )
 }
+
+

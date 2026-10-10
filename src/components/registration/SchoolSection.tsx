@@ -22,7 +22,7 @@ export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
         <div>
           <h2 className={cardTitleClassName}>Identitas Sekolah</h2>
           <p className={cardCaptionClassName}>
-            Lembaga pengutus serta pendamping resmi peserta musabaqah di Sumatera Barat.
+            Lembaga pengutus serta pendamping resmi peserta lomba di Sumatera Barat.
           </p>
         </div>
       </div>

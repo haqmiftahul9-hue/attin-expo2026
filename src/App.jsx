@@ -12,6 +12,7 @@ import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import AdminLogin from './pages/admin/AdminLogin.jsx'
 import AdminLayout from './layouts/AdminLayout.tsx'
 import AdminRekapitulasi from './pages/admin/AdminRekapitulasi.tsx'
+import AdminPendaftaranDetail from './pages/admin/AdminPendaftaranDetail.tsx'
 
 const AuthContext = createContext(null)
 
@@ -124,12 +125,13 @@ export default function App() {
           <Route element={<RegistrationSuccessPage />} path="/pendaftaran-berhasil/:registrationCode" />
           
           {/* Admin Login - Public Route */}
-          <Route element={<PublicRoute><AdminLogin /></PublicRoute>} path="/admin/login" />
+          <Route element={<AdminLogin />} path="/admin/login" />
           
           {/* Admin Routes with nested layout - Protected */}
           <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>} path="/admin">
             <Route index element={<AdminDashboard />} />
-            <Route element={<AdminRekapitulasi />} path="rekapitulasi" />
+            <Route element={<AdminRekapitulasi />} path="pendaftaran" />
+            <Route element={<AdminPendaftaranDetail />} path="pendaftaran/:id" />
           </Route>
 
           <Route element={<HomePage />} path="*" />

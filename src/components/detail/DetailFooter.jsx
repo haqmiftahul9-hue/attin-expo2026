@@ -13,7 +13,7 @@ const NAV_LINKS = [
 
 export default function DetailFooter() {
   return (
-    <footer id="kontak-footer" className="bg-white border-t border-border-ui text-outline">
+    <footer id="kontak-footer" className="bg-white/95 backdrop-blur-sm border-t border-white/20 text-outline">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4 space-y-4">

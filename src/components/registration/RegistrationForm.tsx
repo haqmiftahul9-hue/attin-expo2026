@@ -74,6 +74,10 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
       const registrationCode = generateRegistrationCode(config.codePrefix)
       
       let finalParticipantName = textValue(form.values, 'nama_lengkap')
+        .split('\n')
+        .map(n => n.trim())
+        .filter(n => n.length > 0)
+        .join('\n')
       if (config.slug === 'tahfizh') {
         const pa = textValue(form.values, 'nama_pa')
         const pi = textValue(form.values, 'nama_pi')
@@ -82,6 +86,9 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         if (pi) parts.push(`Putri: ${pi}`)
         finalParticipantName = parts.join(' | ')
       }
+
+      const feeDetails = calculateDynamicFee(config, form.values)
+      const categoryValue = textValue(form.values, config.categoryFieldName)
 
       const row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'> = {
         registration_code: registrationCode,
@@ -96,12 +103,16 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         school_name: textValue(form.values, 'nama_sekolah'),
         school_address: textValue(form.values, 'alamat_sekolah'),
         city: '',
+        category: categoryValue,
+        participant_count: feeDetails.count,
+        unit_fee: feeDetails.unitFee,
+        total_fee: feeDetails.totalFee,
         payment_sender_bank: textValue(form.values, 'bank_pengirim'),
         payment_sender_name: textValue(form.values, 'nama_pemilik_rekening'),
         payment_proof_url: null,
         specific_data: buildSpecificData(form.values, config),
-        registration_status: 'verified',
-        payment_status: 'verified',
+        registration_status: 'pending',
+        payment_status: 'pending',
       }
 
       const result = await saveRegistration({

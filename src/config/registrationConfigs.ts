@@ -11,27 +11,33 @@ export const eventConfig = {
  *
  * Satu komponen `RegistrationForm` dipakai untuk tiga cabang; seluruh
  * perbedaan (kategori, field khusus, dokumen, rekening, kontak) berasal dari
- * objek konfigurasi ini. Cabang lomba sendiri TIDAK dapat dipilih pengguna —
  * nilainya dikunci dari route halaman (`competition_id` + `competition_slug`).
  */
+
+export const COMPETITION_FEES = {
+  tahfizh: 35000,
+  'pra-tka': 25000,
+  panahan: 65000,
+}
+
 
 export const tahfizh: RegistrationConfig = {
   slug: 'tahfizh',
   competitionId: 'comp-tahfizh',
   name: 'Lomba Tahfizh',
-  fullName: 'Lomba Tahfizh Al-Qur’an',
-  tagline: 'Hifzhil Qur’an tartil, tajwid murni, serta hafalan juz sesuai tingkatan.',
+  fullName: 'Lomba Tahfizh',
+  tagline: 'Lomba hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
   icon: 'menu_book',
   iconClassName: 'bg-primary-fixed text-primary',
   codePrefix: 'ATXII-THF',
   level: 'Kelas 1-5 SD/MI Sederajat',
-  categoryLabel: 'Kategori Musabaqah Tahfizh',
+  categoryLabel: 'Kategori Lomba Tahfizh',
   categoryHelper: 'Utusan boleh 1 Putra saja, 1 Putri saja, atau kedua-duanya (1 Putra dan 1 Putri).',
   categoryFieldName: 'kategori_tahfizh',
   categoryPlaceholder: '[KATEGORI TERKUNCI]',
   categories: [],
   specificFields: [],
-  fee: 'Rp 35.000',
+  fee: COMPETITION_FEES.tahfizh,
   feeNote: 'Biaya pendaftaran per orang',
   quota: placeholders.quota,
   bank: {
@@ -40,7 +46,7 @@ export const tahfizh: RegistrationConfig = {
     accountHolder: placeholders.bankAccountName,
   },
   contact: {
-    person: 'Panitia Bidang Musabaqah Tahfizh',
+    person: 'Panitia Bidang Lomba Tahfizh',
     whatsapp: placeholders.whatsapp,
     whatsappHref: site.contact.whatsappHref,
     email: placeholders.email,
@@ -52,7 +58,7 @@ export const praTka: RegistrationConfig = {
   competitionId: 'comp-pra-tka',
   name: 'Lomba Pra-TKA',
   fullName: 'Lomba Pra-TKA',
-  tagline: 'Uji wawasan keislaman komprehensif, penalaran Al-Qur’an, dan sirah nabawiyah.',
+  tagline: 'Ujian kemampuan TKA tingkat SD dengan soal-soal Pra-TKA dengan materi Matematika (Numerasi dan Logika) dan Bahasa Indonesia (Literasi Membaca dan Pemahaman).',
   icon: 'psychology',
   iconClassName: 'bg-tertiary-fixed text-tertiary',
   codePrefix: 'ATXII-PTK',
@@ -62,19 +68,8 @@ export const praTka: RegistrationConfig = {
   categoryFieldName: 'kategori_pra_tka',
   categoryPlaceholder: '[PILIH FORMAT PRA-TKA]',
   categories: [],
-  specificFields: [
-    {
-      name: 'kategori_pra_tka',
-      label: 'Lomba Pra-TKA',
-      placeholder: '[PILIH FORMAT PRA-TKA]',
-      helper: 'Pilih format beregu atau perseorangan. ',
-      options: [
-        { value: 'pra-tka-beregu', label: 'Pra-TKA Cerdas Cermat Beregu (3 Santri / Regu)' },
-        { value: 'pra-tka-perseorangan', label: 'Pra-TKA Ujian Tertulis Perseorangan' },
-      ],
-    },
-  ],
-  fee: 'Rp 25.000',
+  specificFields: [],
+  fee: COMPETITION_FEES['pra-tka'],
   feeNote: 'Biaya pendaftaran per orang (Rp 75.000 untuk format beregu/3 orang)',
   quota: placeholders.quota,
   bank: {
@@ -95,8 +90,8 @@ export const panahan: RegistrationConfig = {
   competitionId: 'comp-panahan',
   name: 'Lomba Panahan',
   fullName: 'Lomba Panahan',
-  tagline: 'Ketangkasan memanah sunnah kategori barebow/standar jarak kompetisi pemula.',
-  icon: 'sports_martial_arts',
+  tagline: 'Lomba Panahan melatih ketenangan batin, ketepatan bidikan, fokus mental, dan adab sportivitas sunnah nabi.',
+  icon: 'track_changes',
   iconClassName: 'bg-secondary-fixed text-secondary',
   codePrefix: 'ATXII-PNH',
   level: 'Siswa Kelas 1-6 SD/MI Sederajat se-SUMBAR',
@@ -105,19 +100,8 @@ export const panahan: RegistrationConfig = {
   categoryFieldName: 'kategori_panahan',
   categoryPlaceholder: '[PILIH KATEGORI PANAHAN]',
   categories: [],
-  specificFields: [
-    {
-      name: 'kategori_panahan',
-      label: 'Kategori Usia & Jarak Panahan',
-      placeholder: '[PILIH KATEGORI PANAHAN]',
-      helper: 'Kategori usia menentukan alat dan jarak tembak.',
-      options: [
-        { value: 'panahan-u-10-10m', label: 'Panahan Barebow U-10 — Jarak 10 Meter (Putra/Putri)' },
-        { value: 'panahan-u-12-15m', label: 'Panahan Horsebow U-12 — Jarak 15 Meter (Putra/Putri)' },
-      ],
-    },
-  ],
-  fee: 'Rp 65.000',
+  specificFields: [],
+  fee: COMPETITION_FEES.panahan,
   feeNote: 'Infak pendaftaran per orang',
   quota: placeholders.quota,
   bank: {

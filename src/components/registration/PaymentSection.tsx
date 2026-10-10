@@ -38,7 +38,7 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
         </div>
       </div>
 
-      <div className="relative bg-primary text-on-primary rounded-xl p-space-lg mb-space-md shadow-md overflow-hidden">
+      <div className="relative bg-primary text-white rounded-[20px] p-space-lg mb-space-md shadow-[0_10px_30px_rgba(15,23,42,0.12)] overflow-hidden transition-all duration-300">
         <div className="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
           <svg fill="currentColor" height="220" viewBox="0 0 200 200" width="220" aria-hidden="true">
             <polygon points="100,0 125,75 200,100 125,125 100,200 75,125 0,100 75,75" />
@@ -47,7 +47,7 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-space-md">
           <div className="space-y-space-xs">
-            <span className="inline-flex items-center gap-1 font-label-badge text-label-badge text-tertiary-fixed bg-white/10 px-2.5 py-0.5 rounded-full uppercase">
+            <span className="inline-flex items-center gap-1 font-label-badge text-[13px] text-tertiary-fixed bg-white/10 px-2.5 py-0.5 rounded-full uppercase">
               <Icon className="text-[14px]" name="account_balance" />
               Rekening Resmi Panitia
             </span>
@@ -108,7 +108,7 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
           <span className={labelClassName}>
             Unggah Resi / Bukti Tangkapan Layar Transfer <span className={requiredClassName}>*</span>
           </span>
-          <div className="relative bg-surface-container-low border border-dashed border-outline-variant hover:border-primary/50 transition-colors rounded-xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+          <div className="relative bg-slate-50 border border-dashed border-slate-300 hover:border-primary/50 transition-colors rounded-[16px] p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
             <input
               accept={FILE_ACCEPT_ATTRIBUTE}
               aria-describedby={errorFor('bukti_transfer') ? `${fieldId('bukti_transfer')}-error` : undefined}
@@ -130,7 +130,7 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
                 >
                   {proof ? `${proof.name}` : 'Pilih atau letakkan file bukti setor di sini'}
                 </div>
-                <div className="font-caption text-sm text-on-surface-variant mt-1">
+                <div className="font-caption text-[14px] text-slate-600 mt-1">
                   {proof ? `Ukuran file: ${formatFileSize(proof.size)}` : `Format JPG, PNG atau PDF maks ${MAX_FILE_SIZE_MB}MB`}
                 </div>
               </div>
@@ -151,3 +151,4 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
     </section>
   )
 }
+

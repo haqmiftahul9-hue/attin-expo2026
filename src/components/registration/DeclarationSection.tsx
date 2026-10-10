@@ -9,7 +9,7 @@ const STATEMENTS = [
   },
   {
     name: 'persetujuan_2',
-    text: 'Peserta dan orang tua santri bersedia mematuhi tata tertib musabaqah, menjunjung tinggi adab Islami, serta menerima secara lapang dada keputusan majelis dewan juri/hakim yang bersifat mutlak.',
+    text: 'Peserta dan orang tua santri bersedia mematuhi tata tertib lomba, menjunjung tinggi adab Islami, serta menerima secara lapang dada keputusan majelis dewan juri/hakim yang bersifat mutlak.',
   },
   {
     name: 'persetujuan_3',
@@ -32,7 +32,7 @@ export default function DeclarationSection({
   onSubmitDraft,
 }: DeclarationSectionProps) {
   return (
-    <section className="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+    <section className="bg-white border border-slate-900/10 rounded-[20px] p-space-lg shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
       <div className="flex items-center gap-space-sm pb-space-sm mb-space-md">
         <span className="w-7 h-7 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-body-md-semibold text-caption">
           05
@@ -105,7 +105,7 @@ export default function DeclarationSection({
           {notice}
         </p>
       ) : (
-        <p className="font-caption text-caption text-center text-outline mt-space-sm">
+        <p className="font-caption text-caption text-center text-slate-600 mt-space-sm">
           Notifikasi kode registrasi dan kartu panggung akan dikirimkan otomatis via WhatsApp & Email resmi tertera.
         </p>
       )}

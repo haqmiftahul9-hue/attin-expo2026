@@ -33,12 +33,18 @@ export default function Header() {
       <div className="h-[72px] bg-white/98 backdrop-blur-lg border-b border-slate-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
         <div className="max-w-7xl mx-auto px-5 lg:px-20 h-full flex items-center justify-between gap-6">
           <div className="flex items-center gap-3 shrink-0">
-            <img alt={`${site.title} Logo`} className="h-10 md:h-11 w-auto object-contain" src="/assets/logo-attin-expo.png" />
-            <div className="flex flex-col">
-              <span className="font-bold text-[18px] text-[#002B49] tracking-tight leading-tight font-display">
+            <div className="flex h-[40px] md:h-[48px] lg:h-[56px] w-auto items-center justify-center shrink-0">
+              <img 
+                alt={`${site.title} Logo`} 
+                className="block h-[40px] md:h-[48px] lg:h-[56px] w-auto max-w-none object-contain" 
+                src="/assets/logo-attin-expo-header.png" 
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <span className="font-extrabold text-[19px] md:text-[22px] lg:text-[24px] text-[#061B33] tracking-tight leading-none font-display mb-0.5">
                 {site.name}
               </span>
-              <span className="text-[10px] font-bold text-[#8B1E3F] tracking-[0.08em] uppercase">
+              <span className="text-[10.5px] md:text-[11.5px] font-bold text-[#8B1E3F] tracking-[0.15em] uppercase">
                 {site.edition}
               </span>
             </div>

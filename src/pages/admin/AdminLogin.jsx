@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
 import { useAuth } from '../../App.jsx'
 
 export default function AdminLogin() {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const { login, logout } = useAuth()
+
+  // Allow users to see login page without auto-logout
+
   const [username, setUsername] = useState('adminexpo')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)

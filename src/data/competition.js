@@ -19,11 +19,11 @@ export const competitions = [
     quota: placeholders.quota,
     icon: 'menu_book',
     iconClassName: 'bg-primary-container text-on-primary',
-    title: 'Lomba Tahfizh Al-Qur’an',
-    shortTitle: 'Lomba Tahfizh Al-Qur’an',
+    title: 'Lomba Tahfizh',
+    shortTitle: 'Lomba Tahfizh',
     description:
-      'Musabaqah hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
-    details: ['SD/MI Se-Sumatera Barat', placeholders.category, placeholders.fee],
+      'Lomba hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
+    details: ['Rp. 35.000 per orang'],
   },
   {
     id: 'cabang-pra-tka',
@@ -40,8 +40,8 @@ export const competitions = [
     title: 'Lomba Pra-TKA',
     shortTitle: 'Lomba Pra-TKA',
     description:
-      'Uji pemahaman dasar keislaman dan bacaan Al-Qur’an untuk menanamkan pondasi tauhid serta akhlak mulia sedini mungkin.',
-    details: ['Kelas 1-3 SD/MI', placeholders.category, placeholders.fee],
+      'Ujian kemampuan TKA tingkat SD dengan soal-soal Pra-TKA dengan materi Matematika (Numerasi dan Logika) dan Bahasa Indonesia (Literasi Membaca dan Pemahaman).',
+    details: ['Rp. 25.000 per orang'],
   },
   {
     id: 'cabang-panahan',
@@ -53,13 +53,13 @@ export const competitions = [
     tag: 'Olahraga Sunnah',
     tagClassName: 'bg-surface-container text-tertiary',
     quota: placeholders.quota,
-    icon: 'sports_martial_arts',
+    icon: 'track_changes',
     iconClassName: 'bg-tertiary text-on-tertiary',
-    title: 'Lomba Panahan Tradisional',
+    title: 'Lomba Panahan',
     shortTitle: 'Lomba Panahan',
     description:
-      'Kompetisi panahan tradisional melatih ketenangan batin, ketepatan bidikan, fokus mental, dan adab sportivitas sunnah nabi.',
-    details: ['Putra & Putri SD/MI', placeholders.category, placeholders.fee],
+      'Lomba Panahan melatih ketenangan batin, ketepatan bidikan, fokus mental, dan adab sportivitas sunnah nabi.',
+    details: ['Rp. 65.000 per orang'],
   },
 ]
 
