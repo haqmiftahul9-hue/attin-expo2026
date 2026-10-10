@@ -194,7 +194,7 @@ export async function getVerifiedSchools(): Promise<{school_name: string, compet
 
   if (!client) {
     const local = readLocal()
-    rawData = local.filter(r => r.registration_status === 'verified').map(r => ({
+    rawData = local.filter(r => r.registration_status !== 'rejected').map(r => ({
       school: r.school_name,
       lomba: r.competition_slug
     }))
@@ -202,11 +202,11 @@ export async function getVerifiedSchools(): Promise<{school_name: string, compet
     const { data, error } = await client
       .from('registrations')
       .select('school_name, competition_slug')
-      .eq('registration_status', 'verified')
+      .neq('registration_status', 'rejected')
     
     if (error || !data) {
       const local = readLocal()
-      rawData = local.filter(r => r.registration_status === 'verified').map(r => ({
+      rawData = local.filter(r => r.registration_status !== 'rejected').map(r => ({
         school: r.school_name,
         lomba: r.competition_slug
       }))

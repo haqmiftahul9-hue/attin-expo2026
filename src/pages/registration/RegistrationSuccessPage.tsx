@@ -47,7 +47,9 @@ export default function RegistrationSuccessPage() {
   }
 
   const whatsappMessage = `Halo Panitia ATTIN EXPO XII, saya ingin konfirmasi kode registrasi ${registrationCode}`
-  const whatsappHref = `https://wa.me/${config.contact.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(whatsappMessage)}`
+  const whatsappClean = config.contact.whatsapp.replace(/\D/g, '')
+  const whatsappNumber = whatsappClean.startsWith('0') ? '62' + whatsappClean.substring(1) : whatsappClean
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
     <div className="w-full min-h-screen flex flex-col">

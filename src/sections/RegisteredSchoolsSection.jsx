@@ -70,7 +70,7 @@ export default function RegisteredSchoolsSection() {
               Sekolah Terdaftar
             </h2>
             <p className="text-[16px] text-slate-600 max-w-xl mx-auto leading-relaxed">
-              Daftar sekolah dan madrasah yang telah menyelesaikan registrasi dan lolos verifikasi panitia.
+              Daftar sekolah dan madrasah yang telah berhasil menyelesaikan registrasi pada ATTIN EXPO XII 2026.
             </p>
           </div>
 
