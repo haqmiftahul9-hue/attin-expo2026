@@ -64,6 +64,7 @@ export default function Footer() {
                 <li><span className="text-[14px] text-slate-600">Email: {site.contact.email}</span></li>
                 <li><a href="#panduan-juknis" className="text-[14px] text-slate-600 hover:text-[#002B49] transition-colors">Syarat & Ketentuan</a></li>
                 <li><span className="text-[14px] text-slate-600 cursor-default">Kebijakan Privasi</span></li>
+                <li><Link to="/admin/login" className="text-[14px] text-slate-600 hover:text-[#002B49] transition-colors">Portal Admin</Link></li>
               </ul>
             </div>
           </div>
