@@ -37,7 +37,7 @@ export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
             id={fieldId('nama_sekolah')}
             name="nama_sekolah"
             onChange={(event) => setValue('nama_sekolah', event.target.value)}
-            placeholder="Contoh: SDIT At-Tin Islamic School Padang"
+            placeholder="Contoh: SDIT ATTIN Sumbar"
             type="text"
             value={valueFor('nama_sekolah')}
           />
@@ -53,7 +53,7 @@ export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
             id={fieldId('alamat_sekolah')}
             name="alamat_sekolah"
             onChange={(event) => setValue('alamat_sekolah', event.target.value)}
-            placeholder="Nama Jalan, Kelurahan/Nagari, Kecamatan, Kode Pos"
+            placeholder="Nama Jalan, Kecamatan, Kabupaten"
             rows={2}
             value={valueFor('alamat_sekolah')}
           />

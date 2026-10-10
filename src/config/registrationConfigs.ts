@@ -46,9 +46,9 @@ export const tahfizh: RegistrationConfig = {
     accountHolder: placeholders.bankAccountName,
   },
   contact: {
-    person: 'Panitia Bidang Lomba Tahfizh',
-    whatsapp: placeholders.whatsapp,
-    whatsappHref: site.contact.whatsappHref,
+    person: 'Ustadzah Bella',
+    whatsapp: '0852-7419-7702',
+    whatsappHref: 'https://wa.me/6285274197702',
     email: placeholders.email,
   },
 }
@@ -78,9 +78,9 @@ export const praTka: RegistrationConfig = {
     accountHolder: placeholders.bankAccountName,
   },
   contact: {
-    person: 'Panitia Bidang Akademik Pra-TKA',
-    whatsapp: placeholders.whatsapp,
-    whatsappHref: site.contact.whatsappHref,
+    person: 'Ustadzah Tazkia',
+    whatsapp: '0821-7079-0896',
+    whatsappHref: 'https://wa.me/6282170790896',
     email: placeholders.email,
   },
 }
@@ -110,9 +110,9 @@ export const panahan: RegistrationConfig = {
     accountHolder: placeholders.bankAccountName,
   },
   contact: {
-    person: 'Panitia Bidang Panahan Sunnah',
-    whatsapp: placeholders.whatsapp,
-    whatsappHref: site.contact.whatsappHref,
+    person: 'Ustadzah Nova',
+    whatsapp: '0812-7574-1134',
+    whatsappHref: 'https://wa.me/6281275741134',
     email: placeholders.email,
   },
 }

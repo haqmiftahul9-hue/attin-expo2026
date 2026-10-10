@@ -158,14 +158,13 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
         </div>
       </div>
 
-      <div className="bg-primary/5 rounded-xl p-space-md">
-        <div className="flex items-center gap-space-xs text-primary mb-1">
+      <div className="bg-primary rounded-xl p-space-md">
+        <div className="flex items-center gap-space-xs text-white mb-1">
           <Icon className="text-[18px]" name="menu_book" />
           <span className="font-label-badge text-label-badge uppercase tracking-wider">Adab Penuntut Ilmu</span>
         </div>
-        <p className="font-caption text-caption text-on-surface-variant italic leading-relaxed">
-          “Menuntut ilmu dan mengagungkan Al-Qur’an adalah perniagaan yang tidak pernah merugi. Tanamkan niat ikhlas
-          lillahi ta’ala di setiap langkah delegasi.”
+        <p className="font-caption text-caption text-white/90 italic leading-relaxed">
+          “Menuntut ilmu dan mengagungkan Al-Qur’an adalah perniagaan yang tidak pernah merugi. Tanamkan niat ikhlas lillahi ta’ala di setiap langkah delegasi.”
         </p>
       </div>
     </aside>
