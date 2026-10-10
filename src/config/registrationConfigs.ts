@@ -1,4 +1,4 @@
-import { placeholders, site } from '../data/site.js'
+import { placeholders } from '../data/site.js'
 import type { CompetitionSlug, RegistrationConfig } from '../types/registration.js'
 
 export const eventConfig = {
