@@ -1,4 +1,5 @@
 import MaterialIcon from './MaterialIcon.jsx'
+import MobileNavDrawer from './MobileNavDrawer.jsx'
 import useActiveSection from '../hooks/useActiveSection.js'
 import { navigation, sectionOrder, site } from '../data/site.js'
 
@@ -13,9 +14,9 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-50">
       {/* Top Bar — Navy */}
-      <div className="bg-[#002B49] text-white">
+      <div className="bg-[#002B49] text-white pt-safe">
         <div className="max-w-7xl mx-auto px-5 lg:px-20 py-2 flex items-center justify-between text-[13px]">
-          <div className="flex items-center gap-2 truncate">
+          <div className="flex items-center gap-2 truncate min-w-0">
             <MaterialIcon name="campaign" className="text-[15px] text-amber-300" />
             <span className="truncate font-medium">{site.announcement}</span>
           </div>
@@ -71,7 +72,13 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <MobileNavDrawer
+              activeKey={activeSection}
+              cta={{ label: 'Daftar Sekarang', href: '#kompetisi-resmi', icon: 'app_registration' }}
+              items={navigation.map((item) => ({ key: item.section, label: item.label, href: item.href }))}
+              title="Menu ATTIN EXPO"
+            />
             <a
               className="hidden md:inline-flex items-center justify-center bg-[#002B49] hover:bg-[#003B66] text-white font-semibold text-[14px] px-5 py-2.5 rounded-lg shadow-sm transition-all"
               data-path="kompetisi"
@@ -82,7 +89,7 @@ export default function Header() {
             <button
               type="button"
               aria-label="Masuk ke akun peserta"
-              className="w-9 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
+              className="hidden sm:inline-flex w-11 h-11 rounded-lg bg-slate-100 hover:bg-slate-200 sm:items-center sm:justify-center transition-colors"
             >
               <MaterialIcon name="person" className="text-[#002B49] text-[18px]" />
             </button>

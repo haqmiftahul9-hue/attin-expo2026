@@ -145,7 +145,7 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
 
   return (
     <form
-      className="lg:col-span-8 space-y-space-xl"
+      className="lg:col-span-8 space-y-6 lg:space-y-space-xl"
       id="formPendaftaranAttin"
       noValidate
       onSubmit={handleSubmit}

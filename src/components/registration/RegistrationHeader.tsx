@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Icon from '../Icon.jsx'
+import MobileNavDrawer from '../MobileNavDrawer.jsx'
 import { site } from '../../data/site.js'
 
 /**
@@ -19,7 +20,7 @@ export default function RegistrationHeader() {
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-      <div className="bg-primary text-on-primary">
+      <div className="bg-primary text-on-primary pt-safe">
         <div className="max-w-7xl mx-auto px-gutter-mobile lg:px-margin-desktop py-space-xs flex items-center justify-between font-label-md text-label-md">
           <div className="flex items-center gap-space-xs truncate">
             <Icon className="text-[16px] text-tertiary-fixed" name="campaign" />
@@ -60,6 +61,10 @@ export default function RegistrationHeader() {
             ))}
           </nav>
 
+          <MobileNavDrawer
+            items={navItems.map((item) => ({ key: item.to, label: item.label, to: item.to }))}
+            title="Menu ATTIN EXPO"
+          />
 
         </div>
       </div>

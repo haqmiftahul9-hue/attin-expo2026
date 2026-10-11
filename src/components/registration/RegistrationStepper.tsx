@@ -31,13 +31,37 @@ const LINE_CLASSES = {
   pending: "bg-slate-200",
 } as const
 
-/** Pita proses 5 tahap (identik dengan desain referensi). */
+/** Pita proses 5 tahap: ringkasan progres kompak di mobile, pita penuh di desktop. */
 export default function RegistrationStepper({ currentStep = 2 }: { currentStep?: number }) {
+  const total = STAGES.length
+  const safeStep = Math.min(Math.max(currentStep, 1), total)
+  const currentStage = STAGES[safeStep - 1]
+  const progressPercent = Math.round((safeStep / total) * 100)
+
   return (
-    <section className="mb-space-xl overflow-x-auto pb-space-xs" aria-label="Tahapan formulir">
-      <ol className="bg-white border border-slate-900/10 rounded-[20px] p-space-md shadow-[0_10px_30px_rgba(15,23,42,0.05)] min-w-[620px] flex items-center justify-between">
+    <section className="mb-space-xl" aria-label="Tahapan formulir">
+      {/* Mobile: ringkasan progres (tanpa scroll horizontal) */}
+      <div className="sm:hidden">
+        <div className="bg-white border border-slate-900/10 rounded-[20px] p-space-md shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+          <div className="flex items-center justify-between gap-2 mb-2.5">
+            <span className="font-label-badge text-label-badge uppercase text-[#8B1E3F]">
+              Tahap {safeStep} dari {total}
+            </span>
+            <span className="font-caption text-caption text-slate-600 truncate">{currentStage.title}</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
+            <div
+              className="h-full rounded-full bg-[#061B33] transition-all duration-500"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: pita 5 tahap */}
+      <ol className="hidden sm:flex bg-white border border-slate-900/10 rounded-[20px] p-space-md shadow-[0_10px_30px_rgba(15,23,42,0.05)] items-center justify-between">
         {STAGES.map((stage, index) => {
-          const state = stage.number < currentStep ? "done" : stage.number === currentStep ? "active" : "pending"
+          const state = stage.number < safeStep ? "done" : stage.number === safeStep ? "active" : "pending"
 
           return (
             <li key={stage.number} className="flex flex-1 items-center justify-center relative">

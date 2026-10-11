@@ -1,6 +1,6 @@
 /** Kelas utilitas bersama formulir pendaftaran (mengikuti desain referensi). */
 
-export const cardClassName = 'bg-white border border-slate-900/10 p-6 rounded-[20px] shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]'
+export const cardClassName = 'bg-white border border-slate-900/10 p-5 sm:p-6 rounded-[20px] shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]'
 export const cardHeaderClassName = 'flex items-center gap-space-sm pb-space-md mb-space-md border-b border-outline/50'
 export const numberBadgeClassName =
   'w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-bold text-sm'

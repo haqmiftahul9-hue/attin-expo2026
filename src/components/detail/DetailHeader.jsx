@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import BrandLogo from '../BrandLogo.jsx'
 import MaterialIcon from '../MaterialIcon.jsx'
+import MobileNavDrawer from '../MobileNavDrawer.jsx'
 
 const NAV_ITEMS = [
   { label: 'Beranda', to: '/' },
@@ -17,7 +18,7 @@ export default function DetailHeader() {
 
   return (
     <>
-      <aside className="w-full bg-primary text-white border-b border-secondary/40 text-xs sm:text-sm py-2 px-4 relative z-50">
+      <aside className="w-full bg-primary text-white border-b border-secondary/40 text-xs sm:text-sm py-2 px-4 relative z-50 pt-safe">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 truncate">
             <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-secondary animate-ping" />
@@ -57,7 +58,14 @@ export default function DetailHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <MobileNavDrawer
+            cta={{ label: 'Daftar Sekarang', to: `/pendaftaran/${slug}`, icon: 'how_to_reg' }}
+            items={NAV_ITEMS.map((item) => ({ key: item.to, label: item.label, to: item.to }))}
+            showBelow="lg"
+            title="Menu ATTIN EXPO"
+          />
+
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm text-white bg-primary-container hover:bg-primary shadow-sm transition-all"
               to={`/pendaftaran/${slug}`}
