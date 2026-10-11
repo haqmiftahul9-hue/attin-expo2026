@@ -1,9 +1,7 @@
-import { env, isSupabaseConfigured } from './env.js'
+import { supabase } from './supabaseClient.js'
 
-async function getSupabaseClient() {
-  if (!isSupabaseConfigured) return null
-  const { createClient } = await import('@supabase/supabase-js')
-  return createClient(env.supabaseUrl, env.supabaseAnonKey)
+function getSupabaseClient() {
+  return supabase
 }
 
 // 1. Fetch Site Settings (Hero, Bank, Contact, dll)

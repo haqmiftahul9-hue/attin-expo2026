@@ -9,7 +9,7 @@ export default function AdminLogin() {
 
   // Allow users to see login page without auto-logout
 
-  const [username, setUsername] = useState('adminexpo')
+  const [email, setEmail] = useState('adminexpo@attinexpo.id')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(true)
@@ -22,26 +22,33 @@ export default function AdminLogin() {
     e.preventDefault()
     setError('')
     
-    if (!username || !password) {
-      setError('Username dan password harus diisi')
+    if (!email || !password) {
+      setError('Email/Username dan kata sandi harus diisi')
       return
     }
 
+    const normalizedEmail = email.includes('@') ? email.trim() : `${email.trim()}@attinexpo.id`
+
     setIsLoading(true)
-    setFeedback({ show: true, type: 'loading', message: `Memverifikasi hak akses administratif ${username}...` })
+    setFeedback({ show: true, type: 'loading', message: `Memverifikasi hak akses administratif...` })
 
-    await new Promise(resolve => setTimeout(resolve, 1200))
-
-    if (username === 'adminexpo' && password === 'admin1234!') {
+    try {
+      await login(normalizedEmail, password)
       setFeedback({ show: true, type: 'success', message: 'Kredensial sah. Mengalihkan ke Dashboard ATTIN EXPO XII 2026...' })
       
       setTimeout(() => {
-        login(username, rememberMe)
         navigate('/admin', { replace: true })
-      }, 1000)
-    } else {
+      }, 800)
+    } catch (err) {
       setFeedback({ show: false, type: '', message: '' })
-      setError('Username atau password salah')
+      const errorMsg = err?.message?.toLowerCase() || ''
+      if (errorMsg.includes('invalid login credentials') || errorMsg.includes('invalid credentials')) {
+        setError('Email atau kata sandi tidak valid. Pastikan akun sudah dibuat di Supabase Authentication.')
+      } else if (errorMsg.includes('email not confirmed')) {
+        setError('Email belum dikonfirmasi di Supabase.')
+      } else {
+        setError(err?.message || 'Gagal masuk sistem. Silakan coba kembali.')
+      }
       setIsLoading(false)
     }
   }
@@ -112,21 +119,21 @@ export default function AdminLogin() {
           </div>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
-            {/* Input Username */}
+            {/* Input Email / Username */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-[13px] font-bold text-slate-700 flex items-center justify-between" htmlFor="adminUsername">
-                <span>Username <span className="text-rose-500">*</span></span>
+              <label className="text-[13px] font-bold text-slate-700 flex items-center justify-between" htmlFor="adminEmail">
+                <span>Email / Username <span className="text-rose-500">*</span></span>
               </label>
               <div className="relative flex items-center">
-                <MaterialIcon name="person" className="absolute left-3.5 text-slate-400 text-[18px] pointer-events-none" />
+                <MaterialIcon name="mail" className="absolute left-3.5 text-slate-400 text-[18px] pointer-events-none" />
                 <input
                   className="w-full h-11 pl-10 pr-4 rounded-xl bg-slate-50 text-slate-800 text-[14px] placeholder:text-slate-400 border border-slate-300 focus:outline-none focus:border-[#002B49] focus:ring-2 focus:ring-[#002B49]/20 transition-all"
-                  id="adminUsername"
-                  placeholder="Masukkan username"
+                  id="adminEmail"
+                  placeholder="admin@attinexpo.id atau username"
                   required
                   type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   disabled={isLoading}
                 />
               </div>

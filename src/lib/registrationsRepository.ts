@@ -1,4 +1,4 @@
-import { env, isSupabaseConfigured } from './env.js'
+import { supabase } from './supabaseClient.js'
 import type { RegistrationRow, SaveRegistrationResult } from '../types/registration.js'
 
 /**
@@ -62,10 +62,8 @@ function safeFileName(name: string): string {
   return name.replace(/[^a-zA-Z0-9._-]/g, '_')
 }
 
-async function getSupabaseClient() {
-  if (!isSupabaseConfigured) return null
-  const { createClient } = await import('@supabase/supabase-js')
-  return createClient(env.supabaseUrl, env.supabaseAnonKey)
+function getSupabaseClient() {
+  return supabase
 }
 
 async function uploadFile(
@@ -189,8 +187,8 @@ export async function updateRegistrationStatus(registrationCode: string, status:
 }
 
 export async function getVerifiedSchools(): Promise<{school_name: string, competitions: string[]}[]> {
-  const client = await getSupabaseClient()
-  let rawData = []
+  const client = getSupabaseClient()
+  let rawData: { school: string; lomba: string }[] = []
 
   if (!client) {
     const local = readLocal()
@@ -199,22 +197,35 @@ export async function getVerifiedSchools(): Promise<{school_name: string, compet
       lomba: r.competition_slug
     }))
   } else {
-    const { data, error } = await client
-      .from('registrations')
+    // 1. Coba baca dari secure view public_registered_schools (melindungi PII peserta)
+    const { data: viewData, error: viewError } = await client
+      .from('public_registered_schools')
       .select('school_name, competition_slug')
-      .neq('registration_status', 'rejected')
     
-    if (error || !data) {
-      const local = readLocal()
-      rawData = local.filter(r => r.registration_status !== 'rejected').map(r => ({
+    if (!viewError && viewData) {
+      rawData = (viewData as any[]).map(r => ({
         school: r.school_name,
         lomba: r.competition_slug
       }))
     } else {
-      rawData = data.map(r => ({
-        school: r.school_name,
-        lomba: r.competition_slug
-      }))
+      // 2. Fallback ke tabel registrations jika view belum dibuat
+      const { data, error } = await client
+        .from('registrations')
+        .select('school_name, competition_slug')
+        .neq('registration_status', 'rejected')
+      
+      if (error || !data) {
+        const local = readLocal()
+        rawData = local.filter(r => r.registration_status !== 'rejected').map(r => ({
+          school: r.school_name,
+          lomba: r.competition_slug
+        }))
+      } else {
+        rawData = (data as any[]).map(r => ({
+          school: r.school_name,
+          lomba: r.competition_slug
+        }))
+      }
     }
   }
 

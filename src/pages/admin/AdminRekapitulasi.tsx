@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import { getAllRegistrations } from '../../lib/registrationsRepository.js'
 import usePageTitle from '../../hooks/usePageTitle.js'
-import type { RegistrationRow } from '../../types/registration.js'
+import type { RegistrationRow, CompetitionSlug } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
 import * as XLSX from 'xlsx'
@@ -30,35 +30,84 @@ export default function AdminRekapitulasi() {
   }, [registrations, filterSlug])
 
   const exportExcel = () => {
-    const data = filteredRegistrations.map((row, index) => ({
-      'No': index + 1,
-      'Kode Registrasi': row.registration_code,
-      'Waktu Pendaftaran': row.created_at ? new Date(row.created_at).toLocaleString('id-ID') : '-',
-      'Cabang Lomba': registrationConfigs[row.competition_slug]?.name || row.competition_slug,
-      'Kategori/Kelas': (row.specific_data && Object.values(row.specific_data)[0]) || '-',
-      'Nama Lengkap': row.participant_name,
-      'Nama Panggilan': row.nickname,
-      'Jenis Kelamin': row.gender || '-',
-      'Tempat Lahir': row.birth_place,
-      'Tanggal Lahir': row.birth_date ? new Date(row.birth_date).toLocaleDateString('id-ID') : '-',
-      'Kelas': row.grade,
-      'Asal Sekolah': row.school_name,
-      'Alamat Sekolah': row.school_address,
-      'Kabupaten/Kota': row.city || '-',
-      'Jumlah Peserta': row.participant_count || 1,
-      'Biaya per Peserta': row.unit_fee || 0,
-      'Total Biaya': row.total_fee || 0,
-      'Guru Pendamping': row.specific_data?.guru_pendamping || '-',
-      'No HP Pendamping': row.specific_data?.nohp_pendamping || '-',
-      'Bank Pengirim': row.payment_sender_bank,
-      'Atas Nama Rekening': row.payment_sender_name,
-      'Status Pendaftaran': row.registration_status,
-      'Status Pembayaran': row.payment_status,
-    }))
-
-    const ws = XLSX.utils.json_to_sheet(data)
     const wb = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(wb, ws, "Rekap Pendaftaran")
+    
+    const processSheet = (sheetRegistrations: typeof registrations, sheetName: string) => {
+      const expandedRows: any[] = []
+      sheetRegistrations.forEach(row => {
+        if (row.competition_slug === 'tahfizh') {
+          const parts = row.participant_name.split(' | ')
+          parts.forEach(part => {
+             let name = part.trim()
+             let gender = row.gender || '-'
+             if (part.startsWith('Putra: ')) {
+                name = part.replace('Putra: ', '').trim()
+                gender = 'Laki-laki'
+             } else if (part.startsWith('Putri: ')) {
+                name = part.replace('Putri: ', '').trim()
+                gender = 'Perempuan'
+             }
+             if (name) {
+               expandedRows.push({...row, expanded_name: name, expanded_gender: gender})
+             }
+          })
+        } else {
+          const names = row.participant_name.split('\n')
+          names.forEach(name => {
+             const trimmed = name.trim()
+             if (trimmed) {
+                expandedRows.push({...row, expanded_name: trimmed, expanded_gender: row.gender || '-'})
+             }
+          })
+        }
+      })
+
+      const data = expandedRows.map((row, index) => ({
+        'No': index + 1,
+        'Kode Registrasi': row.registration_code,
+        'Waktu Pendaftaran': row.created_at ? new Date(row.created_at).toLocaleString('id-ID') : '-',
+        'Cabang Lomba': registrationConfigs[row.competition_slug as CompetitionSlug]?.name || row.competition_slug,
+        'Kategori/Kelas': (row.specific_data && Object.values(row.specific_data)[0]) || '-',
+        'Nama Lengkap': row.expanded_name,
+        'Nama Panggilan': row.nickname,
+        'Jenis Kelamin': row.expanded_gender,
+        'Tempat Lahir': row.birth_place,
+        'Tanggal Lahir': row.birth_date ? new Date(row.birth_date).toLocaleDateString('id-ID') : '-',
+        'Kelas': row.grade,
+        'Asal Sekolah': row.school_name,
+        'Alamat Sekolah': row.school_address,
+        'Kabupaten/Kota': row.city || '-',
+        'Jumlah Peserta': row.participant_count || 1,
+        'Biaya per Peserta': row.unit_fee || 0,
+        'Total Biaya': row.total_fee || 0,
+        'Guru Pendamping': row.specific_data?.guru_pendamping || '-',
+        'No HP Pendamping': row.specific_data?.nohp_pendamping || '-',
+        'Bank Pengirim': row.payment_sender_bank,
+        'Atas Nama Rekening': row.payment_sender_name,
+        'Status Pendaftaran': row.registration_status,
+        'Status Pembayaran': row.payment_status,
+      }))
+
+      const ws = XLSX.utils.json_to_sheet(data)
+      XLSX.utils.book_append_sheet(wb, ws, sheetName)
+    }
+
+    if (filterSlug === 'all') {
+      const tahfizh = registrations.filter(r => r.competition_slug === 'tahfizh')
+      const pratka = registrations.filter(r => r.competition_slug === 'pra-tka')
+      const panahan = registrations.filter(r => r.competition_slug === 'panahan')
+      
+      processSheet(tahfizh, 'Tahfizh')
+      processSheet(pratka, 'Pra-TKA')
+      processSheet(panahan, 'Panahan')
+    } else {
+      let sheetName = 'Rekap Pendaftaran'
+      if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
+      if (filterSlug === 'pra-tka') sheetName = 'Pra-TKA'
+      if (filterSlug === 'panahan') sheetName = 'Panahan'
+      processSheet(filteredRegistrations, sheetName)
+    }
+
     XLSX.writeFile(wb, `Rekap_ATTIN_EXPO_${filterSlug}.xlsx`)
   }
 

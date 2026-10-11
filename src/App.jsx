@@ -12,6 +12,7 @@ import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import AdminLogin from './pages/admin/AdminLogin.jsx'
 import AdminLayout from './layouts/AdminLayout.tsx'
 import AdminRekapitulasi from './pages/admin/AdminRekapitulasi.tsx'
+import { supabase } from './lib/supabaseClient.js'
 import AdminPendaftaranDetail from './pages/admin/AdminPendaftaranDetail.tsx'
 
 const AuthContext = createContext(null)
@@ -30,35 +31,52 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token')
-    const storedUser = localStorage.getItem('admin_user') || sessionStorage.getItem('admin_user')
-    
-    if (token && storedUser) {
-      setIsAuthenticated(true)
-      setUser(storedUser)
+    if (!supabase) {
+      setLoading(false)
+      return
     }
-    setLoading(false)
+
+    // 1. Dapatkan sesi autentikasi Supabase saat awal load
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAuthenticated(!!session)
+      setUser(session?.user ?? null)
+      setLoading(false)
+    }).catch(() => {
+      setLoading(false)
+    })
+
+    // 2. Berlangganan event perubahan auth state (login/logout/token refresh)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session)
+      setUser(session?.user ?? null)
+      setLoading(false)
+    })
+
+    return () => {
+      subscription?.unsubscribe()
+    }
   }, [])
 
-  const login = (username, remember) => {
-    setIsAuthenticated(true)
-    setUser(username)
-    if (remember) {
-      localStorage.setItem('admin_token', 'authenticated')
-      localStorage.setItem('admin_user', username)
-    } else {
-      sessionStorage.setItem('admin_token', 'authenticated')
-      sessionStorage.setItem('admin_user', username)
+  const login = async (email, password) => {
+    if (!supabase) {
+      throw new Error('Supabase client belum terkonfigurasi')
     }
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    if (error) {
+      throw error
+    }
+    return data
   }
 
-  const logout = () => {
+  const logout = async () => {
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
     setIsAuthenticated(false)
     setUser(null)
-    localStorage.removeItem('admin_token')
-    localStorage.removeItem('admin_user')
-    sessionStorage.removeItem('admin_token')
-    sessionStorage.removeItem('admin_user')
   }
 
   return (

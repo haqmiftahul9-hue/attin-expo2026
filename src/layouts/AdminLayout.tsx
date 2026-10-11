@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import MaterialIcon from '../components/MaterialIcon.jsx'
 import usePageTitle from '../hooks/usePageTitle.js'
 import { useAuth } from '../App.jsx'
+import ChangePasswordModal from '../components/admin/ChangePasswordModal'
 
 export const adminInlineTheme = {
   '--color-secondary-fixed-dim':'#ffb1c0',
@@ -100,6 +101,7 @@ const NAV_LINKS = [
 
 export default function AdminLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
   const { logout } = useAuth()
   usePageTitle('Admin Panel - ATTIN EXPO XII 2026')
 
@@ -186,7 +188,14 @@ export default function AdminLayout() {
         </div>
 
         {/* Footer Sidebar */}
-        <div className="p-space-md bg-surface-container-lowest border-t border-surface-container shrink-0">
+        <div className="p-space-md bg-surface-container-lowest border-t border-surface-container shrink-0 space-y-1">
+          <button 
+            onClick={() => setIsChangePasswordOpen(true)}
+            className="w-full flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] font-medium text-on-surface hover:bg-surface-container hover:text-primary transition-colors text-left"
+          >
+            <MaterialIcon name="vpn_key" className="text-[20px] text-primary" />
+            <span>Ganti Kata Sandi</span>
+          </button>
           <button 
             onClick={logout}
             className="w-full flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] font-medium text-error hover:bg-error-container hover:text-on-error-container transition-colors text-left"
@@ -219,6 +228,14 @@ export default function AdminLayout() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <button 
+              onClick={() => setIsChangePasswordOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-700 hover:bg-surface-container border border-outline-variant/30 text-xs font-semibold transition-all shadow-sm"
+              title="Ganti Kata Sandi Admin"
+            >
+              <MaterialIcon name="vpn_key" className="text-[16px] text-primary" />
+              <span className="hidden sm:inline">Ganti Sandi</span>
+            </button>
             <button className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative">
               <MaterialIcon name="notifications" className="text-[20px]" />
               <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface-container-lowest" />
@@ -232,6 +249,12 @@ export default function AdminLayout() {
         </main>
 
       </div>
+
+      {/* Modal Ganti Kata Sandi */}
+      <ChangePasswordModal 
+        isOpen={isChangePasswordOpen} 
+        onClose={() => setIsChangePasswordOpen(false)} 
+      />
     </div>
   )
 }
