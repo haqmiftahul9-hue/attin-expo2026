@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Landing page resmi ATTIN EXPO XII 2026 - Sumatera Barat (React + Vite + Tailwind CSS)",
   "scripts": {
-    "dev": "vite --port 5174",
+    "dev": "vite --port 5174 --strictPort",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"

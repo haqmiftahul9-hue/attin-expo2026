@@ -341,16 +341,16 @@ export default function AdminRekapitulasi() {
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider uppercase bg-primary-fixed text-primary">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider uppercase bg-[#EAF3FF] text-[#003B5C] border border-[#C9DCF2]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0057B8] animate-pulse"></span>
               Pusat Manajemen Berkas
             </span>
-            <span className="text-xs text-slate-400">Pembaruan Realtime</span>
+            <span className="text-xs text-[#475569]">Pembaruan Realtime</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
             Rekapitulasi Data Pendaftaran
           </h1>
-          <p className="text-sm text-slate-300 mt-0.5">
+          <p className="text-sm text-[#475569] mt-0.5">
             Kelola, verifikasi, dan ekspor tabel pendaftaran peserta ATTIN EXPO XII secara menyeluruh.
           </p>
         </div>
@@ -360,7 +360,7 @@ export default function AdminRekapitulasi() {
           <button
             onClick={fetchData}
             disabled={isLoading}
-            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white py-2 px-3.5 rounded-xl font-medium text-sm transition-all border border-white/10 shadow-sm disabled:opacity-50"
+            className="flex items-center gap-2 h-10 bg-white hover:bg-[#F1F5F9] active:bg-[#E2E8F0] text-[#003B5C] px-3.5 rounded-xl font-semibold text-sm transition-all border border-[#CBD5E1] shadow-sm disabled:bg-[#F8FAFC] disabled:text-[#64748B] disabled:border-[#CBD5E1] disabled:shadow-none disabled:cursor-not-allowed"
             title="Segarkan Data"
           >
             <MaterialIcon
@@ -372,7 +372,7 @@ export default function AdminRekapitulasi() {
 
           <button
             onClick={exportExcel}
-            className="flex items-center gap-2 bg-[#16825D] hover:bg-[#126b4c] text-white py-2 px-4 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+            className="flex items-center gap-2 h-10 bg-[#16825D] hover:bg-[#126b4c] active:bg-[#0E5640] text-white px-4 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md"
           >
             <MaterialIcon name="table_view" className="text-[19px]" />
             <span>Unduh Excel</span>
@@ -380,7 +380,7 @@ export default function AdminRekapitulasi() {
 
           <button
             onClick={exportPDF}
-            className="flex items-center gap-2 bg-error hover:bg-[#93000a] text-white py-2 px-4 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+            className="flex items-center gap-2 h-10 bg-error hover:bg-[#93000a] active:bg-[#7A0008] text-white px-4 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md"
           >
             <MaterialIcon name="picture_as_pdf" className="text-[19px]" />
             <span>Unduh PDF</span>
@@ -390,95 +390,95 @@ export default function AdminRekapitulasi() {
 
       {/* Ringkasan Kartu Metrik KPI */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-6">
-        <div className="bg-white/95 backdrop-blur-sm p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
+          <div className="flex items-center justify-between text-[#64748B] mb-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
               Total Formulir
             </span>
-            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            <div className="w-7 h-7 rounded-lg bg-[#EAF3FF] flex items-center justify-center text-[#003B5C]">
               <MaterialIcon name="receipt_long" className="text-[16px]" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-800 tracking-tight">{stats.totalReg}</div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Berkas Masuk</div>
+          <div className="text-2xl font-bold text-[#0F172A] tracking-tight">{stats.totalReg}</div>
+          <div className="text-[11px] text-[#64748B] mt-0.5">Berkas Masuk</div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-sm p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
+          <div className="flex items-center justify-between text-[#64748B] mb-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
               Total Peserta
             </span>
-            <div className="w-7 h-7 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+            <div className="w-7 h-7 rounded-lg bg-[#EEF2FF] flex items-center justify-center text-[#4338CA]">
               <MaterialIcon name="groups" className="text-[16px]" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-800 tracking-tight">{stats.totalPeserta}</div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Santri Terdata</div>
+          <div className="text-2xl font-bold text-[#0F172A] tracking-tight">{stats.totalPeserta}</div>
+          <div className="text-[11px] text-[#64748B] mt-0.5">Santri Terdata</div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-sm p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">
+        <div className="bg-white p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
+          <div className="flex items-center justify-between text-[#64748B] mb-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
               Terverifikasi
             </span>
-            <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+            <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700">
               <MaterialIcon name="verified" className="text-[16px]" />
             </div>
           </div>
-          <div className="text-2xl font-black text-emerald-600 tracking-tight">{stats.verifiedReg}</div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Lolos Berkas</div>
+          <div className="text-2xl font-bold text-emerald-700 tracking-tight">{stats.verifiedReg}</div>
+          <div className="text-[11px] text-[#64748B] mt-0.5">Lolos Berkas</div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-sm p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600">
+        <div className="bg-white p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
+          <div className="flex items-center justify-between text-[#64748B] mb-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
               Menunggu
             </span>
-            <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+            <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700">
               <MaterialIcon name="pending_actions" className="text-[16px]" />
             </div>
           </div>
-          <div className="text-2xl font-black text-amber-600 tracking-tight">{stats.pendingReg}</div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Perlu Peninjauan</div>
+          <div className="text-2xl font-bold text-amber-700 tracking-tight">{stats.pendingReg}</div>
+          <div className="text-[11px] text-[#64748B] mt-0.5">Perlu Peninjauan</div>
         </div>
 
-        <div className="col-span-2 sm:col-span-1 bg-white/95 backdrop-blur-sm p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
-          <div className="flex items-center justify-between text-slate-500 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
+        <div className="col-span-2 sm:col-span-1 bg-white p-4 rounded-2xl border border-slate-900/10 shadow-sm flex flex-col justify-between">
+          <div className="flex items-center justify-between text-[#64748B] mb-1">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
               Infaq Terverifikasi
             </span>
-            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            <div className="w-7 h-7 rounded-lg bg-[#EAF3FF] flex items-center justify-center text-[#003B5C]">
               <MaterialIcon name="payments" className="text-[16px]" />
             </div>
           </div>
-          <div className="text-xl font-black text-primary tracking-tight">
+          <div className="text-xl font-bold text-[#003B5C] tracking-tight">
             {formatRupiah(stats.totalInfaq)}
           </div>
-          <div className="text-[11px] text-slate-400 mt-0.5">Dana Masuk Kas</div>
+          <div className="text-[11px] text-[#64748B] mt-0.5">Dana Masuk Kas</div>
         </div>
       </div>
 
       {/* Kontainer Utama Tabel & Filter */}
       <div className="bg-white border border-slate-900/10 rounded-[24px] shadow-[0_10px_30px_rgba(15,23,42,0.08)] overflow-hidden">
         {/* Toolbar Pencarian & Filter */}
-        <div className="p-4 sm:p-5 border-b border-slate-200/80 bg-slate-50/70 flex flex-col md:flex-row md:items-center justify-between gap-3.5">
+        <div className="p-4 sm:p-5 border-b border-slate-200 bg-[#F8FAFC] flex flex-col md:flex-row md:items-center justify-between gap-3.5">
           {/* Input Pencarian */}
           <div className="relative flex-1 max-w-md">
             <MaterialIcon
               name="search"
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[20px] pointer-events-none"
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#64748B] text-[20px] pointer-events-none"
             />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari kode, santri, sekolah, pendamping..."
-              className="w-full bg-white border border-slate-300 text-slate-800 placeholder-slate-400 py-2.5 pl-10 pr-9 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium"
+              className="w-full bg-white border border-[#CBD5E1] text-[#0F172A] placeholder:text-[#64748B] py-2.5 pl-10 pr-9 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#334155] p-0.5"
                 title="Hapus Pencarian"
               >
                 <MaterialIcon name="close" className="text-[16px]" />
@@ -493,7 +493,7 @@ export default function AdminRekapitulasi() {
               <select
                 value={filterSlug}
                 onChange={(e) => setFilterSlug(e.target.value)}
-                className="appearance-none bg-white border border-slate-300 text-slate-700 py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all shadow-sm"
+                className="appearance-none bg-white border border-[#CBD5E1] text-[#0F172A] py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] cursor-pointer transition-all shadow-sm"
               >
                 <option value="all">Semua Cabang Lomba</option>
                 <option value="tahfizh">Lomba Tahfizh</option>
@@ -502,7 +502,7 @@ export default function AdminRekapitulasi() {
               </select>
               <MaterialIcon
                 name="expand_more"
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-[18px]"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none text-[18px]"
               />
             </div>
 
@@ -511,7 +511,7 @@ export default function AdminRekapitulasi() {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="appearance-none bg-white border border-slate-300 text-slate-700 py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer transition-all shadow-sm"
+                className="appearance-none bg-white border border-[#CBD5E1] text-[#0F172A] py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] cursor-pointer transition-all shadow-sm"
               >
                 <option value="all">Semua Status</option>
                 <option value="verified">Terverifikasi</option>
@@ -520,12 +520,12 @@ export default function AdminRekapitulasi() {
               </select>
               <MaterialIcon
                 name="expand_more"
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-[18px]"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none text-[18px]"
               />
             </div>
 
             {/* Info Hasil Filter */}
-            <div className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl bg-slate-200/70 text-slate-700 text-xs font-semibold">
+            <div className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-xl bg-[#EFF6FF] text-[#003B5C] border border-[#C9DCF2] text-xs font-semibold">
               {filteredRegistrations.length} data ditemukan
             </div>
           </div>
@@ -535,7 +535,7 @@ export default function AdminRekapitulasi() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse whitespace-nowrap">
             <thead>
-              <tr className="bg-slate-100/80 border-b border-slate-200 text-slate-600 text-[12px] font-bold uppercase tracking-wider">
+              <tr className="bg-[#F8FAFC] border-b border-[#CBD5E1] text-[#334155] text-[12px] font-bold uppercase tracking-wider">
                 <th className="py-3.5 px-4">Kode Reg</th>
                 <th className="py-3.5 px-4">Waktu Daftar</th>
                 <th className="py-3.5 px-4">Cabang &amp; Kategori</th>
@@ -552,19 +552,19 @@ export default function AdminRekapitulasi() {
             <tbody className="divide-y divide-slate-100 text-sm">
               {isLoading ? (
                 <tr>
-                  <td colSpan={10} className="py-16 text-center text-slate-500">
-                    <MaterialIcon name="sync" className="text-[36px] animate-spin text-primary mb-2" />
+                  <td colSpan={10} className="py-16 text-center text-[#475569]">
+                    <MaterialIcon name="sync" className="text-[36px] animate-spin text-[#003B5C] mb-2" />
                     <p className="text-sm font-medium">Memuat data pendaftaran...</p>
                   </td>
                 </tr>
               ) : filteredRegistrations.length === 0 ? (
                 <tr>
-                  <td colSpan={10} className="py-16 text-center text-slate-500">
-                    <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400">
+                  <td colSpan={10} className="py-16 text-center text-[#475569]">
+                    <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-slate-100 flex items-center justify-center text-[#64748B]">
                       <MaterialIcon name="inbox" className="text-[32px]" />
                     </div>
-                    <p className="font-semibold text-slate-700 text-base">Tidak ada data pendaftaran.</p>
-                    <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+                    <p className="font-semibold text-[#0F172A] text-base">Tidak ada data pendaftaran.</p>
+                    <p className="text-xs text-[#64748B] mt-1 max-w-sm mx-auto">
                       {searchQuery
                         ? `Tidak ada hasil pencarian untuk "${searchQuery}". Coba kata kunci lain atau setel ulang filter.`
                         : 'Belum ada data pendaftar yang terdaftar di sistem.'}
@@ -593,25 +593,25 @@ export default function AdminRekapitulasi() {
                       <td className="py-3.5 px-4">
                         <Link
                           to={`/admin/pendaftaran/${row.registration_code}`}
-                          className="font-mono text-xs font-bold text-primary hover:text-primary-container inline-flex items-center gap-1 group-hover:underline"
+                          className="font-mono text-xs font-bold text-[#003B5C] hover:text-[#0057B8] inline-flex items-center gap-1 group-hover:underline"
                         >
-                          <MaterialIcon name="tag" className="text-[14px] text-primary/70" />
+                          <MaterialIcon name="tag" className="text-[14px] text-[#003B5C]" />
                           {row.registration_code}
                         </Link>
                       </td>
 
                       {/* 2. Waktu Pendaftaran */}
-                      <td className="py-3.5 px-4 text-xs text-slate-500">
+                      <td className="py-3.5 px-4 text-xs text-[#475569]">
                         {row.created_at ? (
                           <div className="flex flex-col">
-                            <span className="font-medium text-slate-700">
+                            <span className="font-medium text-[#0F172A]">
                               {new Date(row.created_at).toLocaleDateString('id-ID', {
                                 day: '2-digit',
                                 month: 'short',
                                 year: 'numeric',
                               })}
                             </span>
-                            <span className="text-[11px] text-slate-400">
+                            <span className="text-[11px] text-[#64748B]">
                               {new Date(row.created_at).toLocaleTimeString('id-ID', {
                                 hour: '2-digit',
                                 minute: '2-digit',
@@ -639,8 +639,8 @@ export default function AdminRekapitulasi() {
                             {branchConfig?.name || row.competition_slug}
                           </span>
                           {categoryName !== '-' && (
-                            <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
-                              <span className="w-1 h-1 rounded-full bg-slate-400"></span>
+                            <span className="text-xs text-[#475569] font-medium flex items-center gap-1">
+                              <span className="w-1 h-1 rounded-full bg-[#64748B]"></span>
                               {categoryName}
                             </span>
                           )}
@@ -663,7 +663,7 @@ export default function AdminRekapitulasi() {
                                 </span>
                               )}
                               <span
-                                className="font-semibold text-slate-800 text-xs truncate block max-w-[190px]"
+                                className="font-semibold text-[#0F172A] text-xs truncate block max-w-[190px]"
                                 title={p.name}
                               >
                                 {p.name}
@@ -671,7 +671,7 @@ export default function AdminRekapitulasi() {
                             </div>
                           ))}
                           {row.participant_count > 1 && row.competition_slug !== 'tahfizh' && (
-                            <span className="text-[10px] font-bold text-slate-400 block mt-0.5">
+                            <span className="text-[10px] font-bold text-[#64748B] block mt-0.5">
                               Total: {row.participant_count} Peserta
                             </span>
                           )}
@@ -682,13 +682,13 @@ export default function AdminRekapitulasi() {
                       <td className="py-3.5 px-4 max-w-[240px]">
                         <div className="flex flex-col">
                           <span
-                            className="font-bold text-slate-800 text-xs truncate max-w-[220px]"
+                            className="font-bold text-[#0F172A] text-xs truncate max-w-[220px]"
                             title={row.school_name}
                           >
                             {row.school_name}
                           </span>
                           <span
-                            className="text-[11px] text-slate-500 truncate max-w-[220px] mt-0.5"
+                            className="text-[11px] text-[#475569] truncate max-w-[220px] mt-0.5"
                             title={row.school_address}
                           >
                             {row.school_address || '-'}
@@ -699,7 +699,7 @@ export default function AdminRekapitulasi() {
                       {/* 6. Guru Pendamping & Kontak */}
                       <td className="py-3.5 px-4">
                         <div className="flex flex-col">
-                          <span className="font-semibold text-slate-800 text-xs">
+                          <span className="font-semibold text-[#0F172A] text-xs">
                             {row.specific_data?.guru_pendamping || '-'}
                           </span>
                           {row.specific_data?.nohp_pendamping ? (
@@ -707,13 +707,13 @@ export default function AdminRekapitulasi() {
                               href={`https://wa.me/${row.specific_data.nohp_pendamping.replace(/^0/, '62').replace(/\D/g, '')}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[11px] text-emerald-600 hover:text-emerald-700 font-mono flex items-center gap-1 mt-0.5 group-hover:underline"
+                              className="text-[11px] text-emerald-700 hover:text-emerald-800 font-mono flex items-center gap-1 mt-0.5 group-hover:underline"
                             >
                               <MaterialIcon name="call" className="text-[12px]" />
                               {row.specific_data.nohp_pendamping}
                             </a>
                           ) : (
-                            <span className="text-[11px] text-slate-400">-</span>
+                            <span className="text-[11px] text-[#64748B]">-</span>
                           )}
                         </div>
                       </td>
@@ -721,11 +721,11 @@ export default function AdminRekapitulasi() {
                       {/* 7. Total Biaya & Bank */}
                       <td className="py-3.5 px-4 text-right">
                         <div className="flex flex-col items-end">
-                          <span className="font-black text-slate-800 text-xs">
+                          <span className="font-bold text-[#0F172A] text-xs">
                             {formatRupiah(row.total_fee || 0)}
                           </span>
                           <span
-                            className="text-[11px] text-slate-500 truncate max-w-[130px]"
+                            className="text-[11px] text-[#475569] truncate max-w-[130px]"
                             title={`${row.payment_sender_bank || '-'} a.n. ${row.payment_sender_name || '-'}`}
                           >
                             {row.payment_sender_bank || '-'}
@@ -736,12 +736,12 @@ export default function AdminRekapitulasi() {
                       {/* 8. Status Berkas */}
                       <td className="py-3.5 px-4 text-center">
                         <span
-                          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold ${
+                          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border ${
                             isVerified
-                              ? 'bg-emerald-100 text-emerald-700'
+                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                               : isRejected
-                              ? 'bg-rose-100 text-rose-700'
-                              : 'bg-amber-100 text-amber-700'
+                              ? 'bg-rose-50 text-rose-700 border-rose-200'
+                              : 'bg-amber-50 text-amber-700 border-amber-200'
                           }`}
                         >
                           <MaterialIcon
@@ -755,10 +755,10 @@ export default function AdminRekapitulasi() {
                       {/* 9. Status Bayar */}
                       <td className="py-3.5 px-4 text-center">
                         <span
-                          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold ${
+                          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border ${
                             isPaid
-                              ? 'bg-emerald-100 text-emerald-700'
-                              : 'bg-amber-100 text-amber-700'
+                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                              : 'bg-amber-50 text-amber-700 border-amber-200'
                           }`}
                         >
                           <MaterialIcon
@@ -773,7 +773,7 @@ export default function AdminRekapitulasi() {
                       <td className="py-3.5 px-4 text-center">
                         <Link
                           to={`/admin/pendaftaran/${row.registration_code}`}
-                          className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 text-slate-700 hover:bg-primary hover:text-white transition-all shadow-sm"
+                          className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#EFF6FF] text-[#003B5C] hover:bg-[#0057B8] hover:text-white transition-all shadow-sm"
                           title="Lihat Detail & Bukti Pembayaran"
                         >
                           <MaterialIcon name="visibility" className="text-[18px]" />
@@ -788,10 +788,10 @@ export default function AdminRekapitulasi() {
         </div>
 
         {/* Footer info tabel */}
-        <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+        <div className="px-5 py-3.5 bg-[#F8FAFC] border-t border-[#CBD5E1] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#475569]">
           <div>
-            Menampilkan <span className="font-bold text-slate-700">{filteredRegistrations.length}</span> dari{' '}
-            <span className="font-bold text-slate-700">{registrations.length}</span> total pendaftar terdaftar
+            Menampilkan <span className="font-bold text-[#0F172A]">{filteredRegistrations.length}</span> dari{' '}
+            <span className="font-bold text-[#0F172A]">{registrations.length}</span> total pendaftar terdaftar
           </div>
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>

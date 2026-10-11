@@ -139,7 +139,7 @@ export default function AdminLayout() {
             
             {/* Mobile close button */}
             <button 
-              className="md:hidden w-10 h-10 flex items-center justify-center text-outline hover:bg-surface-container rounded-full"
+              className="md:hidden w-10 h-10 flex items-center justify-center text-[#64748B] hover:bg-surface-container rounded-full"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="Tutup menu navigasi"
             >
@@ -164,7 +164,7 @@ export default function AdminLayout() {
 
           {/* Navigation Links */}
           <div className="px-space-md py-space-md flex-1">
-            <p className="font-label-badge text-[11px] uppercase tracking-wider text-outline px-space-sm mb-space-xs">Menu Utama</p>
+            <p className="font-label-badge text-[11px] uppercase tracking-wider text-[#64748B] font-semibold px-space-sm mb-space-xs">Menu Utama</p>
             <nav className="flex flex-col gap-1">
               {NAV_LINKS.map(link => (
                 <NavLink
@@ -175,8 +175,8 @@ export default function AdminLayout() {
                   className={({ isActive }) =>
                     `flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] transition-colors ${
                       isActive
-                        ? 'bg-primary text-on-primary font-bold shadow-sm'
-                        : 'text-on-surface-variant hover:bg-primary/10 hover:text-primary font-medium'
+                        ? 'bg-[#0057B8] text-white font-bold shadow-sm'
+                        : 'text-[#334155] hover:bg-[#EFF6FF] hover:text-[#003B5C] font-medium'
                     }`
                   }
                 >
@@ -221,9 +221,9 @@ export default function AdminLayout() {
               <MaterialIcon name="menu" className="text-[24px]" />
             </button>
             <div className="relative w-full max-w-md hidden sm:block">
-              <MaterialIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]" />
+              <MaterialIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-[18px]" />
               <input 
-                className="w-full h-10 pl-10 pr-space-md bg-surface-container-low rounded-lg font-body-md text-[14px] text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container transition-colors" 
+                className="w-full h-10 pl-10 pr-space-md bg-white border border-[#CBD5E1] rounded-lg font-body-md text-[14px] text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:border-[#0057B8] focus:ring-2 focus:ring-[#0057B8]/20 transition-colors" 
                 placeholder="Cari data peserta, asal sekolah, atau kode..." 
                 type="text"
               />
@@ -232,10 +232,10 @@ export default function AdminLayout() {
           <div className="flex items-center gap-2">
             <button 
               onClick={() => setIsChangePasswordOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-slate-700 hover:bg-surface-container border border-outline-variant/30 text-xs font-semibold transition-all shadow-sm"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[#334155] hover:bg-[#EFF6FF] border border-[#CBD5E1] text-xs font-semibold transition-all shadow-sm"
               title="Ganti Kata Sandi Admin"
             >
-              <MaterialIcon name="vpn_key" className="text-[16px] text-primary" />
+              <MaterialIcon name="vpn_key" className="text-[16px] text-[#003B5C]" />
               <span className="hidden sm:inline">Ganti Sandi</span>
             </button>
             <button className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative">

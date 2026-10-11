@@ -93,14 +93,14 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
             </div>
             <div>
               <h3 className="text-[17px] font-bold text-[#0F172A] tracking-tight">Ganti Kata Sandi</h3>
-              <p className="text-[12px] text-slate-500 font-medium">Perbarui kata sandi akun Admin Portal</p>
+              <p className="text-[12px] text-[#475569] font-medium">Perbarui kata sandi akun Admin Portal</p>
             </div>
           </div>
           <button 
             type="button"
             onClick={handleClose}
             disabled={isLoading}
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-[#64748B] hover:text-[#334155] hover:bg-slate-100 transition-colors"
           >
             <MaterialIcon name="close" className="text-[20px]" />
           </button>
@@ -124,11 +124,11 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
         {/* Form Input */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-[13px] font-bold text-slate-700 mb-1.5" htmlFor="newPassword">
+            <label className="block text-[13px] font-bold text-[#334155] mb-1.5" htmlFor="newPassword">
               Kata Sandi Baru <span className="text-rose-500">*</span>
             </label>
             <div className="relative flex items-center">
-              <MaterialIcon name="lock" className="absolute left-3.5 text-slate-400 text-[18px] pointer-events-none" />
+              <MaterialIcon name="lock" className="absolute left-3.5 text-[#64748B] text-[18px] pointer-events-none" />
               <input
                 id="newPassword"
                 type={showPassword ? 'text' : 'password'}
@@ -138,12 +138,12 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
                 onChange={(e) => setNewPassword(e.target.value)}
                 disabled={isLoading}
                 placeholder="Minimal 6 karakter"
-                className="w-full h-11 pl-10 pr-10 rounded-xl bg-slate-50 text-slate-800 text-[14px] border border-slate-300 focus:outline-none focus:border-[#002B49] focus:ring-2 focus:ring-[#002B49]/20 transition-all placeholder:text-slate-400"
+                className="w-full h-11 pl-10 pr-10 rounded-xl bg-white text-[#0F172A] text-[14px] border border-[#CBD5E1] focus:outline-none focus:border-[#0057B8] focus:ring-2 focus:ring-[#0057B8]/20 transition-all placeholder:text-[#64748B]"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2.5 text-slate-400 hover:text-slate-600 p-1"
+                className="absolute right-2.5 text-[#64748B] hover:text-[#334155] p-1"
               >
                 <MaterialIcon name={showPassword ? 'visibility_off' : 'visibility'} className="text-[18px]" />
               </button>
@@ -151,11 +151,11 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
           </div>
 
           <div>
-            <label className="block text-[13px] font-bold text-slate-700 mb-1.5" htmlFor="confirmPassword">
+            <label className="block text-[13px] font-bold text-[#334155] mb-1.5" htmlFor="confirmPassword">
               Ulangi Kata Sandi Baru <span className="text-rose-500">*</span>
             </label>
             <div className="relative flex items-center">
-              <MaterialIcon name="lock_reset" className="absolute left-3.5 text-slate-400 text-[18px] pointer-events-none" />
+              <MaterialIcon name="lock_reset" className="absolute left-3.5 text-[#64748B] text-[18px] pointer-events-none" />
               <input
                 id="confirmPassword"
                 type={showPassword ? 'text' : 'password'}
@@ -165,7 +165,7 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={isLoading}
                 placeholder="Ketik ulang kata sandi baru"
-                className="w-full h-11 pl-10 pr-4 rounded-xl bg-slate-50 text-slate-800 text-[14px] border border-slate-300 focus:outline-none focus:border-[#002B49] focus:ring-2 focus:ring-[#002B49]/20 transition-all placeholder:text-slate-400"
+                className="w-full h-11 pl-10 pr-4 rounded-xl bg-white text-[#0F172A] text-[14px] border border-[#CBD5E1] focus:outline-none focus:border-[#0057B8] focus:ring-2 focus:ring-[#0057B8]/20 transition-all placeholder:text-[#64748B]"
               />
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
               type="button"
               onClick={handleClose}
               disabled={isLoading}
-              className="px-4 h-10 rounded-xl text-[13px] font-bold text-slate-600 hover:bg-slate-100 transition-colors"
+              className="px-4 h-10 rounded-xl text-[13px] font-bold text-[#334155] hover:bg-slate-100 transition-colors"
             >
               Batal
             </button>
