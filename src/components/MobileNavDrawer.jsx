@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import MaterialIcon from './MaterialIcon.jsx'
 
@@ -125,59 +126,62 @@ export default function MobileNavDrawer({
         <MaterialIcon className="text-[#002B49] text-[24px]" name="menu" />
       </button>
 
-      {isOpen ? (
-        <div className={`${drawerHiddenClass} fixed inset-0 z-[60]`} id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label={title}>
-          <div
-            className="absolute inset-0 bg-[#061B33]/40 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
-          />
-
-          <div className="absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-white shadow-[0_8px_40px_rgba(6,27,51,0.25)] flex flex-col pt-safe pb-safe">
-            <div className="flex items-center justify-between px-5 h-16 border-b border-slate-100 shrink-0">
-              <span className="font-display font-extrabold text-[17px] text-[#061B33] tracking-tight">
-                {title}
-              </span>
-              <button
-                aria-label="Tutup navigasi"
-                className="w-11 h-11 rounded-lg flex items-center justify-center text-slate-500 hover:bg-slate-100 active:bg-slate-200 transition-colors"
+      {isOpen
+        ? createPortal(
+            <div className={`${drawerHiddenClass} fixed inset-0 z-[60]`} id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label={title}>
+              <div
+                className="absolute inset-0 bg-[#061B33]/40 backdrop-blur-sm"
                 onClick={() => setIsOpen(false)}
-                ref={closeButtonRef}
-                type="button"
-              >
-                <MaterialIcon className="text-[24px]" name="close" />
-              </button>
-            </div>
+              />
 
-            <nav aria-label="Navigasi mobile" className="flex-1 overflow-y-auto px-4 py-4">
-              <div className="flex flex-col gap-1">{items.map(renderItem)}</div>
-            </nav>
+              <div className="absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-white shadow-[0_8px_40px_rgba(6,27,51,0.25)] flex flex-col pt-safe pb-safe">
+                <div className="flex items-center justify-between px-5 h-16 border-b border-slate-100 shrink-0">
+                  <span className="font-display font-extrabold text-[17px] text-[#061B33] tracking-tight">
+                    {title}
+                  </span>
+                  <button
+                    aria-label="Tutup navigasi"
+                    className="w-11 h-11 rounded-lg flex items-center justify-center text-slate-500 hover:bg-slate-100 active:bg-slate-200 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                    ref={closeButtonRef}
+                    type="button"
+                  >
+                    <MaterialIcon className="text-[24px]" name="close" />
+                  </button>
+                </div>
 
-            {cta ? (
-              <div className="px-4 pb-6 pt-2 border-t border-slate-100 shrink-0">
-                {cta.to ? (
-                  <Link
-                    className="w-full h-12 inline-flex items-center justify-center gap-2 bg-[#002B49] hover:bg-[#003B66] active:bg-[#061B33] text-white font-bold text-[15px] rounded-xl shadow-sm transition-colors"
-                    onClick={() => setIsOpen(false)}
-                    to={cta.to}
-                  >
-                    {cta.icon ? <MaterialIcon className="text-[20px]" name={cta.icon} /> : null}
-                    <span>{cta.label}</span>
-                  </Link>
-                ) : (
-                  <a
-                    className="w-full h-12 inline-flex items-center justify-center gap-2 bg-[#002B49] hover:bg-[#003B66] active:bg-[#061B33] text-white font-bold text-[15px] rounded-xl shadow-sm transition-colors"
-                    href={cta.href}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {cta.icon ? <MaterialIcon className="text-[20px]" name={cta.icon} /> : null}
-                    <span>{cta.label}</span>
-                  </a>
-                )}
+                <nav aria-label="Navigasi mobile" className="flex-1 overflow-y-auto px-4 py-4">
+                  <div className="flex flex-col gap-1">{items.map(renderItem)}</div>
+                </nav>
+
+                {cta ? (
+                  <div className="px-4 pb-6 pt-2 border-t border-slate-100 shrink-0">
+                    {cta.to ? (
+                      <Link
+                        className="w-full h-12 inline-flex items-center justify-center gap-2 bg-[#002B49] hover:bg-[#003B66] active:bg-[#061B33] text-white font-bold text-[15px] rounded-xl shadow-sm transition-colors"
+                        onClick={() => setIsOpen(false)}
+                        to={cta.to}
+                      >
+                        {cta.icon ? <MaterialIcon className="text-[20px]" name={cta.icon} /> : null}
+                        <span>{cta.label}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        className="w-full h-12 inline-flex items-center justify-center gap-2 bg-[#002B49] hover:bg-[#003B66] active:bg-[#061B33] text-white font-bold text-[15px] rounded-xl shadow-sm transition-colors"
+                        href={cta.href}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {cta.icon ? <MaterialIcon className="text-[20px]" name={cta.icon} /> : null}
+                        <span>{cta.label}</span>
+                      </a>
+                    )}
+                  </div>
+                ) : null}
               </div>
-            ) : null}
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   )
 }

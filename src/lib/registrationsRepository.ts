@@ -241,9 +241,22 @@ export async function getVerifiedSchools(): Promise<{school_name: string, compet
   }))
 }
 
+/**
+ * Langganan realtime sekolah terdaftar.
+ *
+ * Idempoten: satu langganan cukup untuk seluruh halaman. Client Supabase
+ * adalah singleton, dan `client.channel(topic)` memakai ulang channel dengan
+ * topik sama — memanggil `.on()` setelah channel joined melempar error
+ * ("cannot add postgres_changes callbacks ... after subscribe()"). Guard
+ * modul mencegah double-subscribe (StrictMode, HMR, atau remount).
+ */
+let activeSubscription: (() => void) | null = null
+
 export async function subscribeToVerifiedSchools(callback: (schools: {school_name: string, competitions: string[]}[]) => void): Promise<() => void> {
   const client = await getSupabaseClient()
   if (!client) return () => {}
+
+  if (activeSubscription) return activeSubscription
 
   const channel = client
     .channel('public:registrations')
@@ -252,8 +265,11 @@ export async function subscribeToVerifiedSchools(callback: (schools: {school_nam
        callback(schools)
     })
     .subscribe()
-    
-  return () => {
+
+  activeSubscription = () => {
     client.removeChannel(channel)
+    activeSubscription = null
   }
+
+  return activeSubscription
 }
