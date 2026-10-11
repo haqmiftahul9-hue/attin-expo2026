@@ -104,11 +104,7 @@ export default function DeclarationSection({
         <p aria-live="polite" className="font-caption text-caption text-secondary text-center mt-space-sm" role="status">
           {notice}
         </p>
-      ) : (
-        <p className="font-caption text-caption text-center text-slate-600 mt-space-sm">
-          Notifikasi kode registrasi dan kartu panggung akan dikirimkan otomatis via WhatsApp & Email resmi tertera.
-        </p>
-      )}
+      ) : null}
     </section>
   )
 }

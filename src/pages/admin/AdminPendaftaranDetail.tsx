@@ -72,14 +72,19 @@ export default function AdminPendaftaranDetail() {
 
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-900/10">
             <h3 className="font-bold text-lg mb-4 text-primary">B. Data Peserta</h3>
-            <div className="space-y-2">
-              <p><span className="text-slate-500">Nama Lengkap:</span> <br/>
-                <span className="whitespace-pre-wrap">{row.participant_name}</span>
-              </p>
-              <p><span className="text-slate-500">Nama Panggilan:</span> {row.nickname || '-'}</p>
-              <p><span className="text-slate-500">Jenis Kelamin:</span> {row.gender || '-'}</p>
-              <p><span className="text-slate-500">TTL:</span> {row.birth_place || '-'}, {row.birth_date || '-'}</p>
-              <p><span className="text-slate-500">Kelas:</span> {row.grade || '-'}</p>
+            <div className="space-y-3">
+              <div>
+                <span className="text-slate-500 text-sm block mb-1">Daftar Nama Peserta:</span>
+                <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 space-y-1.5 font-medium text-slate-800">
+                  {row.participant_name.split('\n').map((line, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      <span>{line.trim()}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <p><span className="text-slate-500">Jumlah Peserta Terdaftar:</span> <strong className="text-slate-800">{row.participant_count || 1} Peserta</strong></p>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 import { getAllRegistrations, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
@@ -147,10 +148,10 @@ export default function AdminDashboard() {
 <button className="h-10 w-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="refreshMetricsBtn" title="Segarkan Data">
 <span className="material-symbols-outlined text-[20px]">refresh</span>
 </button>
-<button className="h-10 px-4 flex items-center gap-2 rounded-lg bg-primary-container text-on-primary font-body-md-semibold text-body-md hover:bg-primary transition-colors shadow-sm">
+<Link to="/admin/pendaftaran" className="h-10 px-4 flex items-center gap-2 rounded-lg bg-primary-container text-on-primary font-body-md-semibold text-body-md hover:bg-primary transition-colors shadow-sm">
 <span className="material-symbols-outlined text-[18px]">file_download</span>
 <span>Ekspor Excel</span>
-</button>
+</Link>
 </div>
 </div>
 

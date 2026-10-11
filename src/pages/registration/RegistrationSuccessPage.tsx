@@ -5,7 +5,6 @@ import Footer from '../../components/Footer.jsx'
 import RegistrationHeader from '../../components/registration/RegistrationHeader.jsx'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import { getLastRegistration } from '../../lib/registrationsRepository.js'
-import { site } from '../../data/site.js'
 import usePageTitle from '../../hooks/usePageTitle.js'
 import type { CompetitionSlug, RegistrationRow } from '../../types/registration.js'
 
@@ -194,16 +193,6 @@ export default function RegistrationSuccessPage() {
                     <span className="font-body-md text-sm sm:text-body-md text-on-surface break-words">{categoryValue}</span>
                   </div>
                 )}
-              </div>
-              
-              <div className="mt-5 sm:mt-6 p-4 sm:p-5 rounded-2xl bg-white/50 flex items-center gap-4 sm:gap-5 border border-white/30 shadow-sm">
-                <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-white border border-white/30 flex items-center justify-center p-2 shrink-0 shadow-sm">
-                  <img className="w-full h-full object-contain" src={site.logo} alt="Logo" />
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-body-md-semibold text-sm sm:text-body-md-semibold text-on-surface">Integritas Dokumen Digital</span>
-                  <span className="font-caption text-xs sm:text-caption text-on-surface-variant">Data terenkripsi dan tercatat otomatis pada ledger panitia pusat.</span>
-                </div>
               </div>
             </div>
 
