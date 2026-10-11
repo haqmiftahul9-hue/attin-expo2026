@@ -5,34 +5,34 @@ import { site } from '../data/site.js'
 export default function CallToActionSection() {
   return (
     <section className="w-full py-12 lg:py-16 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-5 lg:px-20">
-        <div className="relative bg-[#002B49] text-white rounded-2xl p-8 lg:p-14 overflow-hidden shadow-xl border border-[#003B66]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="relative bg-[#002B49] text-white rounded-2xl p-5 sm:p-8 lg:p-14 overflow-hidden shadow-xl border border-[#003B66]">
           {/* Subtle architectural lines / government style bg */}
           <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(45deg, #ffffff 1px, transparent 1px), linear-gradient(-45deg, #ffffff 1px, transparent 1px)', backgroundSize: '60px 60px', backgroundPosition: 'center center' }}></div>
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#0057B8]/40 to-transparent rounded-full blur-3xl opacity-50 transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-          <Reveal className="relative z-10 max-w-3xl space-y-6">
-            <span className="inline-block bg-[#8B1E3F] text-white text-[14px] font-bold uppercase px-3 py-1.5 rounded tracking-[0.08em] shadow-sm">
+          <Reveal className="relative z-10 max-w-3xl space-y-5 sm:space-y-6">
+            <span className="inline-block bg-[#8B1E3F] text-white text-[13px] sm:text-[14px] font-bold uppercase px-3 py-1.5 rounded tracking-[0.08em] shadow-sm">
               Pendaftaran Resmi Dibuka
             </span>
-            <h2 className="text-[28px] lg:text-[36px] font-extrabold text-white leading-tight tracking-tight">
+            <h2 className="text-[24px] sm:text-[28px] lg:text-[36px] font-extrabold text-white leading-tight tracking-tight">
               Siapkan Diri Menjadi Juara di ATTIN EXPO XII 2026
             </h2>
-            <p className="text-[15px] lg:text-[16px] text-sky-100/90 leading-relaxed max-w-2xl">
+            <p className="text-[14px] sm:text-[15px] lg:text-[16px] text-sky-100/90 leading-relaxed max-w-2xl">
               Daftarkan santri dan murid terbaik sekolah Anda sekarang juga sebelum kuota
               terpenuhi. Wujudkan generasi Qur’ani yang berani, berakhlak, dan berprestasi!
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 pt-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-3 sm:pt-4 w-full">
               <a
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#002B49] font-bold text-[15px] px-8 py-3.5 rounded-lg hover:bg-slate-50 hover:-translate-y-0.5 transition-all shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#002B49] font-bold text-[15px] px-6 sm:px-8 py-3.5 rounded-lg hover:bg-slate-50 hover:-translate-y-0.5 transition-all shadow-md hover:shadow-lg text-center w-full sm:w-auto"
                 href="#kompetisi-resmi"
               >
                 <MaterialIcon name="how_to_reg" className="text-[20px]" />
                 <span>Daftar Sekarang Secara Online</span>
               </a>
               <a
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold text-[15px] px-8 py-3.5 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 hover:bg-white/10 text-white font-semibold text-[15px] px-6 sm:px-8 py-3.5 rounded-lg transition-colors text-center w-full sm:w-auto"
                 href="#kontak"
               >
                 <MaterialIcon name="chat" className="text-[20px]" />
@@ -45,5 +45,3 @@ export default function CallToActionSection() {
     </section>
   )
 }
-
-

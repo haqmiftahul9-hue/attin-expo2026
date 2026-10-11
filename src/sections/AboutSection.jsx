@@ -19,9 +19,9 @@ export default function AboutSection() {
       id="tentang" 
       className="relative w-full py-10 md:py-12 lg:py-16 scroll-mt-24 overflow-hidden"
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-20">
-        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center p-8 md:p-10 lg:p-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center p-4 sm:p-8 md:p-10 lg:p-12">
           
           {/* Left Column: Image Area */}
           <Reveal className="lg:col-span-5 w-full flex items-center justify-center lg:justify-start">
@@ -29,7 +29,7 @@ export default function AboutSection() {
               
               {/* Decorative Navy Offset */}
               <div 
-                className="absolute bg-[#061B33] rounded-2xl z-0 transition-all" 
+                className="hidden sm:block absolute bg-[#061B33] rounded-2xl z-0 transition-all" 
                 style={{
                   top: '16px',
                   bottom: '-16px',
@@ -81,7 +81,7 @@ export default function AboutSection() {
               </span>
               
               {/* Heading */}
-              <h2 className="text-[32px] md:text-[38px] lg:text-[44px] font-extrabold text-[#061B33] tracking-[-0.02em] leading-[1.15]">
+              <h2 className="text-[26px] sm:text-[32px] md:text-[38px] lg:text-[44px] font-extrabold text-[#061B33] tracking-[-0.02em] leading-[1.2] sm:leading-[1.15]">
                 {about.title}
               </h2>
               

@@ -5,7 +5,7 @@ import { footerQuickLinks, site } from '../data/site.js'
 export default function Footer() {
   return (
     <footer className="w-full border-t border-slate-200 bg-white">
-      <div className="max-w-7xl mx-auto px-5 lg:px-20 py-12 md:py-16 pb-safe">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 py-10 md:py-16 pb-safe">
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-12">
           {/* Logo and Tagline */}
           <div className="xl:col-span-4 flex flex-col items-start">
@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
 
           {/* Multi-column sitemap */}
-          <div className="xl:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="xl:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="space-y-4">
               <h3 className="text-[14px] font-bold text-[#0F172A] uppercase tracking-wide">Program Lomba</h3>
               <ul className="space-y-3">

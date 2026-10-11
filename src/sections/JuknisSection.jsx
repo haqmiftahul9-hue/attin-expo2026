@@ -5,27 +5,27 @@ import { site } from '../data/site.js'
 export default function JuknisSection() {
   return (
     <section id="panduan-juknis" className="w-full py-12 lg:py-16 scroll-mt-32">
-      <div className="max-w-7xl mx-auto px-5 lg:px-20">
-        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-14 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-4 sm:p-8 lg:p-14 relative overflow-hidden">
           {/* Subtle accent glow behind the text */}
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#002B49]/5 to-transparent pointer-events-none" />
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
-            <Reveal className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 text-[#002B49] text-[14px] font-bold uppercase tracking-[0.1em] bg-[#002B49]/5 border border-[#002B49]/10 px-3 py-1.5 rounded-md">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center relative z-10">
+            <Reveal className="lg:col-span-7 space-y-5 sm:space-y-6">
+              <div className="inline-flex items-center gap-2 text-[#002B49] text-[13px] sm:text-[14px] font-bold uppercase tracking-[0.1em] bg-[#002B49]/5 border border-[#002B49]/10 px-3 py-1.5 rounded-md">
                 <MaterialIcon name="description" className="text-[16px]" />
                 <span>Dokumen Resmi Panitia</span>
               </div>
-              <h2 className="text-[28px] md:text-[36px] lg:text-[40px] font-extrabold text-[#0F172A] tracking-tight leading-[1.15]">
+              <h2 className="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-extrabold text-[#0F172A] tracking-tight leading-[1.2] sm:leading-[1.15]">
                 Buku Petunjuk Teknis (Juknis) Resmi ATTIN EXPO XII 2026
               </h2>
-              <p className="text-[16px] text-slate-600 leading-relaxed max-w-2xl">
+              <p className="text-[15px] sm:text-[16px] text-slate-600 leading-relaxed max-w-2xl">
                 Seluruh ketentuan umum, mekanisme penilaian dewan juri, tata tertib, serta ketentuan teknis perlombaan telah dirangkum dalam satu dokumen digital resmi.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2 sm:pt-4">
                 {site.juknis.highlights.map((highlight) => (
                   <div key={highlight} className="flex items-center gap-3 text-[#0F172A] font-medium text-[14px]">
-                    <MaterialIcon name="check_circle" className="text-[#16825D] text-[20px]" />
+                    <MaterialIcon name="check_circle" className="text-[#16825D] text-[20px] shrink-0" />
                     <span>{highlight}</span>
                   </div>
                 ))}
@@ -33,20 +33,20 @@ export default function JuknisSection() {
             </Reveal>
 
             <Reveal delay={80} className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="w-full max-w-[340px] flex flex-col items-center justify-center p-8 border border-slate-900/10 bg-[#F8FAFC] rounded-[20px] text-center space-y-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] hover:border-slate-900/20 hover:-translate-y-1 transition-all duration-300">
+              <div className="w-full max-w-[340px] flex flex-col items-center justify-center p-5 sm:p-8 border border-slate-900/10 bg-[#F8FAFC] rounded-[20px] text-center space-y-5 sm:space-y-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] hover:border-slate-900/20 hover:-translate-y-1 transition-all duration-300">
                 <div className="w-16 h-16 rounded-2xl bg-[#8B1E3F] text-white flex items-center justify-center shadow-md">
                   <MaterialIcon name="picture_as_pdf" className="text-[32px]" />
                 </div>
                 <div>
-                  <span className="text-[15px] text-[#0F172A] font-bold block mb-1.5">
+                  <span className="text-[15px] text-[#0F172A] font-bold block mb-1.5 break-all">
                     {site.juknis.fileName}
                   </span>
-                  <span className="text-[14px] text-slate-600 block font-medium">
+                  <span className="text-[13px] sm:text-[14px] text-slate-600 block font-medium">
                     Versi Dokumen: {site.juknis.version}
                   </span>
                 </div>
                 <a
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#002B49] text-white font-semibold text-[14px] py-4 px-6 rounded-xl hover:bg-[#003B66] hover:-translate-y-0.5 transition-all shadow-md"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#002B49] text-white font-semibold text-[14px] py-3.5 sm:py-4 px-6 rounded-xl hover:bg-[#003B66] hover:-translate-y-0.5 transition-all shadow-md"
                   download={site.juknis.fileName}
                   href={site.juknis.href}
                   target="_blank"
@@ -63,5 +63,3 @@ export default function JuknisSection() {
     </section>
   )
 }
-
-

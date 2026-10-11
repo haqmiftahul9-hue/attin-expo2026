@@ -26,13 +26,13 @@ export default function CountdownTimer() {
           {label}
         </span>
       </div>
-      <div className="grid grid-cols-4 gap-3 text-center pt-2" aria-live="off">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-3 text-center pt-2" aria-live="off">
         {UNITS.map((unit) => (
-          <div key={unit.key} className="bg-white rounded-xl py-3 px-1 shadow-sm border-b-2 border-primary-fixed">
-            <span className="text-2xl lg:text-3xl font-extrabold text-primary block leading-none mb-1">
+          <div key={unit.key} className="bg-white rounded-xl py-2.5 sm:py-3 px-0.5 sm:px-1 shadow-sm border-b-2 border-primary-fixed">
+            <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-primary block leading-none mb-1">
               {remaining ? padTwoDigits(remaining[unit.key]) : '--'}
             </span>
-            <span className="text-[14px] font-bold text-muted-foreground uppercase tracking-widest block">{unit.label}</span>
+            <span className="text-[11px] sm:text-[13px] font-bold text-muted-foreground uppercase tracking-wider block">{unit.label}</span>
           </div>
         ))}
       </div>

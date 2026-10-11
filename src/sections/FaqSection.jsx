@@ -21,15 +21,15 @@ export default function FaqSection() {
 
   return (
     <section id="faq" className="w-full py-12 lg:py-16 scroll-mt-32">
-      <div className="max-w-4xl mx-auto px-5 lg:px-20">
-        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-4 sm:p-8 lg:p-12">
           <SectionHeading
             badge={staticFaq.badge}
             title={staticFaq.title}
             description={staticFaq.description}
           />
 
-          <div className="mt-12 flex flex-col bg-white border border-white/30 rounded-2xl p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)] relative overflow-hidden">
+          <div className="mt-8 sm:mt-12 flex flex-col bg-white border border-white/30 rounded-2xl p-4 sm:p-5 md:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.08)] relative overflow-hidden">
           {/* Chat Window Header */}
           <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-8">
             <div className="flex items-center gap-4">

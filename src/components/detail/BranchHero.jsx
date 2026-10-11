@@ -10,9 +10,9 @@ export default function BranchHero({ branch }) {
   return (
     <section className="relative w-full py-12 lg:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-5 sm:p-8 lg:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             <div className="flex flex-wrap items-center gap-2.5">
               {branch.badges.map((badge) => (
                 <span
@@ -26,7 +26,7 @@ export default function BranchHero({ branch }) {
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-display-hero font-display-hero text-on-surface tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-display-hero font-display-hero text-on-surface tracking-tight leading-tight">
                 {branch.tagline} <span className="text-primary-container font-bold">{branch.accentTitle}</span>
               </h1>
               <p className="text-headline-sm font-headline-sm text-secondary font-semibold">{branch.level}</p>
@@ -48,16 +48,16 @@ export default function BranchHero({ branch }) {
               ))}
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full">
               <Link
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#002B49] hover:bg-[#061B33] text-white font-body-md-semibold text-body-md-semibold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#002B49] hover:bg-[#061B33] text-white font-body-md-semibold text-body-md-semibold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-center"
                 to={`/pendaftaran/${branch.slug}`}
               >
                 <span>Daftar {branch.tagline} Sekarang</span>
                 <MaterialIcon name="arrow_downward" className="text-[18px]" />
               </Link>
               <a
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#061B33] border border-slate-200 font-body-md-semibold text-body-md-semibold shadow-sm transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#061B33] border border-slate-200 font-body-md-semibold text-body-md-semibold shadow-sm transition-all text-center"
                 href="#ketentuan"
               >
                 <MaterialIcon name="rule" className="text-[18px]" />

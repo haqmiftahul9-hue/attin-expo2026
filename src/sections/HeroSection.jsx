@@ -10,7 +10,7 @@ export default function HeroSection() {
       <span aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-[600px] w-[600px] opacity-100" style={{ background: 'radial-gradient(circle at top right, rgba(0,87,184,0.35), transparent 60%)' }}></span>
       <span aria-hidden="true" className="pointer-events-none absolute left-0 bottom-0 h-96 w-96 opacity-100" style={{ background: 'radial-gradient(circle at bottom left, rgba(139,30,63,0.15), transparent 60%)' }}></span>
 
-      <div className="max-w-7xl mx-auto px-5 lg:px-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* Left Side: Typography and CTAs */}
@@ -23,7 +23,7 @@ export default function HeroSection() {
 
             <Reveal delay={60} className="w-full">
               <div className="space-y-3">
-                <h1 className="text-[32px] md:text-[40px] lg:text-[44px] font-extrabold tracking-tight text-white leading-[1.1]">
+                <h1 className="text-[28px] sm:text-[36px] md:text-[40px] lg:text-[44px] font-extrabold tracking-tight text-white leading-[1.1]">
                   {site.name}{' '}
                   <span className="relative inline-block text-white">
                     2026
@@ -43,16 +43,16 @@ export default function HeroSection() {
             </Reveal>
 
             <Reveal delay={180} className="w-full">
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 w-full">
                 <a
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#061B33] font-bold text-[15px] px-7 py-3 rounded-lg shadow-[0_10px_30px_rgba(15,23,42,0.08)] hover:bg-slate-50 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#061B33] font-bold text-[15px] px-6 py-3.5 rounded-lg shadow-[0_10px_30px_rgba(15,23,42,0.08)] hover:bg-slate-50 transition-all text-center w-full sm:w-auto"
                   href="#kompetisi-resmi"
                 >
                   <span>Daftar Sekarang</span>
                   <MaterialIcon name="arrow_forward" className="text-[18px]" />
                 </a>
                 <a
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold text-[15px] px-7 py-3 rounded-lg hover:bg-white/20 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold text-[15px] px-6 py-3.5 rounded-lg hover:bg-white/20 transition-all text-center w-full sm:w-auto"
                   download={site.juknis.fileName}
                   href={site.juknis.href}
                   target="_blank"
@@ -134,7 +134,7 @@ export default function HeroSection() {
 
               {/* Main Center Card (Registration) */}
               <div className="relative z-20 w-full transform hover:-translate-y-1 transition-transform duration-500">
-                <div className="rounded-[20px] border border-white/30 bg-white/85 backdrop-blur-[12px] p-6 relative overflow-hidden shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
+                <div className="rounded-[20px] border border-white/30 bg-white/85 backdrop-blur-[12px] p-4 sm:p-6 relative overflow-hidden shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
                   <div className="flex items-center justify-between gap-2 pb-4 border-b border-slate-200/60 mb-4">
                     <div className="flex items-center gap-2">
                       <MaterialIcon name="verified" className="text-[#061B33] text-[22px]" />

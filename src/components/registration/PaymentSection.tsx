@@ -51,7 +51,7 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
               <Icon className="text-[14px]" name="account_balance" />
               Rekening Resmi Panitia
             </span>
-            <div className="font-headline-md text-headline-md tracking-wider font-mono">{paymentConfig?.accountNumber || 'Belum ditentukan'}</div>
+            <div className="font-headline-md text-headline-md tracking-wider font-mono break-all">{paymentConfig?.accountNumber || 'Belum ditentukan'}</div>
             <div className="font-body-md text-body-md text-tertiary-fixed">
               Bank: <strong className="text-on-primary">{paymentConfig?.name || 'Belum ditentukan'}</strong> — a.n.{' '}
               <strong className="text-on-primary">{paymentConfig?.accountHolder || 'Belum ditentukan'}</strong>
@@ -118,25 +118,25 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
               onChange={(event) => setFile('bukti_transfer', event.target.files?.[0] ?? null)}
               type="file"
             />
-            <div className="flex items-center gap-4 pointer-events-none">
-              <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                <Icon className="text-[24px]" name={proof ? "check_circle" : "cloud_upload"} />
+            <div className="flex items-center gap-3 sm:gap-4 pointer-events-none min-w-0 flex-1">
+              <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <Icon className="text-[22px] sm:text-[24px]" name={proof ? "check_circle" : "cloud_upload"} />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div
-                  className={`font-body-md-semibold text-base ${
+                  className={`font-body-md-semibold text-sm sm:text-base truncate ${
                     proof ? 'text-primary' : 'text-on-surface'
                   }`}
                 >
                   {proof ? `${proof.name}` : 'Pilih atau letakkan file bukti setor di sini'}
                 </div>
-                <div className="font-caption text-[14px] text-slate-600 mt-1">
+                <div className="font-caption text-[13px] sm:text-[14px] text-slate-600 mt-0.5 truncate">
                   {proof ? `Ukuran file: ${formatFileSize(proof.size)}` : `Format JPG, PNG atau PDF maks ${MAX_FILE_SIZE_MB}MB`}
                 </div>
               </div>
             </div>
-            <div className="pointer-events-none shrink-0">
-              <span className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-bold shadow-sm transition-colors ${proof ? 'bg-secondary text-white' : 'bg-primary text-white'}`}>
+            <div className="pointer-events-none shrink-0 w-full sm:w-auto">
+              <span className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-bold shadow-sm transition-colors ${proof ? 'bg-secondary text-white' : 'bg-primary text-white'}`}>
                 {proof ? 'Ganti File' : 'Browse File'}
               </span>
             </div>

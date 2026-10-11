@@ -41,9 +41,9 @@ export default function RegisteredSchoolsSection() {
 
   if (loading) {
     return (
-      <section className="w-full py-12 lg:py-16 px-5 lg:px-20">
+      <section className="w-full py-12 lg:py-16 px-4 sm:px-6 lg:px-20">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12 flex flex-col items-center justify-center min-h-[200px]">
+          <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-6 sm:p-8 lg:p-12 flex flex-col items-center justify-center min-h-[200px]">
             <div className="animate-spin text-[#002B49] opacity-50 mb-4">
               <Icon name="refresh" className="text-4xl" />
             </div>
@@ -59,47 +59,72 @@ export default function RegisteredSchoolsSection() {
   }
 
   return (
-    <section className="w-full py-12 lg:py-16 px-5 lg:px-20">
+    <section className="w-full py-12 lg:py-16 px-4 sm:px-6 lg:px-20">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
-          <div className="text-center mb-12">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-4 sm:p-8 lg:p-12">
+          <div className="text-center mb-8 sm:mb-12">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white text-[#002B49] mb-4 shadow-sm border border-white/30">
               <Icon name="verified_user" className="text-[24px]" />
             </div>
-            <h2 className="text-[28px] md:text-[36px] font-extrabold text-[#0F172A] tracking-tight mb-3">
+            <h2 className="text-[24px] sm:text-[28px] md:text-[36px] font-extrabold text-[#0F172A] tracking-tight mb-2 sm:mb-3">
               Sekolah Terdaftar
             </h2>
-            <p className="text-[16px] text-slate-600 max-w-xl mx-auto leading-relaxed">
+            <p className="text-[14px] sm:text-[16px] text-slate-600 max-w-xl mx-auto leading-relaxed">
               Daftar sekolah dan madrasah yang telah berhasil menyelesaikan registrasi pada ATTIN EXPO XII 2026.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto bg-white border border-white/30 rounded-2xl overflow-hidden shadow-sm">
-            <div className="overflow-x-auto">
+          <div className="max-w-5xl mx-auto bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm">
+            {/* Mobile Card List View (< sm) */}
+            <div className="sm:hidden divide-y divide-slate-100">
+              {schools.map((school, i) => (
+                <div key={i} className="p-4 space-y-2.5">
+                  <div className="flex items-start gap-2.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                    <span className="font-bold text-[15px] text-[#0F172A] leading-snug">
+                      {school.school_name}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 pl-5">
+                    {school.competitions.map((lomba, idx) => {
+                      const styles = getBadgeStyles(lomba)
+                      return (
+                        <span key={idx} className={`px-2.5 py-0.5 text-xs font-bold rounded border capitalize ${styles}`}>
+                          {lomba.replace('-', ' ')}
+                        </span>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View (>= sm) */}
+            <div className="hidden sm:block overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[500px]">
                 <thead>
-                  <tr className="border-b border-white/30 bg-white/50">
-                    <th className="py-4 px-6 text-[14px] font-bold text-[#0F172A] tracking-wide w-1/2 uppercase">Nama Sekolah / Madrasah</th>
-                    <th className="py-4 px-6 text-[14px] font-bold text-[#0F172A] tracking-wide w-1/2 uppercase">Cabang Lomba yang Diikuti</th>
+                  <tr className="border-b border-slate-100 bg-slate-50/70">
+                    <th className="py-4 px-6 text-[13px] font-bold text-[#0F172A] tracking-wider w-1/2 uppercase">Nama Sekolah / Madrasah</th>
+                    <th className="py-4 px-6 text-[13px] font-bold text-[#0F172A] tracking-wider w-1/2 uppercase">Cabang Lomba yang Diikuti</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/30">
+                <tbody className="divide-y divide-slate-100">
                   {schools.map((school, i) => (
-                    <tr key={i} className="hover:bg-white/50 transition-colors group">
-                      <td className="py-5 px-6 align-middle">
+                    <tr key={i} className="hover:bg-slate-50/50 transition-colors group">
+                      <td className="py-4 px-6 align-middle">
                         <div className="flex items-center gap-3">
                           <div className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
-                          <span className="font-bold text-[16px] text-[#0F172A] leading-tight">
+                          <span className="font-bold text-[15px] text-[#0F172A] leading-tight">
                             {school.school_name}
                           </span>
                         </div>
                       </td>
-                      <td className="py-5 px-6 align-middle">
+                      <td className="py-4 px-6 align-middle">
                         <div className="flex flex-wrap gap-2">
                           {school.competitions.map((lomba, idx) => {
                             const styles = getBadgeStyles(lomba)
                             return (
-                              <span key={idx} className={`px-3 py-1 text-[14px] font-bold rounded border capitalize whitespace-nowrap ${styles}`}>
+                              <span key={idx} className={`px-3 py-1 text-[13px] font-bold rounded border capitalize whitespace-nowrap ${styles}`}>
                                 {lomba.replace('-', ' ')}
                               </span>
                             )
@@ -117,5 +142,3 @@ export default function RegisteredSchoolsSection() {
     </section>
   )
 }
-
-

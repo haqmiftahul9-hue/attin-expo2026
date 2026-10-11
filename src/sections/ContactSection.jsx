@@ -6,8 +6,8 @@ import { contactCards } from '../data/home.js'
 export default function ContactSection() {
   return (
     <section id="kontak" className="w-full py-12 lg:py-16 scroll-mt-32">
-      <div className="max-w-7xl mx-auto px-5 lg:px-20">
-        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 lg:p-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-4 sm:p-8 lg:p-12">
           <SectionHeading
             badge="PUSAT BANTUAN"
             title="Butuh Bantuan?"
@@ -15,11 +15,11 @@ export default function ContactSection() {
           />
 
         <Reveal delay={100}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {contactCards.map((card) => (
               <div
                 key={card.title}
-                className="rounded-[20px] border border-slate-900/10 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group"
+                className="rounded-[20px] border border-slate-900/10 bg-white p-5 sm:p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group"
               >
                 <div>
                   <div
@@ -28,7 +28,7 @@ export default function ContactSection() {
                     <MaterialIcon name={card.icon} className="text-[28px]" />
                   </div>
                   <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight mb-2">{card.title}</h3>
-                  <p className="text-[15px] text-slate-600 mb-4">{card.caption}</p>
+                  <p className="text-[14px] sm:text-[15px] text-slate-600 mb-4">{card.caption}</p>
                 </div>
                 
                 <div className="mt-4 pt-4 border-t border-slate-100">
@@ -50,5 +50,3 @@ export default function ContactSection() {
     </section>
   )
 }
-
-

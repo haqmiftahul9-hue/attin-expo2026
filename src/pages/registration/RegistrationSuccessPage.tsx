@@ -69,7 +69,7 @@ export default function RegistrationSuccessPage() {
             </nav>
 
             {/* Success Banner */}
-            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8 flex flex-col items-center text-center relative overflow-hidden">
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[20px] sm:rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-5 sm:p-8 lg:p-10 mb-6 sm:mb-8 flex flex-col items-center text-center relative overflow-hidden">
               <div className="absolute -right-16 -top-16 w-44 h-44 rounded-full bg-white/10 pointer-events-none" />
               <div className="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-white/10 pointer-events-none" />
               
@@ -89,32 +89,32 @@ export default function RegistrationSuccessPage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#16825D]" />
                 Sistem Penerimaan Terverifikasi
               </div>
-              <h1 className="font-headline-lg text-headline-lg sm:text-display-hero-mobile text-on-surface font-extrabold tracking-tight mb-3">
+              <h1 className="font-headline-lg text-2xl sm:text-3xl md:text-headline-lg text-on-surface font-extrabold tracking-tight mb-3">
                 Pendaftaran Berhasil!
               </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+              <p className="font-body-lg text-sm sm:text-base text-on-surface-variant max-w-xl">
                 Data pendaftaran telah berhasil dikirim dan akan diperiksa oleh panitia verifikasi ATTIN EXPO XII 2026.
               </p>
             </div>
 
             {/* Registration Code */}
-            <div className="bg-gradient-to-br from-primary-container via-primary to-tertiary rounded-3xl shadow-md border border-outline-variant/20 p-8 sm:p-10 text-on-primary mb-8 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-primary-container via-primary to-tertiary rounded-2xl sm:rounded-3xl shadow-md border border-outline-variant/20 p-5 sm:p-8 lg:p-10 text-on-primary mb-6 sm:mb-8 relative overflow-hidden">
               <svg className="absolute -right-8 -top-8 w-48 h-48 opacity-10 text-on-primary pointer-events-none" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 100 100">
                 <polygon points="50 0, 85 15, 100 50, 85 85, 50 100, 15 85, 0 50, 15 15" />
                 <polygon points="50 15, 75 25, 85 50, 75 75, 50 85, 25 75, 15 50, 25 25" />
                 <circle cx="50" cy="50" r="18" />
               </svg>
               
-              <div className="relative z-10 flex flex-col gap-5">
-                <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="relative z-10 flex flex-col gap-4 sm:gap-5">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <span className="font-label-badge text-label-badge uppercase tracking-widest text-on-primary-container">KODE REGISTRASI RESMI</span>
-                  <span className="font-label-badge text-label-badge px-4 py-1 rounded-full bg-secondary border border-secondary-fixed/30 text-on-secondary shadow-sm">Simpan Kode Ini</span>
+                  <span className="font-label-badge text-label-badge px-3.5 py-1 rounded-full bg-secondary border border-secondary-fixed/30 text-on-secondary shadow-sm">Simpan Kode Ini</span>
                 </div>
                 
-                <div className="bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl border border-surface-container-lowest/20 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-inner">
-                  <div className="flex items-center gap-4">
-                    <MaterialIcon name="qr_code_2" className="text-on-primary-container text-[28px]" />
-                    <span className="font-mono text-[22px] sm:text-[26px] tracking-wider font-bold text-surface-container-lowest select-all">
+                <div className="bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl border border-surface-container-lowest/20 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-inner">
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                    <MaterialIcon name="qr_code_2" className="text-on-primary-container text-[26px] sm:text-[28px] shrink-0" />
+                    <span className="font-mono text-[18px] sm:text-[24px] md:text-[26px] tracking-wider font-bold text-surface-container-lowest select-all break-all">
                       {registrationCode}
                     </span>
                   </div>
@@ -122,7 +122,7 @@ export default function RegistrationSuccessPage() {
                   <button 
                     type="button"
                     onClick={handleCopy}
-                    className={`inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl font-body-md-semibold text-body-md transition-all shadow-md active:scale-95 ${
+                    className={`inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-xl font-body-md-semibold text-body-md transition-all shadow-md active:scale-95 shrink-0 w-full sm:w-auto ${
                       copied ? 'bg-[#16825D] text-surface-container-lowest' : 'bg-surface-container-lowest text-primary hover:bg-surface-container-lowest/90'
                     }`}
                   >
@@ -131,9 +131,9 @@ export default function RegistrationSuccessPage() {
                   </button>
                 </div>
                 
-                <div className="flex items-start gap-3 bg-surface-container-lowest/15 rounded-2xl border border-surface-container-lowest/10 p-4 sm:p-5 text-on-primary-container font-caption text-caption mt-2">
+                <div className="flex items-start gap-3 bg-surface-container-lowest/15 rounded-2xl border border-surface-container-lowest/10 p-3.5 sm:p-5 text-on-primary-container font-caption text-caption mt-1 sm:mt-2">
                   <MaterialIcon name="info" className="text-secondary-fixed text-[20px] shrink-0 mt-0.5" />
-                  <p className="leading-relaxed text-surface-container-lowest/90">
+                  <p className="leading-relaxed text-surface-container-lowest/90 text-xs sm:text-sm">
                     Simpan atau tangkap layar (<span className="font-body-md-semibold text-surface-container-lowest">screenshot</span>) kode registrasi ini sebagai bukti sah untuk keperluan verifikasi berkas, konfirmasi pembayaran, dan daftar ulang di arena expo.
                   </p>
                 </div>
@@ -141,90 +141,90 @@ export default function RegistrationSuccessPage() {
             </div>
 
             {/* Registration Summary */}
-            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 gap-4 border-b border-white/30">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                    <MaterialIcon name="badge" className="text-[24px]" />
+            {/* Registration Summary */}
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[20px] sm:rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-5 sm:p-8 lg:p-10 mb-6 sm:mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 sm:pb-6 mb-5 sm:mb-6 gap-4 border-b border-white/30">
+                <div className="flex items-center gap-3.5 sm:gap-4">
+                  <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <MaterialIcon name="badge" className="text-[22px] sm:text-[24px]" />
                   </div>
                   <div>
-                    <h2 className="font-headline-sm text-headline-sm text-on-surface">Ikhtisar Pendaftaran</h2>
-                    <p className="font-caption text-caption text-on-surface-variant">Tercatat resmi dalam pangkalan data panitia seleksi</p>
+                    <h2 className="font-headline-sm text-lg sm:text-headline-sm text-on-surface">Ikhtisar Pendaftaran</h2>
+                    <p className="font-caption text-xs sm:text-caption text-on-surface-variant">Tercatat resmi dalam pangkalan data panitia seleksi</p>
                   </div>
                 </div>
-                
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/50 rounded-2xl p-6 sm:p-8 border border-white/30">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 bg-white/50 rounded-2xl p-4 sm:p-6 sm:p-8 border border-white/30">
                 <div className="flex flex-col gap-1">
-                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                  <span className="font-caption text-xs sm:text-caption text-on-surface-variant flex items-center gap-1.5">
                     <MaterialIcon name="person" className="text-[16px] text-outline" />
                     Nama Lengkap Peserta
                   </span>
-                  <span className="font-title-md text-title-md text-on-surface font-bold">{participantName}</span>
+                  <span className="font-title-md text-base sm:text-title-md text-on-surface font-bold break-words">{participantName}</span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                  <span className="font-caption text-xs sm:text-caption text-on-surface-variant flex items-center gap-1.5">
                     <MaterialIcon name="menu_book" className="text-[16px] text-outline" />
                     Cabang Lomba
                   </span>
-                  <span className="font-body-md-semibold text-body-md-semibold text-primary">{branch.name}</span>
+                  <span className="font-body-md-semibold text-sm sm:text-body-md-semibold text-primary">{branch.name}</span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                  <span className="font-caption text-xs sm:text-caption text-on-surface-variant flex items-center gap-1.5">
                     <MaterialIcon name="school" className="text-[16px] text-outline" />
                     Asal Sekolah / Madrasah
                   </span>
-                  <span className="font-body-md text-body-md text-on-surface">{schoolName}</span>
+                  <span className="font-body-md text-sm sm:text-body-md text-on-surface break-words">{schoolName}</span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                  <span className="font-caption text-xs sm:text-caption text-on-surface-variant flex items-center gap-1.5">
                     <MaterialIcon name="event" className="text-[16px] text-outline" />
                     Tanggal & Waktu Pendaftaran
                   </span>
-                  <span className="font-body-md text-body-md text-on-surface">{createdAt}</span>
+                  <span className="font-body-md text-sm sm:text-body-md text-on-surface">{createdAt}</span>
                 </div>
                 
                 {categoryValue !== '-' && (
                   <div className="flex flex-col gap-1 md:col-span-2">
-                    <span className="font-caption text-caption text-on-surface-variant flex items-center gap-1.5">
+                    <span className="font-caption text-xs sm:text-caption text-on-surface-variant flex items-center gap-1.5">
                       <MaterialIcon name="groups" className="text-[16px] text-outline" />
                       Kategori / Detail
                     </span>
-                    <span className="font-body-md text-body-md text-on-surface">{categoryValue}</span>
+                    <span className="font-body-md text-sm sm:text-body-md text-on-surface break-words">{categoryValue}</span>
                   </div>
                 )}
               </div>
               
-              <div className="mt-6 p-5 rounded-2xl bg-white/50 flex items-center gap-5 border border-white/30 shadow-sm">
-                <div className="w-12 h-12 rounded-xl bg-white border border-white/30 flex items-center justify-center p-2 shrink-0 shadow-sm">
+              <div className="mt-5 sm:mt-6 p-4 sm:p-5 rounded-2xl bg-white/50 flex items-center gap-4 sm:gap-5 border border-white/30 shadow-sm">
+                <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-xl bg-white border border-white/30 flex items-center justify-center p-2 shrink-0 shadow-sm">
                   <img className="w-full h-full object-contain" src={site.logo} alt="Logo" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-body-md-semibold text-body-md-semibold text-on-surface">Integritas Dokumen Digital</span>
-                  <span className="font-caption text-caption text-on-surface-variant">Data terenkripsi dan tercatat otomatis pada ledger panitia pusat.</span>
+                <div className="flex flex-col min-w-0">
+                  <span className="font-body-md-semibold text-sm sm:text-body-md-semibold text-on-surface">Integritas Dokumen Digital</span>
+                  <span className="font-caption text-xs sm:text-caption text-on-surface-variant">Data terenkripsi dan tercatat otomatis pada ledger panitia pusat.</span>
                 </div>
               </div>
             </div>
 
             {/* Next Steps */}
-            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                  <MaterialIcon name="format_list_numbered" className="text-[24px]" />
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[20px] sm:rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-5 sm:p-8 lg:p-10 mb-6 sm:mb-8">
+              <div className="flex items-center gap-3.5 sm:gap-4 mb-6 sm:mb-8">
+                <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                  <MaterialIcon name="format_list_numbered" className="text-[22px] sm:text-[24px]" />
                 </div>
                 <div>
-                  <h2 className="font-headline-sm text-headline-sm text-on-surface">Tahapan Selanjutnya</h2>
-                  <p className="font-caption text-caption text-on-surface-variant">Konfirmasi pendaftaran via WhatsApp</p>
+                  <h2 className="font-headline-sm text-lg sm:text-headline-sm text-on-surface">Tahapan Selanjutnya</h2>
+                  <p className="font-caption text-xs sm:text-caption text-on-surface-variant">Konfirmasi pendaftaran via WhatsApp</p>
                 </div>
               </div>
               
-              <div className="relative pl-8 sm:pl-10 space-y-8 before:content-[''] before:absolute before:left-3.5 sm:before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-white/30">
-                <div className="relative flex items-start gap-5">
-                  <span className="absolute -left-8 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-label-badge flex items-center justify-center shadow-md ring-4 ring-white/20">1</span>
-                  <div className="flex flex-col bg-white/50 rounded-2xl border border-white/30 p-5 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
-                    <span className="font-title-md text-title-md text-on-surface font-semibold mb-2">Konfirmasi ke WhatsApp Panitia</span>
-                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              <div className="relative pl-7 sm:pl-10 space-y-6 sm:space-y-8 before:content-[''] before:absolute before:left-3 sm:before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-white/30">
+                <div className="relative flex items-start gap-4 sm:gap-5">
+                  <span className="absolute -left-7 sm:-left-10 w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-primary text-on-primary font-label-badge text-xs sm:text-label-badge flex items-center justify-center shadow-md ring-4 ring-white/20">1</span>
+                  <div className="flex flex-col bg-white/50 rounded-2xl border border-white/30 p-4 sm:p-6 w-full shadow-sm hover:shadow-md transition-shadow">
+                    <span className="font-title-md text-base sm:text-title-md text-on-surface font-semibold mb-1.5 sm:mb-2">Konfirmasi ke WhatsApp Panitia</span>
+                    <p className="font-body-md text-sm sm:text-body-md text-on-surface-variant leading-relaxed">
                       Pendaftaran Anda berhasil dicatat. Silakan hubungi WhatsApp panitia untuk mengonfirmasi dan mengirimkan bukti pendaftaran agar proses dapat diselesaikan.
                     </p>
                   </div>
@@ -233,7 +233,7 @@ export default function RegistrationSuccessPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 sm:p-10 mb-8 flex flex-col items-center gap-6 text-center">
+            <div className="bg-white/95 backdrop-blur-sm border border-white/20 rounded-[20px] sm:rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-5 sm:p-8 lg:p-10 mb-6 sm:mb-8 flex flex-col items-center gap-5 sm:gap-6 text-center">
               <h3 className="font-title-md text-title-md text-on-surface">Apa yang ingin Anda lakukan selanjutnya?</h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xl">
                 <Link 

@@ -61,13 +61,13 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
                 <span className="font-bold text-primary">{config.name}</span>
               </nav>
 
-              <div className="bg-white text-[#0F172A] border border-slate-900/10 rounded-[24px] p-6 lg:p-8 shadow-[0_10px_30px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
-                <div className="space-y-4 max-w-3xl">
+              <div className="bg-white text-[#0F172A] border border-slate-900/10 rounded-[20px] sm:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_10px_30px_rgba(15,23,42,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
+                <div className="space-y-3 sm:space-y-4 max-w-3xl">
                   <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-md font-bold text-xs uppercase tracking-widest">
                     <Icon className="text-[16px]" name="verified" />
                     Pintu Resmi Delegasi
                   </span>
-                  <h1 className="text-3xl md:text-4xl font-extrabold text-on-background tracking-tight">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-on-background tracking-tight">
                     Formulir Pendaftaran {config.name}
                   </h1>
                   <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-2xl">
@@ -76,13 +76,13 @@ export default function RegistrationPage({ config }: RegistrationPageProps) {
                   </p>
                 </div>
 
-                <div className="shrink-0 bg-[#F8FAFC] text-[#0F172A] border border-slate-900/10 px-6 py-4 rounded-[16px] flex items-center gap-4 shadow-sm hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all">
+                <div className="shrink-0 w-full md:w-auto bg-[#F8FAFC] text-[#0F172A] border border-slate-900/10 px-5 sm:px-6 py-3.5 sm:py-4 rounded-[16px] flex items-center justify-between md:justify-start gap-4 shadow-sm hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all">
                   <Icon className="text-secondary text-[28px]" name="hourglass_top" />
                   <div className="text-right">
                     <div className="text-[11px] font-bold text-secondary uppercase tracking-widest mb-1">
                       Batas Akhir Registrasi
                     </div>
-                    <div className="text-lg font-bold text-[#003772]">
+                    <div className="text-base sm:text-lg font-bold text-[#003772]">
                       {eventConfig.registrationDeadline}
                     </div>
                   </div>

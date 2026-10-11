@@ -139,8 +139,9 @@ export default function AdminLayout() {
             
             {/* Mobile close button */}
             <button 
-              className="md:hidden w-8 h-8 flex items-center justify-center text-outline hover:bg-surface-container rounded-full"
+              className="md:hidden w-10 h-10 flex items-center justify-center text-outline hover:bg-surface-container rounded-full"
               onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Tutup menu navigasi"
             >
               <MaterialIcon name="close" />
             </button>
@@ -213,10 +214,11 @@ export default function AdminLayout() {
         <header className="sticky top-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-30 flex items-center justify-between px-4 md:px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)] shrink-0">
           <div className="flex items-center gap-3">
             <button 
-              className="md:hidden w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container"
+              className="md:hidden w-11 h-11 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Buka menu navigasi admin"
             >
-              <MaterialIcon name="menu" />
+              <MaterialIcon name="menu" className="text-[24px]" />
             </button>
             <div className="relative w-full max-w-md hidden sm:block">
               <MaterialIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]" />

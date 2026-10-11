@@ -25,11 +25,10 @@ export default function SectionHeading({
       <span className={`inline-flex items-center text-[14px] font-bold tracking-[0.1em] uppercase border px-3 py-1.5 rounded mb-3 md:mb-4 ${badgeClassName}`}>
         {badge}
       </span>
-      <h2 className={`text-[32px] md:text-[40px] font-extrabold tracking-tight leading-[1.15] mb-4 md:mb-5 ${titleClassName}`}>
+      <h2 className={`text-[26px] sm:text-[32px] md:text-[40px] font-extrabold tracking-tight leading-[1.2] sm:leading-[1.15] mb-3 md:mb-5 ${titleClassName}`}>
         {title}
       </h2>
-      {description ? <p className={`text-[16px] md:text-[18px] ${descriptionClassName} leading-relaxed max-w-xl ${isCenter ? 'mx-auto' : ''}`}>{description}</p> : null}
+      {description ? <p className={`text-[15px] sm:text-[16px] md:text-[18px] ${descriptionClassName} leading-relaxed max-w-xl ${isCenter ? 'mx-auto' : ''}`}>{description}</p> : null}
     </Reveal>
   )
 }
-
