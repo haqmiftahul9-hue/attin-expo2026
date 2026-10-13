@@ -13,6 +13,9 @@ export function calculateDynamicFee(config: RegistrationConfig | undefined, valu
     const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
     if (pa) count++
     if (pi) count++
+  } else if (config.slug === 'kolase') {
+    // Kolase: 1 kolase = 1 anak + 1 orang tua = 1 biaya
+    count = 1
   } else {
     const lines = (typeof values.nama_lengkap === 'string' ? values.nama_lengkap : '')
       .split('\n')

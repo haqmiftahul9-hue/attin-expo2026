@@ -140,7 +140,7 @@ export const kolase: RegistrationConfig = {
   categories: [],
   specificFields: [],
   fee: COMPETITION_FEES.kolase,
-  feeNote: 'Biaya pendaftaran per orang',
+  feeNote: 'Biaya pendaftaran per kolase (1 anak + 1 orang tua)',
   quota: placeholders.quota,
   bank: {
     name: placeholders.bank,

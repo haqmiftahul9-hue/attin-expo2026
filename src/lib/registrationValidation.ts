@@ -13,7 +13,6 @@ export const ERROR_MESSAGES = {
   fileType: 'Format berkas harus PDF, JPG, JPEG, atau PNG.',
   fileSize: 'Ukuran berkas maksimal 10 MB.',
   consent: 'Centang seluruh pernyataan sebelum mengirim.',
-  specific: 'Pilih salah satu opsi yang tersedia.',
 } as const
 
 export function isBlank(value: FormValues[string] | undefined): boolean {
@@ -101,14 +100,20 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
   }
 
 
-
   if (!isBlank(values.nohp_pendamping) && typeof values.nohp_pendamping === 'string' && !isValidPhone(values.nohp_pendamping)) {
     errors.nohp_pendamping = ERROR_MESSAGES.phone
   }
 
+  // Validasi kategori (dari config.categories) - wajib dipilih jika ada opsi
+  if (config.categories.length > 0 && config.categoryFieldName) {
+    if (isBlank(values[config.categoryFieldName])) {
+      errors[config.categoryFieldName] = 'Pilih salah satu opsi yang tersedia.'
+    }
+  }
+
   for (const specificField of config.specificFields) {
     if (isBlank(values[specificField.name])) {
-      errors[specificField.name] = ERROR_MESSAGES.specific
+      errors[specificField.name] = 'Pilih salah satu opsi yang tersedia.'
     }
   }
 

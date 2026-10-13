@@ -65,7 +65,7 @@ export default function AdminPendaftaranDetail() {
             <div className="space-y-2">
               <p><span className="text-slate-500">Kode:</span> {row.registration_code}</p>
               <p><span className="text-slate-500">Cabang:</span> {config.name}</p>
-              <p><span className="text-slate-500">Kategori:</span> {row.category || (row.specific_data && Object.values(row.specific_data)[0]) || 'Umum'}</p>
+              <p><span className="text-slate-500">Kategori:</span> {row.category || (row.specific_data && (row.specific_data.kategori_olimpiade || Object.values(row.specific_data)[0])) || 'Umum'}</p>
               <p><span className="text-slate-500">Waktu:</span> {row.created_at ? new Date(row.created_at).toLocaleString('id-ID') : '-'}</p>
             </div>
           </div>
