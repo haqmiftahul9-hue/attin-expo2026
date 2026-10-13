@@ -42,9 +42,9 @@ export const site = {
   name: 'ATTIN EXPO XII',
   edition: 'Sumatera Barat 2026',
   editionBadge: 'EDISI KE-12 • TAHUN 2026',
-  tagline: 'Ajang Prestasi, Dakwah, dan Sportivitas Islami Jenjang SD/MI Se-Sumatera Barat',
+  tagline: 'Ajang Prestasi, Dakwah, Pameran, Berbagi, dan Sportivitas Islami Jenjang SD/MI Se-Sumatera Barat',
   description:
-    'Wadah kompetisi bergengsi tingkat provinsi Sumatera Barat yang melahirkan generasi Qur’ani yang berkarakter, tangguh, dan unggul dalam bidang Lomba Tahfizh, Pra-TKA, serta Lomba Panahan.',
+    'Wadah kompetisi, pameran, dan berbagi tingkat provinsi Sumatera Barat yang melahirkan generasi Qur’ani yang berkarakter, tangguh, dan unggul dalam bidang Lomba Tahfizh, Pra-TKA, Panahan, serta Kolase Anak dan Orang Tua.',
   announcement:
     'Pendaftaran ATTIN EXPO XII 2026 Segera Dibuka untuk Jenjang SD/MI Se-Sumatera Barat! Unduh Panduan Teknis & Juknis Lomba Sekarang.',
   logo: 'https://lh3.googleusercontent.com/aida/AEtjO1WX7YTrO8CV1UppMiNE1FdhYJW24RvGFXf8GjjYm8SHSmFeY5DfmwQmkKWMfqrs9Fb3i5GuW7pamTFzCO0XxP3N-Tv51z9FhagIHuj8aaQVkwzKV4qTgKxaCsBd2Isy2y6n_b_CkNqa7Lc9sezBW208KSBbt1lOcMNJsiXAwdeOsJlRub7p-BI5rVZttRf6LKcc9juU9sGHrZ9fobAphXdvp0ZcMBhoGZTIbgb-sKPW5mWoDvunvXmuOzE/',
@@ -96,7 +96,7 @@ export const site = {
     account: PLACEHOLDER.bankAccount,
   },
   footerDescription:
-    'Ajang Prestasi, Dakwah, dan Kreativitas Islami Jenjang SD/MI Tingkat Provinsi Sumatera Barat. Mengukir Generasi Beradab, Cerdas, dan Berjiwa Qur’ani.',
+    'Ajang Prestasi, Dakwah, Pameran, Berbagi, dan Kreativitas Islami Jenjang SD/MI Tingkat Provinsi Sumatera Barat. Mengukir Generasi Beradab, Cerdas, dan Berjiwa Qur’ani.',
   copyright:
     '© 2026 ATTIN EXPO XII. Hak Cipta Dilindungi.',
 }

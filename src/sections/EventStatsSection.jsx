@@ -2,16 +2,16 @@ import Reveal from '../components/Reveal.jsx'
 
 const statsData = [
   {
-    number: '03',
-    label: 'Cabang Lomba',
-    description: 'Tahfizh, Pra-TKA & Panahan',
-    badge: 'KOMPETISI',
+    number: '18',
+    label: 'Pameran',
+    description: 'Pameran Karya Kolase, Kreatifitas & Prestasi',
+    badge: 'PAMERAN',
   },
   {
-    number: '19',
-    label: 'Kabupaten / Kota',
-    description: 'Wilayah Sumatera Barat',
-    badge: 'CAKUPAN',
+    number: '4',
+    label: 'Cabang Lomba',
+    description: 'Tahfizh, Olimpiade, Panahan & Kolase',
+    badge: 'CABANG LOMBA',
   },
   {
     number: '10+',

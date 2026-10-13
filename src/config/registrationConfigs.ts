@@ -16,8 +16,9 @@ export const eventConfig = {
 
 export const COMPETITION_FEES = {
   tahfizh: 35000,
-  'pra-tka': 25000,
+  olimpiade: 35000,
   panahan: 65000,
+  kolase: 20000,
 }
 
 
@@ -53,24 +54,28 @@ export const tahfizh: RegistrationConfig = {
   },
 }
 
-export const praTka: RegistrationConfig = {
-  slug: 'pra-tka',
-  competitionId: 'comp-pra-tka',
-  name: 'Lomba Pra-TKA',
-  fullName: 'Lomba Pra-TKA',
-  tagline: 'Ujian kemampuan TKA tingkat SD dengan soal-soal Pra-TKA dengan materi Matematika (Numerasi dan Logika) dan Bahasa Indonesia (Literasi Membaca dan Pemahaman).',
-  icon: 'psychology',
+export const olimpiade: RegistrationConfig = {
+  slug: 'olimpiade',
+  competitionId: 'comp-olimpiade',
+  name: 'Olimpiade SD/MI',
+  fullName: 'Olimpiade Matematika, IPA, dan IPS',
+  tagline: 'Olimpiade Matematika, IPA, dan IPS untuk siswa kelas 3, 4, dan 5 SD/MI sederajat mengasah penalaran logika, pemahaman konsep, dan ketrampilan proses sains.',
+  icon: 'school',
   iconClassName: 'bg-tertiary-fixed text-tertiary',
-  codePrefix: 'ATXII-PTK',
-  level: 'Kelas 1-6 SD/MI Sederajat',
-  categoryLabel: 'Lomba Pra-TKA',
-  categoryHelper: ' Rujuk Buku Juknis Bab IV untuk rincian materi.',
-  categoryFieldName: 'kategori_pra_tka',
-  categoryPlaceholder: '[PILIH FORMAT PRA-TKA]',
-  categories: [],
+  codePrefix: 'ATXII-OLP',
+  level: 'Kelas 3, 4, dan 5 SD/MI Sederajat',
+  categoryLabel: 'Mata Pelajaran Olimpiade',
+  categoryHelper: 'Peserta memilih satu mata pelajaran: Matematika, IPA, atau IPS.',
+  categoryFieldName: 'kategori_olimpiade',
+  categoryPlaceholder: '[PILIH MATA PELAJARAN OLIMPIADE]',
+  categories: [
+    { value: 'matematika', label: 'Matematika' },
+    { value: 'ipa', label: 'IPA' },
+    { value: 'ips', label: 'IPS' },
+  ],
   specificFields: [],
-  fee: COMPETITION_FEES['pra-tka'],
-  feeNote: 'Biaya pendaftaran per orang (Rp 75.000 untuk format beregu/3 orang)',
+  fee: COMPETITION_FEES.olimpiade,
+  feeNote: 'Biaya pendaftaran per orang',
   quota: placeholders.quota,
   bank: {
     name: placeholders.bank,
@@ -92,7 +97,7 @@ export const panahan: RegistrationConfig = {
   fullName: 'Lomba Panahan',
   tagline: 'Lomba Panahan melatih ketenangan batin, ketepatan bidikan, fokus mental, dan adab sportivitas sunnah nabi.',
   icon: 'track_changes',
-  iconClassName: 'bg-secondary-fixed text-secondary',
+  iconClassName: 'bg-secondary-fixed text-on-secondary',
   codePrefix: 'ATXII-PNH',
   level: 'Siswa Kelas 1-6 SD/MI Sederajat se-SUMBAR',
   categoryLabel: 'Kategori Usia & Jarak Panahan',
@@ -117,10 +122,44 @@ export const panahan: RegistrationConfig = {
   },
 }
 
+export const kolase: RegistrationConfig = {
+  slug: 'kolase',
+  competitionId: 'comp-kolase',
+  name: 'Lomba Kolase Anak dan Orang Tua',
+  fullName: 'Lomba Kolase Anak dan Orang Tua',
+  tagline:
+    'Lomba Kolase Anak dan Orang Tua mengajak anak TK/PAUD bekerja sama dengan orang tuanya menciptakan karya kolase yang menggambarkan nilai-nilai Islam dan estetika seni kreatif secara sportif.',
+  icon: 'diversity_3',
+  iconClassName: 'bg-amber-50 text-amber-900',
+  codePrefix: 'ATXII-KLS',
+  level: 'TK/PAUD — Kota Pariaman & Kabupaten Padang Pariaman',
+  categoryLabel: 'Partisipasi Kolase',
+  categoryHelper: 'Satu kolase dilakukan oleh satu anak didampingi orang tuanya secara bersama.',
+  categoryFieldName: 'kategori_kolase',
+  categoryPlaceholder: '[KATEGORI KOLASE]',
+  categories: [],
+  specificFields: [],
+  fee: COMPETITION_FEES.kolase,
+  feeNote: 'Biaya pendaftaran per orang',
+  quota: placeholders.quota,
+  bank: {
+    name: placeholders.bank,
+    accountNumber: placeholders.bankAccountNumber,
+    accountHolder: placeholders.bankAccountName,
+  },
+  contact: {
+    person: 'Panitia ATTIN EXPO',
+    whatsapp: '08995892898',
+    whatsappHref: 'https://wa.me/628995892898',
+    email: placeholders.email,
+  },
+}
+
 export const registrationConfigs: Record<CompetitionSlug, RegistrationConfig> = {
   tahfizh,
-  'pra-tka': praTka,
+  olimpiade,
   panahan,
+  kolase,
 }
 
 export const defaultConfig = tahfizh

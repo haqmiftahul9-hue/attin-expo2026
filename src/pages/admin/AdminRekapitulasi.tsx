@@ -15,8 +15,8 @@ function getCategoryDisplay(row: RegistrationRow): string {
     return row.category
   }
   if (row.specific_data) {
-    if (row.competition_slug === 'pra-tka' && row.specific_data.kategori_pra_tka) {
-      return row.specific_data.kategori_pra_tka
+    if (row.competition_slug === 'olimpiade' && row.specific_data.kategori_olimpiade) {
+      return row.specific_data.kategori_olimpiade
     }
     if (row.competition_slug === 'panahan' && row.specific_data.kategori_panahan) {
       return row.specific_data.kategori_panahan
@@ -50,7 +50,7 @@ function parseParticipants(row: RegistrationRow): { name: string; type?: 'Putra'
     return list.length > 0 ? list : [{ name: row.participant_name || '-', type: 'Peserta' }]
   }
 
-  // Pra-TKA dan Panahan: dipisahkan dengan newline
+  // Olimpiade dan Panahan: dipisahkan dengan newline
   const names = (row.participant_name || '')
     .split('\n')
     .map((n) => n.trim())
@@ -238,17 +238,20 @@ export default function AdminRekapitulasi() {
 
     if (filterSlug === 'all') {
       const tahfizh = registrations.filter((r) => r.competition_slug === 'tahfizh')
-      const pratka = registrations.filter((r) => r.competition_slug === 'pra-tka')
+      const olimpiade = registrations.filter((r) => r.competition_slug === 'olimpiade')
       const panahan = registrations.filter((r) => r.competition_slug === 'panahan')
+      const kolase = registrations.filter((r) => r.competition_slug === 'kolase')
 
       processSheet(tahfizh, 'Tahfizh')
-      processSheet(pratka, 'Pra-TKA')
+      processSheet(olimpiade, 'Olimpiade')
       processSheet(panahan, 'Panahan')
+      processSheet(kolase, 'Kolase')
     } else {
       let sheetName = 'Rekap Pendaftaran'
       if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
-      if (filterSlug === 'pra-tka') sheetName = 'Pra-TKA'
+      if (filterSlug === 'olimpiade') sheetName = 'Olimpiade'
       if (filterSlug === 'panahan') sheetName = 'Panahan'
+      if (filterSlug === 'kolase') sheetName = 'Kolase'
       processSheet(filteredRegistrations, sheetName)
     }
 
@@ -496,9 +499,10 @@ export default function AdminRekapitulasi() {
                 className="appearance-none bg-white border border-[#CBD5E1] text-[#0F172A] py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] cursor-pointer transition-all shadow-sm"
               >
                 <option value="all">Semua Cabang Lomba</option>
-                <option value="tahfizh">Lomba Tahfizh</option>
-                <option value="pra-tka">Lomba Pra-TKA</option>
-                <option value="panahan">Lomba Panahan</option>
+<option value="tahfizh">Lomba Tahfizh</option>
+                 <option value="olimpiade">Olimpiade SD</option>
+                 <option value="panahan">Lomba Panahan</option>
+                 <option value="kolase">Lomba Kolase</option>
               </select>
               <MaterialIcon
                 name="expand_more"
@@ -631,8 +635,10 @@ export default function AdminRekapitulasi() {
                             className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-bold ${
                               row.competition_slug === 'tahfizh'
                                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                : row.competition_slug === 'pra-tka'
+                                : row.competition_slug === 'olimpiade'
                                 ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                : row.competition_slug === 'kolase'
+                                ? 'bg-teal-50 text-teal-700 border border-teal-200'
                                 : 'bg-blue-50 text-blue-700 border border-blue-200'
                             }`}
                           >

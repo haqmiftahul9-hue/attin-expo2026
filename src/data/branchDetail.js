@@ -280,11 +280,11 @@ export const branchDetails = {
     },
   },
 
-  'pra-tka': {
-    slug: 'pra-tka',
-    breadcrumb: 'Pra-TKA',
+  olimpiade: {
+    slug: 'olimpiade',
+    breadcrumb: 'Olimpiade',
     available: false,
-    level: 'Tingkat SD/MI se-Sumatera Barat',
+    level: 'Kelas 3, 4, 5 SD/MI',
   },
 
   panahan: {
@@ -304,13 +304,13 @@ export function getBranchDetail(slug) {
 /** Kartu "Lihat Cabang Lainnya" pada halaman detail. */
 export const relatedBranches = [
   {
-    slug: 'pra-tka',
-    title: 'Lomba Pra-TKA',
+    slug: 'olimpiade',
+    title: 'Olimpiade Matematika, IPA, IPS',
     badge: 'Akademik',
     badgeTone: 'primary',
-    level: 'SD / MI',
-    body: 'Uji kemampuan literasi, numerasi, dan penalaran logika tingkat dasar se-Sumatera Barat untuk mengukur kesiapan akademik unggul.',
-    tags: ['Format Individu', 'Sumatera Barat'],
+    level: 'Kelas 3–5 SD/MI',
+    body: 'Olimpiade Matematika, IPA, dan IPS untuk siswa kelas 3, 4, dan 5 SD/MI sederajat mengasah penalaran logika, pemahaman konsep, dan ketrampilan proses sains.',
+    tags: ['Matematika', 'IPA', 'IPS', 'Sumatera Barat'],
     fee: placeholders.fee,
   },
   {

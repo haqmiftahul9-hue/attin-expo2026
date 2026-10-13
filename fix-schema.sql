@@ -9,8 +9,9 @@ ALTER TABLE public.faqs ADD COLUMN IF NOT EXISTS category VARCHAR(50) DEFAULT 'g
 INSERT INTO public.competitions (slug, name, full_name, tagline, description, icon_name, fee_amount, quota, form_config)
 VALUES 
 ('tahfizh', 'Tahfizh Al-Qur''an', 'Lomba Tahfizh Al-Qur''an', 'Melahirkan Generasi Qur''ani', 'Lomba Hafalan Al-Qur''an dengan tajwid dan tartil terbaik.', 'menu_book', 150000, 100, '[{"name": "nama_pa", "label": "Nama Peserta Putra"}, {"name": "nama_pi", "label": "Nama Peserta Putri"}]'),
-('pra-tka', 'Pra-TKA', 'Lomba Pra-TKA', 'Membangun Karakter Usia Dini', 'Lomba akademik dasar untuk tingkat usia dini dan TK.', 'child_care', 100000, 50, '[]'),
-('panahan', 'Panahan', 'Lomba Panahan Tradisional', 'Melatih Fokus dan Ketangkasan', 'Kompetisi memanah tingkat dasar dengan jarak 10 meter.', 'track_changes', 120000, 80, '[]')
+('olimpiade', 'Olimpiade Matematika, IPA, dan IPS', 'Olimpiade Matematika, IPA, dan IPS', 'Mengasah Penalaran Logika dan Pemahaman Sains', 'Olimpiade Matematika, IPA, dan IPS untuk siswa kelas 3, 4, dan 5 SD/MI sederajat mengasah penalaran logika, pemahaman konsep, dan ketrampilan proses sains.', 'school', 35000, 100, '[{"name": "kategori_olimpiade", "label": "Mata Pelajaran", "options": [{"value": "matematika", "label": "Matematika"}, {"value": "ipa", "label": "IPA"}, {"value": "ips", "label": "IPS"}]}]'),
+('panahan', 'Panahan', 'Lomba Panahan Tradisional', 'Melatih Fokus dan Ketangkasan', 'Kompetisi memanah tingkat dasar dengan jarak 10 meter.', 'track_changes', 120000, 80, '[]'),
+('kolase', 'Lomba Kolase Anak dan Orang Tua', 'Lomba Kolase Anak dan Orang Tua', 'Karya kolase kolaboratif anak dan orang tua', 'Lomba Kolase Anak dan Orang Tua mengajak anak TK/PAUD bekerja sama dengan orang tuanya menciptakan karya kolase seni kreatif.', 'diversity_3', 20000, 100, '[]')
 ON CONFLICT (slug) DO NOTHING;
 
 -- 3. Pastikan bucket storage tersedia

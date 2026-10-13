@@ -2,7 +2,7 @@ import { placeholders, site } from './site.js'
 
 export const heroMetrics = [
   { label: 'Tingkat Peserta', value: 'SD/MI Se-Sumbar', valueClassName: 'text-primary' },
-  { label: 'Total Cabang', value: '3 Perlombaan', valueClassName: 'text-primary' },
+  { label: 'Total Cabang', value: '4 Perlombaan', valueClassName: 'text-primary' },
   
   { label: 'Pelaksanaan', value: site.registration.executionDate, valueClassName: 'text-primary' },
 ]
@@ -11,9 +11,9 @@ export const eventStats = [
   {
     icon: 'menu_book',
     iconClassName: 'bg-primary-container text-primary',
-    value: '3 Cabang',
+    value: '4 Cabang',
     valueClassName: 'text-primary',
-    label: 'Tahfizh, Pra-TKA & Panahan',
+    label: 'Tahfizh, Olimpiade, Panahan & Kolase',
   },
   {
     icon: 'map',
@@ -105,8 +105,8 @@ export const timeline = {
       number: '02',
       badge: 'Hari H',
       badgeClassName: 'text-secondary',
-      title: 'Pelaksanaan Lomba',
-      description: 'Seluruh cabang perlombaan (Tahfizh, Pra-TKA, Panahan) dilaksanakan secara serentak.',
+      title: 'Pelaksanaan Pameran Lomba',
+      description: 'Pelaksanaan Pameran dan seluruh cabang perlombaan (Tahfizh, Olimpiade, Panahan & Kolase) dilaksanakan secara serentak.',
       date: site.registration.executionDate,
       dateClassName: 'text-primary',
     },
@@ -165,7 +165,7 @@ export const contactCards = [
   {
     icon: 'chat',
     iconClassName: 'bg-secondary/10 text-secondary',
-    title: 'Narahubung Pra-TKA',
+    title: 'Narahubung Olimpiade',
     caption: 'Ustadzah Tazkia',
     value: '0821-7079-0896',
     cta: 'Hubungi WA',

@@ -19,10 +19,6 @@ export function calculateDynamicFee(config: RegistrationConfig | undefined, valu
       .map((s) => s.trim())
       .filter((s) => s.length > 0)
     count = lines.length
-
-    if (config.slug === 'pra-tka' && values[config.categoryFieldName] === 'pra-tka-beregu') {
-      unitFee = unitFee * 3
-    }
   }
 
   const safeCount = Math.max(0, count)
@@ -30,12 +26,7 @@ export function calculateDynamicFee(config: RegistrationConfig | undefined, valu
 
   const formatIdr = (num: number) => new Intl.NumberFormat('id-ID').format(num)
 
-  let label = `${safeCount} Peserta`
-  if (config.slug === 'pra-tka' && values[config.categoryFieldName] === 'pra-tka-beregu') {
-    label = `${safeCount} Regu (Rp${formatIdr(unitFee)}/regu)`
-  } else {
-    label = `${safeCount} Peserta (Rp${formatIdr(unitFee)}/orang)`
-  }
+  let label = `${safeCount} Peserta (Rp${formatIdr(unitFee)}/orang)`
 
   return {
     amount: `Rp${formatIdr(totalFee)}`,

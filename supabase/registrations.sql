@@ -14,7 +14,7 @@ create table if not exists public.registrations (
   id uuid primary key default gen_random_uuid(),
   registration_code text not null unique,
   competition_id text not null,
-  competition_slug text not null check (competition_slug in ('tahfizh', 'pra-tka', 'panahan')),
+  competition_slug text not null check (competition_slug in ('tahfizh', 'olimpiade', 'panahan', 'kolase')),
   participant_name text not null,
   nickname text not null default '',
   gender text check (gender in ('Laki-laki', 'Perempuan')),
@@ -35,7 +35,7 @@ create table if not exists public.registrations (
   updated_at timestamptz not null default now()
 );
 
--- Filter dashboard admin: semua pendaftaran / Tahfizh / Pra-TKA / Panahan
+-- Filter dashboard admin: semua pendaftaran / Tahfizh / Olimpiade / Panahan / Kolase
 create index if not exists registrations_competition_slug_idx on public.registrations (competition_slug);
 create index if not exists registrations_competition_id_idx on public.registrations (competition_id);
 create index if not exists registrations_created_at_idx on public.registrations (created_at desc);

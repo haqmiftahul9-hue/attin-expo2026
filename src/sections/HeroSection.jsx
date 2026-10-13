@@ -90,19 +90,19 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Back Card 2 (Pra-TKA) */}
+              {/* Back Card 2 (Olimpiade) */}
               <div className="hidden md:block absolute -right-8 top-2 w-[280px] rotate-[3deg] scale-[0.85] opacity-90 hover:opacity-100 hover:scale-[0.92] hover:z-30 transition-all duration-500 z-0 rounded-[20px] border border-white/30 bg-white/85 backdrop-blur-[12px] p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] select-none">
                 <div className="flex items-center justify-between border-b border-slate-200/60 pb-3 mb-3">
-                  <span className="text-[14px] font-bold tracking-[0.12em] uppercase text-[#0057B8]">Tingkat TK/PAUD</span>
-                  <span className="text-[14px] font-bold text-slate-600 uppercase">Pra-TKA</span>
+                  <span className="text-[14px] font-bold tracking-[0.12em] uppercase text-[#0057B8]">Tingkat SD/MI</span>
+                  <span className="text-[14px] font-bold text-slate-600 uppercase">Olimpiade</span>
                 </div>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-[#0057B8]/10 text-[#0057B8] flex items-center justify-center">
-                    <MaterialIcon name="child_care" className="text-[20px]" />
+                    <MaterialIcon name="school" className="text-[20px]" />
                   </div>
                   <div className="text-left">
-                    <h3 className="text-[15px] font-bold text-[#0F172A]">Pra-TKA</h3>
-                    <p className="text-[14px] text-slate-600">Tes Kompetensi Awal</p>
+                    <h3 className="text-[15px] font-bold text-[#0F172A]">Olimpiade SD</h3>
+                    <p className="text-[14px] text-slate-600">Matematika, IPA, IPS</p>
                   </div>
                 </div>
                 <div className="space-y-2">
