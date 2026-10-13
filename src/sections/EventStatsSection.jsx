@@ -4,7 +4,7 @@ const statsData = [
   {
     number: '18',
     label: 'Pameran',
-    description: 'Pameran Karya Kolase, Kreatifitas & Prestasi',
+    description: 'Pameran SDIT Attin dengan berbagai keunggulan dan prestasi.',
     badge: 'PAMERAN',
   },
   {
