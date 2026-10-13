@@ -37,7 +37,7 @@ export default function SchoolSection({ form }: { form: RegistrationFormApi }) {
             id={fieldId('nama_sekolah')}
             name="nama_sekolah"
             onChange={(event) => setValue('nama_sekolah', event.target.value)}
-            placeholder="Contoh: SDIT ATTIN Sumbar"
+            placeholder={form.config.slug === 'kolase' ? 'Contoh: TK IT Attin Sumbar' : 'Contoh: SDIT ATTIN Sumbar'}
             type="text"
             value={valueFor('nama_sekolah')}
           />

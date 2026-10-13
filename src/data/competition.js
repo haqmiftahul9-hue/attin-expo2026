@@ -1,12 +1,6 @@
 import { placeholders } from './site.js'
 
 /**
- * Tiga cabang lomba resmi ATTIN EXPO XII 2026.
- * `details` selalu berisi tiga baris: nilai warna diturunkan dari indeks
- * (on-surface → primary → secondary) sesuai desain asli.
- * `available: true` berarti halaman detail cabang sudah tersedia di router.
- */
-/**
  * Empat cabang lomba resmi ATTIN EXPO XII 2026.
  * `details` selalu berisi tiga baris: nilai warna diturunkan dari indeks
  * (on-surface → primary → secondary) sesuai desain asli.
@@ -83,7 +77,7 @@ export const competitions = [
     shortTitle: 'Lomba Kolase',
     description:
       'Lomba Kolase Anak dan Orang Tua mengajak anak TK/PAUD bekerja sama dengan orang tuanya menciptakan karya kolase yang menggambarkan nilai-nilai Islam dan estetika seni kreatif secara sportif.',
-    details: ['Rp. 20.000 per orang'],
+    details: ['Rp. 20.000 per kolase'],
   },
 ]
 

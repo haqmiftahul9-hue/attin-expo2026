@@ -1,0 +1,15 @@
+﻿===== TAHFIZH =====
+awal: {"jumlahPeserta":"Jumlah Peserta0 Peserta","totalBiaya":"Rp0","totalLabel":"0 Peserta (Rp35.000/orang)","jumlahInputNama":0}
+setelah Pa: {"jumlahPeserta":"Jumlah Peserta1 Peserta","totalBiaya":"Rp35.000","totalLabel":"1 Peserta (Rp35.000/orang)","jumlahInputNama":0}
+setelah Pa+Pi: {"jumlahPeserta":"Jumlah Peserta2 Peserta","totalBiaya":"Rp70.000","totalLabel":"2 Peserta (Rp35.000/orang)","jumlahInputNama":0}
+===== PANAHAN =====
+awal: {"jumlahPeserta":null,"totalBiaya":null,"totalLabel":null,"jumlahInputNama":0}
+setelah 3 nama: {"jumlahPeserta":"Jumlah Peserta3 Peserta","totalBiaya":"Rp195.000","totalLabel":"3 Peserta (Rp65.000/orang)","jumlahInputNama":3}
+===== KOLASE =====
+awal: {"jumlahPeserta":"Jumlah Peserta0 Peserta","totalBiaya":"Rp0","totalLabel":"0 Peserta (Rp20.000/kolase)","jumlahInputNama":1}
+setelah 1 nama: {"jumlahPeserta":"Jumlah Peserta1 Peserta","totalBiaya":"Rp20.000","totalLabel":"1 Peserta (Rp20.000/kolase)","jumlahInputNama":1}
+setelah 2 nama: {"jumlahPeserta":"Jumlah Peserta2 Peserta","totalBiaya":"Rp40.000","totalLabel":"2 Peserta (Rp20.000/kolase)","jumlahInputNama":2}
+setelah 3 nama: {"jumlahPeserta":"Jumlah Peserta3 Peserta","totalBiaya":"Rp60.000","totalLabel":"3 Peserta (Rp20.000/kolase)","jumlahInputNama":3}
+===== OLIMPIADE (DRAF DIPULIHKAN) =====
+draf dipulihkan: {"jumlahPeserta":"Jumlah Peserta2 Peserta","totalBiaya":"Rp70.000","totalLabel":"2 Peserta (Rp35.000/orang)","jumlahInputNama":2}
+setelah tambah: {"jumlahPeserta":"Jumlah Peserta3 Peserta","totalBiaya":"Rp105.000","totalLabel":"3 Peserta (Rp35.000/orang)","jumlahInputNama":3}

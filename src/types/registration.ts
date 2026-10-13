@@ -46,6 +46,7 @@ export interface RegistrationConfig {
   fee: number
   feeNote: string
   quota: string
+  gradeOptions: SelectOption[]
   bank: {
     name: string
     accountNumber: string
@@ -71,6 +72,7 @@ export interface RegistrationRow {
   birth_date: string | null
   birth_place: string
   grade: string
+  grades: string
   school_name: string
   school_address: string
   city: string

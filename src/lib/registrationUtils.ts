@@ -13,10 +13,10 @@ export function calculateDynamicFee(config: RegistrationConfig | undefined, valu
     const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
     if (pa) count++
     if (pi) count++
-  } else if (config.slug === 'kolase') {
-    // Kolase: 1 kolase = 1 anak + 1 orang tua = 1 biaya
-    count = 1
   } else {
+    // Olimpiade, Panahan, dan Kolase: setiap nama yang terisi = 1 peserta.
+    // Kolase juga dihitung per nama (1 nama = 1 kolase: 1 anak + 1 orang tua)
+    // agar total biaya menyesuaikan jumlah peserta yang didaftarkan.
     const lines = (typeof values.nama_lengkap === 'string' ? values.nama_lengkap : '')
       .split('\n')
       .map((s) => s.trim())
@@ -29,7 +29,8 @@ export function calculateDynamicFee(config: RegistrationConfig | undefined, valu
 
   const formatIdr = (num: number) => new Intl.NumberFormat('id-ID').format(num)
 
-  let label = `${safeCount} Peserta (Rp${formatIdr(unitFee)}/orang)`
+  const unitLabel = config.slug === 'kolase' ? 'kolase' : 'orang'
+  let label = `${safeCount} Peserta (Rp${formatIdr(unitFee)}/${unitLabel})`
 
   return {
     amount: `Rp${formatIdr(totalFee)}`,

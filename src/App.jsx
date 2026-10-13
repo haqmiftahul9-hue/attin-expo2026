@@ -15,18 +15,6 @@ import AdminLayout from './layouts/AdminLayout.tsx'
 import AdminRekapitulasi from './pages/admin/AdminRekapitulasi.tsx'
 import { supabase } from './lib/supabaseClient.js'
 import AdminPendaftaranDetail from './pages/admin/AdminPendaftaranDetail.tsx'
-import PaymentProofModal from './components/admin/PaymentProofModal'
-
-function ProofPreviewTest() {
-  return (
-    <PaymentProofModal
-      proofPath="tahfizh/TEST-001/bukti-transfer-sample.jpg"
-      title="TEST-001"
-      subtitle="Budi Santoso • SD Negeri 1 Padang"
-      onClose={() => {}}
-    />
-  )
-}
 
 const AuthContext = createContext(null)
 
@@ -149,7 +137,6 @@ export default function App() {
 
         <Routes>
           <Route element={<HomePage />} path="/" />
-          <Route element={<ProofPreviewTest />} path="/__proof-test" />
           <Route element={<BranchDetailPage />} path="/lomba/:slug" />
           <Route element={<TahfizhRegistration />} path="/pendaftaran/tahfizh" />
           <Route element={<OlimpiadeRegistration />} path="/pendaftaran/olimpiade" />

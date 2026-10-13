@@ -111,6 +111,32 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
     }
   }
 
+  // Validasi kelas untuk setiap peserta (jika ada gradeOptions)
+  if (config.gradeOptions && config.gradeOptions.length > 0) {
+    const gradesText = typeof values.kelas_peserta === 'string' ? values.kelas_peserta : ''
+    const grades = gradesText.split('\n')
+    let participantCount = 0
+
+    if (config.slug === 'tahfizh') {
+      const pa = typeof values.nama_pa === 'string' ? values.nama_pa.trim() : ''
+      const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
+      if (pa) participantCount++
+      if (pi) participantCount++
+    } else {
+      const namesText = typeof values.nama_lengkap === 'string' ? values.nama_lengkap : ''
+      participantCount = namesText
+        .split('\n')
+        .map((n) => n.trim())
+        .filter((n) => n.length > 0).length
+    }
+
+    for (let index = 0; index < participantCount; index++) {
+      if (isBlank(grades[index])) {
+        errors[`kelas_peserta_${index}`] = 'Pilih tingkat kelas untuk peserta ini.'
+      }
+    }
+  }
+
   for (const specificField of config.specificFields) {
     if (isBlank(values[specificField.name])) {
       errors[specificField.name] = 'Pilih salah satu opsi yang tersedia.'

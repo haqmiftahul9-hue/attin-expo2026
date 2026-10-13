@@ -119,6 +119,7 @@ CREATE TABLE IF NOT EXISTS public.registrations (
     birth_date DATE,
     birth_place VARCHAR(100),
     grade VARCHAR(50),
+    grades TEXT,
     school_name VARCHAR(255) NOT NULL,
     school_address TEXT,
     city VARCHAR(100),

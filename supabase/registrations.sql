@@ -22,6 +22,7 @@ create table if not exists public.registrations (
   birth_place text not null default '',
   nisn text not null check (nisn ~ '^[0-9]{10}$'),
   grade text not null,
+  grades text not null default '',
   school_name text not null,
   school_address text not null default '',
   city text not null,

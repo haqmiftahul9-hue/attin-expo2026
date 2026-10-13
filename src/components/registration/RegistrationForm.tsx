@@ -89,6 +89,8 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
 
       const feeDetails = calculateDynamicFee(config, form.values)
       const categoryValue = textValue(form.values, config.categoryFieldName)
+      // Gabungkan kelas per peserta dengan newline separator
+      const gradesValue = textValue(form.values, 'kelas_peserta')
 
       const row: Omit<RegistrationRow, 'id' | 'created_at' | 'updated_at'> = {
         registration_code: registrationCode,
@@ -100,6 +102,7 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         birth_date: textValue(form.values, 'tanggal_lahir') || null,
         birth_place: textValue(form.values, 'tempat_lahir'),
         grade: textValue(form.values, 'kelas'),
+        grades: gradesValue,
         school_name: textValue(form.values, 'nama_sekolah'),
         school_address: textValue(form.values, 'alamat_sekolah'),
         city: '',

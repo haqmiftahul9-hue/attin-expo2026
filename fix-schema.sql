@@ -23,3 +23,4 @@ ALTER TABLE public.registrations ADD COLUMN IF NOT EXISTS category VARCHAR(100);
 ALTER TABLE public.registrations ADD COLUMN IF NOT EXISTS participant_count INT DEFAULT 1;
 ALTER TABLE public.registrations ADD COLUMN IF NOT EXISTS unit_fee INT DEFAULT 0;
 ALTER TABLE public.registrations ADD COLUMN IF NOT EXISTS total_fee INT DEFAULT 0;
+ALTER TABLE public.registrations ADD COLUMN IF NOT EXISTS grades TEXT NOT NULL DEFAULT '';

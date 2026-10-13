@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { getAllRegistrations } from '../../lib/registrationsRepository.js'
+import { getAllRegistrations, getRegistrationGrades } from '../../lib/registrationsRepository.js'
 import usePageTitle from '../../hooks/usePageTitle.js'
 import type { RegistrationRow, CompetitionSlug } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
@@ -62,6 +62,11 @@ function parseParticipants(row: RegistrationRow): { name: string; type?: 'Putra'
   }
 
   return names.map((name) => ({ name, type: 'Peserta' }))
+}
+
+// Helper mengurai tingkat kelas peserta (indeks selaras dengan parseParticipants)
+function parseGrades(row: RegistrationRow): string[] {
+  return getRegistrationGrades(row)
 }
 
 // Helper format rupiah
@@ -155,11 +160,13 @@ export default function AdminRekapitulasi() {
 
       sheetRegistrations.forEach((row) => {
         const participants = parseParticipants(row)
-        participants.forEach((p) => {
+        const grades = parseGrades(row)
+        participants.forEach((p, pIdx) => {
           expandedRows.push({
             ...row,
             expanded_name: p.name,
             expanded_type: p.type === 'Putra' ? 'Putra' : p.type === 'Putri' ? 'Putri' : '-',
+            expanded_grade: grades[pIdx] || '',
           })
         })
       })
@@ -197,6 +204,7 @@ export default function AdminRekapitulasi() {
           'Kategori Lomba': getCategoryDisplay(row),
           'Nama Peserta': row.expanded_name || '-',
           'Kategori Peserta': row.expanded_type || '-',
+          'Kelas': row.expanded_grade || '-',
           'Asal Sekolah / Madrasah': row.school_name || '-',
           'Alamat Sekolah': row.school_address || '-',
           'Guru Pendamping': row.specific_data?.guru_pendamping || '-',
@@ -222,6 +230,7 @@ export default function AdminRekapitulasi() {
         { wch: 22 }, // Kategori Lomba
         { wch: 28 }, // Nama Peserta
         { wch: 18 }, // Kategori Peserta
+        { wch: 12 }, // Kelas
         { wch: 32 }, // Asal Sekolah / Madrasah
         { wch: 38 }, // Alamat Sekolah
         { wch: 26 }, // Guru Pendamping
@@ -283,6 +292,7 @@ export default function AdminRekapitulasi() {
       'Waktu',
       'Cabang & Kategori',
       'Peserta',
+      'Kelas',
       'Asal Sekolah',
       'Pendamping & No HP',
       'Total Biaya',
@@ -305,6 +315,7 @@ export default function AdminRekapitulasi() {
         : '-'
 
       const teacherInfo = `${row.specific_data?.guru_pendamping || '-'}\n${row.specific_data?.nohp_pendamping || '-'}`
+      const gradeText = parseGrades(row).join(', ')
       const feeText = `Rp ${new Intl.NumberFormat('id-ID').format(row.total_fee || 0)}`
       const statusText =
         row.registration_status === 'verified'
@@ -319,6 +330,7 @@ export default function AdminRekapitulasi() {
         timeText,
         lombaText,
         row.participant_name,
+        gradeText,
         row.school_name,
         teacherInfo,
         feeText,
@@ -540,14 +552,15 @@ export default function AdminRekapitulasi() {
         {/* Tabel Data Rekapitulasi */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse whitespace-nowrap">
-            <thead>
+<thead>
               <tr className="bg-[#F8FAFC] border-b border-[#CBD5E1] text-[#334155] text-[12px] font-bold uppercase tracking-wider">
                 <th className="py-3.5 px-4">Kode Reg</th>
                 <th className="py-3.5 px-4">Waktu Daftar</th>
-                <th className="py-3.5 px-4">Cabang &amp; Kategori</th>
+                <th className="py-3.5 px-4">Cabang & Kategori</th>
                 <th className="py-3.5 px-4">Nama Peserta</th>
-                <th className="py-3.5 px-4">Asal Sekolah &amp; Alamat</th>
-                <th className="py-3.5 px-4">Guru Pendamping &amp; Kontak</th>
+                <th className="py-3.5 px-4">Kelas</th>
+                <th className="py-3.5 px-4">Asal Sekolah & Alamat</th>
+                <th className="py-3.5 px-4">Guru Pendamping & Kontak</th>
                 <th className="py-3.5 px-4 text-right">Infaq Total</th>
                 <th className="py-3.5 px-4 text-center">Status Berkas</th>
                 <th className="py-3.5 px-4 text-center">Status Bayar</th>
@@ -683,6 +696,26 @@ export default function AdminRekapitulasi() {
                               Total: {row.participant_count} Peserta
                             </span>
                           )}
+                        </div>
+                      </td>
+
+                      {/* 5. Kelas Peserta */}
+                      <td className="py-3.5 px-4 max-w-[140px]">
+                        <div className="space-y-1">
+                          {(() => {
+                            const grades = parseGrades(row)
+                            if (grades.length === 0) {
+                              return <span className="text-[11px] text-[#64748B]">-</span>
+                            }
+                            return grades.map((grade, idx) => (
+                              <div key={idx} className="flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                <span className="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">
+                                  {grade}
+                                </span>
+                              </div>
+                            ))
+                          })()}
                         </div>
                       </td>
 

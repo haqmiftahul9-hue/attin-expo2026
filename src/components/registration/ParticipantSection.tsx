@@ -13,10 +13,58 @@ import {
   requiredClassName,
 } from '../../lib/registrationStyles.js'
 
+/** Pemilih tingkat kelas untuk satu peserta (disimpan ke `kelas_peserta` per baris). */
+function GradeSelect({
+  form,
+  index,
+  rowLabel,
+}: {
+  form: RegistrationFormApi
+  index: number
+  rowLabel: string
+}) {
+  const { config, valueFor, setValue, errorFor, selectClassFor } = form
+  const grades = (valueFor('kelas_peserta') || '').split('\n')
+
+  return (
+    <div className="flex gap-2 items-center">
+      <span className="w-8 text-center text-slate-500 text-sm font-medium">{rowLabel}</span>
+      <div className="flex-1">
+        <label className="sr-only" htmlFor={fieldId(`kelas_peserta_${index}`)}>
+          Kelas Peserta ke-{index + 1}
+        </label>
+        <select
+          className={selectClassFor(`kelas_peserta_${index}`)}
+          id={fieldId(`kelas_peserta_${index}`)}
+          name={`kelas_peserta_${index}`}
+          onChange={(e) => {
+            const nextGrades = [...grades]
+            nextGrades[index] = e.target.value
+            setValue('kelas_peserta', nextGrades.join('\n'))
+          }}
+          value={grades[index] || ''}
+        >
+          <option value="">Pilih kelas</option>
+          {config.gradeOptions.map((grade) => (
+            <option key={grade.value} value={grade.value}>
+              {grade.label}
+            </option>
+          ))}
+        </select>
+        {errorFor(`kelas_peserta_${index}`) ? (
+          <p className={errorTextClassName}>{errorFor(`kelas_peserta_${index}`)}</p>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
 /** Tahap 2 — Biodata Peserta. */
 export default function ParticipantSection({ form }: { form: RegistrationFormApi }) {
   const { config, valueFor, setValue, errorFor, inputClassFor } = form
   const isTahfizh = config.slug === 'tahfizh'
+  const isKolase = config.slug === 'kolase'
+  const hasGrade = config.gradeOptions && config.gradeOptions.length > 0
 
   return (
     <section className={cardClassName}>
@@ -122,7 +170,35 @@ export default function ParticipantSection({ form }: { form: RegistrationFormApi
           </div>
         )}
 
-        
+        {/* Grade/Class Selection per Participant */}
+        {hasGrade && !isKolase && (
+          <div className="md:col-span-2">
+            <label className={labelClassName} htmlFor={fieldId('kelas_peserta')}>
+              Tingkat Kelas Peserta <span className={requiredClassName}>*</span>
+            </label>
+            <div className="flex flex-col gap-3 mt-2">
+              {isTahfizh ? (
+                <>
+                  {valueFor('nama_pa').trim() !== '' && (
+                    <GradeSelect form={form} index={0} rowLabel="Pa" />
+                  )}
+                  {valueFor('nama_pi').trim() !== '' && (
+                    <GradeSelect form={form} index={1} rowLabel="Pi" />
+                  )}
+                </>
+              ) : (
+                (valueFor('nama_lengkap') || '')
+                  .split('\n')
+                  .map((_, index) => (
+                    <GradeSelect key={index} form={form} index={index} rowLabel={`${index + 1}.`} />
+                  ))
+              )}
+            </div>
+            <p className={`${helperClassName} mt-3`}>
+              Pilih tingkat kelas untuk setiap peserta.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

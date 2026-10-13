@@ -323,4 +323,14 @@ export const relatedBranches = [
     tags: ['Barebow / Standard', 'Sumatera Barat'],
     fee: placeholders.fee,
   },
+  {
+    slug: 'kolase',
+    title: 'Lomba Kolase Anak dan Orang Tua',
+    badge: 'Seni Kreatif',
+    badgeTone: 'secondary',
+    level: 'TK/PAUD',
+    body: 'Lomba kolase kolaboratif anak TK/PAUD bersama orang tua di Kota Pariaman dan Kabupaten Padang Pariaman, menggambarkan nilai-nilai Islam secara kreatif.',
+    tags: ['Kolase', 'TK/PAUD', 'Pariaman'],
+    fee: placeholders.fee,
+  },
 ]

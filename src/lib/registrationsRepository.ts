@@ -58,6 +58,24 @@ export function getLastRegistration(): RegistrationRow | null {
   }
 }
 
+/**
+ * Tingkat kelas peserta per baris. Prioritas kolom `grades`; untuk baris
+ * yang tersimpan sebelum kolom tersedia, nilai dibaca dari specific_data.
+ */
+export function getRegistrationGrades(row: RegistrationRow): string[] {
+  const fromColumn = (row.grades || '')
+    .split('\n')
+    .map((g) => g.trim())
+    .filter(Boolean)
+  if (fromColumn.length > 0) return fromColumn
+
+  const fallback = row.specific_data?.kelas_peserta
+  if (typeof fallback === 'string' && fallback.trim() !== '') {
+    return fallback.split('\n').map((g) => g.trim()).filter(Boolean)
+  }
+  return []
+}
+
 function safeFileName(name: string): string {
   return name.replace(/[^a-zA-Z0-9._-]/g, '_')
 }
@@ -127,14 +145,41 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
 
   const paymentProofUrl = await uploadFile(client, row.competition_slug, row.registration_code, 'bukti-transfer', files.bukti_transfer)
 
+  const payload = { ...row, payment_proof_url: paymentProofUrl }
   const { data, error } = await client
     .from('registrations')
-    .insert({
-      ...row,
-      payment_proof_url: paymentProofUrl,
-    })
+    .insert(payload)
     .select()
     .single()
+
+  if (error && /could not find.*grades|grades.*column/i.test(error.message)) {
+    // Kolom `grades` belum tersedia di basis data (migrasi belum dijalankan).
+    // Simpan kelas peserta ke specific_data agar pendaftaran tetap tersimpan online.
+    const { grades, ...rest } = payload
+    const fallback = await client
+      .from('registrations')
+      .insert({
+        ...rest,
+        specific_data: { ...rest.specific_data, kelas_peserta: grades },
+      })
+      .select()
+      .single()
+
+    if (!fallback.error) {
+      const saved = fallback.data as RegistrationRow
+      localStorage.setItem(LAST_KEY, JSON.stringify(saved))
+      return { ok: true, registrationCode: saved.registration_code, mode: 'supabase' }
+    }
+
+    console.warn('[registrations] insert fallback gagal:', fallback.error.message)
+    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+    return {
+      ok: true,
+      registrationCode: row.registration_code,
+      mode: 'local',
+      message: 'Data disimpan di perangkat karena penyimpanan online belum berhasil.',
+    }
+  }
 
   if (error) {
     console.warn('[registrations] insert gagal:', error.message)
