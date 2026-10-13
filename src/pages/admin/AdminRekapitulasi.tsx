@@ -5,6 +5,7 @@ import usePageTitle from '../../hooks/usePageTitle.js'
 import type { RegistrationRow, CompetitionSlug } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
+import PaymentProofModal from '../../components/admin/PaymentProofModal'
 import * as XLSX from 'xlsx'
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
@@ -80,6 +81,7 @@ export default function AdminRekapitulasi() {
   const [filterStatus, setFilterStatus] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [proofPreview, setProofPreview] = useState<RegistrationRow | null>(null)
 
   const fetchData = useCallback(async () => {
     setIsLoading(true)
@@ -777,13 +779,28 @@ export default function AdminRekapitulasi() {
 
                       {/* 10. Aksi */}
                       <td className="py-3.5 px-4 text-center">
-                        <Link
-                          to={`/admin/pendaftaran/${row.registration_code}`}
-                          className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#EFF6FF] text-[#003B5C] hover:bg-[#0057B8] hover:text-white transition-all shadow-sm"
-                          title="Lihat Detail & Bukti Pembayaran"
-                        >
-                          <MaterialIcon name="visibility" className="text-[18px]" />
-                        </Link>
+                        <div className="inline-flex items-center gap-1">
+                          <button
+                            type="button"
+                            onClick={() => setProofPreview(row)}
+                            disabled={!row.payment_proof_url}
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#FFF7ED] text-[#C2410C] hover:bg-[#FFEDD5] hover:text-[#9A3412] disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm"
+                            title={
+                              row.payment_proof_url
+                                ? 'Lihat Pratinjau Bukti Pembayaran'
+                                : 'Bukti pembayaran belum diunggah'
+                            }
+                          >
+                            <MaterialIcon name="receipt_long" className="text-[18px]" />
+                          </button>
+                          <Link
+                            to={`/admin/pendaftaran/${row.registration_code}`}
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#EFF6FF] text-[#003B5C] hover:bg-[#0057B8] hover:text-white transition-all shadow-sm"
+                            title="Lihat Detail & Bukti Pembayaran"
+                          >
+                            <MaterialIcon name="visibility" className="text-[18px]" />
+                          </Link>
+                        </div>
                       </td>
                     </tr>
                   )
@@ -804,6 +821,16 @@ export default function AdminRekapitulasi() {
             <span>Data tersinkronisasi otomatis dengan basis data</span>
           </div>
         </div>
+
+        {/* Modal pratinjau bukti pembayaran */}
+        {proofPreview && (
+          <PaymentProofModal
+            proofPath={proofPreview.payment_proof_url}
+            title={proofPreview.registration_code}
+            subtitle={`${proofPreview.participant_name || '-'} • ${proofPreview.school_name || '-'}`}
+            onClose={() => setProofPreview(null)}
+          />
+        )}
       </div>
     </div>
   )

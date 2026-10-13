@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getAllRegistrations, getPaymentProofSignedUrl, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
+import { getAllRegistrations, getPaymentProofSignedUrl, proofFileKind, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
 import type { RegistrationRow } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
@@ -112,17 +112,44 @@ export default function AdminPendaftaranDetail() {
 
             <div className="border-t pt-4">
               <h4 className="font-bold text-slate-700 mb-2">Bukti Pembayaran</h4>
-              {proofUrl ? (
-                <div className="flex flex-col gap-2">
-                  <a href={proofUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg justify-center">
-                    <MaterialIcon name="visibility" /> Lihat Bukti
-                  </a>
-                  <a href={proofUrl} download className="inline-flex items-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-lg justify-center">
-                    <MaterialIcon name="download" /> Download Bukti
-                  </a>
+              {!row.payment_proof_url ? (
+                <p className="text-error bg-error-container p-3 rounded-lg text-sm text-center">Belum ada bukti pembayaran</p>
+              ) : proofUrl ? (
+                <div className="flex flex-col gap-3">
+                  {proofFileKind(row.payment_proof_url) === 'image' ? (
+                    <a
+                      href={proofUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+                      title="Klik untuk memperbesar"
+                    >
+                      <img
+                        src={proofUrl}
+                        alt={`Bukti pembayaran ${row.registration_code}`}
+                        className="w-full max-h-72 object-contain bg-slate-50 group-hover:opacity-95 transition-opacity"
+                      />
+                    </a>
+                  ) : proofFileKind(row.payment_proof_url) === 'pdf' ? (
+                    <iframe
+                      src={proofUrl}
+                      title={`Bukti pembayaran ${row.registration_code}`}
+                      className="w-full h-72 rounded-xl border border-slate-200 bg-slate-50"
+                    />
+                  ) : null}
+                  <div className="flex flex-col gap-2">
+                    <a href={proofUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg justify-center">
+                      <MaterialIcon name="visibility" /> Lihat Bukti
+                    </a>
+                    <a href={proofUrl} download className="inline-flex items-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-lg justify-center">
+                      <MaterialIcon name="download" /> Download Bukti
+                    </a>
+                  </div>
                 </div>
               ) : (
-                <p className="text-error bg-error-container p-3 rounded-lg text-sm text-center">Belum ada bukti pembayaran</p>
+                <p className="text-amber-700 bg-amber-50 p-3 rounded-lg text-sm text-center">
+                  Gagal memuat bukti pembayaran. Muat ulang halaman dan coba lagi.
+                </p>
               )}
             </div>
           </div>

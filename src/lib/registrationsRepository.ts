@@ -89,6 +89,17 @@ async function uploadFile(
   return path
 }
 
+/**
+ * Klasifikasi berkas bukti pembayaran berdasarkan ekstensi pada path.
+ * Formulir pendaftaran menerima JPG/JPEG/PNG/PDF (lihat registrationValidation).
+ */
+export function proofFileKind(path: string | null | undefined): 'image' | 'pdf' | 'unknown' {
+  const extension = (path ?? '').split('.').pop()?.toLowerCase() ?? ''
+  if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'].includes(extension)) return 'image'
+  if (extension === 'pdf') return 'pdf'
+  return 'unknown'
+}
+
 export async function getPaymentProofSignedUrl(path: string | null): Promise<string | null> {
   if (!path) return null
   const client = await getSupabaseClient()

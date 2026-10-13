@@ -27,7 +27,7 @@ export default function CompetitionSection() {
               <div
                 key={competition.id}
                 id={competition.id}
-                className="rounded-[20px] border border-slate-900/10 bg-white p-4 sm:p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group scroll-mt-32 min-h-[320px]"
+                className="rounded-[20px] border border-slate-900/10 bg-white p-4 sm:p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group scroll-mt-32"
               >
                 <div>
 

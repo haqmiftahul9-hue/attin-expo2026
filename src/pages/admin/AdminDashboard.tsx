@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import PaymentProofModal from '../../components/admin/PaymentProofModal'
 
 
 import { getAllRegistrations, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
@@ -19,7 +20,7 @@ function DummyRows() {
   )
 }
 
-function RealRow({ row, onVerifyPrompt }: { row: RegistrationRow, onVerifyPrompt: (row: RegistrationRow) => void }) {
+function RealRow({ row, onVerifyPrompt, onProofPrompt }: { row: RegistrationRow, onVerifyPrompt: (row: RegistrationRow) => void, onProofPrompt: (row: RegistrationRow) => void }) {
   const config = registrationConfigs[row.competition_slug] || {}
   
   return (
@@ -64,6 +65,14 @@ function RealRow({ row, onVerifyPrompt }: { row: RegistrationRow, onVerifyPrompt
           <a href={`/admin/pendaftaran/${row.registration_code}`} className="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container transition-colors" title="Lihat Data Pendaftar">
             <span className="material-symbols-outlined text-[18px]">visibility</span>
           </a>
+          <button
+            onClick={() => onProofPrompt(row)}
+            disabled={!row.payment_proof_url}
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:text-primary hover:bg-surface-container disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            title={row.payment_proof_url ? 'Lihat Pratinjau Bukti Pembayaran' : 'Bukti pembayaran belum diunggah'}
+          >
+            <span className="material-symbols-outlined text-[18px]">receipt_long</span>
+          </button>
           {row.registration_status === 'verified' ? (
             <button onClick={() => alert('Fitur Cetak ID Card Peserta ' + row.participant_name + ' akan segera hadir.')} className="w-8 h-8 rounded-lg flex items-center justify-center text-secondary hover:bg-secondary-fixed transition-colors" title="Cetak ID Card">
               <span className="material-symbols-outlined text-[18px]">badge</span>
@@ -84,6 +93,8 @@ export default function AdminDashboard() {
     const [registrations, setRegistrations] = useState<RegistrationRow[]>([])
 
     const [verifyRow, setVerifyRow] = useState<RegistrationRow | null>(null)
+
+    const [proofRow, setProofRow] = useState<RegistrationRow | null>(null)
 
     const handleVerifySubmit = async (status: 'verified' | 'rejected') => {
       if (!verifyRow) return;
@@ -501,7 +512,7 @@ export default function AdminDashboard() {
                     <DummyRows />
                   ) : (
                     filteredRegistrations.map((row) => (
-                      <RealRow row={row} key={row.registration_code} onVerifyPrompt={setVerifyRow} />
+                      <RealRow row={row} key={row.registration_code} onVerifyPrompt={setVerifyRow} onProofPrompt={setProofRow} />
                     ))
                   )}
                 </tbody>
@@ -551,6 +562,16 @@ export default function AdminDashboard() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Modal pratinjau bukti pembayaran */}
+      {proofRow && (
+        <PaymentProofModal
+          proofPath={proofRow.payment_proof_url}
+          title={proofRow.registration_code}
+          subtitle={`${proofRow.participant_name || '-'} • ${proofRow.school_name || '-'}`}
+          onClose={() => setProofRow(null)}
+        />
       )}
 
       </div>
