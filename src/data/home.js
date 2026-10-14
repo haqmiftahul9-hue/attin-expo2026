@@ -180,13 +180,13 @@ export const contactCards = [
     cta: 'Hubungi WA',
     href: 'https://wa.me/6281275741134'
   },
-  {
-    icon: 'mail',
-    iconClassName: 'bg-accent-mint/10 text-accent-mint',
-    title: 'Email Sekolah',
-    caption: 'Surat Menyurat & Umum',
-    value: 'attinislamicshool@gmail.com',
-    cta: 'Tulis Email',
-    href: 'mailto:attinislamicshool@gmail.com'
-  },
+    {
+      icon: 'chat',
+      iconClassName: 'bg-accent-mint/10 text-accent-mint',
+      title: 'Narahubung Kolase',
+      caption: 'Ustadzah Rahayu',
+      value: '0852-6581-7460',
+      cta: 'Hubungi WA',
+      href: 'https://wa.me/6285265817460'
+    },
 ]
