@@ -41,7 +41,7 @@ export const eventStats = [
 export const about = {
   badge: 'TENTANG KAMI',
   title: 'Membangun Karakter Generasi Emas yang Berakhlak dan Berprestasi',
-  body: 'ATTIN EXPO XII 2026 merupakan kelanjutan dari komitmen dakwah dan pendidikan Islam yang telah berjalan selama 12 edisi di Sumatera Barat. Kami mendedikasikan panggung ini bagi siswa jenjang SD/MI untuk mengekspresikan bakat keagamaan, menguji hafalan Al-Qur’an, serta melatih konsentrasi dan sportivitas fisik melalui panahan.',
+  body: 'ATTIN EXPO XII 2026 merupakan kelanjutan dari komitmen dakwah dan pendidikan Islam yang telah berjalan selama 12 edisi di Sumatera Barat. Kami mendedikasikan panggung ini bagi siswa jenjang SD/MI dan SMP/MTsuntuk mengekspresikan bakat keagamaan, menguji hafalan Al-Qur’an, serta melatih konsentrasi dan sportivitas fisik melalui panahan.',
   points: [
     {
       icon: 'auto_stories',
