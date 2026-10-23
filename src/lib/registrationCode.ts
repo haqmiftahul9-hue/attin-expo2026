@@ -4,7 +4,7 @@
  */
 
 const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-const SUFFIX_LENGTH = 4
+const SUFFIX_LENGTH = 6
 
 function randomSuffix(length: number): string {
   const bytes = new Uint8Array(length)

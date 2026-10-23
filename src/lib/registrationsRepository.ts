@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient.js'
+import { generateRegistrationCode } from './registrationCode.js'
 import type { RegistrationRow, SaveRegistrationResult } from '../types/registration.js'
 
 /**
@@ -135,7 +136,8 @@ export async function getPaymentProofSignedUrl(path: string | null): Promise<str
 }
 
 export async function saveRegistration(input: SaveRegistrationInput): Promise<SaveRegistrationResult> {
-  const { row, files } = input
+  const { files } = input
+  let row = input.row
   const client = await getSupabaseClient()
 
   if (!client) {
@@ -143,59 +145,75 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
     return { ok: true, registrationCode: row.registration_code, mode: 'local' }
   }
 
-  const paymentProofUrl = await uploadFile(client, row.competition_slug, row.registration_code, 'bukti-transfer', files.bukti_transfer)
+  const MAX_ATTEMPTS = 3
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    const paymentProofUrl = await uploadFile(client, row.competition_slug, row.registration_code, 'bukti-transfer', files.bukti_transfer)
 
-  const payload = { ...row, payment_proof_url: paymentProofUrl }
-  const { data, error } = await client
-    .from('registrations')
-    .insert(payload)
-    .select()
-    .single()
-
-  if (error && /could not find.*grades|grades.*column/i.test(error.message)) {
-    // Kolom `grades` belum tersedia di basis data (migrasi belum dijalankan).
-    // Simpan kelas peserta ke specific_data agar pendaftaran tetap tersimpan online.
-    const { grades, ...rest } = payload
-    const fallback = await client
+    const payload = { ...row, payment_proof_url: paymentProofUrl }
+    const { data, error } = await client
       .from('registrations')
-      .insert({
-        ...rest,
-        specific_data: { ...rest.specific_data, kelas_peserta: grades },
-      })
+      .insert(payload)
       .select()
       .single()
 
-    if (!fallback.error) {
-      const saved = fallback.data as RegistrationRow
+    if (!error) {
+      const saved = data as RegistrationRow
       localStorage.setItem(LAST_KEY, JSON.stringify(saved))
       return { ok: true, registrationCode: saved.registration_code, mode: 'supabase' }
     }
 
-    console.warn('[registrations] insert fallback gagal:', fallback.error.message)
-    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
-    return {
-      ok: true,
-      registrationCode: row.registration_code,
-      mode: 'local',
-      message: 'Data disimpan di perangkat karena penyimpanan online belum berhasil.',
+    // Kolom `grades` belum tersedia di basis data (migrasi belum dijalankan):
+    // simpan kelas peserta ke specific_data agar pendaftaran tetap tersimpan online.
+    if (/could not find.*grades|grades.*column/i.test(error.message)) {
+      const { grades, ...rest } = payload
+      const fallback = await client
+        .from('registrations')
+        .insert({
+          ...rest,
+          specific_data: { ...rest.specific_data, kelas_peserta: grades },
+        })
+        .select()
+        .single()
+
+      if (!fallback.error) {
+        const saved = fallback.data as RegistrationRow
+        localStorage.setItem(LAST_KEY, JSON.stringify(saved))
+        return { ok: true, registrationCode: saved.registration_code, mode: 'supabase' }
+      }
+
+      // Jika fallback juga gagal karena kode duplikat, coba kode baru.
+      if (!isUniqueViolation(fallback.error)) {
+        console.warn('[registrations] insert fallback gagal:', fallback.error.message)
+        break
+      }
+    } else if (!isUniqueViolation(error)) {
+      console.warn('[registrations] insert gagal:', error.message)
+      break
+    }
+
+    // Kode registrasi duplikat (race condition / benturan waktu): buat kode baru lalu ulangi.
+    if (attempt < MAX_ATTEMPTS - 1) {
+      const prefix = row.registration_code.split('-').slice(0, 2).join('-')
+      row = { ...row, registration_code: generateRegistrationCode(prefix) }
+      continue
     }
   }
 
-  if (error) {
-    console.warn('[registrations] insert gagal:', error.message)
-    saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
-    return {
-      ok: true,
-      registrationCode: row.registration_code,
-      mode: 'local',
-      message: 'Data disimpan di perangkat karena penyimpanan online belum berhasil.',
-    }
+  // Semua percobaan gagal: simpan lokal agar data tidak hilang.
+  saveRegistrationLocally({ ...row, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+  return {
+    ok: true,
+    registrationCode: row.registration_code,
+    mode: 'local',
+    message: 'Data disimpan di perangkat karena penyimpanan online belum berhasil.',
   }
+}
 
-  const saved = data as RegistrationRow
-  localStorage.setItem(LAST_KEY, JSON.stringify(saved))
-
-  return { ok: true, registrationCode: saved.registration_code, mode: 'supabase' }
+function isUniqueViolation(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false
+  if (error.code === '23505') return true
+  const msg = (error.message || '').toLowerCase()
+  return msg.includes('duplicate key') || msg.includes('unique constraint') || msg.includes('unique violation')
 }
 
 export async function getAllRegistrations(): Promise<RegistrationRow[]> {
