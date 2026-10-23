@@ -19,6 +19,9 @@ export const COMPETITION_FEES = {
   olimpiade: 35000,
   panahan: 65000,
   kolase: 20000,
+  'pra-tka': 35000,
+  futsal: 250000,
+  'baca-puisi': 35000,
 }
 
 
@@ -173,11 +176,127 @@ export const kolase: RegistrationConfig = {
   },
 }
 
+export const praTka: RegistrationConfig = {
+  slug: 'pra-tka',
+  competitionId: 'comp-pra-tka',
+  name: 'Lomba Pra-TKA',
+  fullName: 'Lomba Pra-TKA (Pra Tahfidz & Keislaman Anak)',
+  tagline:
+    'Lomba Pra-Tahfidz & Keislaman Anak mengenalkan hafalan surat pendek, doa harian, dan adab Islami bagi anak usia dini dalam suasana yang menyenangkan dan edukatif.',
+  icon: 'auto_stories',
+  iconClassName: 'bg-primary-fixed text-primary',
+  codePrefix: 'ATXII-PTK',
+  level: 'Anak Usia Dini — se-Sumatera Barat',
+  categoryLabel: 'Kategori Pra-TKA',
+  categoryHelper: 'Peserta merupakan anak usia dini yang didampingi orang tua/guru.',
+  categoryFieldName: 'kategori_pra_tka',
+  categoryPlaceholder: '[KATEGORI PRA-TKA]',
+  categories: [],
+  specificFields: [],
+  fee: COMPETITION_FEES['pra-tka'],
+  feeNote: 'Biaya pendaftaran per siswa',
+  quota: placeholders.quota,
+  gradeOptions: [
+    { value: '1', label: 'Kelas 1' },
+    { value: '2', label: 'Kelas 2' },
+    { value: '3', label: 'Kelas 3' },
+  ],
+  bank: {
+    name: 'Bank Nagari',
+    accountNumber: '71040220052793',
+    accountHolder: 'Rahma Putri (Kepanitiaan ATTIN EXPO)',
+  },
+  contact: {
+    person: 'Panitia ATTIN EXPO',
+    whatsapp: '08995892898',
+    whatsappHref: 'https://wa.me/628995892898',
+    email: placeholders.email,
+  },
+}
+
+export const futsal: RegistrationConfig = {
+  slug: 'futsal',
+  competitionId: 'comp-futsal',
+  name: 'Lomba Futsal',
+  fullName: 'Lomba Futsal',
+  tagline:
+    'Kompetisi futsal antar sekolah/madrasah SD/MI yang menjunjung tinggi sportivitas, kerja sama tim, dan adab Islami di atas lapangan.',
+  icon: 'sports_soccer',
+  iconClassName: 'bg-secondary-fixed text-on-secondary',
+  codePrefix: 'ATXII-FTS',
+  level: 'SD/MI Sederajat se-Sumatera Barat',
+  categoryLabel: 'Kategori Futsal',
+  categoryHelper: 'Satu tim futsal terdiri dari pemain yang didaftarkan bersama.',
+  categoryFieldName: 'kategori_futsal',
+  categoryPlaceholder: '[KATEGORI FUTSAL]',
+  categories: [],
+  specificFields: [],
+  fee: COMPETITION_FEES.futsal,
+  feeNote: 'Biaya pendaftaran per tim',
+  quota: placeholders.quota,
+  gradeOptions: [],
+  bank: {
+    name: 'Bank Nagari',
+    accountNumber: '71040220052793',
+    accountHolder: 'Rahma Putri (Kepanitiaan ATTIN EXPO)',
+  },
+  contact: {
+    person: 'Panitia ATTIN EXPO',
+    whatsapp: '08995892898',
+    whatsappHref: 'https://wa.me/628995892898',
+    email: placeholders.email,
+  },
+}
+
+export const bacaPuisi: RegistrationConfig = {
+  slug: 'baca-puisi',
+  competitionId: 'comp-baca-puisi',
+  name: 'Lomba Baca Puisi',
+  fullName: 'Lomba Baca Puisi',
+  tagline:
+    'Lomba baca puisi Islami yang mengasah kefasihan, ekspresi, dan apresiasi sastra bagi siswa SD/MI sederajat.',
+  icon: 'record_voice_over',
+  iconClassName: 'bg-tertiary-fixed text-tertiary',
+  codePrefix: 'ATXII-BPS',
+  level: 'SD/MI Sederajat se-Sumatera Barat',
+  categoryLabel: 'Kategori Baca Puisi',
+  categoryHelper: 'Peserta merupakan siswa SD/MI sederajat.',
+  categoryFieldName: 'kategori_baca_puisi',
+  categoryPlaceholder: '[KATEGORI BACA PUISI]',
+  categories: [],
+  specificFields: [],
+  fee: COMPETITION_FEES['baca-puisi'],
+  feeNote: 'Biaya pendaftaran per siswa',
+  quota: placeholders.quota,
+  gradeOptions: [
+    { value: '1', label: 'Kelas 1' },
+    { value: '2', label: 'Kelas 2' },
+    { value: '3', label: 'Kelas 3' },
+    { value: '4', label: 'Kelas 4' },
+    { value: '5', label: 'Kelas 5' },
+    { value: '6', label: 'Kelas 6' },
+  ],
+  bank: {
+    name: 'Bank Nagari',
+    accountNumber: '71040220052793',
+    accountHolder: 'Rahma Putri (Kepanitiaan ATTIN EXPO)',
+  },
+  contact: {
+    person: 'Panitia ATTIN EXPO',
+    whatsapp: '08995892898',
+    whatsappHref: 'https://wa.me/628995892898',
+    email: placeholders.email,
+  },
+}
+
 export const registrationConfigs: Record<CompetitionSlug, RegistrationConfig> = {
   tahfizh,
   olimpiade,
   panahan,
   kolase,
+  'pra-tka': praTka,
+  futsal,
+  'baca-puisi': bacaPuisi,
 }
 
 export const defaultConfig = tahfizh

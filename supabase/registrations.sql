@@ -14,7 +14,7 @@ create table if not exists public.registrations (
   id uuid primary key default gen_random_uuid(),
   registration_code text not null unique,
   competition_id text not null,
-  competition_slug text not null check (competition_slug in ('tahfizh', 'olimpiade', 'panahan', 'kolase')),
+  competition_slug text not null check (competition_slug in ('tahfizh', 'olimpiade', 'panahan', 'kolase', 'pra-tka', 'futsal', 'baca-puisi')),
   participant_name text not null,
   nickname text not null default '',
   gender text check (gender in ('Laki-laki', 'Perempuan')),

@@ -33,6 +33,12 @@ function getCategoryDisplay(row: RegistrationRow): string {
   return '-'
 }
 
+// Helper: tentukan unit (SD/SMP) berdasarkan cabang lomba
+function getUnit(slug: string): 'sd' | 'smp' {
+  if (slug === 'pra-tka' || slug === 'futsal' || slug === 'baca-puisi') return 'smp'
+  return 'sd'
+}
+
 // Helper untuk mengurai nama peserta per baris/gender
 function parseParticipants(row: RegistrationRow): { name: string; type?: 'Putra' | 'Putri' | 'Peserta' }[] {
   if (row.competition_slug === 'tahfizh') {
@@ -83,6 +89,7 @@ export default function AdminRekapitulasi() {
 
   const [registrations, setRegistrations] = useState<RegistrationRow[]>([])
   const [filterSlug, setFilterSlug] = useState('all')
+  const [filterUnit, setFilterUnit] = useState('all')
   const [filterStatus, setFilterStatus] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -111,6 +118,10 @@ export default function AdminRekapitulasi() {
       if (filterSlug !== 'all' && r.competition_slug !== filterSlug) {
         return false
       }
+      // 1b. Filter Unit (SD/SMP)
+      if (filterUnit !== 'all' && getUnit(r.competition_slug) !== filterUnit) {
+        return false
+      }
       // 2. Filter Status
       if (filterStatus !== 'all' && r.registration_status !== filterStatus) {
         return false
@@ -136,7 +147,7 @@ export default function AdminRekapitulasi() {
       }
       return true
     })
-  }, [registrations, filterSlug, filterStatus, searchQuery])
+  }, [registrations, filterSlug, filterUnit, filterStatus, searchQuery])
 
   // Metrik Statistik Cepat
   const stats = useMemo(() => {
@@ -248,21 +259,30 @@ export default function AdminRekapitulasi() {
     }
 
     if (filterSlug === 'all') {
-      const tahfizh = registrations.filter((r) => r.competition_slug === 'tahfizh')
-      const olimpiade = registrations.filter((r) => r.competition_slug === 'olimpiade')
-      const panahan = registrations.filter((r) => r.competition_slug === 'panahan')
-      const kolase = registrations.filter((r) => r.competition_slug === 'kolase')
+       const tahfizh = registrations.filter((r) => r.competition_slug === 'tahfizh')
+       const olimpiade = registrations.filter((r) => r.competition_slug === 'olimpiade')
+       const panahan = registrations.filter((r) => r.competition_slug === 'panahan')
+       const kolase = registrations.filter((r) => r.competition_slug === 'kolase')
+       const praTka = registrations.filter((r) => r.competition_slug === 'pra-tka')
+       const futsalRows = registrations.filter((r) => r.competition_slug === 'futsal')
+       const bacaPuisi = registrations.filter((r) => r.competition_slug === 'baca-puisi')
 
-      processSheet(tahfizh, 'Tahfizh')
-      processSheet(olimpiade, 'Olimpiade')
-      processSheet(panahan, 'Panahan')
-      processSheet(kolase, 'Kolase')
+       processSheet(tahfizh, 'Tahfizh')
+       processSheet(olimpiade, 'Olimpiade')
+       processSheet(panahan, 'Panahan')
+       processSheet(kolase, 'Kolase')
+       processSheet(praTka, 'Pra-TKA')
+       processSheet(futsalRows, 'Futsal')
+       processSheet(bacaPuisi, 'Baca Puisi')
     } else {
       let sheetName = 'Rekap Pendaftaran'
-      if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
-      if (filterSlug === 'olimpiade') sheetName = 'Olimpiade'
-      if (filterSlug === 'panahan') sheetName = 'Panahan'
-      if (filterSlug === 'kolase') sheetName = 'Kolase'
+       if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
+       if (filterSlug === 'olimpiade') sheetName = 'Olimpiade'
+       if (filterSlug === 'panahan') sheetName = 'Panahan'
+       if (filterSlug === 'kolase') sheetName = 'Kolase'
+       if (filterSlug === 'pra-tka') sheetName = 'Pra-TKA'
+       if (filterSlug === 'futsal') sheetName = 'Futsal'
+       if (filterSlug === 'baca-puisi') sheetName = 'Baca Puisi'
       processSheet(filteredRegistrations, sheetName)
     }
 
@@ -505,24 +525,44 @@ export default function AdminRekapitulasi() {
 
           {/* Filter Dropdown */}
           <div className="flex flex-wrap items-center gap-2.5">
-            {/* Filter Cabang Lomba */}
-            <div className="relative">
-              <select
-                value={filterSlug}
-                onChange={(e) => setFilterSlug(e.target.value)}
-                className="appearance-none bg-white border border-[#CBD5E1] text-[#0F172A] py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] cursor-pointer transition-all shadow-sm"
-              >
-                <option value="all">Semua Cabang Lomba</option>
-<option value="tahfizh">Lomba Tahfizh</option>
-                 <option value="olimpiade">Olimpiade SD</option>
-                 <option value="panahan">Lomba Panahan</option>
-                 <option value="kolase">Lomba Kolase</option>
-              </select>
-              <MaterialIcon
-                name="expand_more"
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none text-[18px]"
-              />
-            </div>
+              {/* Filter Cabang Lomba */}
+              <div className="relative">
+                <select
+                  value={filterSlug}
+                  onChange={(e) => setFilterSlug(e.target.value)}
+                  className="appearance-none bg-white border border-[#CBD5E1] text-[#0F172A] py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] cursor-pointer transition-all shadow-sm"
+                >
+                  <option value="all">Semua Cabang Lomba</option>
+                  <option value="tahfizh">Lomba Tahfizh</option>
+                  <option value="olimpiade">Olimpiade SD</option>
+                  <option value="panahan">Lomba Panahan</option>
+                  <option value="kolase">Lomba Kolase</option>
+                  <option value="pra-tka">Lomba Pra-TKA</option>
+                  <option value="futsal">Lomba Futsal</option>
+                  <option value="baca-puisi">Lomba Baca Puisi</option>
+                </select>
+                <MaterialIcon
+                  name="expand_more"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none text-[18px]"
+                />
+              </div>
+
+              {/* Filter Kategori Unit */}
+              <div className="relative">
+                <select
+                  value={filterUnit}
+                  onChange={(e) => setFilterUnit(e.target.value)}
+                  className="appearance-none bg-white border border-[#CBD5E1] text-[#0F172A] py-2 pl-3.5 pr-9 rounded-xl text-xs sm:text-sm font-semibold outline-none focus:ring-2 focus:ring-[#0057B8]/20 focus:border-[#0057B8] cursor-pointer transition-all shadow-sm"
+                >
+                  <option value="all">Semua Unit</option>
+                  <option value="sd">Unit SD</option>
+                  <option value="smp">Unit SMP</option>
+                </select>
+                <MaterialIcon
+                  name="expand_more"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none text-[18px]"
+                />
+              </div>
 
             {/* Filter Status Verifikasi */}
             <div className="relative">
@@ -648,13 +688,19 @@ export default function AdminRekapitulasi() {
                         <div className="flex flex-col gap-1 items-start">
                           <span
                             className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-bold ${
-                              row.competition_slug === 'tahfizh'
-                                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                : row.competition_slug === 'olimpiade'
-                                ? 'bg-amber-50 text-amber-700 border border-amber-200'
-                                : row.competition_slug === 'kolase'
-                                ? 'bg-teal-50 text-teal-700 border border-teal-200'
-                                : 'bg-blue-50 text-blue-700 border border-blue-200'
+                               row.competition_slug === 'tahfizh'
+                                 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                 : row.competition_slug === 'olimpiade'
+                                 ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                 : row.competition_slug === 'kolase'
+                                 ? 'bg-teal-50 text-teal-700 border border-teal-200'
+                                 : row.competition_slug === 'pra-tka'
+                                 ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                                 : row.competition_slug === 'futsal'
+                                 ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                                 : row.competition_slug === 'baca-puisi'
+                                 ? 'bg-violet-50 text-violet-700 border border-violet-200'
+                                 : 'bg-blue-50 text-blue-700 border border-blue-200'
                             }`}
                           >
                             {branchConfig?.name || row.competition_slug}

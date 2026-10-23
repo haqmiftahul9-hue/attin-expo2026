@@ -89,8 +89,14 @@ function RealRow({ row, onVerifyPrompt, onProofPrompt }: { row: RegistrationRow,
   )
 }
 
+function getUnit(slug: string): 'sd' | 'smp' {
+  if (slug === 'pra-tka' || slug === 'futsal' || slug === 'baca-puisi') return 'smp'
+  return 'sd'
+}
+
 export default function AdminDashboard() {
     const [registrations, setRegistrations] = useState<RegistrationRow[]>([])
+    const [filterUnit, setFilterUnit] = useState<'all' | 'sd' | 'smp'>('all')
 
     const [verifyRow, setVerifyRow] = useState<RegistrationRow | null>(null)
 
@@ -119,7 +125,9 @@ export default function AdminDashboard() {
     fetchData()
   }, [])
 
-  const filteredRegistrations = registrations
+  const filteredRegistrations = filterUnit === 'all'
+    ? registrations
+    : registrations.filter(r => getUnit(r.competition_slug) === filterUnit)
 
   const totalRegistrations = registrations.length
   const tahfizhCount = registrations.filter(r => r.competition_slug === 'tahfizh').length
@@ -466,9 +474,20 @@ export default function AdminDashboard() {
 <p className="font-caption text-caption text-on-surface-variant">Daftar delegasi peserta yang baru mengirimkan formulir dan dokumen</p>
 </div>
 
+<div className="flex items-center gap-space-sm">
+<div className="relative w-full sm:w-40">
+<select value={filterUnit} onChange={(e) => setFilterUnit(e.target.value as 'all' | 'sd' | 'smp')} className="w-full h-10 pl-3 pr-8 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container cursor-pointer">
+<option value="all">Semua Unit</option>
+<option value="sd">Unit SD</option>
+<option value="smp">Unit SMP</option>
+</select>
+<span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+
 <div className="relative w-full sm:w-72">
 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
 <input className="w-full h-10 pl-9 pr-3 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container transition-colors" id="searchInput" placeholder="Cari nama, sekolah, kode..." type="text"/>
+</div>
 </div>
 </div>
 

@@ -6,6 +6,9 @@ import BranchDetailPage from './pages/BranchDetailPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ArcheryRegistration from './pages/registration/ArcheryRegistration.jsx'
 import KolaseRegistration from './pages/registration/KolaseRegistration.jsx'
+import PraTkaRegistration from './pages/registration/PraTkaRegistration.jsx'
+import FutsalRegistration from './pages/registration/FutsalRegistration.jsx'
+import BacaPuisiRegistration from './pages/registration/BacaPuisiRegistration.jsx'
 import OlimpiadeRegistration from './pages/registration/OlimpiadeRegistration.jsx'
 import RegistrationSuccessPage from './pages/registration/RegistrationSuccessPage.jsx'
 import TahfizhRegistration from './pages/registration/TahfizhRegistration.jsx'
@@ -141,7 +144,10 @@ export default function App() {
           <Route element={<TahfizhRegistration />} path="/pendaftaran/tahfizh" />
           <Route element={<OlimpiadeRegistration />} path="/pendaftaran/olimpiade" />
           <Route element={<ArcheryRegistration />} path="/pendaftaran/panahan" />
-          <Route element={<KolaseRegistration />} path="/pendaftaran/kolase" />
+           <Route element={<KolaseRegistration />} path="/pendaftaran/kolase" />
+           <Route element={<PraTkaRegistration />} path="/pendaftaran/pra-tka" />
+           <Route element={<FutsalRegistration />} path="/pendaftaran/futsal" />
+           <Route element={<BacaPuisiRegistration />} path="/pendaftaran/baca-puisi" />
           <Route element={<RegistrationSuccessPage />} path="/pendaftaran-berhasil/:registrationCode" />
           
           {/* Admin Login - Public Route */}
