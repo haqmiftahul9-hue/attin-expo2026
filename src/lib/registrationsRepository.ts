@@ -100,12 +100,38 @@ async function uploadFile(
     contentType: file.type,
   })
 
-  if (error) {
-    console.warn('[registrations] gagal mengunggah berkas:', error.message)
-    return null
+  if (!error) {
+    return path
   }
 
-  return path
+  // Penyimpanan objek (storage bucket) tidak tersedia / ditolak policy:
+  // simpan berkas sebagai data URL (base64) langsung di basis data agar bukti
+  // pembayaran tetap dapat dilihat oleh admin tanpa bergantung pada bucket.
+  console.warn('[registrations] gagal mengunggah berkas ke storage:', error.message, '-> fallback data URL')
+  try {
+    const base64 = await fileToBase64(file)
+    return `data:${file.type || 'application/octet-stream'};base64,${base64}`
+  } catch (e) {
+    console.warn('[registrations] gagal konversi berkas ke data URL:', e)
+    return null
+  }
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      const result = reader.result
+      if (typeof result === 'string') {
+        const comma = result.indexOf(',')
+        resolve(comma >= 0 ? result.slice(comma + 1) : result)
+      } else {
+        reject(new Error('FileReader result bukan string'))
+      }
+    }
+    reader.onerror = () => reject(reader.error ?? new Error('FileReader error'))
+    reader.readAsDataURL(file)
+  })
 }
 
 /**
@@ -113,6 +139,13 @@ async function uploadFile(
  * Formulir pendaftaran menerima JPG/JPEG/PNG/PDF (lihat registrationValidation).
  */
 export function proofFileKind(path: string | null | undefined): 'image' | 'pdf' | 'unknown' {
+  if (!path) return 'unknown'
+  if (path.startsWith('data:')) {
+    const mime = path.slice(5).split(';')[0].toLowerCase()
+    if (mime.startsWith('image/')) return 'image'
+    if (mime === 'application/pdf') return 'pdf'
+    return 'unknown'
+  }
   const extension = (path ?? '').split('.').pop()?.toLowerCase() ?? ''
   if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'].includes(extension)) return 'image'
   if (extension === 'pdf') return 'pdf'
@@ -121,6 +154,9 @@ export function proofFileKind(path: string | null | undefined): 'image' | 'pdf' 
 
 export async function getPaymentProofSignedUrl(path: string | null): Promise<string | null> {
   if (!path) return null
+  // Data URL (fallback ketika storage bucket tidak tersedia): langsung kembalikan.
+  if (path.startsWith('data:')) return path
+
   const client = await getSupabaseClient()
   if (!client) return null
 
