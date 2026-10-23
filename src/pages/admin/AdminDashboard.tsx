@@ -134,6 +134,9 @@ export default function AdminDashboard() {
   const olimpiadeCount = registrations.filter(r => r.competition_slug === 'olimpiade').length
   const panahanCount = registrations.filter(r => r.competition_slug === 'panahan').length
   const kolaseCount = registrations.filter(r => r.competition_slug === 'kolase').length
+  const praTkaCount = registrations.filter(r => r.competition_slug === 'pra-tka').length
+  const futsalCount = registrations.filter(r => r.competition_slug === 'futsal').length
+  const bacaPuisiCount = registrations.filter(r => r.competition_slug === 'baca-puisi').length
   const verifiedCount = registrations.filter(r => r.registration_status === 'verified').length
   const pendingCount = registrations.filter(r => r.registration_status === 'pending').length
 
@@ -175,7 +178,7 @@ export default function AdminDashboard() {
 </div>
 </div>
 
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-md">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-space-md">
 
 <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
 <div className="flex items-center justify-between text-outline mb-1">
@@ -276,6 +279,66 @@ export default function AdminDashboard() {
 
 <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
 <div className="flex items-center justify-between text-outline mb-1">
+<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Pra-TKA</span>
+<div className="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span className="material-symbols-outlined text-[18px]">auto_stories</span>
+</div>
+</div>
+<div className="my-2">
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{praTkaCount}</span>
+<span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
+</div>
+<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
+<div className="bg-primary h-1.5 rounded-full" style={{ width: "50%" }}></div>
+</div>
+<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
+<span>Kapasitas</span>
+<span className="font-semibold text-primary">50% Terisi</span>
+</div>
+</div>
+
+<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div className="flex items-center justify-between text-outline mb-1">
+<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Futsal</span>
+<div className="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center text-rose-700">
+<span className="material-symbols-outlined text-[18px]">sports_soccer</span>
+</div>
+</div>
+<div className="my-2">
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{futsalCount}</span>
+<span className="text-caption font-caption text-outline ml-1">/ 32 Kuota</span>
+</div>
+<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
+<div className="bg-rose-500 h-1.5 rounded-full" style={{ width: "60%" }}></div>
+</div>
+<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
+<span>Kapasitas</span>
+<span className="font-semibold text-rose-700">60% Terisi</span>
+</div>
+</div>
+
+<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div className="flex items-center justify-between text-outline mb-1">
+<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Baca Puisi</span>
+<div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center text-violet-700">
+<span className="material-symbols-outlined text-[18px]">record_voice_over</span>
+</div>
+</div>
+<div className="my-2">
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{bacaPuisiCount}</span>
+<span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
+</div>
+<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
+<div className="bg-violet-500 h-1.5 rounded-full" style={{ width: "45%" }}></div>
+</div>
+<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
+<span>Kapasitas</span>
+<span className="font-semibold text-violet-700">45% Terisi</span>
+</div>
+</div>
+
+<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div className="flex items-center justify-between text-outline mb-1">
 <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Terverifikasi</span>
 <div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-[#16825D]">
 <span className="material-symbols-outlined text-[18px]">verified</span>
@@ -303,164 +366,6 @@ export default function AdminDashboard() {
 <div className="inline-flex items-center gap-1.5 py-0.5 px-2 bg-surface-container-low rounded text-caption font-caption text-[#C98316] font-medium">
 <span className="w-1.5 h-1.5 rounded-full bg-[#C98316] animate-ping"></span>
 <span>Butuh Review Panitia</span>
-</div>
-</div>
-</div>
-
-<div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
-
-<div className="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
-<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
-<div>
-<h2 className="font-title-md text-title-md text-on-surface">Distribusi Wilayah &amp; Cabang Lomba</h2>
-<p className="font-caption text-caption text-on-surface-variant">Sebaran pendaftar dari Kabupaten &amp; Kota di Sumatera Barat</p>
-</div>
-
-<div className="flex items-center gap-space-md text-caption font-caption">
-<div className="flex items-center gap-1.5">
-<span className="w-3 h-3 rounded-sm bg-primary-container"></span>
-<span className="text-on-surface-variant">Tahfizh</span>
-</div>
-<div className="flex items-center gap-1.5">
-<span className="w-3 h-3 rounded-sm bg-tertiary"></span>
-<span className="text-on-surface-variant">Olimpiade</span>
-</div>
-<div className="flex items-center gap-1.5">
-<span className="w-3 h-3 rounded-sm bg-tertiary-container"></span>
-<span className="text-on-surface-variant">Panahan</span>
-</div>
-<div className="flex items-center gap-1.5">
-<span className="w-3 h-3 rounded-sm bg-amber-400"></span>
-<span className="text-on-surface-variant">Kolase</span>
-</div>
-</div>
-</div>
-
-<div className="space-y-3.5 my-2">
-
-<div className="flex items-center gap-3">
-<span className="w-24 text-caption font-body-md text-on-surface font-medium truncate">Kota Padang</span>
-<div className="flex-1 flex h-7 bg-surface-container rounded-lg overflow-hidden p-0.5 gap-0.5">
-<div className="bg-primary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "48%" }} title="Tahfizh: 46">46</div>
-<div className="bg-tertiary rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "32%" }} title="Olimpiade: 31">31</div>
-<div className="bg-tertiary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "20%" }} title="Panahan: 19">19</div>
-</div>
-<span className="w-12 text-right text-caption font-body-md-semibold text-on-surface">96</span>
-</div>
-
-<div className="flex items-center gap-3">
-<span className="w-24 text-caption font-body-md text-on-surface font-medium truncate">Bukittinggi</span>
-<div className="flex-1 flex h-7 bg-surface-container rounded-lg overflow-hidden p-0.5 gap-0.5">
-<div className="bg-primary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "40%" }} title="Tahfizh: 28">28</div>
-<div className="bg-tertiary rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "38%" }} title="Olimpiade: 26">26</div>
-<div className="bg-tertiary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "22%" }} title="Panahan: 15">15</div>
-</div>
-<span className="w-12 text-right text-caption font-body-md-semibold text-on-surface">69</span>
-</div>
-
-<div className="flex items-center gap-3">
-<span className="w-24 text-caption font-body-md text-on-surface font-medium truncate">Tanah Datar</span>
-<div className="flex-1 flex h-7 bg-surface-container rounded-lg overflow-hidden p-0.5 gap-0.5">
-<div className="bg-primary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "45%" }} title="Tahfizh: 24">24</div>
-<div className="bg-tertiary rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "30%" }} title="Olimpiade: 16">16</div>
-<div className="bg-tertiary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "25%" }} title="Panahan: 13">13</div>
-</div>
-<span className="w-12 text-right text-caption font-body-md-semibold text-on-surface">53</span>
-</div>
-
-<div className="flex items-center gap-3">
-<span className="w-24 text-caption font-body-md text-on-surface font-medium truncate">Payakumbuh</span>
-<div className="flex-1 flex h-7 bg-surface-container rounded-lg overflow-hidden p-0.5 gap-0.5">
-<div className="bg-primary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "38%" }} title="Tahfizh: 18">18</div>
-<div className="bg-tertiary rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "38%" }} title="Olimpiade: 18">18</div>
-<div className="bg-tertiary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "24%" }} title="Panahan: 11">11</div>
-</div>
-<span className="w-12 text-right text-caption font-body-md-semibold text-on-surface">47</span>
-</div>
-
-<div className="flex items-center gap-3">
-<span className="w-24 text-caption font-body-md text-on-surface font-medium truncate">Kab. Agam</span>
-<div className="flex-1 flex h-7 bg-surface-container rounded-lg overflow-hidden p-0.5 gap-0.5">
-<div className="bg-primary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "35%" }} title="Tahfizh: 14">14</div>
-<div className="bg-tertiary rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "40%" }} title="Olimpiade: 16">16</div>
-<div className="bg-tertiary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "25%" }} title="Panahan: 10">10</div>
-</div>
-<span className="w-12 text-right text-caption font-body-md-semibold text-on-surface">40</span>
-</div>
-
-<div className="flex items-center gap-3">
-<span className="w-24 text-caption font-body-md text-on-surface font-medium truncate">Solok &amp; Lainnya</span>
-<div className="flex-1 flex h-7 bg-surface-container rounded-lg overflow-hidden p-0.5 gap-0.5">
-<div className="bg-primary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "28%" }} title="Tahfizh: 12">12</div>
-<div className="bg-tertiary rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "21%" }} title="Olimpiade: 9">9</div>
-<div className="bg-tertiary-container rounded-sm flex items-center justify-center text-[10px] text-white font-bold" style={{ width: "51%" }} title="Panahan: 22">22</div>
-</div>
-<span className="w-12 text-right text-caption font-body-md-semibold text-on-surface">43</span>
-</div>
-</div>
-<div className="pt-3 border-t border-surface-container flex items-center justify-between text-caption font-caption text-outline">
-<span>* Mencakup 19 Kabupaten/Kota di Sumatera Barat &amp; Delegasi Luar Daerah</span>
-<button className="text-primary font-body-md-semibold text-caption hover:underline inline-flex items-center gap-1">
-          Unduh Laporan Daerah <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-</button>
-</div>
-</div>
-
-<div className="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
-<div>
-<div className="flex items-center justify-between mb-space-sm">
-<h2 className="font-title-md text-title-md text-on-surface">Target Kuota Keseluruhan</h2>
-<span className="text-caption font-caption text-secondary font-bold uppercase tracking-wider">H-8 Ditutup</span>
-</div>
-
-<div className="flex items-center gap-space-md p-space-md bg-surface rounded-xl my-space-xs">
-<div className="relative w-20 h-20 flex-shrink-0">
-<svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-<path className="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3.5"></path>
-<path className="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray="87, 100" strokeLinecap="round" strokeWidth="3.5"></path>
-</svg>
-<div className="absolute inset-0 flex flex-col items-center justify-center">
-<span className="text-title-md font-title-md text-on-surface font-bold">87%</span>
-</div>
-</div>
-<div className="flex flex-col">
-<span className="text-body-md-semibold font-body-md-semibold text-on-surface">348 dari 420 Kursi</span>
-<span className="text-caption font-caption text-on-surface-variant">Sisa 72 slot delegasi pada 4 cabang perlombaan</span>
-</div>
-</div>
-
-<div className="mt-space-md">
-<p className="text-label-badge font-label-badge uppercase tracking-wider text-outline mb-space-xs">Agenda Tindakan Cepat Panitia</p>
-<div className="space-y-space-xs">
-<a className="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors group" href="/admin">
-<div className="flex items-center gap-2.5 min-w-0">
-<span className="w-2 h-2 rounded-full bg-[#C98316] flex-shrink-0"></span>
-<span className="font-body-md text-body-md text-on-surface truncate">52 berkas butuh pemeriksaan tim</span>
-</div>
-<span className="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-0.5 transition-all">chevron_right</span>
-</a>
-<a className="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors group" href="/admin">
-<div className="flex items-center gap-2.5 min-w-0">
-<span className="w-2 h-2 rounded-full bg-error flex-shrink-0"></span>
-<span className="font-body-md text-body-md text-on-surface truncate">12 bukti transfer nominal selisih</span>
-</div>
-<span className="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-0.5 transition-all">chevron_right</span>
-</a>
-<a className="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors group" href="/admin">
-<div className="flex items-center gap-2.5 min-w-0">
-<span className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
-<span className="font-body-md text-body-md text-on-surface truncate">3 peserta ajukan koreksi data</span>
-</div>
-<span className="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-0.5 transition-all">chevron_right</span>
-</a>
-</div>
-</div>
-</div>
-<div className="mt-space-md pt-space-sm border-t border-surface-container">
-<a className="w-full h-11 flex items-center justify-center gap-2 rounded-lg bg-secondary text-on-secondary font-body-md-semibold text-body-md hover:bg-[#81233f] transition-colors shadow-sm" href="#table-section">
-<span>Buka Antrean Verifikasi</span>
-<span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
 </div>
 </div>
 </div>
