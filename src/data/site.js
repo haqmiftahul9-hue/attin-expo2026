@@ -14,7 +14,7 @@ const PLACEHOLDER = {
   venue: '[ISI LOKASI]',
   category: '[ISI KATEGORI]',
   juknis: '[ISI JUKNIS]',
-  bankAccount: 'Bank Nagari 71040220068602',
+  bankAccount: 'Bank Nagari 71040220059933',
   whatsapp: '[ISI NOMOR WHATSAPP]',
   email: '[ISI EMAIL]',
   instagram: '[ISI INSTAGRAM]',
@@ -29,8 +29,8 @@ const PLACEHOLDER = {
   scoringRule: '[ISI KRITERIA PENILAIAN]',
   extraDocument: '[ISI DOKUMEN TAMBAHAN]',
   bank: 'Bank Nagari',
-  bankAccountNumber: '71040220068602',
-  bankAccountName: 'Panitia ATTIN EXPO XII',
+  bankAccountNumber: '71040220059933',
+  bankAccountName: 'Yulmaidar (Panitia ATTIN EXPO XII)',
   juknishLink: '[ISI LINK JUKNIS TAHFIZH]',
 }
 
