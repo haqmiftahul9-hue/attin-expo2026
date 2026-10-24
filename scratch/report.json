@@ -1,0 +1,12 @@
+{
+  "consoleErrors": [],
+  "consoleWarnings": [],
+  "pageErrors": [],
+  "networkFailures": [
+    {
+      "page": "http://127.0.0.1:5174/",
+      "request": "http://127.0.0.1:5174/assets/JUKNIS%20ATTIN%20EXPO%20SD%20DAN%20%20SMP%20TAHUN%202026%20OK.pdf",
+      "failure": "net::ERR_ABORTED"
+    }
+  ]
+}
