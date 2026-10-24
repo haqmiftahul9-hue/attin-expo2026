@@ -94,7 +94,7 @@ export const competitions = [
     title: 'Lomba Pra-TKA',
     shortTitle: 'Pra-TKA',
     description:
-      'Lomba Pra-Tahfidz & Keislaman Anak mengenalkan hafalan surat pendek, doa harian, dan adab Islami bagi anak usia dini dalam suasana yang menyenangkan dan edukatif.',
+      'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD',
     details: ['Rp. 35.000 per siswa'],
   },
   {

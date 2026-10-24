@@ -21,7 +21,7 @@ export type PaymentSectionProps = {
 
 /** Tahap 4 — Infaq Pendaftaran & Rekening Resmi. */
 export default function PaymentSection({ form, fee, paymentConfig }: PaymentSectionProps) {
-  const { valueFor, setValue, fileFor, setFile, errorFor, inputClassFor } = form
+  const { fileFor, setFile, errorFor } = form
   const proof = fileFor('bukti_transfer')
   const displayFeeAmount = fee?.amount || 'Belum ditentukan'
   const displayFeeLabel = fee?.label || 'Standar 1 Peserta'
@@ -69,41 +69,7 @@ export default function PaymentSection({ form, fee, paymentConfig }: PaymentSect
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-        <div>
-          <label className={labelClassName} htmlFor={fieldId('bank_pengirim')}>
-            Bank / Dompet Digital Asal Pengirim <span className={requiredClassName}>*</span>
-          </label>
-          <input
-            className={inputClassFor('bank_pengirim')}
-            id={fieldId('bank_pengirim')}
-            name="bank_pengirim"
-            onChange={(event) => setValue('bank_pengirim', event.target.value)}
-            placeholder="Contoh: BSI / Bank Nagari / Mandiri"
-            type="text"
-            value={valueFor('bank_pengirim')}
-          />
-          {errorFor('bank_pengirim') ? <p className={errorTextClassName}>{errorFor('bank_pengirim')}</p> : null}
-        </div>
-
-        <div>
-          <label className={labelClassName} htmlFor={fieldId('nama_pemilik_rekening')}>
-            Nama Pemilik Rekening Pengirim <span className={requiredClassName}>*</span>
-          </label>
-          <input
-            className={inputClassFor('nama_pemilik_rekening')}
-            id={fieldId('nama_pemilik_rekening')}
-            name="nama_pemilik_rekening"
-            onChange={(event) => setValue('nama_pemilik_rekening', event.target.value)}
-            placeholder="Sesuai mutasi tabungan"
-            type="text"
-            value={valueFor('nama_pemilik_rekening')}
-          />
-          {errorFor('nama_pemilik_rekening') ? (
-            <p className={errorTextClassName}>{errorFor('nama_pemilik_rekening')}</p>
-          ) : null}
-        </div>
-
+      <div className="grid grid-cols-1 gap-space-md">
         <div className="md:col-span-2">
           <span className={labelClassName}>
             Unggah Resi / Bukti Tangkapan Layar Transfer <span className={requiredClassName}>*</span>

@@ -70,8 +70,6 @@ const COMMON_REQUIRED_FIELDS: Array<{ name: string; message?: string }> = [
   { name: 'alamat_sekolah' },
   { name: 'guru_pendamping' },
   { name: 'nohp_pendamping' },
-  { name: 'bank_pengirim' },
-  { name: 'nama_pemilik_rekening' },
 ]
 
 const CONSENT_FIELDS = ['persetujuan_1', 'persetujuan_2', 'persetujuan_3'] as const

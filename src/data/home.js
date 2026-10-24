@@ -134,7 +134,8 @@ export const faq = {
     },
     {
       question: 'Bagaimana prosedur pembayaran dan verifikasi bukti pendaftaran?',
-      answer: `Pembayaran dilakukan melalui transfer bank ke rekening resmi panitia: ${placeholders.bankAccount}. Setelah mentransfer, silakan unggah foto/screenshot bukti transfer ke dalam formulir pendaftaran online.`,
+      answer:
+        'Pembayaran dilakukan melalui transfer ke salah satu rekening resmi panitia. Untuk cabang Lomba Tahfizh, Olimpiade, Panahan, dan Kolase, silakan transfer ke Bank Nagari 71040220059933. Sementara untuk cabang Lomba Futsal, Pra-TKA, dan Baca Puisi, silakan transfer ke BSI (Bank Syariah Indonesia) 7223330911 a.n. Panitia ATTIN EXPO XII 2026. Setelah mentransfer, unggah foto/screenshot bukti transfer ke dalam formulir pendaftaran online sesuai cabang lomba yang dipilih.',
     },
     {
       question: 'Apakah satu sekolah diperbolehkan mengirimkan lebih dari satu peserta per cabang?',
@@ -143,7 +144,8 @@ export const faq = {
     },
     {
       question: 'Di mana lokasi spesifik pelaksanaan perlombaan?',
-      answer: `Semua kegiatan akan diselenggarakan di SDIT Attin Sumbar, Jl. Kayu Belanti No.Desa, Talago Sarik, Kec. Pariaman Tim., Kota Pariaman, Sumatera Barat 25523. Panduan rute dan informasi fasilitas di lokasi lomba dapat dibaca secara lengkap pada Buku Juknis.`,
+      answer:
+        'Semua kegiatan akan diselenggarakan di SDIT Attin Sumbar, Jl. Kayu Belanti No.Desa, Talago Sarik, Kec. Pariaman Tim., Kota Pariaman, Sumatera Barat 25523 dan SMPIT Attin Sumbar, Ampalu, Kec. Pariaman Utara, Kota Pariaman, Sumatera Barat 25512. Panduan rute dan informasi fasilitas di lokasi lomba dapat dibaca secara lengkap pada Buku Juknis.',
     },
     {
       question: 'Apakah jadwal pendaftaran bisa diperpanjang?',

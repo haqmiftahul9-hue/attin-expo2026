@@ -4,13 +4,13 @@ const statsData = [
   {
     number: '18',
     label: 'Pameran',
-    description: 'Pameran SDIT Attin dengan berbagai keunggulan dan prestasi.',
+    description: 'Pameran dengan berbagai keunggulan dan prestasi.',
     badge: 'PAMERAN',
   },
   {
-    number: '4',
+    number: '7',
     label: 'Cabang Lomba',
-    description: 'Tahfizh, Olimpiade, Panahan & Kolase',
+    description: 'Tahfizh, Olimpiade, Panahan, Futsal, Baca Puisi, Pra-TKA, Kolase',
     badge: 'CABANG LOMBA',
   },
   {
