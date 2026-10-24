@@ -147,11 +147,11 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
           <div className="pt-space-xs">
             <a
               className="inline-flex items-center gap-1 font-body-md-semibold text-caption text-secondary hover:text-on-secondary-container transition-colors break-all"
-              href={config.contact.whatsappHref}
+              href={['pra-tka', 'futsal', 'baca-puisi'].includes(config.slug) ? 'https://wa.me/6282286312799' : config.contact.whatsappHref}
               rel="noopener noreferrer"
               target="_blank"
             >
-              <span>Chat Panitia: {config.contact.whatsapp}</span>
+              <span>Chat Panitia: {['pra-tka', 'futsal', 'baca-puisi'].includes(config.slug) ? '082286312799' : config.contact.whatsapp}</span>
               <Icon className="text-[14px] shrink-0" name="arrow_outward" />
             </a>
           </div>

@@ -182,13 +182,40 @@ export const contactCards = [
     cta: 'Hubungi WA',
     href: 'https://wa.me/6281275741134'
   },
-    {
-      icon: 'chat',
-      iconClassName: 'bg-accent-mint/10 text-accent-mint',
-      title: 'Narahubung Kolase',
-      caption: 'Ustadzah Rahayu',
-      value: '0852-6581-7460',
-      cta: 'Hubungi WA',
-      href: 'https://wa.me/6285265817460'
-    },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-accent-mint/10 text-accent-mint',
+    title: 'Narahubung Kolase',
+    caption: 'Ustadzah Rahayu',
+    value: '0852-6581-7460',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6285265817460'
+  },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-primary/10 text-primary',
+    title: 'Narahubung Pra-TKA',
+    caption: 'Ustadzah Yel',
+    value: '0822-8631-2799',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6282286312799'
+  },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-secondary/10 text-secondary',
+    title: 'Narahubung Futsal',
+    caption: 'Ustadzah Yel',
+    value: '0822-8631-2799',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6282286312799'
+  },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-tertiary/10 text-tertiary',
+    title: 'Narahubung Baca Puisi',
+    caption: 'Ustadzah Yel',
+    value: '0822-8631-2799',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6282286312799'
+  },
 ]

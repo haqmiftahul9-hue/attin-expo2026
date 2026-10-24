@@ -46,7 +46,9 @@ export default function RegistrationSuccessPage() {
   }
 
   const whatsappMessage = `Halo Panitia ATTIN EXPO XII, saya ingin konfirmasi kode registrasi ${registrationCode}`
-  const whatsappClean = config.contact.whatsapp.replace(/\D/g, '')
+  const defaultWhatsapp = config.contact.whatsapp.replace(/\D/g, '')
+  const targetWhatsappRaw = ['pra-tka', 'futsal', 'baca-puisi'].includes(branch.slug) ? '082286312799' : defaultWhatsapp
+  const whatsappClean = targetWhatsappRaw.replace(/\D/g, '')
   const whatsappNumber = whatsappClean.startsWith('0') ? '62' + whatsappClean.substring(1) : whatsappClean
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
 
