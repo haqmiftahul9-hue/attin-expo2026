@@ -125,13 +125,7 @@ export default function AdminLayout() {
               src="/assets/logo-attin-expo.png" 
               alt="ATTIN EXPO XII" 
               className="h-12 w-auto object-contain shrink-0" 
-              onError={(e) => {
-                // Fallback icon if logo not found
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement?.querySelector('.fallback-icon')?.classList.remove('hidden');
-              }}
             />
-            <MaterialIcon name="school" className="fallback-icon hidden text-primary text-[32px]" />
             <div className="min-w-0 flex-1">
               <p className="font-headline-sm text-[16px] font-bold text-primary leading-tight truncate">ATTIN EXPO XII</p>
               <p className="font-label-badge text-[10px] text-secondary uppercase tracking-wider font-bold truncate">PANITIA ADMIN</p>

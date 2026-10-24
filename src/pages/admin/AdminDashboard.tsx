@@ -97,6 +97,8 @@ function getUnit(slug: string): 'sd' | 'smp' {
 export default function AdminDashboard() {
     const [registrations, setRegistrations] = useState<RegistrationRow[]>([])
     const [filterUnit, setFilterUnit] = useState<'all' | 'sd' | 'smp'>('all')
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 10
 
     const [verifyRow, setVerifyRow] = useState<RegistrationRow | null>(null)
 
@@ -129,6 +131,15 @@ export default function AdminDashboard() {
     ? registrations
     : registrations.filter(r => getUnit(r.competition_slug) === filterUnit)
 
+  const totalPages = Math.max(1, Math.ceil(filteredRegistrations.length / itemsPerPage))
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedRegistrations = filteredRegistrations.slice(startIndex, endIndex)
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [filterUnit])
+
   const totalRegistrations = registrations.length
   const tahfizhCount = registrations.filter(r => r.competition_slug === 'tahfizh').length
   const olimpiadeCount = registrations.filter(r => r.competition_slug === 'olimpiade').length
@@ -139,6 +150,7 @@ export default function AdminDashboard() {
   const bacaPuisiCount = registrations.filter(r => r.competition_slug === 'baca-puisi').length
   const verifiedCount = registrations.filter(r => r.registration_status === 'verified').length
   const pendingCount = registrations.filter(r => r.registration_status === 'pending').length
+  const rejectedCount = registrations.filter(r => r.registration_status === 'rejected').length
 
   return (
     
@@ -158,24 +170,15 @@ export default function AdminDashboard() {
 <p className="text-body-md font-body-md text-on-surface-variant mt-0.5">Ringkasan metrik registrasi, status verifikasi berkas, dan arus pendaftaran peserta ATTIN EXPO XII 2026.</p>
 </div>
 
-<div className="flex flex-wrap items-center gap-space-sm">
-<div className="relative">
-<select className="appearance-none h-10 pl-3 pr-8 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg focus:outline-none focus:bg-surface-container cursor-pointer font-medium">
-<option>Periode: Semua Waktu</option>
-<option>7 Hari Terakhir</option>
-<option>30 Hari Terakhir</option>
-<option>Bulan Ini (Februari 2026)</option>
-</select>
-<span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[18px]">expand_more</span>
-</div>
-<button className="h-10 w-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="refreshMetricsBtn" title="Segarkan Data">
-<span className="material-symbols-outlined text-[20px]">refresh</span>
-</button>
-<Link to="/admin/pendaftaran" className="h-10 px-4 flex items-center gap-2 rounded-lg bg-primary-container text-on-primary font-body-md-semibold text-body-md hover:bg-primary transition-colors shadow-sm">
-<span className="material-symbols-outlined text-[18px]">file_download</span>
-<span>Ekspor Excel</span>
-</Link>
-</div>
+            <div className="flex flex-wrap items-center gap-space-sm">
+              <button className="h-10 w-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="refreshMetricsBtn" title="Segarkan Data">
+                <span className="material-symbols-outlined text-[20px]">refresh</span>
+              </button>
+              <Link to="/admin/pendaftaran" className="h-10 px-4 flex items-center gap-2 rounded-lg bg-primary-container text-on-primary font-body-md-semibold text-body-md hover:bg-primary transition-colors shadow-sm">
+                <span className="material-symbols-outlined text-[18px]">file_download</span>
+                <span>Ekspor Excel</span>
+              </Link>
+            </div>
 </div>
 
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-space-md">
@@ -197,145 +200,89 @@ export default function AdminDashboard() {
 </div>
 </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Tahfizh</span>
-<div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container">
-<span className="material-symbols-outlined text-[18px]">menu_book</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{tahfizhCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 160 Kuota</span>
-</div>
-<div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
-<div className="bg-primary h-1.5 rounded-full" style={{ width: "88%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-primary">88% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Tahfizh</span>
+              <div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container">
+                <span className="material-symbols-outlined text-[18px]">menu_book</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{tahfizhCount}</span>
+            </div>
+          </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Olimpiade</span>
-<div className="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
-<span className="material-symbols-outlined text-[18px]">school</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{olimpiadeCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 160 Kuota</span>
-</div>
-<div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
-<div className="bg-tertiary h-1.5 rounded-full" style={{ width: "72%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-tertiary">72% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Olimpiade</span>
+              <div className="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span className="material-symbols-outlined text-[18px]">school</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{olimpiadeCount}</span>
+            </div>
+          </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Panahan</span>
-<div className="w-8 h-8 rounded-lg bg-primary-fixed-dim flex items-center justify-center text-tertiary">
-<span className="material-symbols-outlined text-[18px]">adjust</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{panahanCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
-</div>
-<div className="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
-<div className="bg-tertiary-container h-1.5 rounded-full" style={{ width: "90%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-tertiary-container">90% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Panahan</span>
+              <div className="w-8 h-8 rounded-lg bg-primary-fixed-dim flex items-center justify-center text-tertiary">
+                <span className="material-symbols-outlined text-[18px]">adjust</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{panahanCount}</span>
+            </div>
+          </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Kolase</span>
-<div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700">
-<span className="material-symbols-outlined text-[18px]">diversity_3</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{kolaseCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
-</div>
-<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
-<div className="bg-amber-400 h-1.5 rounded-full" style={{ width: "75%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-amber-700">75% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Kolase</span>
+              <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700">
+                <span className="material-symbols-outlined text-[18px]">diversity_3</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{kolaseCount}</span>
+            </div>
+          </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Pra-TKA</span>
-<div className="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
-<span className="material-symbols-outlined text-[18px]">auto_stories</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{praTkaCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
-</div>
-<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
-<div className="bg-primary h-1.5 rounded-full" style={{ width: "50%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-primary">50% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Pra-TKA</span>
+              <div className="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined text-[18px]">auto_stories</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{praTkaCount}</span>
+            </div>
+          </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Futsal</span>
-<div className="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center text-rose-700">
-<span className="material-symbols-outlined text-[18px]">sports_soccer</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{futsalCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 32 Kuota</span>
-</div>
-<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
-<div className="bg-rose-500 h-1.5 rounded-full" style={{ width: "60%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-rose-700">60% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Futsal</span>
+              <div className="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center text-rose-700">
+                <span className="material-symbols-outlined text-[18px]">sports_soccer</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{futsalCount}</span>
+            </div>
+          </div>
 
-<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
-<div className="flex items-center justify-between text-outline mb-1">
-<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Baca Puisi</span>
-<div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center text-violet-700">
-<span className="material-symbols-outlined text-[18px]">record_voice_over</span>
-</div>
-</div>
-<div className="my-2">
-<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{bacaPuisiCount}</span>
-<span className="text-caption font-caption text-outline ml-1">/ 100 Kuota</span>
-</div>
-<div className="w-full bg-surface rounded-full h-1.5 overflow-hidden">
-<div className="bg-violet-500 h-1.5 rounded-full" style={{ width: "45%" }}></div>
-</div>
-<div className="flex justify-between items-center text-caption font-caption text-outline mt-1.5">
-<span>Kapasitas</span>
-<span className="font-semibold text-violet-700">45% Terisi</span>
-</div>
-</div>
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Baca Puisi</span>
+              <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center text-violet-700">
+                <span className="material-symbols-outlined text-[18px]">record_voice_over</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{bacaPuisiCount}</span>
+            </div>
+          </div>
 
 <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
 <div className="flex items-center justify-between text-outline mb-1">
@@ -397,22 +344,22 @@ export default function AdminDashboard() {
 </div>
 
 <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-1 border-b border-surface-container">
-<button className="filter-tab active px-3.5 py-2 rounded-lg text-body-md-semibold font-body-md-semibold text-primary bg-primary-fixed flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="all">
-<span>Semua</span>
-<span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container-lowest text-primary text-[11px]">{totalRegistrations}</span>
-</button>
-<button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="menunggu">
-<span>Menunggu Verifikasi</span>
-<span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container text-on-surface-variant text-[11px]">52</span>
-</button>
-<button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="terverifikasi">
-<span>Terverifikasi</span>
-<span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container text-on-surface-variant text-[11px]">284</span>
-</button>
-<button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="perbaikan">
-<span>Perlu Perbaikan</span>
-<span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container text-on-surface-variant text-[11px]">12</span>
-</button>
+          <button className="filter-tab active px-3.5 py-2 rounded-lg text-body-md-semibold font-body-md-semibold text-primary bg-primary-fixed flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="all">
+            <span>Semua</span>
+            <span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container-lowest text-primary text-[11px]">{totalRegistrations}</span>
+          </button>
+          <button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="menunggu">
+            <span>Menunggu Verifikasi</span>
+            <span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container text-on-surface-variant text-[11px]">{pendingCount}</span>
+          </button>
+          <button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="terverifikasi">
+            <span>Terverifikasi</span>
+            <span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container text-on-surface-variant text-[11px]">{verifiedCount}</span>
+          </button>
+          <button className="filter-tab px-3.5 py-2 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high flex items-center gap-1.5 transition-colors whitespace-nowrap" data-filter="perbaikan">
+            <span>Perlu Perbaikan</span>
+            <span className="px-1.5 py-0.5 rounded-full text-caption bg-surface-container text-on-surface-variant text-[11px]">{rejectedCount}</span>
+          </button>
 </div>
 </div>
 
@@ -432,10 +379,10 @@ export default function AdminDashboard() {
 </thead>
 
                 <tbody className="font-body-md text-body-md text-on-surface" id="pendaftarTableBody">
-                  {registrations.length === 0 ? (
+                  {filteredRegistrations.length === 0 ? (
                     <DummyRows />
                   ) : (
-                    filteredRegistrations.map((row) => (
+                    paginatedRegistrations.map((row) => (
                       <RealRow row={row} key={row.registration_code} onVerifyPrompt={setVerifyRow} onProofPrompt={setProofRow} />
                     ))
                   )}
@@ -444,28 +391,31 @@ export default function AdminDashboard() {
 </table>
 </div>
 
-<div className="px-space-lg py-space-md bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
-<div className="text-caption font-caption text-on-surface-variant">
-        Menampilkan <span className="font-semibold text-on-surface">1 - 6</span> dari <span className="font-semibold text-on-surface">348</span> pendaftar terdaftar
-      </div>
-<div className="flex items-center gap-1">
-<button className="h-8 px-2.5 flex items-center gap-1 rounded text-caption font-medium text-outline bg-surface-container-lowest hover:text-on-surface disabled:opacity-50" disabled>
-<span className="material-symbols-outlined text-[16px]">chevron_left</span>
-<span>Sebelumnya</span>
-</button>
-<div className="flex items-center gap-1 mx-1">
-<button className="w-8 h-8 rounded bg-primary-container text-on-primary font-caption font-bold text-caption">1</button>
-<button className="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-caption text-caption transition-colors">2</button>
-<button className="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-caption text-caption transition-colors">3</button>
-<span className="text-caption text-outline px-1">...</span>
-<button className="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-caption text-caption transition-colors">58</button>
-</div>
-<button className="h-8 px-2.5 flex items-center gap-1 rounded text-caption font-medium text-on-surface bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
-<span>Berikutnya</span>
-<span className="material-symbols-outlined text-[16px]">chevron_right</span>
-</button>
-</div>
-</div>
+              <div className="px-space-lg py-space-md bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+                <div className="text-caption font-caption text-on-surface-variant">
+                  Menampilkan <span className="font-semibold text-on-surface">{filteredRegistrations.length === 0 ? 0 : startIndex + 1} - {Math.min(endIndex, filteredRegistrations.length)}</span> dari <span className="font-semibold text-on-surface">{filteredRegistrations.length}</span> pendaftar terdaftar
+                </div>
+                <div className="flex items-center gap-1">
+                  <button onClick={() => setCurrentPage(p => Math.max(1, p-1))} disabled={currentPage === 1} className="h-8 px-2.5 flex items-center gap-1 rounded text-caption font-medium text-on-surface bg-surface-container-lowest hover:bg-surface-container-high disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                    <span className="material-symbols-outlined text-[16px]">chevron_left</span>
+                    <span>Sebelumnya</span>
+                  </button>
+                  <div className="flex items-center gap-1 mx-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter(page => page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1)
+                      .map((page, idx, arr) => (
+                        <>
+                          {idx > 0 && arr[idx - 1] !== page - 1 && <span className="text-caption text-outline px-1">...</span>}
+                          <button key={page} onClick={() => setCurrentPage(page)} className={`w-8 h-8 rounded font-caption text-caption ${currentPage === page ? 'bg-primary-container text-on-primary font-bold' : 'bg-surface-container-lowest hover:bg-surface-container-high text-on-surface'} transition-colors`}>{page}</button>
+                        </>
+                      ))}
+                  </div>
+                  <button onClick={() => setCurrentPage(p => Math.min(totalPages, p+1))} disabled={currentPage === totalPages} className="h-8 px-2.5 flex items-center gap-1 rounded text-caption font-medium text-on-surface bg-surface-container-lowest hover:bg-surface-container-high disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                    <span>Berikutnya</span>
+                    <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+                  </button>
+                </div>
+              </div>
 </div>
 
 
