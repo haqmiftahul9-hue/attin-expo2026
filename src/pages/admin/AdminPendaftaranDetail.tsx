@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getAllRegistrations, getPaymentProofSignedUrl, getRegistrationGrades, proofFileKind, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
 import type { RegistrationRow } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
+import { getRegistrationConfigByCompetitionId } from '../../config/registrationConfigs.js'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
 import usePageTitle from '../../hooks/usePageTitle.js'
 
@@ -39,7 +40,7 @@ export default function AdminPendaftaranDetail() {
   if (loading) return <div className="p-8">Loading...</div>
   if (!row) return <div className="p-8">Pendaftaran tidak ditemukan.</div>
 
-  const config = registrationConfigs[row.competition_slug] || {}
+  const config = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug] || {}
 
   const handleUpdateStatus = async (status: 'pending' | 'verified' | 'rejected') => {
     if (confirm(`Anda yakin mengubah status menjadi ${status}?`)) {

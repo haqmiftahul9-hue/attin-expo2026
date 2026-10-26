@@ -182,10 +182,17 @@ export async function saveRegistration(input: SaveRegistrationInput): Promise<Sa
   }
 
   const MAX_ATTEMPTS = 3
+  // Cabang baru yang belum ada di tabel `competitions` (FK) disimpan dengan
+  // slug induk agar pendaftaran tetap berhasil dan data masuk ke portal admin.
+  const DB_SLUG_MAP: Record<string, string> = {
+    'tahfizh-kelas-6': 'tahfizh',
+  }
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     const paymentProofUrl = await uploadFile(client, row.competition_slug, row.registration_code, 'bukti-transfer', files.bukti_transfer)
 
-    const payload = { ...row, payment_proof_url: paymentProofUrl }
+    const dbSlug = DB_SLUG_MAP[row.competition_slug] || row.competition_slug
+    const payloadRow = { ...row, competition_slug: dbSlug as any }
+    const payload = { ...payloadRow, payment_proof_url: paymentProofUrl, specific_data: { ...row.specific_data, branch_slug: row.competition_slug } }
     const { data, error } = await client
       .from('registrations')
       .insert(payload)

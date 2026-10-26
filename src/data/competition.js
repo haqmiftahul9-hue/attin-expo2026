@@ -19,8 +19,26 @@ export const competitions = [
     quota: placeholders.quota,
     icon: 'menu_book',
     iconClassName: 'bg-primary-container text-on-primary',
-    title: 'Lomba Tahfizh',
-    shortTitle: 'Lomba Tahfizh',
+    title: 'Lomba Tahfizh Kelas 1 -5',
+    shortTitle: 'Lomba Tahfizh Kelas 1 -5',
+    description:
+      'Lomba hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
+    details: ['Rp. 35.000 per orang'],
+  },
+  {
+    id: 'cabang-tahfizh-kelas6',
+    slug: 'tahfizh-kelas-6',
+    path: 'detail-tahfizh',
+    href: '/lomba/tahfizh',
+    registrationHref: '/pendaftaran/tahfizh-kelas-6',
+    available: false,
+    tag: 'Kategori Qur’an',
+    tagClassName: 'bg-surface-container text-primary',
+    quota: placeholders.quota,
+    icon: 'menu_book',
+    iconClassName: 'bg-primary-container text-on-primary',
+    title: 'Lomba Tahfizh Kelas 6',
+    shortTitle: 'Lomba Tahfizh Kelas 6',
     description:
       'Lomba hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
     details: ['Rp. 35.000 per orang'],
@@ -94,7 +112,7 @@ export const competitions = [
     title: 'Lomba Pra-TKA',
     shortTitle: 'Pra-TKA',
     description:
-      'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD',
+      'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD Khusus Kelas 6',
     details: ['Rp. 35.000 per siswa'],
   },
   {

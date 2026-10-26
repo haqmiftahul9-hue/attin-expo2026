@@ -12,6 +12,7 @@ import BacaPuisiRegistration from './pages/registration/BacaPuisiRegistration.js
 import OlimpiadeRegistration from './pages/registration/OlimpiadeRegistration.jsx'
 import RegistrationSuccessPage from './pages/registration/RegistrationSuccessPage.jsx'
 import TahfizhRegistration from './pages/registration/TahfizhRegistration.jsx'
+import TahfizhKelas6Registration from './pages/registration/TahfizhKelas6Registration.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import AdminLogin from './pages/admin/AdminLogin.jsx'
 import AdminLayout from './layouts/AdminLayout.tsx'
@@ -142,6 +143,7 @@ export default function App() {
           <Route element={<HomePage />} path="/" />
           <Route element={<BranchDetailPage />} path="/lomba/:slug" />
           <Route element={<TahfizhRegistration />} path="/pendaftaran/tahfizh" />
+          <Route element={<TahfizhKelas6Registration />} path="/pendaftaran/tahfizh-kelas-6" />
           <Route element={<OlimpiadeRegistration />} path="/pendaftaran/olimpiade" />
           <Route element={<ArcheryRegistration />} path="/pendaftaran/panahan" />
            <Route element={<KolaseRegistration />} path="/pendaftaran/kolase" />

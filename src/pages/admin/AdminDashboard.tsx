@@ -7,6 +7,7 @@ import { getAllRegistrations, updateRegistrationStatus } from '../../lib/registr
 
 import type { RegistrationRow } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
+import { getRegistrationConfigByCompetitionId } from '../../config/registrationConfigs.js'
 
 
 function DummyRows() {
@@ -21,7 +22,7 @@ function DummyRows() {
 }
 
 function RealRow({ row, onVerifyPrompt, onProofPrompt }: { row: RegistrationRow, onVerifyPrompt: (row: RegistrationRow) => void, onProofPrompt: (row: RegistrationRow) => void }) {
-  const config = registrationConfigs[row.competition_slug] || {}
+  const config = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug] || {}
   
   return (
     <tr className="hover:bg-surface-container-low transition-colors group">
@@ -141,7 +142,8 @@ export default function AdminDashboard() {
   }, [filterUnit])
 
   const totalRegistrations = registrations.length
-  const tahfizhCount = registrations.filter(r => r.competition_slug === 'tahfizh').length
+  const tahfizhCount = registrations.filter(r => r.competition_slug === 'tahfizh' && r.competition_id !== 'comp-tahfizh-kelas-6').length
+  const tahfizhKelas6Count = registrations.filter(r => r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6').length
   const olimpiadeCount = registrations.filter(r => r.competition_slug === 'olimpiade').length
   const panahanCount = registrations.filter(r => r.competition_slug === 'panahan').length
   const kolaseCount = registrations.filter(r => r.competition_slug === 'kolase').length
@@ -209,6 +211,18 @@ export default function AdminDashboard() {
             </div>
             <div className="my-2">
               <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{tahfizhCount}</span>
+            </div>
+          </div>
+
+          <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+            <div className="flex items-center justify-between text-outline mb-1">
+              <span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Lomba Tahfizh Kelas 6</span>
+              <div className="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container">
+                <span className="material-symbols-outlined text-[18px]">menu_book</span>
+              </div>
+            </div>
+            <div className="my-2">
+              <span className="font-display-hero-mobile text-display-hero-mobile font-bold text-on-surface">{tahfizhKelas6Count}</span>
             </div>
           </div>
 

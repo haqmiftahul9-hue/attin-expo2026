@@ -28,13 +28,13 @@ export const COMPETITION_FEES = {
 export const tahfizh: RegistrationConfig = {
   slug: 'tahfizh',
   competitionId: 'comp-tahfizh',
-  name: 'Lomba Tahfizh',
-  fullName: 'Lomba Tahfizh',
+  name: 'Lomba Tahfizh Kelas 1 -5',
+  fullName: 'Lomba Tahfizh Kelas 1 -5',
   tagline: 'Lomba hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
   icon: 'menu_book',
   iconClassName: 'bg-primary-fixed text-primary',
   codePrefix: 'ATXII-THF',
-  level: 'Kelas 1-6 SD/MI Sederajat',
+  level: 'Kelas 1-5 SD/MI Sederajat',
   categoryLabel: 'Kategori Lomba Tahfizh',
   categoryHelper: 'Utusan boleh 1 Putra saja, 1 Putri saja, atau kedua-duanya (1 Putra dan 1 Putri).',
   categoryFieldName: 'kategori_tahfizh',
@@ -50,7 +50,6 @@ export const tahfizh: RegistrationConfig = {
     { value: '3', label: 'Kelas 3' },
     { value: '4', label: 'Kelas 4' },
     { value: '5', label: 'Kelas 5' },
-    { value: '6', label: 'Kelas 6' },
   ],
   bank: {
     name: placeholders.bank,
@@ -61,6 +60,39 @@ export const tahfizh: RegistrationConfig = {
     person: 'Ustadzah Bella',
     whatsapp: '0852-7419-7702',
     whatsappHref: 'https://wa.me/6285274197702',
+    email: placeholders.email,
+  },
+}
+
+export const tahfizhKelas6: RegistrationConfig = {
+  slug: 'tahfizh-kelas-6',
+  competitionId: 'comp-tahfizh-kelas-6',
+  name: 'Lomba Tahfizh Kelas 6',
+  fullName: 'Lomba Tahfizh Kelas 6',
+  tagline: 'Lomba hafalan Al-Qur’an menguji kefasihan makhraj, ketepatan hukum tajwid, kelancaran adab tilawah, dan irama tartil.',
+  icon: 'menu_book',
+  iconClassName: 'bg-primary-fixed text-primary',
+  codePrefix: 'ATXII-TH6',
+  level: 'Kelas 6 SD/MI Sederajat',
+  categoryLabel: 'Kategori Lomba Tahfizh',
+  categoryHelper: 'Utusan boleh 1 Putra saja, 1 Putri saja, atau kedua-duanya (1 Putra dan 1 Putri).',
+  categoryFieldName: 'kategori_tahfizh',
+  categoryPlaceholder: '[KATEGORI TERKUNCI]',
+  categories: [],
+  specificFields: [],
+  fee: COMPETITION_FEES.tahfizh,
+  feeNote: 'Biaya pendaftaran per orang',
+  quota: placeholders.quota,
+  gradeOptions: [],
+  bank: {
+    name: placeholders.bank,
+    accountNumber: placeholders.bankAccountNumber,
+    accountHolder: 'Rahma Putri (Kepanitiaan ATTIN EXPO)',
+  },
+  contact: {
+    person: 'Ustadzah Yel',
+    whatsapp: '0822-8631-2799',
+    whatsappHref: 'https://wa.me/6282286312799',
     email: placeholders.email,
   },
 }
@@ -182,7 +214,7 @@ export const praTka: RegistrationConfig = {
   name: 'Lomba Pra-TKA',
   fullName: 'Lomba Pra-TKA',
   tagline:
-    'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD',
+    'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD Khusus Kelas 6',
   icon: 'auto_stories',
   iconClassName: 'bg-primary-fixed text-primary',
   codePrefix: 'ATXII-PTK',
@@ -220,7 +252,7 @@ export const futsal: RegistrationConfig = {
   icon: 'sports_soccer',
   iconClassName: 'bg-secondary-fixed text-on-secondary',
   codePrefix: 'ATXII-FTS',
-  level: 'SD/MI Sederajat se-Sumatera Barat',
+  level: 'SD/MI se Kota Pariaman dan Kab. Padang Pariaman',
   categoryLabel: 'Kategori Futsal',
   categoryHelper: 'Satu tim futsal terdiri dari pemain yang didaftarkan bersama.',
   categoryFieldName: 'kategori_futsal',
@@ -287,6 +319,7 @@ export const bacaPuisi: RegistrationConfig = {
 
 export const registrationConfigs: Record<CompetitionSlug, RegistrationConfig> = {
   tahfizh,
+  'tahfizh-kelas-6': tahfizhKelas6,
   olimpiade,
   panahan,
   kolase,
@@ -302,4 +335,9 @@ export function getRegistrationConfig(slug: string | undefined): RegistrationCon
     return registrationConfigs[slug as CompetitionSlug]
   }
   return defaultConfig
+}
+
+export function getRegistrationConfigByCompetitionId(id: string | undefined): RegistrationConfig | undefined {
+  if (!id) return undefined
+  return Object.values(registrationConfigs).find((c) => c.competitionId === id)
 }

@@ -2,7 +2,7 @@
  * Tipe bersama untuk alur pendaftaran tiga cabang lomba.
  */
 
-export type CompetitionSlug = 'tahfizh' | 'olimpiade' | 'panahan' | 'kolase' | 'pra-tka' | 'futsal' | 'baca-puisi'
+export type CompetitionSlug = 'tahfizh' | 'tahfizh-kelas-6' | 'olimpiade' | 'panahan' | 'kolase' | 'pra-tka' | 'futsal' | 'baca-puisi'
 
 export type Gender = 'Laki-laki' | 'Perempuan'
 

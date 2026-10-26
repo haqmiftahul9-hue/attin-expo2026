@@ -4,6 +4,7 @@ import { getAllRegistrations, getRegistrationGrades } from '../../lib/registrati
 import usePageTitle from '../../hooks/usePageTitle.js'
 import type { RegistrationRow, CompetitionSlug } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
+import { getRegistrationConfigByCompetitionId } from '../../config/registrationConfigs.js'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
 import PaymentProofModal from '../../components/admin/PaymentProofModal'
 import * as XLSX from 'xlsx'
@@ -210,8 +211,8 @@ export default function AdminRekapitulasi() {
                 minute: '2-digit',
               })
             : '-',
-          'Cabang Lomba':
-            registrationConfigs[row.competition_slug as CompetitionSlug]?.name || row.competition_slug,
+            'Cabang Lomba':
+              (getRegistrationConfigByCompetitionId(row.competition_id)?.name) || (registrationConfigs[row.competition_slug as CompetitionSlug]?.name) || row.competition_slug,
           'Kategori Lomba': getCategoryDisplay(row),
           'Nama Peserta': row.expanded_name || '-',
           'Kategori Peserta': row.expanded_type || '-',
@@ -322,7 +323,7 @@ export default function AdminRekapitulasi() {
     const tableRows: any[][] = []
 
     filteredRegistrations.forEach((row, index) => {
-      const branchName = registrationConfigs[row.competition_slug]?.name || row.competition_slug
+      const branchName = (getRegistrationConfigByCompetitionId(row.competition_id)?.name) || (registrationConfigs[row.competition_slug]?.name) || row.competition_slug
       const cat = getCategoryDisplay(row)
       const lombaText = cat !== '-' ? `${branchName} (${cat})` : branchName
 
@@ -633,7 +634,7 @@ export default function AdminRekapitulasi() {
               ) : (
                 filteredRegistrations.map((row) => {
                   const participants = parseParticipants(row)
-                  const branchConfig = registrationConfigs[row.competition_slug]
+                  const branchConfig = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug]
                   const categoryName = getCategoryDisplay(row)
 
                   // Visual Badge Berkas

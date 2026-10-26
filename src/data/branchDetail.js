@@ -49,9 +49,9 @@ export const formSteps = [
 export const branchDetails = {
   tahfizh: {
     slug: 'tahfizh',
-    breadcrumb: 'Lomba Tahfizh',
+    breadcrumb: 'Lomba Tahfizh Kelas 1 -5',
     metaTitle: `${site.title} - Temukan Potensi. Ukir Prestasi.`,
-    tagline: 'Lomba Tahfizh',
+    tagline: 'Lomba Tahfizh Kelas 1 -5',
     accentTitle: 'Tahfizh',
     level: 'Tingkat SD/MI se-Sumatera Barat',
     intro:
