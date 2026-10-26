@@ -158,11 +158,20 @@ export const contactCards = [
   {
     icon: 'chat',
     iconClassName: 'bg-primary/10 text-primary',
-    title: 'Narahubung Tahfidz',
+    title: 'Narahubung Tahfidz (Kelas 1-5)',
     caption: 'Ustadzah Bella',
     value: '0852-7419-7702',
     cta: 'Hubungi WA',
     href: 'https://wa.me/6285274197702'
+  },
+  {
+    icon: 'chat',
+    iconClassName: 'bg-primary/10 text-primary',
+    title: 'Narahubung Tahfidz (Kelas 6)',
+    caption: 'Ustadzah Yel',
+    value: '0822-8631-2799',
+    cta: 'Hubungi WA',
+    href: 'https://wa.me/6282286312799'
   },
   {
     icon: 'chat',
