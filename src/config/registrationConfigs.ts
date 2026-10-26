@@ -73,7 +73,7 @@ export const tahfizhKelas6: RegistrationConfig = {
   icon: 'menu_book',
   iconClassName: 'bg-primary-fixed text-primary',
   codePrefix: 'ATXII-TH6',
-  level: 'Kelas 6 SD/MI Sederajat',
+  level: 'Kelas 6 SD/MI Sederajat Tingkat Sumatera Barat',
   categoryLabel: 'Kategori Lomba Tahfizh',
   categoryHelper: 'Utusan boleh 1 Putra saja, 1 Putri saja, atau kedua-duanya (1 Putra dan 1 Putri).',
   categoryFieldName: 'kategori_tahfizh',
