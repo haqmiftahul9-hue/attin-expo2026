@@ -34,7 +34,7 @@ export const tahfizh: RegistrationConfig = {
   icon: 'menu_book',
   iconClassName: 'bg-primary-fixed text-primary',
   codePrefix: 'ATXII-THF',
-  level: 'Kelas 1-5 SD/MI Sederajat',
+  level: 'Kelas 1-6 SD/MI Sederajat',
   categoryLabel: 'Kategori Lomba Tahfizh',
   categoryHelper: 'Utusan boleh 1 Putra saja, 1 Putri saja, atau kedua-duanya (1 Putra dan 1 Putri).',
   categoryFieldName: 'kategori_tahfizh',
