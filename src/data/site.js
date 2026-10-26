@@ -71,9 +71,9 @@ export const site = {
     quota: PLACEHOLDER.quota,
   },
   juknis: {
-    fileName: 'JUKNIS ATTIN EXPO SD DAN  SMP TAHUN 2026 OK.pdf',
+    fileName: 'JUKNIS ATTIN EXPO SD DAN  SMP TAHUN 2026.pdf',
     version: 'Final 2026',
-    href: '/assets/JUKNIS ATTIN EXPO SD DAN  SMP TAHUN 2026 OK.pdf',
+    href: '/assets/JUKNIS ATTIN EXPO SD DAN  SMP TAHUN 2026.pdf',
     linkLabel: 'Unduh Juknis Lengkap',
     highlights: [
       'Mekanisme Kriteria Penilaian',
