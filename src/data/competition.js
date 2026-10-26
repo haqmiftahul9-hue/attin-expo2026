@@ -131,7 +131,7 @@ export const competitions = [
     shortTitle: 'Futsal',
     description:
       'Kompetisi futsal antar sekolah/madrasah SD/MI yang menjunjung tinggi sportivitas, kerja sama tim, dan adab Islami di atas lapangan.',
-    details: ['Rp. 250.000/Team'],
+    details: ['Rp. 200.000/Team'],
   },
   {
     id: 'cabang-baca-puisi',

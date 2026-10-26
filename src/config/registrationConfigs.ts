@@ -20,7 +20,7 @@ export const COMPETITION_FEES = {
   panahan: 65000,
   kolase: 20000,
   'pra-tka': 35000,
-  futsal: 250000,
+  futsal: 200000,
   'baca-puisi': 35000,
 }
 
@@ -184,7 +184,7 @@ export const kolase: RegistrationConfig = {
   icon: 'diversity_3',
   iconClassName: 'bg-amber-50 text-amber-900',
   codePrefix: 'ATXII-KLS',
-  level: 'TK/PAUD — Kota Pariaman & Kabupaten Padang Pariaman',
+  level: 'TK/PAUD — Kota Pariaman',
   categoryLabel: 'Partisipasi Kolase',
   categoryHelper: 'Satu kolase dilakukan oleh satu anak didampingi orang tuanya secara bersama.',
   categoryFieldName: 'kategori_kolase',
