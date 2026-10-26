@@ -42,7 +42,7 @@ export const site = {
   name: 'ATTIN EXPO XII',
   edition: 'Sumatera Barat 2026',
   editionBadge: 'EDISI KE-12 • TAHUN 2026',
-  tagline: 'Ajang Prestasi, Dakwah, Pameran, Berbagi, dan Sportivitas Islami Jenjang SD/MI dan SMP/MTs Se-Sumatera Barat',
+  tagline: 'Ajang Prestasi, Dakwah, Pameran, Berbagi, dan Sportivitas Islami Jenjang SD/MI Se-Sumatera Barat',
   description:
     'Wadah kompetisi, pameran, dan berbagi tingkat provinsi Sumatera Barat yang melahirkan generasi Qur’ani yang berkarakter, tangguh, dan unggul dalam bidang keislaman serta kuat jasmani. Maka Attin Expo XII hadir dalam pameran serta Lomba Tahfizh, Pra-TKA, Panahan, Kolase Anak dan Orang Tua, Futsal, Pra-TKA, dan Baca Puisi',
   announcement:
