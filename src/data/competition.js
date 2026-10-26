@@ -112,7 +112,7 @@ export const competitions = [
     title: 'Lomba Pra-TKA',
     shortTitle: 'Pra-TKA',
     description:
-      'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD Khusus Kelas 6',
+      'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan Bahasa Indonesia tingkat SD Khusus Kelas 6',
     details: ['Rp. 35.000 per siswa'],
   },
   {

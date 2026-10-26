@@ -214,7 +214,7 @@ export const praTka: RegistrationConfig = {
   name: 'Lomba Pra-TKA',
   fullName: 'Lomba Pra-TKA',
   tagline:
-    'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan IPA tingkat SD Khusus Kelas 6',
+    'Lomba Pra-TKA untuk menjawab soal TKA Matematika dan Bahasa Indonesia tingkat SD Khusus Kelas 6',
   icon: 'auto_stories',
   iconClassName: 'bg-primary-fixed text-primary',
   codePrefix: 'ATXII-PTK',
