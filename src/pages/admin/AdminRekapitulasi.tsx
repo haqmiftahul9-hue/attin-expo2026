@@ -116,8 +116,13 @@ export default function AdminRekapitulasi() {
   const filteredRegistrations = useMemo(() => {
     return registrations.filter((r) => {
       // 1. Filter Cabang
-      if (filterSlug !== 'all' && r.competition_slug !== filterSlug) {
-        return false
+      if (filterSlug !== 'all') {
+        if (filterSlug === 'tahfizh-kelas-6') {
+          const isKelas6 = r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6'
+          if (!isKelas6) return false
+        } else if (r.competition_slug !== filterSlug) {
+          return false
+        }
       }
       // 1b. Filter Unit (SD/SMP)
       if (filterUnit !== 'all' && getUnit(r.competition_slug) !== filterUnit) {
@@ -277,7 +282,8 @@ export default function AdminRekapitulasi() {
        processSheet(bacaPuisi, 'Baca Puisi')
     } else {
       let sheetName = 'Rekap Pendaftaran'
-       if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
+        if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
+        if (filterSlug === 'tahfizh-kelas-6') sheetName = 'Tahfizh Kelas 6'
        if (filterSlug === 'olimpiade') sheetName = 'Olimpiade'
        if (filterSlug === 'panahan') sheetName = 'Panahan'
        if (filterSlug === 'kolase') sheetName = 'Kolase'
@@ -535,6 +541,7 @@ export default function AdminRekapitulasi() {
                 >
                   <option value="all">Semua Cabang Lomba</option>
                   <option value="tahfizh">Lomba Tahfizh</option>
+                  <option value="tahfizh-kelas-6">Lomba Tahfizh Kelas 6</option>
                   <option value="olimpiade">Olimpiade SD</option>
                   <option value="panahan">Lomba Panahan</option>
                   <option value="kolase">Lomba Kolase</option>
