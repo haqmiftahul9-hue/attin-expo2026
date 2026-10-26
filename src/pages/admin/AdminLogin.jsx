@@ -9,7 +9,7 @@ export default function AdminLogin() {
 
   // Allow users to see login page without auto-logout
 
-  const [email, setEmail] = useState('adminexpo@attinexpo.id')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(true)
@@ -122,7 +122,7 @@ export default function AdminLogin() {
             {/* Input Email / Username */}
             <div className="flex flex-col gap-1.5">
               <label className="text-[13px] font-bold text-slate-700 flex items-center justify-between" htmlFor="adminEmail">
-                <span>Email / Username <span className="text-rose-500">*</span></span>
+                <span>Username <span className="text-rose-500">*</span></span>
               </label>
               <div className="relative flex items-center">
                 <MaterialIcon name="mail" className="absolute left-3.5 text-slate-400 text-[18px] pointer-events-none" />
