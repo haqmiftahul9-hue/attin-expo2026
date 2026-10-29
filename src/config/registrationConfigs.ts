@@ -86,7 +86,7 @@ export const tahfizhKelas6: RegistrationConfig = {
   gradeOptions: [],
   bank: {
     name: placeholders.bank,
-    accountNumber: placeholders.bankAccountNumber,
+    accountNumber: '71040220052793',
     accountHolder: 'Rahma Putri (Kepanitiaan ATTIN EXPO)',
   },
   contact: {
