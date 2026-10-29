@@ -27,7 +27,7 @@ export default function TimelineSection() {
 
           <Reveal>
             {/* Timeline Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-stretch max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 items-stretch max-w-7xl mx-auto">
               {timeline.steps.map((step) => {
                 return (
                   <div
@@ -44,9 +44,17 @@ export default function TimelineSection() {
                       <h3 className="text-[17px] sm:text-[18px] font-bold text-[#0F172A] leading-snug mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-[14px] text-[#475569] leading-relaxed">
-                        {step.description}
-                      </p>
+                      {step.items ? (
+                        <ol className="text-[11px] sm:text-[12px] text-[#475569] leading-tight text-left list-decimal grid grid-cols-1 gap-x-3">
+                          {step.items.map((it, idx) => (
+                            <li key={idx} className="py-0.5">{it}</li>
+                          ))}
+                        </ol>
+                      ) : (
+                        <p className="text-[14px] text-[#475569] leading-relaxed">
+                          {step.description}
+                        </p>
+                      )}
                     </div>
 
                     {/* Footer: Date */}

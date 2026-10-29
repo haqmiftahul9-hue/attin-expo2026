@@ -64,7 +64,7 @@ export const site = {
      */
     deadline: '2026-11-18T23:59:59+07:00',
     deadlineLabel: '18 November 2026',
-    executionDate: 'Jumat-Sabtu, 20-21 November 2026',
+    executionDate: '20-22 November 2026',
     venue: PLACEHOLDER.venue,
     city: 'Padang',
     fee: PLACEHOLDER.fee,
