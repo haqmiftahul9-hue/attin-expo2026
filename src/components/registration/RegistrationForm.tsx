@@ -88,7 +88,9 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
       }
 
       const feeDetails = calculateDynamicFee(config, form.values)
-      const categoryValue = textValue(form.values, config.categoryFieldName)
+      const categoryValue = config.subjectOptions && config.subjectOptions.length > 0
+    ? textValue(form.values, 'mata_pelajaran').replace(/\n/g, ', ')
+    : textValue(form.values, config.categoryFieldName)
       // Gabungkan kelas per peserta dengan newline separator
       const gradesValue = textValue(form.values, 'kelas_peserta')
 

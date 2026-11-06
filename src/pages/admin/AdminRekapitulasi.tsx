@@ -264,23 +264,26 @@ export default function AdminRekapitulasi() {
       XLSX.utils.book_append_sheet(wb, ws, sheetName)
     }
 
-    if (filterSlug === 'all') {
-       const tahfizh = registrations.filter((r) => r.competition_slug === 'tahfizh')
-       const olimpiade = registrations.filter((r) => r.competition_slug === 'olimpiade')
-       const panahan = registrations.filter((r) => r.competition_slug === 'panahan')
-       const kolase = registrations.filter((r) => r.competition_slug === 'kolase')
-       const praTka = registrations.filter((r) => r.competition_slug === 'pra-tka')
-       const futsalRows = registrations.filter((r) => r.competition_slug === 'futsal')
-       const bacaPuisi = registrations.filter((r) => r.competition_slug === 'baca-puisi')
+     if (filterSlug === 'all') {
+        const unitFilter = (rows: any[]) => filterUnit === 'all' ? rows : rows.filter((r: any) => getUnit(r.competition_slug) === filterUnit || (filterUnit === 'sd' && (r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6')))
+        const tahfizh = unitFilter(registrations.filter((r) => r.competition_slug === 'tahfizh' && r.competition_id !== 'comp-tahfizh-kelas-6'))
+        const tahfizhKelas6 = unitFilter(registrations.filter((r) => r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6'))
+        const olimpiade = unitFilter(registrations.filter((r) => r.competition_slug === 'olimpiade'))
+        const panahan = unitFilter(registrations.filter((r) => r.competition_slug === 'panahan'))
+        const kolase = unitFilter(registrations.filter((r) => r.competition_slug === 'kolase'))
+        const praTka = unitFilter(registrations.filter((r) => r.competition_slug === 'pra-tka'))
+        const futsalRows = unitFilter(registrations.filter((r) => r.competition_slug === 'futsal'))
+        const bacaPuisi = unitFilter(registrations.filter((r) => r.competition_slug === 'baca-puisi'))
 
-       processSheet(tahfizh, 'Tahfizh')
-       processSheet(olimpiade, 'Olimpiade')
-       processSheet(panahan, 'Panahan')
-       processSheet(kolase, 'Kolase')
-       processSheet(praTka, 'Pra-TKA')
-       processSheet(futsalRows, 'Futsal')
-       processSheet(bacaPuisi, 'Baca Puisi')
-    } else {
+        processSheet(tahfizh, 'Tahfizh')
+        if (tahfizhKelas6.length > 0) processSheet(tahfizhKelas6, 'Tahfizh Kelas 6')
+        processSheet(olimpiade, 'Olimpiade')
+        processSheet(panahan, 'Panahan')
+        processSheet(kolase, 'Kolase')
+        processSheet(praTka, 'Pra-TKA')
+        processSheet(futsalRows, 'Futsal')
+        processSheet(bacaPuisi, 'Baca Puisi')
+     } else {
       let sheetName = 'Rekap Pendaftaran'
         if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
         if (filterSlug === 'tahfizh-kelas-6') sheetName = 'Tahfizh Kelas 6'

@@ -77,34 +77,40 @@ export default function AdminPendaftaranDetail() {
               <div>
                 <span className="text-slate-500 text-sm block mb-1">Daftar Nama Peserta & Kelas:</span>
                 <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 space-y-1.5 font-medium text-slate-800">
-                  {(() => {
-                    const grades = getRegistrationGrades(row)
-                    const isTahfizh = row.competition_slug === 'tahfizh'
-                    const rawNames = isTahfizh
-                      ? (row.participant_name || '').split(' | ').map(n => n.trim()).filter(Boolean)
-                      : (row.participant_name || '').split('\n').map(n => n.trim()).filter(Boolean)
-                    return rawNames.map((raw, idx) => {
-                      const genderMatch = isTahfizh ? raw.match(/^(Putra|Putri):\s*(.*)$/) : null
-                      const genderLabel = genderMatch ? genderMatch[1] : null
-                      const name = genderMatch ? genderMatch[2] : raw
-                      return (
-                        <div key={idx} className="flex items-center gap-2 flex-wrap">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                          {genderLabel && (
-                            <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${genderLabel === 'Putra' ? 'bg-blue-100 text-blue-700' : 'bg-pink-100 text-pink-700'}`}>
-                              {genderLabel}
-                            </span>
-                          )}
-                          <span className="font-medium">{name}</span>
-                          {grades[idx] && (
-                            <span className="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">
-                              {grades[idx]}
-                            </span>
-                          )}
-                        </div>
-                      )
-                    })
-                  })()}
+                   {(() => {
+                     const grades = getRegistrationGrades(row)
+                     const subjects = (row.specific_data?.mata_pelajaran || '').split(/,|\n/).map(s => s.trim()).filter(Boolean)
+                     const isTahfizh = row.competition_slug === 'tahfizh'
+                     const rawNames = isTahfizh
+                       ? (row.participant_name || '').split(' | ').map(n => n.trim()).filter(Boolean)
+                       : (row.participant_name || '').split('\n').map(n => n.trim()).filter(Boolean)
+                     return rawNames.map((raw, idx) => {
+                       const genderMatch = isTahfizh ? raw.match(/^(Putra|Putri):\s*(.*)$/) : null
+                       const genderLabel = genderMatch ? genderMatch[1] : null
+                       const name = genderMatch ? genderMatch[2] : raw
+                       return (
+                         <div key={idx} className="flex items-center gap-2 flex-wrap">
+                           <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                           {genderLabel && (
+                             <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded ${genderLabel === 'Putra' ? 'bg-blue-100 text-blue-700' : 'bg-pink-100 text-pink-700'}`}>
+                               {genderLabel}
+                             </span>
+                           )}
+                           <span className="font-medium">{name}</span>
+                           {grades[idx] && (
+                             <span className="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">
+                               {grades[idx]}
+                             </span>
+                           )}
+                           {subjects[idx] && (
+                             <span className="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
+                               {subjects[idx]}
+                             </span>
+                           )}
+                         </div>
+                       )
+                     })
+                   })()}
                 </div>
               </div>
               <p><span className="text-slate-500">Jumlah Peserta Terdaftar:</span> <strong className="text-slate-800">{row.participant_count || 1} Peserta</strong></p>

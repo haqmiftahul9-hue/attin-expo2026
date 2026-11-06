@@ -135,6 +135,23 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
     }
   }
 
+  // Validasi mata pelajaran untuk setiap peserta (jika ada subjectOptions)
+  if (config.subjectOptions && config.subjectOptions.length > 0) {
+    const subjectsText = typeof values.mata_pelajaran === 'string' ? values.mata_pelajaran : ''
+    const subjects = subjectsText.split('\n')
+    let participantCount = 0
+    const namesText = typeof values.nama_lengkap === 'string' ? values.nama_lengkap : ''
+    participantCount = namesText
+      .split('\n')
+      .map((n) => n.trim())
+      .filter((n) => n.length > 0).length
+
+    for (let index = 0; index < participantCount; index++) {
+      if (isBlank(subjects[index])) {
+        errors[`mata_pelajaran_${index}`] = 'Pilih mata pelajaran untuk peserta ini.'
+      }
+    }
+  }
   for (const specificField of config.specificFields) {
     if (isBlank(values[specificField.name])) {
       errors[specificField.name] = 'Pilih salah satu opsi yang tersedia.'
@@ -175,7 +192,7 @@ export function buildSpecificData(values: FormValues, config: RegistrationConfig
 
   
 
-  if (typeof values.guru_pendamping === 'string' && values.guru_pendamping.trim() !== '') specificData.guru_pendamping = values.guru_pendamping.trim()
+  if (typeof values.mata_pelajaran === 'string' && values.mata_pelajaran.trim() !== '') specificData.mata_pelajaran = values.mata_pelajaran.trim().replace(/\n/g, ', ')
   if (typeof values.nohp_pendamping === 'string' && values.nohp_pendamping.trim() !== '') specificData.nohp_pendamping = values.nohp_pendamping.trim()
 
   return specificData

@@ -47,6 +47,7 @@ export interface RegistrationConfig {
   feeNote: string
   quota: string
   gradeOptions: SelectOption[]
+  subjectOptions?: SelectOption[]
   bank: {
     name: string
     accountNumber: string

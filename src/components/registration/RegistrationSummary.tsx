@@ -54,9 +54,13 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
   const checklist = getChecklist(form)
   const calculatedFee = calculateDynamicFee(config, values)
 
-  const categoryValue = valueFor(config.categoryFieldName)
+  const categoryValue = config.subjectOptions && config.subjectOptions.length > 0
+    ? valueFor('mata_pelajaran')?.toString().replace(/\n/g, ', ') || '-- Belum Dipilih --'
+    : valueFor(config.categoryFieldName)
   const categoryLabel =
-    config.categories.find((category) => category.value === categoryValue)?.label ?? '-- Belum Dipilih --'
+    (config.subjectOptions && config.subjectOptions.length > 0)
+      ? (typeof valueFor('mata_pelajaran') === 'string' && (valueFor('mata_pelajaran') as string).trim() !== '' ? (valueFor('mata_pelajaran') as string).replace(/\n/g, ', ') : '-- Belum Dipilih --')
+      : (config.categories.find((category) => category.value === categoryValue)?.label ?? '-- Belum Dipilih --')
   const schoolName =
     typeof values.nama_sekolah === 'string' && values.nama_sekolah.trim() !== ''
       ? values.nama_sekolah
@@ -94,7 +98,9 @@ export default function RegistrationSummary({ form }: { form: RegistrationFormAp
 
         <div className="space-y-3 text-sm mb-6">
           <SummaryRow highlight label="Cabang Lomba" value={config.fullName} />
-          {config.categories.length > 0 || config.specificFields.some(f => f.name === config.categoryFieldName) ? (
+          {config.subjectOptions && config.subjectOptions.length > 0 ? (
+            <SummaryRow highlight label="Mata Pelajaran" value={categoryLabel} />
+          ) : config.categories.length > 0 || config.specificFields.some(f => f.name === config.categoryFieldName) ? (
             <SummaryRow highlight label="Kategori" value={categoryLabel} />
           ) : null}
           <SummaryRow label="Jumlah Peserta" value={`${calculatedFee.count} Peserta`} />
