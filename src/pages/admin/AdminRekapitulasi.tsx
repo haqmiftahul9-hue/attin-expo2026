@@ -94,6 +94,8 @@ export default function AdminRekapitulasi() {
   const [filterUnit, setFilterUnit] = useState('all')
   const [filterStatus, setFilterStatus] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
   const [isLoading, setIsLoading] = useState(true)
   const [proofPreview, setProofPreview] = useState<RegistrationRow | null>(null)
 
@@ -156,6 +158,16 @@ export default function AdminRekapitulasi() {
     })
   }, [registrations, filterSlug, filterUnit, filterStatus, searchQuery])
 
+  // Pagination: 10 data per halaman
+  const totalPages = Math.max(1, Math.ceil(filteredRegistrations.length / itemsPerPage))
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedRegistrations = filteredRegistrations.slice(startIndex, endIndex)
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [filterSlug, filterUnit, filterStatus, searchQuery])
+
   // Metrik Statistik Cepat
   const stats = useMemo(() => {
     const totalReg = registrations.length
@@ -180,11 +192,19 @@ export default function AdminRekapitulasi() {
         const participants = parseParticipants(row)
         const grades = parseGrades(row)
         participants.forEach((p, pIdx) => {
+          const isFirst = pIdx === 0
           expandedRows.push({
             ...row,
             expanded_name: p.name,
             expanded_type: p.type === 'Putra' ? 'Putra' : p.type === 'Putri' ? 'Putri' : '-',
             expanded_grade: grades[pIdx] || '',
+            // Biaya hanya dihitung sekali per registrasi (baris pertama peserta),
+            // agar unduhan Excel tidak menghitung biaya ganda saat satu
+            // pendaftaran memiliki lebih dari satu peserta (Tahfizh Pa/Pi atau
+            // banyak nama tim Futsal).
+            unit_fee: isFirst ? (row.unit_fee || 0) : 0,
+            participant_count: isFirst ? (row.participant_count || 1) : 0,
+            total_fee: isFirst ? (row.total_fee || 0) : 0,
           })
         })
       })
@@ -655,7 +675,7 @@ export default function AdminRekapitulasi() {
                   </td>
                 </tr>
               ) : (
-                filteredRegistrations.map((row) => {
+                paginatedRegistrations.map((row) => {
                   const participants = parseParticipants(row)
                   const branchConfig = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug]
                   const categoryName = getCategoryDisplay(row)
@@ -913,11 +933,58 @@ export default function AdminRekapitulasi() {
           </table>
         </div>
 
-        {/* Footer info tabel */}
-        <div className="px-5 py-3.5 bg-[#F8FAFC] border-t border-[#CBD5E1] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#475569]">
-          <div>
-            Menampilkan <span className="font-bold text-[#0F172A]">{filteredRegistrations.length}</span> dari{' '}
-            <span className="font-bold text-[#0F172A]">{registrations.length}</span> total pendaftar terdaftar
+        {/* Footer info tabel + pagination */}
+        <div className="px-5 py-3.5 bg-[#F8FAFC] border-t border-[#CBD5E1] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#475569]">
+          <div className="flex items-center gap-2">
+            Menampilkan{' '}
+            <span className="font-bold text-[#0F172A]">
+              {filteredRegistrations.length === 0 ? 0 : startIndex + 1}
+            </span>{' '}
+            -{' '}
+            <span className="font-bold text-[#0F172A]">{Math.min(endIndex, filteredRegistrations.length)}</span>{' '}
+            dari{' '}
+            <span className="font-bold text-[#0F172A]">{filteredRegistrations.length}</span> total pendaftar terdaftar
+          </div>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="h-8 px-2.5 rounded bg-[#F8FAFC] border border-[#CBD5E1] text-[#475569] hover:bg-[#E2E8F0] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Sebelumnya
+            </button>
+            <div className="flex items-center gap-0.5">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                const showEllipsis = page !== 1 && page !== totalPages && Math.abs(page - currentPage) > 1
+                if (showEllipsis) {
+                  return (
+                    <span key="ellipsis" className="px-1 py-0.5 text-[#64748B]">
+                      …
+                    </span>
+                  )
+                }
+                return (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`w-7 h-7 rounded text-xs font-bold border ${
+                      currentPage === page
+                        ? 'bg-[#003B5C] text-white border-[#003B5C]'
+                        : 'bg-[#F8FAFC] text-[#475569] border-[#CBD5E1] hover:bg-[#E2E8F0]'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              })}
+            </div>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="h-8 px-2.5 rounded bg-[#F8FAFC] border border-[#CBD5E1] text-[#475569] hover:bg-[#E2E8F0] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Berikutnya
+            </button>
           </div>
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
