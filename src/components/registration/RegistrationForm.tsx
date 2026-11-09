@@ -9,7 +9,7 @@ import type { RegistrationFormApi } from '../../hooks/useRegistrationForm.js'
 import { clearRegistrationDraft, saveRegistrationDraft } from '../../lib/registrationDraft.js'
 import { generateRegistrationCode } from '../../lib/registrationCode.js'
 import { saveRegistration } from '../../lib/registrationsRepository.js'
-import { buildSpecificData, getGender, textValue, validateFileValue } from '../../lib/registrationValidation.js'
+import { buildSpecificData, getGender, isRealName, textValue, validateFileValue } from '../../lib/registrationValidation.js'
 import { calculateDynamicFee } from '../../lib/registrationUtils.js'
 import { fieldId } from '../../lib/registrationStyles.js'
 import type { RegistrationRow } from '../../types/registration.js'
@@ -82,8 +82,8 @@ export default function RegistrationForm({ form }: RegistrationFormProps) {
         const pa = textValue(form.values, 'nama_pa')
         const pi = textValue(form.values, 'nama_pi')
         const parts = []
-        if (pa) parts.push(`Putra: ${pa}`)
-        if (pi) parts.push(`Putri: ${pi}`)
+        if (isRealName(pa)) parts.push(`Putra: ${pa}`)
+        if (isRealName(pi)) parts.push(`Putri: ${pi}`)
         finalParticipantName = parts.join(' | ')
       }
 

@@ -1,4 +1,5 @@
 import type { RegistrationConfig, FormValues } from '../types/registration.js'
+import { isRealName } from './registrationValidation.js'
 
 export function calculateDynamicFee(config: RegistrationConfig | undefined, values: FormValues | undefined) {
   if (!config || !values) {
@@ -9,10 +10,12 @@ export function calculateDynamicFee(config: RegistrationConfig | undefined, valu
   let unitFee = typeof config.fee === 'number' ? config.fee : 0
 
   if (config.slug === 'tahfizh') {
+    // Tahfizh: utusan Putra dan/atau Putri. Hanya nama asli yang dihitung;
+    // placeholder (strip, angka 0, kosong, simbol) tidak dihitung sebagai peserta.
     const pa = typeof values.nama_pa === 'string' ? values.nama_pa.trim() : ''
     const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
-    if (pa) count++
-    if (pi) count++
+    if (isRealName(pa)) count++
+    if (isRealName(pi)) count++
   } else if (config.slug === 'futsal') {
     // Futsal: satu pendaftaran = satu tim, biaya flat per tim.
     const lines = (typeof values.nama_lengkap === 'string' ? values.nama_lengkap : '')

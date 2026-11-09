@@ -25,6 +25,27 @@ export function isValidNisn(value: string): boolean {
   return /^\d{10}$/.test(value.trim())
 }
 
+/** Token yang dianggap placeholder (bukan nama peserta asli). */
+const PLACEHOLDER_TOKENS = [
+  '-', '--', '—', '−', '/', '\\\\', '|', '.', ',', ':',
+  '0', '00', '000', '0000',
+  'kosong', 'kosong2', 'tidak ada', 'tidakada', 'n/a', 'na', 'none', 'null', 'x', 'xx',
+]
+
+export function isPlaceholder(value: string): boolean {
+  const v = value.trim()
+  if (v === '') return true
+  if (PLACEHOLDER_TOKENS.includes(v.toLowerCase())) return true
+  // hanya angka / simbol, tanpa huruf -> bukan nama asli
+  if (!/[a-zA-Z]/.test(v)) return true
+  return false
+}
+
+export function isRealName(value: string | undefined | null): boolean {
+  if (!value || typeof value !== 'string') return false
+  return !isPlaceholder(value)
+}
+
 export function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim())
 }
@@ -82,11 +103,13 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
   const errors: FormErrors = {}
   
   if (config.slug === 'tahfizh') {
-      if (isBlank(values.nama_pa) && isBlank(values.nama_pi)) {
-        errors.nama_pa = 'Harap isi minimal salah satu utusan (Putra/Putri).'
-        errors.nama_pi = 'Harap isi minimal salah satu utusan (Putra/Putri).'
-      }
-    } else {
+    const pa = typeof values.nama_pa === 'string' ? values.nama_pa.trim() : ''
+    const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
+    if (!isRealName(pa) && !isRealName(pi)) {
+      errors.nama_pa = 'Harap isi minimal satu nama utusan (Putra atau Putri) dengan benar.'
+      errors.nama_pi = 'Harap isi minimal satu nama utusan (Putra atau Putri) dengan benar.'
+    }
+  } else {
     if (isBlank(values.nama_lengkap)) errors.nama_lengkap = ERROR_MESSAGES.required
   }
 
@@ -118,8 +141,8 @@ export function validateRegistration(values: FormValues, config: RegistrationCon
     if (config.slug === 'tahfizh') {
       const pa = typeof values.nama_pa === 'string' ? values.nama_pa.trim() : ''
       const pi = typeof values.nama_pi === 'string' ? values.nama_pi.trim() : ''
-      if (pa) participantCount++
-      if (pi) participantCount++
+      if (isRealName(pa)) participantCount++
+      if (isRealName(pi)) participantCount++
     } else {
       const namesText = typeof values.nama_lengkap === 'string' ? values.nama_lengkap : ''
       participantCount = namesText

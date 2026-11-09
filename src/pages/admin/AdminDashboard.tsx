@@ -5,9 +5,10 @@ import PaymentProofModal from '../../components/admin/PaymentProofModal'
 
 import { getAllRegistrations, updateRegistrationStatus } from '../../lib/registrationsRepository.js'
 
-import type { RegistrationRow } from '../../types/registration.js'
+import type { CompetitionSlug, RegistrationRow } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import { getRegistrationConfigByCompetitionId } from '../../config/registrationConfigs.js'
+import { isRealName } from '../../lib/registrationValidation.js'
 
 
 function DummyRows() {
@@ -160,10 +161,54 @@ export default function AdminDashboard() {
 
   const totalInfaqSd = registrations
     .filter(r => r.registration_status === 'verified' && getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) === 'sd')
-    .reduce((acc, r) => acc + (r.total_fee || 0), 0)
+    .reduce((acc, r) => {
+      const config = getRegistrationConfigByCompetitionId(r.competition_id) || registrationConfigs[r.competition_slug as CompetitionSlug]
+      if (!config) return acc
+      let count = 0
+      if (r.competition_id === 'comp-tahfizh-kelas-6') {
+        count = (r.participant_name || '')
+          .split('\n')
+          .map((n) => n.trim())
+          .filter((n) => n.length > 0 && isRealName(n)).length
+      } else if (config.codePrefix === 'ATXII-THF') {
+        const parts = (r.participant_name || '').split(' | ')
+        for (const part of parts) {
+          const trimmed = part.trim()
+          if ((trimmed.startsWith('Putra: ') || trimmed.startsWith('Putri: '))) {
+            const actualName = trimmed.replace(/^(Putra|Putri): /, '').trim()
+            if (isRealName(actualName)) count++
+          }
+        }
+      } else {
+        count = r.participant_count || 1
+      }
+      return acc + (count * config.fee)
+    }, 0)
   const totalInfaqSmp = registrations
     .filter(r => r.registration_status === 'verified' && getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) === 'smp')
-    .reduce((acc, r) => acc + (r.total_fee || 0), 0)
+    .reduce((acc, r) => {
+      const config = getRegistrationConfigByCompetitionId(r.competition_id) || registrationConfigs[r.competition_slug as CompetitionSlug]
+      if (!config) return acc
+      let count = 0
+      if (r.competition_id === 'comp-tahfizh-kelas-6') {
+        count = (r.participant_name || '')
+          .split('\n')
+          .map((n) => n.trim())
+          .filter((n) => n.length > 0 && isRealName(n)).length
+      } else if (config.codePrefix === 'ATXII-THF') {
+        const parts = (r.participant_name || '').split(' | ')
+        for (const part of parts) {
+          const trimmed = part.trim()
+          if ((trimmed.startsWith('Putra: ') || trimmed.startsWith('Putri: '))) {
+            const actualName = trimmed.replace(/^(Putra|Putri): /, '').trim()
+            if (isRealName(actualName)) count++
+          }
+        }
+      } else {
+        count = r.participant_count || 1
+      }
+      return acc + (count * config.fee)
+    }, 0)
 
   return (
     
