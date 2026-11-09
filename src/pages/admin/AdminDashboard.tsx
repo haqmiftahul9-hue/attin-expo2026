@@ -90,7 +90,8 @@ function RealRow({ row, onVerifyPrompt, onProofPrompt }: { row: RegistrationRow,
   )
 }
 
-function getUnit(slug: string): 'sd' | 'smp' {
+function getUnit(slug: string, competitionId?: string, branchSlug?: string): 'sd' | 'smp' {
+  if (competitionId === 'comp-tahfizh-kelas-6' || branchSlug === 'tahfizh-kelas-6') return 'smp'
   if (slug === 'pra-tka' || slug === 'futsal' || slug === 'baca-puisi') return 'smp'
   return 'sd'
 }
@@ -130,7 +131,7 @@ export default function AdminDashboard() {
 
   const filteredRegistrations = filterUnit === 'all'
     ? registrations
-    : registrations.filter(r => getUnit(r.competition_slug) === filterUnit)
+    : registrations.filter(r => getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) === filterUnit)
 
   const totalPages = Math.max(1, Math.ceil(filteredRegistrations.length / itemsPerPage))
   const startIndex = (currentPage - 1) * itemsPerPage

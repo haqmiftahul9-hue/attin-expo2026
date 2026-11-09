@@ -35,7 +35,8 @@ function getCategoryDisplay(row: RegistrationRow): string {
 }
 
 // Helper: tentukan unit (SD/SMP) berdasarkan cabang lomba
-function getUnit(slug: string): 'sd' | 'smp' {
+function getUnit(slug: string, competitionId?: string, branchSlug?: string): 'sd' | 'smp' {
+  if (competitionId === 'comp-tahfizh-kelas-6' || branchSlug === 'tahfizh-kelas-6') return 'smp'
   if (slug === 'pra-tka' || slug === 'futsal' || slug === 'baca-puisi') return 'smp'
   return 'sd'
 }
@@ -125,7 +126,7 @@ export default function AdminRekapitulasi() {
         }
       }
       // 1b. Filter Unit (SD/SMP)
-      if (filterUnit !== 'all' && getUnit(r.competition_slug) !== filterUnit) {
+      if (filterUnit !== 'all' && getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) !== filterUnit) {
         return false
       }
       // 2. Filter Status
@@ -264,26 +265,38 @@ export default function AdminRekapitulasi() {
       XLSX.utils.book_append_sheet(wb, ws, sheetName)
     }
 
-     if (filterSlug === 'all') {
-        const unitFilter = (rows: any[]) => filterUnit === 'all' ? rows : rows.filter((r: any) => getUnit(r.competition_slug) === filterUnit || (filterUnit === 'sd' && (r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6')))
-        const tahfizh = unitFilter(registrations.filter((r) => r.competition_slug === 'tahfizh' && r.competition_id !== 'comp-tahfizh-kelas-6'))
-        const tahfizhKelas6 = unitFilter(registrations.filter((r) => r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6'))
-        const olimpiade = unitFilter(registrations.filter((r) => r.competition_slug === 'olimpiade'))
-        const panahan = unitFilter(registrations.filter((r) => r.competition_slug === 'panahan'))
-        const kolase = unitFilter(registrations.filter((r) => r.competition_slug === 'kolase'))
-        const praTka = unitFilter(registrations.filter((r) => r.competition_slug === 'pra-tka'))
-        const futsalRows = unitFilter(registrations.filter((r) => r.competition_slug === 'futsal'))
-        const bacaPuisi = unitFilter(registrations.filter((r) => r.competition_slug === 'baca-puisi'))
+      if (filterSlug === 'all') {
+        const isSmpUnit = filterUnit === 'smp'
+        const isSdUnit = filterUnit === 'sd'
+        const matchesUnit = (r: any) => {
+          const u = getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug)
+          if (isSmpUnit) return u === 'smp'
+          if (isSdUnit) return u === 'sd'
+          return true
+        }
+        const bySlug = (slug: string) => registrations.filter((r) => r.competition_slug === slug && matchesUnit(r))
+        const kelasa6 = registrations.filter((r) => (r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6') && matchesUnit(r))
+        const tahfizh = bySlug('tahfizh').filter((r) => r.competition_id !== 'comp-tahfizh-kelas-6')
+        const olimpiade = bySlug('olimpiade')
+        const panahan = bySlug('panahan')
+        const kolase = bySlug('kolase')
+        const praTka = bySlug('pra-tka')
+        const futsalRows = bySlug('futsal')
+        const bacaPuisi = bySlug('baca-puisi')
 
-        processSheet(tahfizh, 'Tahfizh')
-        if (tahfizhKelas6.length > 0) processSheet(tahfizhKelas6, 'Tahfizh Kelas 6')
-        processSheet(olimpiade, 'Olimpiade')
-        processSheet(panahan, 'Panahan')
-        processSheet(kolase, 'Kolase')
-        processSheet(praTka, 'Pra-TKA')
-        processSheet(futsalRows, 'Futsal')
-        processSheet(bacaPuisi, 'Baca Puisi')
-     } else {
+        if (isSdUnit || filterUnit === 'all') {
+          processSheet(tahfizh, 'Tahfizh')
+          processSheet(olimpiade, 'Olimpiade')
+          processSheet(panahan, 'Panahan')
+          processSheet(kolase, 'Kolase')
+        }
+        if (isSmpUnit || filterUnit === 'all') {
+          if (kelasa6.length > 0) processSheet(kelasa6, 'Tahfizh Kelas 6')
+          processSheet(praTka, 'Pra-TKA')
+          processSheet(futsalRows, 'Futsal')
+          processSheet(bacaPuisi, 'Baca Puisi')
+        }
+      } else {
       let sheetName = 'Rekap Pendaftaran'
         if (filterSlug === 'tahfizh') sheetName = 'Tahfizh'
         if (filterSlug === 'tahfizh-kelas-6') sheetName = 'Tahfizh Kelas 6'
