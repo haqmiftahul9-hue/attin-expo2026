@@ -5,6 +5,7 @@ import usePageTitle from '../../hooks/usePageTitle.js'
 import type { RegistrationRow, CompetitionSlug } from '../../types/registration.js'
 import { registrationConfigs } from '../../config/registrationConfigs.js'
 import { getRegistrationConfigByCompetitionId } from '../../config/registrationConfigs.js'
+import { isRealName } from '../../lib/registrationValidation.js'
 import MaterialIcon from '../../components/MaterialIcon.jsx'
 import PaymentProofModal from '../../components/admin/PaymentProofModal'
 import * as XLSX from 'xlsx'
@@ -176,7 +177,31 @@ export default function AdminRekapitulasi() {
     const pendingReg = registrations.filter((r) => r.registration_status === 'pending').length
     const totalInfaq = registrations
       .filter((r) => r.payment_status === 'verified')
-      .reduce((acc, r) => acc + (r.total_fee || 0), 0)
+      .reduce((acc, r) => {
+        const isKelas6 = r.competition_id === 'comp-tahfizh-kelas-6' || r.specific_data?.branch_slug === 'tahfizh-kelas-6'
+        const isTahfizh15 = !isKelas6 && (r.competition_slug === 'tahfizh' || r.competition_id === 'comp-tahfizh')
+        if (isKelas6) {
+          const cfg = getRegistrationConfigByCompetitionId(r.competition_id) || registrationConfigs[r.competition_slug as CompetitionSlug]
+          const realCount = (r.participant_name || '').split('\n').map((n) => n.trim()).filter((n) => n.length > 0 && isRealName(n)).length
+          return acc + realCount * (cfg?.fee || 0)
+        }
+        if (isTahfizh15) {
+          const cfg = registrationConfigs.tahfizh || registrationConfigs[r.competition_slug as CompetitionSlug]
+          let realCount = 0
+          for (const part of (r.participant_name || '').split(' | ')) {
+            const t = part.trim()
+            if (t.startsWith('Putra: ') || t.startsWith('Putri: ')) {
+              const name = t.replace(/^(Putra|Putri): /, '').trim()
+              if (isRealName(name)) realCount++
+            }
+          }
+          if (realCount === 0 && (r.participant_name || '').trim()) {
+            realCount = (r.participant_name || '').split(/\n|\s\|\s/).map((n) => n.replace(/^(Putra|Putri):\s*/i, '').trim()).filter((n) => isRealName(n)).length
+          }
+          return acc + realCount * (cfg?.fee || 0)
+        }
+        return acc + (r.total_fee || 0)
+      }, 0)
 
     return { totalReg, totalPeserta, verifiedReg, pendingReg, totalInfaq }
   }, [registrations])
@@ -193,6 +218,34 @@ export default function AdminRekapitulasi() {
         const grades = parseGrades(row)
         participants.forEach((p, pIdx) => {
           const isFirst = pIdx === 0
+          let recalculatedTotalFee = row.total_fee || 0
+          let realCount = row.participant_count || 1
+          let recalculatedUnitFee = row.unit_fee || 0
+          const isKelas6Row = row.competition_id === 'comp-tahfizh-kelas-6' || row.specific_data?.branch_slug === 'tahfizh-kelas-6'
+          const isTahfizh15Row = !isKelas6Row && (row.competition_slug === 'tahfizh' || row.competition_id === 'comp-tahfizh')
+          if (isKelas6Row) {
+            const cfg = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug as CompetitionSlug]
+            realCount = (row.participant_name || '').split('\n').map((n) => n.trim()).filter((n) => n.length > 0 && isRealName(n)).length
+            recalculatedUnitFee = cfg?.fee || 0
+            recalculatedTotalFee = realCount * recalculatedUnitFee
+          } else if (isTahfizh15Row) {
+            const cfg = registrationConfigs.tahfizh || registrationConfigs[row.competition_slug as CompetitionSlug]
+            const parts = (row.participant_name || '').split(' | ')
+            realCount = 0
+            for (const part of parts) {
+              const trimmed = part.trim()
+              if (trimmed.startsWith('Putra: ') || trimmed.startsWith('Putri: ')) {
+                const actualName = trimmed.replace(/^(Putra|Putri): /, '').trim()
+                if (isRealName(actualName)) realCount++
+              }
+            }
+            // Fallback: jika format nama tak punya label Putra/Putri, hitung nama nyata dari newline/pipe
+            if (realCount === 0 && (row.participant_name || '').trim()) {
+              realCount = (row.participant_name || '').split(/\n|\s\|\s/).map((n) => n.replace(/^(Putra|Putri):\s*/i, '').trim()).filter((n) => isRealName(n)).length
+            }
+            recalculatedUnitFee = cfg?.fee || 0
+            recalculatedTotalFee = realCount * recalculatedUnitFee
+          }
           expandedRows.push({
             ...row,
             expanded_name: p.name,
@@ -202,9 +255,9 @@ export default function AdminRekapitulasi() {
             // agar unduhan Excel tidak menghitung biaya ganda saat satu
             // pendaftaran memiliki lebih dari satu peserta (Tahfizh Pa/Pi atau
             // banyak nama tim Futsal).
-            unit_fee: isFirst ? (row.unit_fee || 0) : 0,
-            participant_count: isFirst ? (row.participant_count || 1) : 0,
-            total_fee: isFirst ? (row.total_fee || 0) : 0,
+            unit_fee: isFirst ? ((isKelas6Row || isTahfizh15Row) ? recalculatedUnitFee : (row.unit_fee || 0)) : 0,
+            participant_count: isFirst ? realCount : 0,
+            total_fee: isFirst ? recalculatedTotalFee : 0,
           })
         })
       })
@@ -680,6 +733,32 @@ export default function AdminRekapitulasi() {
                   const branchConfig = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug]
                   const categoryName = getCategoryDisplay(row)
 
+                  // Recalculate Tahfizh infaq from actual participant names (abaikan 0/-/kosong).
+                  // Tahfizh Kelas 6 dan Tahfizh 1-5 ditangani terpisah (slug DB bisa sama karena mapping FK).
+                  let recalculatedTotalFee = row.total_fee || 0
+                  const isKelas6 = row.competition_id === 'comp-tahfizh-kelas-6' || row.specific_data?.branch_slug === 'tahfizh-kelas-6'
+                  const isTahfizh15 = !isKelas6 && (row.competition_slug === 'tahfizh' || row.competition_id === 'comp-tahfizh')
+                  if (isKelas6) {
+                    const cfg = getRegistrationConfigByCompetitionId(row.competition_id) || registrationConfigs[row.competition_slug as CompetitionSlug]
+                    const realCount = (row.participant_name || '').split('\n').map((n) => n.trim()).filter((n) => n.length > 0 && isRealName(n)).length
+                    recalculatedTotalFee = realCount * (cfg?.fee || 0)
+                  } else if (isTahfizh15) {
+                    const parts = (row.participant_name || '').split(' | ')
+                    let realCount = 0
+                    for (const part of parts) {
+                      const trimmed = part.trim()
+                      if (trimmed.startsWith('Putra: ') || trimmed.startsWith('Putri: ')) {
+                        const actualName = trimmed.replace(/^(Putra|Putri): /, '').trim()
+                        if (isRealName(actualName)) realCount++
+                      }
+                    }
+                    if (realCount === 0 && (row.participant_name || '').trim()) {
+                      realCount = (row.participant_name || '').split(/\n|\s\|\s/).map((n) => n.replace(/^(Putra|Putri):\s*/i, '').trim()).filter((n) => isRealName(n)).length
+                    }
+                    const cfg = registrationConfigs.tahfizh || registrationConfigs[row.competition_slug as CompetitionSlug]
+                    recalculatedTotalFee = realCount * (cfg?.fee || 0)
+                  }
+
                   // Visual Badge Berkas
                   const isVerified = row.registration_status === 'verified'
                   const isRejected = row.registration_status === 'rejected'
@@ -853,7 +932,7 @@ export default function AdminRekapitulasi() {
                       <td className="py-3.5 px-4 text-right">
                         <div className="flex flex-col items-end">
                           <span className="font-bold text-[#0F172A] text-xs">
-                            {formatRupiah(row.total_fee || 0)}
+                            {formatRupiah(recalculatedTotalFee)}
                           </span>
                           <span
                             className="text-[11px] text-[#475569] truncate max-w-[130px]"
