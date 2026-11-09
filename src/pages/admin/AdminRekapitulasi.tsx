@@ -43,7 +43,7 @@ function getUnit(slug: string, competitionId?: string, branchSlug?: string): 'sd
 
 // Helper untuk mengurai nama peserta per baris/gender
 function parseParticipants(row: RegistrationRow): { name: string; type?: 'Putra' | 'Putri' | 'Peserta' }[] {
-  if (row.competition_slug === 'tahfizh') {
+  if (row.competition_id === 'comp-tahfizh') {
     const parts = (row.participant_name || '').split(' | ')
     const list: { name: string; type?: 'Putra' | 'Putri' | 'Peserta' }[] = []
     parts.forEach((part) => {

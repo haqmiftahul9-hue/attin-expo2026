@@ -80,7 +80,7 @@ export default function AdminPendaftaranDetail() {
                    {(() => {
                      const grades = getRegistrationGrades(row)
                      const subjects = (row.specific_data?.mata_pelajaran || '').split(/,|\n/).map(s => s.trim()).filter(Boolean)
-                     const isTahfizh = row.competition_slug === 'tahfizh'
+                     const isTahfizh = row.competition_id === 'comp-tahfizh'
                      const rawNames = isTahfizh
                        ? (row.participant_name || '').split(' | ').map(n => n.trim()).filter(Boolean)
                        : (row.participant_name || '').split('\n').map(n => n.trim()).filter(Boolean)
