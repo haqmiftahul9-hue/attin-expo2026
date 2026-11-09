@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PaymentProofModal from '../../components/admin/PaymentProofModal'
 
@@ -106,6 +106,15 @@ export default function AdminDashboard() {
 
     const [proofRow, setProofRow] = useState<RegistrationRow | null>(null)
 
+    const fetchData = useCallback(async () => {
+      try {
+        const data = await getAllRegistrations()
+        setRegistrations(data || [])
+      } catch (err) {
+        console.error('[AdminDashboard] gagal mengambil data:', err)
+      }
+    }, [])
+
     const handleVerifySubmit = async (status: 'verified' | 'rejected') => {
       if (!verifyRow) return;
       const success = await updateRegistrationStatus(verifyRow.registration_code, status);
@@ -117,19 +126,13 @@ export default function AdminDashboard() {
       }
     }
 
-  
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getAllRegistrations()
-        setRegistrations(data || [])
-      } catch (err) {
-      }
-    }
-    fetchData()
-  }, [])
+    useEffect(() => {
+      fetchData()
+      const interval = setInterval(fetchData, 30000)
+      return () => clearInterval(interval)
+    }, [fetchData])
 
-  const filteredRegistrations = filterUnit === 'all'
+    const filteredRegistrations = filterUnit === 'all'
     ? registrations
     : registrations.filter(r => getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) === filterUnit)
 
@@ -155,6 +158,13 @@ export default function AdminDashboard() {
   const pendingCount = registrations.filter(r => r.registration_status === 'pending').length
   const rejectedCount = registrations.filter(r => r.registration_status === 'rejected').length
 
+  const totalInfaqSd = registrations
+    .filter(r => r.registration_status === 'verified' && getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) === 'sd')
+    .reduce((acc, r) => acc + (r.total_fee || 0), 0)
+  const totalInfaqSmp = registrations
+    .filter(r => r.registration_status === 'verified' && getUnit(r.competition_slug, r.competition_id, r.specific_data?.branch_slug) === 'smp')
+    .reduce((acc, r) => acc + (r.total_fee || 0), 0)
+
   return (
     
     <div className="w-full pt-6 md:pt-8 px-4 md:px-8 pb-12">
@@ -174,7 +184,7 @@ export default function AdminDashboard() {
 </div>
 
             <div className="flex flex-wrap items-center gap-space-sm">
-              <button className="h-10 w-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="refreshMetricsBtn" title="Segarkan Data">
+              <button className="h-10 w-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="refreshMetricsBtn" title="Segarkan Data" onClick={fetchData}>
                 <span className="material-symbols-outlined text-[20px]">refresh</span>
               </button>
               <Link to="/admin/pendaftaran" className="h-10 px-4 flex items-center gap-2 rounded-lg bg-primary-container text-on-primary font-body-md-semibold text-body-md hover:bg-primary transition-colors shadow-sm">
@@ -312,6 +322,28 @@ export default function AdminDashboard() {
 <div className="inline-flex items-center gap-1.5 py-0.5 px-2 bg-surface-container-low rounded text-caption font-caption text-[#16825D] font-medium">
 <span className="w-1.5 h-1.5 rounded-full bg-[#16825D]"></span>
 <span>Berkas &amp; Bayar Sah</span>
+</div>
+</div>
+
+<div className="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div className="flex items-center justify-between text-outline mb-1">
+<span className="font-label-badge text-label-badge uppercase tracking-wider text-on-surface-variant font-bold">Infaq Terverifikasi</span>
+<div className="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span className="material-symbols-outlined text-[18px]">attach_money</span>
+</div>
+</div>
+<div className="mt-3">
+<div className="flex items-center justify-between gap-2 py-1 text-sm text-[#475569]">
+<span className="font-medium text-on-surface">Unit SD / MI</span>
+<span className="font-bold text-on-surface">Rp{new Intl.NumberFormat('id-ID').format(totalInfaqSd)}</span>
+</div>
+<div className="flex items-center justify-between gap-2 py-1 text-sm text-[#475569]">
+<span className="font-medium text-on-surface">Unit SMP / MTs</span>
+<span className="font-bold text-on-surface">Rp{new Intl.NumberFormat('id-ID').format(totalInfaqSmp)}</span>
+</div>
+<div className="flex items-center justify-between gap-2 py-2 border-t border-[#CBD5E1] mt-2 pt-2">
+<span className="font-display-hero-mobile text-display-hero-mobile font-bold text-primary">Total: Rp{new Intl.NumberFormat('id-ID').format(totalInfaqSd + totalInfaqSmp)}</span>
+</div>
 </div>
 </div>
 
