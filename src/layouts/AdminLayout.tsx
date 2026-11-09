@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import MaterialIcon from '../components/MaterialIcon.jsx'
 import usePageTitle from '../hooks/usePageTitle.js'
 import { useAuth } from '../App.jsx'
@@ -101,135 +101,124 @@ const NAV_LINKS = [
 export default function AdminLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { logout } = useAuth()
+  const location = useLocation()
   usePageTitle('Admin Panel - ATTIN EXPO XII 2026')
 
   return (
-    <div style={adminInlineTheme} className="font-body-md text-on-surface antialiased bg-surface min-h-screen flex flex-col md:flex-row">
-      
-      {/* Mobile Header Overlay */}
-      {isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-on-surface/20 backdrop-blur-sm z-40 md:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
+    <div style={adminInlineTheme} className="min-h-screen bg-[var(--color-surface)] text-[var(--color-on-surface)] antialiased [font-family:var(--font-body-md),Inter,sans-serif]">
+      <div className="flex min-h-screen w-full">
+        {isMobileMenuOpen && (
+          <button
+            type="button"
+            aria-label="Tutup menu"
+            className="fixed inset-0 z-40 bg-slate-900/35 backdrop-blur-[2px] md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
 
-      {/* Sidebar */}
-      <aside className={`fixed md:sticky top-0 left-0 h-screen w-64 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)] transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
-        <div className="flex flex-col h-full overflow-y-auto">
-          {/* Logo Section */}
-          <div className="h-20 px-space-md flex items-center gap-space-sm bg-surface-container-lowest border-b border-surface-container shrink-0">
-            <img 
-              src="/assets/logo-attin-expo.png" 
-              alt="ATTIN EXPO XII" 
-              className="h-12 w-auto object-contain shrink-0" 
-            />
+        <aside
+          className={`fixed inset-y-0 left-0 z-50 flex w-[268px] flex-col border-r border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-lowest)] shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition-transform duration-200 ease-out md:sticky md:top-0 md:h-screen md:translate-x-0 ${
+            isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          }`}
+        >
+          <div className="flex h-[72px] items-center gap-3 border-b border-[var(--color-surface-container)] px-5 shrink-0">
+            <img src="/assets/logo-attin-expo.png" alt="ATTIN EXPO XII" className="h-10 w-auto object-contain shrink-0" />
             <div className="min-w-0 flex-1">
-              <p className="font-headline-sm text-[16px] font-bold text-primary leading-tight truncate">ATTIN EXPO XII</p>
-              <p className="font-label-badge text-[10px] text-secondary uppercase tracking-wider font-bold truncate">PANITIA ADMIN</p>
+              <p className="truncate text-[15px] font-bold leading-tight text-[var(--color-primary)] [font-family:var(--font-headline-sm),Plus_Jakarta_Sans,sans-serif]">ATTIN EXPO XII</p>
+              <p className="truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-secondary)]">Panel Panitia</p>
             </div>
-            
-            {/* Mobile close button */}
-            <button 
-              className="md:hidden w-10 h-10 flex items-center justify-center text-[#64748B] hover:bg-surface-container rounded-full"
+            <button
+              className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-[var(--color-surface-container-low)]"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="Tutup menu navigasi"
             >
-              <MaterialIcon name="close" />
+              <MaterialIcon name="close" className="text-[20px]" />
             </button>
           </div>
 
-          {/* Admin Profile Mini */}
-          <div className="px-space-md py-space-md border-b border-surface-container shrink-0 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
-              <MaterialIcon name="person" className="text-on-primary text-[20px]" />
+          <div className="flex-1 overflow-y-auto px-3 py-4">
+            <div className="mb-5 rounded-xl border border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-low)]/60 px-3 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-white">
+                  <MaterialIcon name="person" className="text-[18px]" />
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate text-[13px] font-semibold text-[var(--color-on-surface)]">Super Admin Panitia</p>
+                  <p className="truncate text-[11px] font-medium text-[var(--color-on-surface-variant)]">Panitia Inti</p>
+                </div>
+              </div>
             </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate font-semibold text-on-surface text-[14px]" title="Super Admin Panitia">
-                Super Admin Panitia
-              </p>
-              <p className="text-[11px] text-on-surface-variant font-medium truncate">
-                PANITIA INTI
-              </p>
-            </div>
-          </div>
 
-          {/* Navigation Links */}
-          <div className="px-space-md py-space-md flex-1">
-            <p className="font-label-badge text-[11px] uppercase tracking-wider text-[#64748B] font-semibold px-space-sm mb-space-xs">Menu Utama</p>
+            <p className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500 [font-family:var(--font-label-badge),Plus_Jakarta_Sans,sans-serif]">Navigasi</p>
             <nav className="flex flex-col gap-1">
-              {NAV_LINKS.map(link => (
+              {NAV_LINKS.map((link) => (
                 <NavLink
                   key={link.path}
                   to={link.path}
                   end={link.end}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] transition-colors ${
+                    `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-medium transition-colors ${
                       isActive
-                        ? 'bg-[#0057B8] text-white font-bold shadow-sm'
-                        : 'text-[#334155] hover:bg-[#EFF6FF] hover:text-[#003B5C] font-medium'
+                        ? 'bg-[var(--color-primary)] text-white shadow-[0_1px_2px_rgba(0,55,114,0.25)]'
+                        : 'text-slate-600 hover:bg-[var(--color-surface-container-low)] hover:text-[var(--color-primary)]'
                     }`
                   }
                 >
-                  <MaterialIcon name={link.icon} className="text-[20px]" />
-                  <span>{link.label}</span>
+                  {({ isActive }) => (
+                    <>
+                      <MaterialIcon name={link.icon} className={`text-[20px] ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-[var(--color-primary)]'}`} />
+                      <span className="truncate">{link.label}</span>
+                    </>
+                  )}
                 </NavLink>
               ))}
             </nav>
           </div>
-        </div>
 
-        {/* Footer Sidebar */}
-        <div className="p-space-md bg-surface-container-lowest border-t border-surface-container shrink-0 space-y-1">
-          <button 
-            onClick={logout}
-            className="w-full flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-body-md text-[14px] font-medium text-error hover:bg-error-container hover:text-on-error-container transition-colors text-left"
-          >
-            <MaterialIcon name="logout" className="text-[20px]" />
-            <span>Keluar Sistem</span>
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-screen">
-        
-        {/* Top Header Mobile Toggle & Search */}
-        <header className="sticky top-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-30 flex items-center justify-between px-4 md:px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)] shrink-0">
-          <div className="flex items-center gap-3">
-            <button 
-              className="md:hidden w-11 h-11 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors"
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Buka menu navigasi admin"
+          <div className="border-t border-[var(--color-surface-container)] p-3 shrink-0">
+            <button
+              onClick={logout}
+              className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13.5px] font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-container)]/60"
             >
-              <MaterialIcon name="menu" className="text-[24px]" />
+              <MaterialIcon name="logout" className="text-[20px]" />
+              <span>Keluar Sistem</span>
             </button>
-            <div className="relative w-full max-w-md hidden sm:block">
-              <MaterialIcon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-[18px]" />
-              <input 
-                className="w-full h-10 pl-10 pr-space-md bg-white border border-[#CBD5E1] rounded-lg font-body-md text-[14px] text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:border-[#0057B8] focus:ring-2 focus:ring-[#0057B8]/20 transition-colors" 
-                placeholder="Cari data peserta, asal sekolah, atau kode..." 
-                type="text"
-              />
+          </div>
+        </aside>
+
+        <div className="flex min-w-0 flex-1 flex-col">
+          <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between gap-3 border-b border-[var(--color-surface-container-high)]/80 bg-[var(--color-surface-container-lowest)]/92 px-4 backdrop-blur-md sm:px-6 lg:px-8 shrink-0">
+            <div className="flex min-w-0 items-center gap-3">
+              <button
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-surface-container-high)] bg-white text-slate-600 hover:bg-[var(--color-surface-container-low)] md:hidden"
+                onClick={() => setIsMobileMenuOpen(true)}
+                aria-label="Buka menu navigasi admin"
+              >
+                <MaterialIcon name="menu" className="text-[22px]" />
+              </button>
+              <div className="hidden min-w-0 sm:block">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">ATTIN EXPO XII 2026</p>
+                <p className="truncate text-[15px] font-semibold text-[var(--color-on-surface)] [font-family:var(--font-headline-sm),Plus_Jakarta_Sans,sans-serif]">
+                  {location.pathname.startsWith('/admin/pendaftaran') ? 'Pendaftaran' : 'Dashboard'}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative">
-              <MaterialIcon name="notifications" className="text-[20px]" />
-              <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface-container-lowest" />
-            </button>
-          </div>
-        </header>
+            <div className="flex items-center gap-2">
+              <div className="hidden lg:flex items-center gap-2 rounded-xl border border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-low)]/50 px-3 py-2 text-[12px] text-slate-500">
+                <MaterialIcon name="info" className="text-[16px]" />
+                <span>Data tersinkronisasi otomatis</span>
+              </div>
+            </div>
+          </header>
 
-        {/* Dynamic Route Content */}
-        <main className="flex-1 overflow-x-hidden">
-          <Outlet />
-        </main>
-
+          <main className="flex-1 min-w-0">
+            <Outlet />
+          </main>
+        </div>
       </div>
-
     </div>
   )
 }
+
 
