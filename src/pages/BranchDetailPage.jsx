@@ -25,7 +25,7 @@ export default function BranchDetailPage() {
 
   return (
     <div className="w-full bg-transparent text-on-surface font-sans">
-      <DetailHeader />
+              <DetailHeader branch={branch} />
 
       <main>
         <div className="flex flex-col w-full">
@@ -41,7 +41,7 @@ export default function BranchDetailPage() {
               <RulesSection rules={branch.rules} />
               <ScheduleSection schedule={branch.schedule} />
               <GuideSection guide={branch.guide} />
-              <RegistrationCallout name={branch.name} slug={slug} />
+              <RegistrationCallout name={branch.name} slug={slug} branch={branch} />
             </>
           ) : (
             <BranchComingSoon slug={slug} />

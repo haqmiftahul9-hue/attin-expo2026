@@ -7,7 +7,8 @@ import { placeholders } from '../../data/site.js'
  * terkunci berada di route `/pendaftaran/:slug` agar satu-satunya formulir
  * untuk seluruh cabang lomba.
  */
-export default function RegistrationCallout({ slug, name }) {
+export default function RegistrationCallout({ slug, name, branch }) {
+  const isQuotaFull = branch?.registrationDisabled === true
   return (
     <section className="w-full py-12 sm:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,13 +31,24 @@ export default function RegistrationCallout({ slug, name }) {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Link
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary-container hover:bg-tertiary text-on-primary font-body-md-semibold text-body-md-semibold shadow-md transition-all"
-              to={`/pendaftaran/${slug}`}
-            >
-              <MaterialIcon name="app_registration" className="text-[18px]" />
-              <span>Isi Formulir Pendaftaran</span>
-            </Link>
+            {isQuotaFull ? (
+              <button
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-slate-200 text-slate-500 font-body-md-semibold text-body-md-semibold cursor-not-allowed transition-all"
+                disabled
+                type="button"
+              >
+                <MaterialIcon name="app_registration" className="text-[18px] text-slate-400" />
+                <span>Kuota Penuh</span>
+              </button>
+            ) : (
+              <Link
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary-container hover:bg-tertiary text-on-primary font-body-md-semibold text-body-md-semibold shadow-md transition-all"
+                to={`/pendaftaran/${slug}`}
+              >
+                <MaterialIcon name="app_registration" className="text-[18px]" />
+                <span>Isi Formulir Pendaftaran</span>
+              </Link>
+            )}
             <a
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-white/30 text-on-surface hover:bg-white/70 font-body-md-semibold text-body-md-semibold transition-all"
               href="https://wa.me/"

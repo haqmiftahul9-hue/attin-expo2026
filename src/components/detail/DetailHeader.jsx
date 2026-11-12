@@ -13,8 +13,10 @@ const NAV_ITEMS = [
   { label: 'Kontak', to: '/#kontak' },
 ]
 
-export default function DetailHeader() {
+export default function DetailHeader({ branch }) {
   const { slug = 'tahfizh' } = useParams()
+  const isQuotaFull = branch?.registrationDisabled === true
+  const ctaLabel = isQuotaFull ? 'Kuota Penuh' : 'Daftar Sekarang'
 
   return (
     <>
@@ -59,19 +61,29 @@ export default function DetailHeader() {
           </nav>
 
           <MobileNavDrawer
-            cta={{ label: 'Daftar Sekarang', to: `/pendaftaran/${slug}`, icon: 'how_to_reg' }}
+            cta={{ label: ctaLabel, to: `/pendaftaran/${slug}`, icon: 'how_to_reg', disabled: isQuotaFull }}
             items={NAV_ITEMS.map((item) => ({ key: item.to, label: item.label, to: item.to }))}
             showBelow="lg"
             title="Menu ATTIN EXPO"
           />
 
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm text-white bg-primary-container hover:bg-primary shadow-sm transition-all"
-              to={`/pendaftaran/${slug}`}
-            >
-              Daftar Sekarang
-            </Link>
+            {isQuotaFull ? (
+              <button
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm text-slate-500 bg-slate-200 cursor-not-allowed transition-all"
+                disabled
+                type="button"
+              >
+                {ctaLabel}
+              </button>
+            ) : (
+              <Link
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm text-white bg-primary-container hover:bg-primary shadow-sm transition-all"
+                to={`/pendaftaran/${slug}`}
+              >
+                Daftar Sekarang
+              </Link>
+            )}
           </div>
         </div>
       </header>

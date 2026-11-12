@@ -124,6 +124,7 @@ export const competitions = [
     available: false,
     tag: 'Olahraga',
     tagClassName: 'bg-secondary-fixed text-on-secondary-fixed',
+    quotaFull: true,
     quota: placeholders.quota,
     icon: 'sports_soccer',
     iconClassName: 'bg-secondary text-on-secondary',

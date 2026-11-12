@@ -293,6 +293,228 @@ export const branchDetails = {
     available: false,
     level: 'Tingkat SD/MI se-Sumatera Barat',
   },
+  futsal: {
+    slug: 'futsal',
+    breadcrumb: 'Lomba Futsal',
+    name: 'Lomba Futsal',
+    metaTitle: `${site.title} - Lomba Futsal ATTIN EXPO XII 2026`,
+    tagline: 'Lomba Futsal',
+    accentTitle: 'Futsal',
+    level: 'SD/MI se Kota Pariaman dan Kab. Padang Pariaman',
+    intro:
+      'Kompetisi futsal antar sekolah/madrasah SD/MI yang menjunjung tinggi sportivitas, kerja sama tim, dan adab Islami di atas lapangan.',
+    badges: [
+      { icon: 'sports_soccer', label: 'Futsal • SD/MI', tone: 'secondary' },
+      { icon: null, label: 'ATTIN EXPO XII 2026', tone: 'secondary' },
+    ],
+    metadata: [
+      { icon: 'school', label: 'Jenjang SD/MI' },
+      { icon: 'groups_2', label: 'Format Tim' },
+      { icon: 'map', label: 'Kota Pariaman & Kab. Padang Pariaman' },
+    ],
+    image:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB8pb3xF77bJe8aif3Q73xPKXG81iDKkdgHQRQ5qt7hkaf7iCWmAz4CV-3mKYw80MlIGQXQ9qMjrCPmY9QVeRFs1CwTwX7wGc3xge-WLy1B3ajHz-sAJYLxrJCvl24iYWuoeyJM1eSniRM2hITlOplRD8Bnz8wR2ECC1jCA7njf1KtBimzTtbLxzXYprGeEfa5n2qNg6RBiCVDvZn4DrHDsuqV78pBCs7faYSZcWCXuGU-73W26dFB8Qw',
+    imageAlt:
+      'Tim futsal anak sekolah SD/MI berbusana seragam olahraga bersiap bertanding di lapangan futsal dengan suasana sportivitas dan kerja sama tim, pencahayaan lapangan malam, foto profesional',
+    quoteLabel: 'Lomba Futsal',
+    quote: '“Kemenangan diraih bersama melalui kerja sama tim yang solid dan sportivitas yang jujur.”',
+    quoteSource: 'ATTIN EXPO XII 2026',
+    facts: [
+      { icon: 'school', label: 'Jenjang', value: 'SD / MI', valueTone: 'on-surface' },
+      { icon: 'groups_2', label: 'Format', value: 'Tim', valueTone: 'on-surface' },
+      { icon: 'map', label: 'Cakupan', value: 'Pariaman & Padang Pariaman', valueTone: 'on-surface' },
+      { icon: 'category', label: 'Kategori', value: placeholders.category, valueTone: 'on-surface' },
+      {
+        icon: 'payments',
+        label: 'Biaya',
+        value: placeholders.fee,
+        valueTone: 'secondary',
+        iconTone: 'secondary',
+      },
+      { icon: 'people', label: 'Kuota', value: 'Penuh', valueTone: 'on-surface' },
+      { icon: 'calendar_month', label: 'Tanggal', value: placeholders.date, valueTone: 'on-surface' },
+      { icon: 'pin_drop', label: 'Lokasi', value: placeholders.venue, valueTone: 'on-surface' },
+    ],
+    registrationDisabled: true,
+    categories: {
+      badge: 'KATEGORI',
+      title: 'Kategori Lomba Futsal',
+      body: 'Struktur kategori tim futsal berdasarkan jenis kelamin dan jenjang sekolah peserta.',
+      items: [
+        {
+          label: 'Kategori Putra',
+          format: 'Tim',
+          tone: 'primary',
+          name: 'Tim Putra SD/MI',
+          scope: 'Semua jenjang SD/MI sederajat',
+          requirement: 'Satu tim terdiri atas pemain siswa SD/MI aktif yang didaftarkan secara bersama oleh sekolah.',
+          quotaLabel: 'Status Kuota',
+          quotaValue: 'Penuh',
+        },
+        {
+          label: 'Kategori Putri',
+          format: 'Tim',
+          tone: 'secondary',
+          name: 'Tim Putri SD/MI',
+          scope: 'Semua jenjang SD/MI sederajat',
+          requirement: 'Satu tim terdiri atas pemain siswi SD/MI aktif yang didaftarkan secara bersama oleh sekolah.',
+          quotaLabel: 'Status Kuota',
+          quotaValue: 'Penuh',
+        },
+      ],
+      note: 'Catatan: Kuota pendaftaran lomba futsal telah terpenuhi. Pendaftaran cabang futsal ditutup.',
+    },
+    about: {
+      badge: 'TENTANG LOMBA',
+      title: 'Kompetisi Futsal ATTIN EXPO XII 2026',
+      body: 'Lomba futsal menjadi wadah bagi siswa SD/MI untuk berlatih kerja sama tim, disiplin, dan sportivitas Islami dalam kompetisi sehat antar sekolah/madrasah di Kota Pariaman dan Kabupaten Padang Pariaman.',
+      values: [
+        {
+          icon: 'groups_2',
+          iconClassName: 'bg-primary-fixed text-primary',
+          title: 'Kerja Sama Tim',
+          body: 'Membiasakan peserta bekerja sama dalam strategi tim, komunikasi lapangan, dan saling melengkapi antara pemain.',
+        },
+        {
+          icon: 'sports_soccer',
+          iconClassName: 'bg-secondary-fixed text-on-secondary',
+          title: 'Sportivitas',
+          body: 'Menumbuhkan jiwa kompetisi yang sehat, jujur, dan menghormati lawan serta manajemen pertandingan.',
+        },
+        {
+          icon: 'favorite',
+          iconClassName: 'bg-tertiary text-on-tertiary',
+          title: 'Adab Islami',
+          body: 'Menegakkan akhlak mulia, salam, dan doa sebelum dan sesudah pertandingan sebagai identitas peserta ATTIN EXPO.',
+        },
+      ],
+    },
+    requirements: {
+      badge: 'PERSYARATAN',
+      title: 'Syarat Peserta Lomba Futsal',
+      body: 'Kriteria kepesertaan yang wajib dipenuhi oleh seluruh tim calon pendaftar lomba futsal.',
+      items: [
+        {
+          title: 'Tim terdiri dari siswa SD/MI aktif.',
+          caption: 'Terdaftar secara resmi pada instansi sekolah/madrasah yang bersangkutan.',
+        },
+        {
+          title: 'Tim berasal dari sekolah/madrasah di Kota Pariaman atau Kabupaten Padang Pariaman.',
+          caption: 'Wilayah cakupan lomba futsal ATTIN EXPO XII 2026.',
+        },
+        {
+          title: 'Satu tim didaftarkan oleh satu sekolah/madrasah.',
+          caption: 'Setiap sekolah boleh mendaftarkan maksimal satu tim per kategori (putra dan/atau putri).',
+        },
+        {
+          title: placeholders.adminRequirement,
+          caption: 'Melengkapi berkas pendaftaran identitas tim dan formulir daring resmi.',
+        },
+        {
+          title: placeholders.extraRule,
+          caption: 'Kepatuhan pada etika perlombaan dan regulasi ATTIN EXPO XII 2026.',
+        },
+      ],
+    },
+    rules: {
+      badge: 'KETENTUAN LOMBA',
+      title: 'Ketentuan Pelaksanaan Futsal',
+      body: 'Pedoman teknis penyelenggaraan pertandingan, busana, durasi, dan tata tertib lapangan.',
+      items: [
+        {
+          icon: 'apparel',
+          tone: 'primary',
+          title: 'Busana & Peralatan',
+          body: 'Peserta wajib mengenakan seragam futsal lengkap, sepatu futsal (tidak menggunakan sepatu dengan besi/stud), dan syinpel selama pertandingan berlangsung.',
+        },
+        {
+          icon: 'timer',
+          tone: 'primary',
+          title: 'Durasi Pertandingan',
+          body: 'Setiap pertandingan terdiri atas dua babak dengan durasi yang ditetapkan panitia, dilengkapi istirahat singkat di tengah babak.',
+        },
+        {
+          icon: 'podium',
+          tone: 'secondary',
+          title: 'Mekanisme Lomba',
+          body: 'Pertandingan dijalankan sistem knockout atau grup yang ditentukan panitia berdasarkan jumlah tim terdaftar.',
+        },
+        {
+          icon: 'gavel',
+          tone: 'secondary',
+          title: 'Kedisiplinan',
+          body: 'Tim yang terlambat hadir di lapangan sesuai jadwal tanpa konfirmasi dapat dinyatakan kalah tak bertanding (walkover).',
+        },
+      ],
+    },
+    schedule: {
+      badge: 'JADWAL',
+      title: 'Jadwal Lomba Futsal',
+      body: 'Linimasa pendaftaran hingga pelaksanaan pertandingan final lomba futsal.',
+      steps: [
+        {
+          label: 'Tahap 01',
+          badgeTone: 'primary',
+          title: 'Pendaftaran',
+          caption: 'Registrasi tim online dibuka',
+          dateTone: 'primary',
+        },
+        {
+          label: 'Tahap 02',
+          badgeTone: 'secondary',
+          title: 'Batas Pendaftaran',
+          caption: 'Penutupan berkas & kuota tim',
+          dateTone: 'secondary',
+        },
+        {
+          label: 'Tahap 03',
+          badgeTone: 'primary',
+          title: 'Technical Meeting',
+          caption: 'Pengundian jadwal & juknis pertandingan',
+          dateTone: 'primary',
+        },
+        {
+          label: 'Tahap 04',
+          badgeTone: 'primary',
+          title: 'Pelaksanaan',
+          caption: 'Hari-H Pelaksanaan Lomba Futsal',
+          dateTone: 'primary',
+        },
+        {
+          label: 'Tahap 05',
+          badgeTone: 'primary',
+          title: 'Pengumuman',
+          caption: 'Penyerahan piala & sertifikat',
+          dateTone: 'primary',
+        },
+      ].map((step) => ({ ...step, date: placeholders.date })),
+      calloutTitle: 'Informasi Penting Terkait Jadwal',
+      calloutBody:
+        'Jadwal pertandingan dapat disesuaikan dengan jumlah tim terdaftar. Selalu konfirmasi kehadiran melalui narahubung resmi panitia.',
+    },
+    guide: {
+      badge: 'DOKUMEN RESMI JUKNIS',
+      title: 'Panduan Teknis Lomba Futsal ATTIN EXPO XII 2026',
+      body: 'Memuat tata tertib pertandingan, ketentuan busana dan peralatan, durasi babak, kriteria pemenang, dan format sertifikat peserta.',
+      sourceLabel: 'File sumber:',
+      sourceValue: placeholders.juknis,
+      href: site.juknis.href,
+    },
+    form: {
+      badge: 'PENDAFTARAN',
+      title: 'Form Pendaftaran Lomba Futsal',
+      body: 'Isi seluruh data tim dan sekolah dengan cermat. Kolom bertanda bintang akan wajib diisi.',
+      categoryLabel: 'Kategori Futsal yang Diikuti',
+      categoryPlaceholder: '[PILIH KATEGORI]',
+      categoryHelper: 'Pastikan kategori sesuai jenis kelamin anggota tim.',
+      consentPrefix:
+        'Saya menyatakan bahwa seluruh data yang diisikan dalam formulir pendaftaran Lomba Futsal ATTIN EXPO XII 2026 ini adalah benar, sah, dan dapat dipertanggungjawabkan.',
+      submitLabel: 'Kirim Pendaftaran Futsal',
+      submitNote: 'Data tim akan diverifikasi oleh panitia setelah berkas dikirimkan secara lengkap.',
+      successMessage:
+        'Terima kasih! Formulir pendaftaran Lomba Futsal ATTIN EXPO XII 2026 telah terkirim. Panitia akan memverifikasi berkas dan menghubungi peserta resmi tim.',
+    },
+  },
 }
 
 export function getBranchDetail(slug) {

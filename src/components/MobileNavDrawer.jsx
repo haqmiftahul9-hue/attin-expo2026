@@ -156,7 +156,16 @@ export default function MobileNavDrawer({
 
                 {cta ? (
                   <div className="px-4 pb-6 pt-2 border-t border-slate-100 shrink-0">
-                    {cta.to ? (
+                    {cta.disabled ? (
+                      <button
+                        className="w-full h-12 inline-flex items-center justify-center gap-2 bg-slate-200 text-slate-500 font-bold text-[15px] rounded-xl cursor-not-allowed transition-colors"
+                        disabled
+                        type="button"
+                      >
+                        {cta.icon ? <MaterialIcon className="text-[20px] text-slate-400" name={cta.icon} /> : null}
+                        <span>{cta.label}</span>
+                      </button>
+                    ) : cta.to ? (
                       <Link
                         className="w-full h-12 inline-flex items-center justify-center gap-2 bg-[#002B49] hover:bg-[#003B66] active:bg-[#061B33] text-white font-bold text-[15px] rounded-xl shadow-sm transition-colors"
                         onClick={() => setIsOpen(false)}

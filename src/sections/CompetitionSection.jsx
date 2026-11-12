@@ -27,7 +27,7 @@ export default function CompetitionSection() {
               <div
                 key={competition.id}
                 id={competition.id}
-                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] rounded-[20px] border border-slate-900/10 bg-white p-4 sm:p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group scroll-mt-32"
+                className="relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] rounded-[20px] border border-slate-900/10 bg-white p-4 sm:p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-slate-900/20 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] flex flex-col justify-between group scroll-mt-32"
               >
                 <div>
 
@@ -44,18 +44,35 @@ export default function CompetitionSection() {
 
                   <p className="text-[13px] text-slate-600 leading-relaxed mb-4 line-clamp-2">{competition.description}</p>
 
-                  {competition.details.length > 0 && (
-                    <div className="space-y-1.5 py-3 mb-3 text-[13px] font-medium border-t border-slate-100">
-                      {competition.details.map((value, index) => (
-                        <div key={DETAIL_LABELS[index]} className="flex justify-between gap-2">
-                          <span className="text-slate-600 shrink-0 whitespace-nowrap">{DETAIL_LABELS[index]}:</span>
-                          <span className="text-right font-bold text-[#0F172A] whitespace-nowrap">{value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                {competition.details.length > 0 && (
+                  <div className="space-y-1.5 py-3 mb-3 text-[13px] font-medium border-t border-slate-100">
+                    {competition.details.map((value, index) => (
+                      <div key={DETAIL_LABELS[index]} className="flex justify-between gap-2">
+                        <span className="text-slate-600 shrink-0 whitespace-nowrap">{DETAIL_LABELS[index]}:</span>
+                        <span className="text-right font-bold text-[#0F172A] whitespace-nowrap">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
+                {competition.quotaFull && (
+                  <span className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-red-100 text-red-700 text-[11px] font-bold tracking-wider uppercase shadow-sm">
+                    <MaterialIcon name="error" className="text-[11px]" /> Kuota Penuh
+                  </span>
+                )}
+              </div>
+
+              {competition.quotaFull ? (
+                <button
+                  className="w-full inline-flex items-center justify-center gap-2 bg-slate-200 text-slate-400 font-semibold text-[14px] py-3 rounded-lg cursor-not-allowed transition-colors shadow-sm"
+                  disabled
+                  type="button"
+                  data-path="kompetisi"
+                >
+                  <span>Daftar Sekarang</span>
+                  <MaterialIcon name="arrow_forward" className="text-[18px]" />
+                </button>
+              ) : (
                 <Link
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#002B49] text-white font-semibold text-[14px] py-3 rounded-lg hover:bg-[#003B66] transition-colors shadow-sm"
                   data-path="kompetisi"
@@ -64,6 +81,7 @@ export default function CompetitionSection() {
                   <span>Daftar Sekarang</span>
                   <MaterialIcon name="arrow_forward" className="text-[18px]" />
                 </Link>
+              )}
               </div>
             ))}
           </div>

@@ -49,13 +49,24 @@ export default function BranchHero({ branch }) {
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full">
-              <Link
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#002B49] hover:bg-[#061B33] text-white font-body-md-semibold text-body-md-semibold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-center"
-                to={`/pendaftaran/${branch.slug}`}
-              >
-                <span>Daftar {branch.tagline} Sekarang</span>
-                <MaterialIcon name="arrow_downward" className="text-[18px]" />
-              </Link>
+              {branch.registrationDisabled ? (
+                <button
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-slate-200 text-slate-500 font-body-md-semibold text-body-md-semibold cursor-not-allowed transition-all text-center"
+                  disabled
+                  type="button"
+                >
+                  <span>Kuota Penuh</span>
+                  <MaterialIcon name="arrow_downward" className="text-[18px] text-slate-400" />
+                </button>
+              ) : (
+                <Link
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#002B49] hover:bg-[#061B33] text-white font-body-md-semibold text-body-md-semibold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-center"
+                  to={`/pendaftaran/${branch.slug}`}
+                >
+                  <span>Daftar {branch.tagline} Sekarang</span>
+                  <MaterialIcon name="arrow_downward" className="text-[18px]" />
+                </Link>
+              )}
               <a
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#061B33] border border-slate-200 font-body-md-semibold text-body-md-semibold shadow-sm transition-all text-center"
                 href="#ketentuan"
